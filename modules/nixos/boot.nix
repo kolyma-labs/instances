@@ -20,16 +20,14 @@
     };
   };
 
-  mirrors =
-    lib.mkIf config.boot.bios.mirrors
-    != [] {
-      boot.loader.grub.mirroredBoots = [
-        {
-          devices = config.boot.bios.mirrors;
-          path = "/boot";
-        }
-      ];
-    };
+  mirrors = lib.mkIf (config.boot.bios.mirrors != []) {
+    boot.loader.grub.mirroredBoots = [
+      {
+        devices = config.boot.bios.mirrors;
+        path = "/boot";
+      }
+    ];
+  };
 
   cfg = lib.mkIf config.boot.bios.enable {
     boot.loader.grub.enable = true;
@@ -59,7 +57,7 @@ in {
         type = lib.types.bool;
         default = false;
         description = "Enable UEFI boot.";
-      };  
+      };
     };
   };
 
