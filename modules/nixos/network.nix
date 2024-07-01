@@ -113,7 +113,7 @@ in {
       };
 
       nameserver = lib.mkOption {
-        type = lib.listOf lib.types.str;
+        type = lib.types.listOf lib.types.str;
         default = ["8.8.8.8" "8.8.4.4"];
         description = "DNS nameserver.";
       };
