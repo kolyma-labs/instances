@@ -34,10 +34,9 @@
     {device = "/dev/disk/by-uuid/e41e140f-53f3-4663-b6e4-db64dc02c2f2";}
   ];
 
-
   network = {
     enable = true;
-    
+
     ipv4 = {
       enable = true;
       address = "5.9.66.12";

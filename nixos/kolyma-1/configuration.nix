@@ -12,6 +12,7 @@
     outputs.nixosModules.zsh
     outputs.nixosModules.boot
     outputs.nixosModules.data
+    outputs.nixosModules.maid
     outputs.nixosModules.network
     outputs.nixosModules.nixpkgs
 

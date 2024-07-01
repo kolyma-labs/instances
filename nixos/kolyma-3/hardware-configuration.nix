@@ -38,7 +38,7 @@
 
   network = {
     enable = true;
-    
+
     ipv4 = {
       enable = true;
       address = "95.216.248.25";

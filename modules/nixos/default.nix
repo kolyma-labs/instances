@@ -4,9 +4,11 @@
   # List your module files here
   ssh = import ./ssh.nix;
   zsh = import ./zsh.nix;
+  users = import ./users;
+  maid = import ./maid.nix;
   boot = import ./boot.nix;
   data = import ./data.nix;
-  users = import ./users;
+  docker = import ./docker.nix;
   network = import ./network.nix;
   nixpkgs = import ./nixpkgs.nix;
 }
