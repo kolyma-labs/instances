@@ -2,8 +2,10 @@
 # These should be stuff you would like to share with others, not your personal configurations.
 {
   # List your module files here
+  ssh = import ./ssh.nix;
   zsh = import ./zsh.nix;
   boot = import ./boot.nix;
   data = import ./data.nix;
   network = import ./network.nix;
+  nixpkgs = import ./nixpkgs.nix;
 }

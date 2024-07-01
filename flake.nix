@@ -32,18 +32,6 @@
       url = "github:AstroNvim/AstroNvim/v3.40.3";
       flake = false;
     };
-
-    # Orzklv (Kolyma's Owner)
-    cfg-sakhib = {
-      url = "github:orzklv/nix/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Muzaffar (Minecraft Server Moderator)
-    # cfg-muzaffar = {
-    #   url = "github:Muzaffar-x/nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
   };
 
   # In this context, outputs are mostly about getting home-manager what it
@@ -54,7 +42,6 @@
     nixpkgs-unstable,
     home-manager,
     flake-utils,
-    cfg-sakhib,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -126,6 +113,10 @@
     # Reusable nixos modules you might want to export
     # These are usually stuff you would upstream into nixpkgs
     nixosModules = import ./modules/nixos;
+
+    # Reusable home-manager modules you might want to export
+    # These are usually stuff you would upstream into home-manager
+    homeManagerModules = import ./modules/home;
 
     # Reusable server modules you might want to export
     # These are usually stuff you would upstream services to global
