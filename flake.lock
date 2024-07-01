@@ -17,9 +17,26 @@
         "type": "github"
       }
     },
+    "astronvim_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1702659104,
+        "narHash": "sha256-h019vKDgaOk0VL+bnAPOUoAL8VAkhY6MGDbqEy+uAKg=",
+        "owner": "AstroNvim",
+        "repo": "AstroNvim",
+        "rev": "271c9c3f71c2e315cb16c31276dec81ddca6a5a6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AstroNvim",
+        "ref": "v3.40.3",
+        "repo": "AstroNvim",
+        "type": "github"
+      }
+    },
     "cfg-sakhib": {
       "inputs": {
-        "astronvim": "astronvim",
+        "astronvim": "astronvim_2",
         "disko": "disko",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
@@ -29,11 +46,11 @@
         "nixpkgs-unstable": "nixpkgs-unstable"
       },
       "locked": {
-        "lastModified": 1719856040,
-        "narHash": "sha256-3vyt4DciZ+iq+wWsLhP/rSRWSniv8n0OiGyTJ+XsxvE=",
+        "lastModified": 1719856783,
+        "narHash": "sha256-VPUrsT5U6EGCyk7JYX5Gc/gpavHxP59SPwHmm2FFPPw=",
         "owner": "orzklv",
         "repo": "nix",
-        "rev": "515a2a298bac2b57e38651195de9b25dd4e10e2e",
+        "rev": "0ad07e11ef0a71919624d63788d583a369a5bdb5",
         "type": "github"
       },
       "original": {
@@ -193,6 +210,7 @@
     },
     "root": {
       "inputs": {
+        "astronvim": "astronvim",
         "cfg-sakhib": "cfg-sakhib",
         "flake-utils": "flake-utils_2",
         "home-manager": "home-manager_2",
