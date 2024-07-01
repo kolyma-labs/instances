@@ -26,7 +26,12 @@
     # Flake utils for eachSystem
     flake-utils.url = "github:numtide/flake-utils";
 
-    # Server admin's configs
+    # Astro Neovim
+    # Non-flake repository
+    astronvim = {
+      url = "github:AstroNvim/AstroNvim/v3.40.3";
+      flake = false;
+    };
 
     # Orzklv (Kolyma's Owner)
     cfg-sakhib = {
