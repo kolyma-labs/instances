@@ -30,7 +30,7 @@
 
     # Orzklv (Kolyma's Owner)
     cfg-sakhib = {
-      url = "github:orzklv/nix";
+      url = "github:orzklv/nix/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -49,6 +49,7 @@
     nixpkgs-unstable,
     home-manager,
     flake-utils,
+    cfg-sakhib,
     ...
   } @ inputs: let
     inherit (self) outputs;
