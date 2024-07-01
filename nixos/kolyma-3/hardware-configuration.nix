@@ -36,46 +36,56 @@
     {device = "/dev/disk/by-uuid/1e7187bf-7374-41d6-bf0d-4c38a51e02bd";}
   ];
 
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking = {
-    useDHCP = false;
+  # networking = {
+  #   useDHCP = false;
 
-    interfaces = {
-      eth0 = {
-        useDHCP = true;
+  #   interfaces = {
+  #     eth0 = {
+  #       useDHCP = true;
 
-        ipv4.addresses = [
-          {
-            address = "95.216.248.25";
-            prefixLength = 24;
-          }
-        ];
+  #       ipv4.addresses = [
+  #         {
+  #           address = "95.216.248.25";
+  #           prefixLength = 24;
+  #         }
+  #       ];
 
-        ipv6.addresses = [
-          {
-            address = "2a01:4f9:3070:322c::";
-            prefixLength = 64;
-          }
-        ];
-      };
+  #       ipv6.addresses = [
+  #         {
+  #           address = "2a01:4f9:3070:322c::";
+  #           prefixLength = 64;
+  #         }
+  #       ];
+  #     };
+  #   };
+
+  #   # If you want to configure the default gateway
+  #   defaultGateway = {
+  #     address = "95.216.248.1"; # Replace with your actual gateway for IPv4
+  #     interface = "eth0"; # Replace with your actual interface
+  #   };
+
+  #   defaultGateway6 = {
+  #     address = "fe80::1"; # Replace with your actual gateway for IPv6
+  #     interface = "eth0"; # Replace with your actual interface
+  #   };
+
+  #   # Optional DNS configuration
+  #   nameservers = ["8.8.8.8" "8.8.4.4"]; # Replace with your desired DNS servers
+  # };
+
+  network = {
+    enable = true;
+    
+    ipv4 = {
+      enable = true;
+      address = "95.216.248.25";
     };
 
-    # If you want to configure the default gateway
-    defaultGateway = {
-      address = "95.216.248.1"; # Replace with your actual gateway for IPv4
-      interface = "eth0"; # Replace with your actual interface
+    ipv6 = {
+      enable = true;
+      address = "2a01:4f9:3070:322c::";
     };
-
-    defaultGateway6 = {
-      address = "fe80::1"; # Replace with your actual gateway for IPv6
-      interface = "eth0"; # Replace with your actual interface
-    };
-
-    # Optional DNS configuration
-    nameservers = ["8.8.8.8" "8.8.4.4"]; # Replace with your desired DNS servers
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

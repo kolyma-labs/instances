@@ -11,6 +11,7 @@
             "yarn"
             "cargo"
             "vscode"
+            "home_manager"
           ];
           no_retry = true;
           assume_yes = true;
