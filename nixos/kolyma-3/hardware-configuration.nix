@@ -36,44 +36,6 @@
     {device = "/dev/disk/by-uuid/1e7187bf-7374-41d6-bf0d-4c38a51e02bd";}
   ];
 
-  # networking = {
-  #   useDHCP = false;
-
-  #   interfaces = {
-  #     eth0 = {
-  #       useDHCP = true;
-
-  #       ipv4.addresses = [
-  #         {
-  #           address = "95.216.248.25";
-  #           prefixLength = 24;
-  #         }
-  #       ];
-
-  #       ipv6.addresses = [
-  #         {
-  #           address = "2a01:4f9:3070:322c::";
-  #           prefixLength = 64;
-  #         }
-  #       ];
-  #     };
-  #   };
-
-  #   # If you want to configure the default gateway
-  #   defaultGateway = {
-  #     address = "95.216.248.1"; # Replace with your actual gateway for IPv4
-  #     interface = "eth0"; # Replace with your actual interface
-  #   };
-
-  #   defaultGateway6 = {
-  #     address = "fe80::1"; # Replace with your actual gateway for IPv6
-  #     interface = "eth0"; # Replace with your actual interface
-  #   };
-
-  #   # Optional DNS configuration
-  #   nameservers = ["8.8.8.8" "8.8.4.4"]; # Replace with your desired DNS servers
-  # };
-
   network = {
     enable = true;
     
