@@ -49,7 +49,4 @@
 
   # Selfmade programs
   pkgs.fp
-  pkgs.devcc
-  pkgs.ghloc
-  pkgs.google
 ]
