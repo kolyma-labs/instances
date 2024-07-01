@@ -18,11 +18,8 @@
         };
         commands = {};
         linux = {
-          nix_arguments = "--flake github:orzklv/nix";
-          home_manager_arguments = ["--flake" "github:orzklv/nix"];
-        };
-        brew = {
-          autoremove = true;
+          nix_arguments = "--flake github:kolyma-labs/instances";
+          home_manager_arguments = ["--flake" "github:kolyma-labs/instances"];
         };
       };
     };

@@ -2,4 +2,5 @@
 {
   # List your users here
   sakhib = import ./sakhib.nix;
+  muzaffar = import ./muzaffar.nix;
 }
