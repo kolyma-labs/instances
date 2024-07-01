@@ -6,6 +6,7 @@
   zsh = import ./zsh.nix;
   boot = import ./boot.nix;
   data = import ./data.nix;
+  users = import ./users.nix;
   network = import ./network.nix;
   nixpkgs = import ./nixpkgs.nix;
 }
