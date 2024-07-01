@@ -9,17 +9,17 @@
   in
     lib.concatStringsSep "." (lib.take 3 parts ++ ["1"]);
 
-  ipv4 = lib.mkIf config.networking.ipv4.enable {
+  ipv4 = lib.mkIf config.network.ipv4.enable {
     networking = {
       useDHCP = false;
 
       interfaces = {
-        "${config.networking.interface}" = {
+        "${config.network.interface}" = {
           useDHCP = true;
 
           ipv4.addresses = [
             {
-              address = config.networking.ipv4.address;
+              address = config.network.ipv4.address;
               prefixLength = 24;
             }
           ];
@@ -28,23 +28,23 @@
 
       # If you want to configure the default gateway
       defaultGateway = {
-        address = gateway config.networking.ipv4.address;
-        interface = "${config.networking.interface}";
+        address = gateway config.network.ipv4.address;
+        interface = "${config.network.interface}";
       };
     };
   };
 
-  ipv6 = lib.mkIf config.networking.ipv6.enable {
+  ipv6 = lib.mkIf config.network.ipv6.enable {
     networking = {
       useDHCP = false;
 
       interfaces = {
-        "${config.networking.interface}" = {
+        "${config.network.interface}" = {
           useDHCP = true;
 
           ipv6.addresses = [
             {
-              address = config.networking.ipv6.address;
+              address = config.network.ipv6.address;
               prefixLength = 64;
             }
           ];
@@ -54,23 +54,23 @@
       # If you want to configure the default gateway
       defaultGateway6 = {
         address = "fe80::1"; # Replace with your actual gateway for IPv6
-        interface = "${config.networking.interface}";
+        interface = "${config.network.interface}";
       };
     };
   };
 
-  cfg = lib.mkIf config.networking.enable {
+  cfg = lib.mkIf config.network.enable {
     networking = {
       useDHCP = false;
 
       interfaces = {
-        "${config.networking.interface}" = {
+        "${config.network.interface}" = {
           useDHCP = true;
         };
       };
 
       # DNS configuration
-      nameservers = config.networking.nameserver;
+      nameservers = config.network.nameserver;
     };
   };
 in {
