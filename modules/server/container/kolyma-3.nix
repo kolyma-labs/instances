@@ -16,17 +16,17 @@
     # | |/ |/ /  __/ /_/ (__  ) / /_/  __/
     # |__/|__/\___/_.___/____/_/\__/\___/
     website = {
-      image = "ghcr.io/kolyma-labs/gate:master";
+      image = "ghcr.io/kolyma-labs/gate@sha256:2a1cfdfe8e78aa4173c260f5f1a40640785e182ca4aebfe09dc7b0544c4c24fd";
       ports = ["8440:80"];
     };
 
     khakimovs = {
-      image = "ghcr.io/khakimovs/website:main";
+      image = "ghcr.io/khakimovs/website@sha256:87827e103623f301dff0b55dfea34ee9a841c5a5718a065b777a1e2d730db494";
       ports = ["8441:3000"];
     };
 
     bot-xinuxmgr = {
-      image = "ghcr.io/xinux-org/xinuxmgr@sha256:e9091c4dae26426963ef23aea85da3c3057f58b2ad9fcea7de8b2a332d521eb5";
+      image = "ghcr.io/xinux-org/xinuxmgr@sha256:ff196965fa657b258e10ddfbad1d646a0225c8723a574ca2207e8c3cedf3ccca";
       ports = ["8445:8445"];
       environmentFiles = [
         /srv/bots/xinuxmgr.env
