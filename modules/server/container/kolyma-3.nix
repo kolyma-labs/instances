@@ -26,7 +26,7 @@
     };
 
     bot-xinuxmgr = {
-      image = "ghcr.io/xinux-org/xinuxmgr@sha256:1efd651ba1c174e26cbd64ec926264676908c67f274a2fda496534dd9addd637";
+      image = "ghcr.io/xinux-org/xinuxmgr@sha256:e9091c4dae26426963ef23aea85da3c3057f58b2ad9fcea7de8b2a332d521eb5";
       ports = ["8445:8445"];
       environmentFiles = [
         /srv/bots/xinuxmgr.env
