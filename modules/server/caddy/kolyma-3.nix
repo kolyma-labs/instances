@@ -18,6 +18,8 @@
             "ns3.kolyma.uz"
             "http://95.216.248.25"
             "http://2a01:4f9:3070:322c::"
+            "cxsmxs.space"
+            "www.cxsmxs.space"
           ];
           extraConfig = ''
             reverse_proxy 127.0.0.1:8440
