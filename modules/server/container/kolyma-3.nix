@@ -49,7 +49,7 @@
         "25656:25656"
       ];
       environment = {
-        TYPE = "PAPER";
+        TYPE = "SPIGOT";
         EULA = "TRUE";
         MEMORY = "12G";
       };
