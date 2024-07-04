@@ -39,28 +39,28 @@
     #  / /  / / /_/ / /_/ / / / / /__/ /  / /_/ / __/ /_
     # /_/  /_/\____/\__, /_/ /_/\___/_/   \__,_/_/  \__/
     #              /____/
-    # minecraft = {
-    #   image = "itzg/minecraft-server:latest";
-    #   volumes = [
-    #     "/srv/minecraft:/data"
-    #   ];
-    #   ports = [
-    #     "25565:25565"
-    #     "25656:25656"
-    #   ];
-    #   environment = {
-    #     TYPE = "PAPER";
-    #     EULA = "TRUE";
-    #     MEMORY = "12G";
-    #   };
-    # };
+    minecraft = {
+      image = "itzg/minecraft-server:latest";
+      volumes = [
+        "/srv/minecraft:/data"
+      ];
+      ports = [
+        "25565:25565"
+        "25656:25656"
+      ];
+      environment = {
+        TYPE = "PAPER";
+        EULA = "TRUE";
+        MEMORY = "12G";
+      };
+    };
   };
 
   # Necessary firewall rules for docker containers
   networking.firewall.allowedUDPPorts = [
-    # 25565 # Minecraft
+    25565 # Minecraft
   ];
   networking.firewall.allowedTCPPorts = [
-    # 25565 # Minecraft
+    25565 # Minecraft
   ];
 }
