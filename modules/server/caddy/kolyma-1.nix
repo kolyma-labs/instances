@@ -26,7 +26,7 @@
 
         "cdn.kolyma.uz" = {
           extraConfig = ''
-            root * /srv
+            root * /srv/cdn
             file_server browse
           '';
         };
