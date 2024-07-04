@@ -25,6 +25,13 @@
             reverse_proxy 127.0.0.1:8440
           '';
         };
+
+        "cdn.kolyma.uz" = {
+          extraConfig = ''
+            root * /srv/cdn
+            file_server
+          '';
+        };
       };
     };
 
