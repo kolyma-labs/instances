@@ -11,5 +11,5 @@ $TTL 86400
 @      IN    NS    ns2.kolyma.uz.
 
 ; Entry points
-@      IN    A     5.9.66.12
-@      IN    AAAA  2a01:4f8:161:714c::
+@      IN    A     95.216.248.25
+@      IN    AAAA  2a01:4f9:3070:322c::
