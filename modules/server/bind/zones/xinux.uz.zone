@@ -11,7 +11,7 @@ $TTL 86400
 @      IN    NS    ns2.kolyma.uz.
 
 ; Entry points
-@      IN    A     76.76.21.21
+@      IN    A     95.216.248.25
 
 ; Telegram Bots
 xinuxmgr    IN    A    95.216.248.25
