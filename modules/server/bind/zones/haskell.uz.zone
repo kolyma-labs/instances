@@ -37,3 +37,7 @@ _dmarc             IN TXT "v=DMARC1; p=reject; rua=mailto:postmaster@haskell.uz;
 ; Main website (Caddy)
 @      IN    A     95.216.248.25
 @      IN    AAAA  2a01:4f9:3070:322c::
+www    IN    A     95.216.248.25
+www    IN    AAAA  2a01:4f9:3070:322c::
+chat   IN    A     95.216.248.25
+chat   IN    AAAA  2a01:4f9:3070:322c::
