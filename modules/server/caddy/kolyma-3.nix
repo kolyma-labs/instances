@@ -35,6 +35,16 @@
           '';
         };
 
+        "haskell.uz" = {
+          serverAliases = [
+            "www.haskell.uz"
+            "chat.haskell.uz"
+          ];
+          extraConfig = ''
+            reverse_proxy 127.0.0.1:8450
+          '';
+        };
+
         "xinuxmgr.xinux.uz" = {
           extraConfig = ''
             reverse_proxy 127.0.0.1:8445
