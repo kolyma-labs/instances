@@ -31,6 +31,7 @@
       "floss.uz"
       "rust-lang.uz"
       "xinux.uz"
+      "haskell.uz"
     ];
     slaves = ["65.109.61.35"];
   };

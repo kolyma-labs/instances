@@ -31,6 +31,7 @@
       "floss.uz"
       "rust-lang.uz"
       "xinux.uz"
+      "haskell.uz"
     ];
     masters = ["5.9.66.12"];
   };
