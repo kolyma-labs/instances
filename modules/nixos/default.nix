@@ -7,6 +7,7 @@
   users = import ./users;
   maid = import ./maid.nix;
   boot = import ./boot.nix;
+  motd = import ./motd.nix;
   data = import ./data.nix;
   docker = import ./docker.nix;
   network = import ./network.nix;

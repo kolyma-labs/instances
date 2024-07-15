@@ -86,7 +86,10 @@
           nix
           nil
           git
+          nixd
           just
+          nixpkgs-fmt
+          nixpkgs-lint
         ];
 
         # Set environment variables, if needed
@@ -105,7 +108,7 @@
     # Formatter for your nix files, available through 'nix fmt'
     # Other options beside 'alejandra' include 'nixpkgs-fmt'
     formatter =
-      forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+      forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
 
     # Your custom packages and modifications, exported as overlays
     overlays = import ./overlays {inherit inputs;};
