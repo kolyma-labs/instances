@@ -18,8 +18,6 @@
             "ns3.kolyma.uz"
             "http://95.216.248.25"
             "http://2a01:4f9:3070:322c::"
-            "cxsmxs.space"
-            "www.cxsmxs.space"
           ];
           extraConfig = ''
             reverse_proxy 127.0.0.1:8440
@@ -32,6 +30,20 @@
           ];
           extraConfig = ''
             reverse_proxy 127.0.0.1:8441
+          '';
+        };
+
+        "cxsmxs.space" = {
+          serverAliases = [
+            "www.cxsmxs.space"
+          ];
+          extraConfig = ''
+            reverse_proxy 127.0.0.1:8100 {
+              header_up Host {host}
+          		header_up X-Real-IP {remote}
+          		header_up Upgrade {http_upgrade}
+          		header_up Connection {>Connection}
+            }
           '';
         };
 
