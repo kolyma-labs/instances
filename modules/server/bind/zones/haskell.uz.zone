@@ -10,7 +10,7 @@ $TTL 86400
 @      IN    NS    ns1.kolyma.uz.
 @      IN    NS    ns2.kolyma.uz.
 
-; Mail server (iCloud)
+; Mail server (Stalwart)
 @      IN    MX    10 mail.kolyma.uz.
 mail   IN    CNAME mail.kolyma.uz.
 @      IN    TXT   "v=spf1 mx ra=postmaster -all"

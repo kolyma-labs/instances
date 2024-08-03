@@ -30,6 +30,7 @@
       "cxsmxs.space"
       "floss.uz"
       "rust-lang.uz"
+      "osmon-lang.uz"
       "xinux.uz"
       "haskell.uz"
     ];

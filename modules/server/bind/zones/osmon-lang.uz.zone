@@ -1,0 +1,52 @@
+$TTL 86400
+@      IN    SOA    ns1.kolyma.uz. admin.kolyma.uz. (
+             2024061900 ; Serial YYYYMMDDNN (NN is the revision number)
+             3600       ; Refresh
+             1800       ; Retry
+             604800     ; Expire
+             86400 )    ; Minimum TTL
+
+; Nameservers
+@      IN    NS    ns1.kolyma.uz.
+@      IN    NS    ns2.kolyma.uz.
+
+; Mail server (Stalwart)
+@      IN    MX    10 mail.kolyma.uz.
+@      IN    TXT   "v=spf1 mx ra=postmaster -all"
+mail   IN    CNAME mail.kolyma.uz.
+autoconfig         IN CNAME mail.kolyma.uz.
+autodiscover       IN CNAME mail.kolyma.uz.
+mta-sts            IN CNAME mail.kolyma.uz.
+_jmap._tcp         IN SRV 0 1 443 mail.kolyma.uz.
+_imaps._tcp        IN SRV 0 1 993 mail.kolyma.uz.
+_imap._tcp         IN SRV 0 1 143 mail.kolyma.uz.
+_pop3s._tcp        IN SRV 0 1 995 mail.kolyma.uz.
+_pop3._tcp         IN SRV 0 1 110 mail.kolyma.uz.
+_submissions._tcp  IN SRV 0 1 465 mail.kolyma.uz.
+_submission._tcp   IN SRV 0 1 587 mail.kolyma.uz.
+_mta-sts           IN TXT "v=STSv1; id=10352140972267079138"
+_smtp._tls         IN TXT "v=TLSRPTv1; rua=mailto:postmaster@osmon-lang.uz"
+_dmarc             IN TXT "v=DMARC1; p=reject; rua=mailto:postmaster@osmon-lang.uz; ruf=mailto:postmaster@osmon-lang.uz"
+202408e._domainkey IN TXT "v=DKIM1; k=ed25519; h=sha256; p=fG8IB6yDw9nQ1n73dd7D8sn7ZMCIONIEbzhV34aYRAQ="
+202408r._domainkey IN TXT (
+  "v=DKIM1; k=rsa; h=sha256; "
+  "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuZOsXurHF4uPd8b1eLaJPDBH0KOZ86Au73awT1zQERWH+8b5wqcTua5Rj9hk0"
+  "R3V7xfacsc4ISUNCfCrF9qKGGuYLTHrl+DvQGrW0uZkThKeCQfrVNPSIhqao0o8ZrFIlmWrmDFRPJdEOTHzaKqWqBBYR+O2geglyBWbvfWE"
+  "ygCLoZj8jjTEQBWOc8douSePSxFLHTKCOqS2cE+MekDQZ9B2XGyWxV7pt+dBUm3dxg4hjZxgh6auGt22SMncKUMcaE/RLao2taQQJuaBMxx"
+  "fC5WYvqXD71zEqMgli04TajIRaIsgjlcyv+mi60hf9oecogHNHtoDw2E4LWWMqANghQIDAQAB"
+)
+
+; Entry points
+@      IN    A     185.199.108.153
+@      IN    A     185.199.109.153
+@      IN    A     185.199.110.153
+@      IN    A     185.199.111.153
+
+; Wiki points
+wiki   IN    A     185.199.108.153
+wiki   IN    A     185.199.109.153
+wiki   IN    A     185.199.110.153
+wiki   IN    A     185.199.111.153
+
+; GitHub Verifications
+_gh-osmon-lang-o      IN      TXT      c5b884310d
