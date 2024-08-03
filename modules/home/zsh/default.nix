@@ -58,8 +58,10 @@
       refresh = "source ~/.zshrc";
       clean = "nix store gc && nix-collect-garbage -d";
 
-      # Zellij
+      # Development
       hack = "zellij";
+      vim = "hx";
+      nvim = "hx";
 
       # Others (Developer)
       ports = "sudo lsof -PiTCP -sTCP:LISTEN";

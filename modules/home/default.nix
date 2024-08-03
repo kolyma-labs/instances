@@ -3,7 +3,7 @@
 {
   # List your module files here
   zsh = import ./zsh;
-  neovim = import ./neovim;
+  helix = import ./helix;
   nixpkgs = import ./nixpkgs;
   topgrade = import ./topgrade;
   packages = import ./packages;

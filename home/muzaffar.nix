@@ -10,6 +10,7 @@
 }: {
   imports = [
     outputs.homeManagerModules.zsh
+    outputs.homeManagerModules.helix
     outputs.homeManagerModules.nixpkgs
     outputs.homeManagerModules.packages
   ];

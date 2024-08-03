@@ -10,7 +10,7 @@
 }: {
   imports = [
     outputs.homeManagerModules.zsh
-    outputs.homeManagerModules.neovim
+    outputs.homeManagerModules.helix
     outputs.homeManagerModules.nixpkgs
     outputs.homeManagerModules.topgrade
     outputs.homeManagerModules.packages

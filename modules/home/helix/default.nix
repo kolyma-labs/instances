@@ -1,39 +1,67 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
-  imports = [];
-
-  xdg.configFile = {
-    # astronvim's config
-    "nvim".source = inputs.astronvim;
-
-    # my custom astronvim config, astronvim will load it after base config
-    # https://github.com/AstroNvim/AstroNvim/blob/v3.32.0/lua/astronvim/bootstrap.lua#L15-L16
-    "astronvim/lua/user".source = ./user;
-  };
-
-  nixpkgs.config = {
-    programs.npm.npmrc = ''
-      prefix = ''${HOME}/.npm-global
-    '';
-  };
-
-  programs = {
-    neovim = {
+{ pkgs, ... }: {
+  config = {
+    programs.helix = {
       enable = true;
 
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
+      settings = {
+        theme = "autumn_night";
 
-      # currently we use lazy.nvim as neovim's package manager, so comment this one.
-      # plugins = with pkgs.vimPlugins; [
-      #   # search all the plugins using https://search.nixos.org/packages
-      # ];
+        editor = {
+          line-number = "relative";
 
-      # Extra packages only available to nvim(won't pollute the global home environment)
+          cursor-shape = {
+            insert = "bar";
+            normal = "block";
+            select = "underline";
+          };
+
+          file-picker = {
+            hidden = false;
+            git-ignore = true;
+            git-global = true;
+          };
+
+          lsp = {
+            enable = true;
+            display-messages = true;
+            display-inlay-hints = true;
+          };
+
+          statusline = {
+            left = [ "mode" "spinner" "read-only-indicator" "file-modification-indicator" ];
+
+            center = [ "file-name" ];
+
+            right = [
+              "diagnostics"
+              "selections"
+              "position"
+              "file-encoding"
+              "file-line-ending"
+              "file-type"
+            ];
+
+            separator = "│";
+
+            mode = {
+              normal = "SLAVE";
+              insert = "MASTER";
+              select = "DUNGEON";
+            };
+          };
+        };
+
+        keys.normal = {
+          # Easy window movement
+          "C-left" = "jump_view_left";
+          "C-right" = "jump_view_right";
+          "C-up" = "jump_view_up";
+          "C-down" = "jump_view_down";
+
+          "C-r" = ":reload";
+        };
+      };
+
       extraPackages = with pkgs;
         [
           #-- c/c++
@@ -71,6 +99,10 @@
 
           #-- nix
           nil
+          nixd
+          nixpkgs-fmt
+          nixpkgs-lint
+
           # nixd
           statix # Lints and suggestions for the nix programming language
           deadnix # Find and remove unused code in .nix source files
@@ -134,11 +166,10 @@
           #-- Optional Requirements:
           gdu # disk usage analyzer, required by AstroNvim
           ripgrep # fast search tool, required by AstroNvim's '<leader>fw'(<leader> is space key)
-          git # git
         ]
         ++ (
           if pkgs.stdenv.isDarwin
-          then []
+          then [ ]
           else [
             #-- verilog / systemverilog
             verible
