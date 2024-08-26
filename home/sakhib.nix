@@ -9,15 +9,17 @@
 }: {
   imports = [
     outputs.homeManagerModules.zsh
+    outputs.homeManagerModules.helix
     outputs.homeManagerModules.nixpkgs
+    outputs.homeManagerModules.topgrade
     outputs.homeManagerModules.packages
   ];
 
   # This is required information for home-manager to do its job
   home = {
     stateVersion = "24.05";
-    username = "sardor";
-    homeDirectory = "/home/sardor";
+    username = "sakhib";
+    homeDirectory = "/home/sakhib";
 
     # Tell it to map everything in the `config` directory in this
     # repository to the `.config` in my home-manager directory
