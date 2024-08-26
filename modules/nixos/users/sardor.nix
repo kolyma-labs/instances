@@ -23,7 +23,7 @@
       extraSpecialArgs = { inherit inputs outputs; };
       users = {
         # Import your home-manager configuration
-        sakhib = import ../../../home/sakhib.nix;
+        sakhib = import ../../../home/sardor.nix;
       };
     };
   };
