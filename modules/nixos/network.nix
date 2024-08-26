@@ -1,13 +1,14 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: let
-  gateway = ip: let
-    parts = lib.splitString "." ip;
-  in
-    lib.concatStringsSep "." (lib.take 3 parts ++ ["1"]);
+{ pkgs
+, lib
+, config
+, ...
+}:
+let
+  gateway = ip:
+    let
+      parts = lib.splitString "." ip;
+    in
+    lib.concatStringsSep "." (lib.take 3 parts ++ [ "1" ]);
 
   ipv4 = lib.mkIf config.network.ipv4.enable {
     networking = {
@@ -73,7 +74,8 @@
       nameservers = config.network.nameserver;
     };
   };
-in {
+in
+{
   options = {
     network = {
       enable = lib.mkOption {
@@ -114,7 +116,7 @@ in {
 
       nameserver = lib.mkOption {
         type = lib.types.listOf lib.types.str;
-        default = ["8.8.8.8" "8.8.4.4"];
+        default = [ "8.8.8.8" "8.8.4.4" ];
         description = "DNS nameserver.";
       };
     };
@@ -124,5 +126,5 @@ in {
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  config = lib.mkMerge [ipv4 ipv6 cfg];
+  config = lib.mkMerge [ ipv4 ipv6 cfg ];
 }

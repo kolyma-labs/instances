@@ -1,24 +1,23 @@
-{
-  config,
-  lib,
-  pkgs,
-  modulesPath,
-  ...
+{ config
+, lib
+, pkgs
+, modulesPath
+, ...
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid"];
-  boot.initrd.kernelModules = ["nvme"];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" ];
+  boot.initrd.kernelModules = [ "nvme" ];
+  boot.kernelModules = [ "kvm-amd" ];
+  boot.extraModulePackages = [ ];
 
   boot.bios = {
     enable = true;
     uefi = true;
     raided = true;
-    mirrors = ["/dev/nvme0n1" "/dev/nvme1n1"];
+    mirrors = [ "/dev/nvme0n1" "/dev/nvme1n1" ];
   };
 
   fileSystems."/" = {
@@ -29,11 +28,11 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/1B12-CEDF";
     fsType = "vfat";
-    options = ["fmask=0022" "dmask=0022"];
+    options = [ "fmask=0022" "dmask=0022" ];
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/1e7187bf-7374-41d6-bf0d-4c38a51e02bd";}
+    { device = "/dev/disk/by-uuid/1e7187bf-7374-41d6-bf0d-4c38a51e02bd"; }
   ];
 
   network = {

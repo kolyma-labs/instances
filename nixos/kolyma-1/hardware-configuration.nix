@@ -1,23 +1,22 @@
-{
-  config,
-  lib,
-  pkgs,
-  modulesPath,
-  ...
+{ config
+, lib
+, pkgs
+, modulesPath
+, ...
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid"];
-  boot.initrd.kernelModules = ["nvme"];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" ];
+  boot.initrd.kernelModules = [ "nvme" ];
+  boot.kernelModules = [ "kvm-amd" ];
+  boot.extraModulePackages = [ ];
 
   boot.bios = {
     enable = true;
     raided = true;
-    mirrors = ["/dev/nvme0n1" "/dev/nvme1n1"];
+    mirrors = [ "/dev/nvme0n1" "/dev/nvme1n1" ];
   };
 
   fileSystems."/" = {
@@ -31,7 +30,7 @@
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/e41e140f-53f3-4663-b6e4-db64dc02c2f2";}
+    { device = "/dev/disk/by-uuid/e41e140f-53f3-4663-b6e4-db64dc02c2f2"; }
   ];
 
   network = {

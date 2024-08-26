@@ -1,9 +1,9 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
+{ config
+, pkgs
+, lib
+, ...
+}:
+let
   linux = with pkgs; [
     # Add new packages here
     docker-compose
@@ -59,7 +59,8 @@
     # Selfmade programs
     fp
   ];
-in {
+in
+{
   config = {
     # Packages to be installed on my machine
     home.packages = globals ++ linux;

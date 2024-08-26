@@ -1,9 +1,8 @@
-{
-  config,
-  lib,
-  pkgs,
-  outputs,
-  ...
+{ config
+, lib
+, pkgs
+, outputs
+, ...
 }: {
   # Deployed Services
   imports = [
@@ -34,6 +33,6 @@
       "xinux.uz"
       "haskell.uz"
     ];
-    slaves = ["65.109.61.35"];
+    slaves = [ "65.109.61.35" ];
   };
 }

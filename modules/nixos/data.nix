@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }: {
   config = {
     users.groups.admins = {
@@ -19,7 +18,7 @@
 
     systemd.services.chownSrv = {
       description = "Change ownership of /srv";
-      wantedBy = ["multi-user.target"];
+      wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         Type = "oneshot";
         ExecStart = "${pkgs.bash}/bin/bash -c ${config.system.activationScripts.chownSrv.text}";

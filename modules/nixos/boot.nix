@@ -1,9 +1,9 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: let
+{ pkgs
+, lib
+, config
+, ...
+}:
+let
   raid = lib.mkIf config.boot.bios.raided {
     boot.swraid = {
       enable = true;
@@ -20,7 +20,7 @@
     };
   };
 
-  mirrors = lib.mkIf (config.boot.bios.mirrors != []) {
+  mirrors = lib.mkIf (config.boot.bios.mirrors != [ ]) {
     boot.loader.grub.mirroredBoots = [
       {
         devices = config.boot.bios.mirrors;
@@ -32,7 +32,8 @@
   cfg = lib.mkIf config.boot.bios.enable {
     boot.loader.grub.enable = true;
   };
-in {
+in
+{
   options = {
     boot.bios = {
       enable = lib.mkOption {
@@ -49,7 +50,7 @@ in {
 
       mirrors = lib.mkOption {
         type = lib.types.listOf lib.types.str;
-        default = [];
+        default = [ ];
         description = "List of devices to mirror the boot partition to.";
       };
 
@@ -61,5 +62,5 @@ in {
     };
   };
 
-  config = lib.mkMerge [raid mirrors uefi cfg];
+  config = lib.mkMerge [ raid mirrors uefi cfg ];
 }

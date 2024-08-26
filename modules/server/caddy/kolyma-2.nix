@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }: {
   config = {
     # Configure Caddy
@@ -39,7 +38,7 @@
     };
 
     # Ensure the firewall allows HTTP and HTTPS traffic
-    networking.firewall.allowedTCPPorts = [80 443];
-    networking.firewall.allowedUDPPorts = [80 443];
+    networking.firewall.allowedTCPPorts = [ 80 443 ];
+    networking.firewall.allowedUDPPorts = [ 80 443 ];
   };
 }

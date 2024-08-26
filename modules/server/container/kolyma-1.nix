@@ -1,9 +1,8 @@
-{
-  config,
-  lib,
-  pkgs,
-  outputs,
-  ...
+{ config
+, lib
+, pkgs
+, outputs
+, ...
 }: {
   imports = [
     outputs.nixosModules.docker
@@ -17,7 +16,7 @@
     # |__/|__/\___/_.___/____/_/\__/\___/
     website = {
       image = "ghcr.io/kolyma-labs/gate:master";
-      ports = ["8440:80"];
+      ports = [ "8440:80" ];
     };
 
     #    _______ __     ____
