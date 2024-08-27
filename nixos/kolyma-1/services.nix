@@ -32,6 +32,7 @@
       "osmon-lang.uz"
       "xinux.uz"
       "haskell.uz"
+      "minecraft.uz"
     ];
     slaves = [ "65.109.61.35" ];
   };

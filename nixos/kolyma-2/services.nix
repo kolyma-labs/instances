@@ -32,6 +32,7 @@
       "osmon-lang.uz"
       "xinux.uz"
       "haskell.uz"
+      "minecraft.uz"
     ];
     masters = [ "5.9.66.12" ];
   };
