@@ -75,7 +75,8 @@
 
         "api.cryptoshop.uz" = {
           extraConfig = ''
-            reverse_proxy 127.0.0.1:8460
+            reverse_proxy /payme/jsonrpc 127.0.0.1:6666
+            reverse_proxy * 127.0.0.1:8460
           '';
         };
       };
