@@ -57,6 +57,7 @@
             		header_up X-Real-IP {remote}
             		header_up Upgrade {http_upgrade}
             		header_up Connection {>Connection}
+                header_up X-Forwarded-Proto {scheme}
               }
           '';
         };
