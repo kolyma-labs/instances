@@ -7,16 +7,16 @@
   in
   import nixpkgs { overlays = [ ]; }
 , ...
-}: {
-  default = pkgs.mkShell {
-    NIX_CONFIG = "extra-experimental-features = nix-command flakes";
-    nativeBuildInputs = with pkgs; [
-      nix
-      nil
-      git
-      nixd
-      nixpkgs-fmt
-      nixpkgs-lint
-    ];
-  };
+}: pkgs.stdenv.mkDerivation {
+  name = "instances";
+
+  nativeBuildInputs = with pkgs; [
+    nix
+    nil
+    nixd
+    nixpkgs-fmt
+    git
+  ];
+
+  NIX_CONFIG = "extra-experimental-features = nix-command flakes";
 }

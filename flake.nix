@@ -25,13 +25,6 @@
 
     # Flake utils for eachSystem
     flake-utils.url = "github:numtide/flake-utils";
-
-    # Astro Neovim
-    # Non-flake repository
-    astronvim = {
-      url = "github:AstroNvim/AstroNvim/v3.40.3";
-      flake = false;
-    };
   };
 
   # In this context, outputs are mostly about getting home-manager what it
@@ -45,128 +38,81 @@
     , ...
     } @ inputs:
     let
-      inherit (self) outputs;
+      # Self instance pointer
+      outputs = self;
 
-      # Legacy packages are needed for home-manager
-      lib = nixpkgs.lib // home-manager.lib;
+      afes = flake-utils.lib.eachDefaultSystem (system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        # Nixpkgs packages for the current system
+        {
+          # Your custom packages
+          # Acessible through 'nix build', 'nix shell', etc
+          packages = import ./pkgs { inherit pkgs; };
 
-      # Supported systems for your flake packages, shell, etc.
-      systems = [
-        "aarch64-linux"
-        "x86_64-linux"
-        "aarch64-darwin"
-        "x86_64-darwin"
-      ];
+          # Formatter for your nix files, available through 'nix fmt'
+          # Other options beside 'alejandra' include 'nixpkgs-fmt'
+          formatter = pkgs.nixpkgs-fmt;
 
-      # This is a function that generates an attribute by calling a function you
-      # pass to it, with each system as an argument
-      forAllSystems = nixpkgs.lib.genAttrs systems;
-
-      # This is a function that generates an attribute by calling a function you
-      # pass to it, with each system as an argument
-      forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-
-      # This is a function that generates an attribute by calling a function you
-      # pass to it, with each system as an argument
-      pkgsFor = lib.genAttrs systems (system:
-        import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
+          # Development shells
+          devShells.default = import ./shell.nix { inherit pkgs; };
         });
 
-      # Define a development shell for each system
-      devShellFor = system:
-        let
-          pkgs = import nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
+      afse = {
+        # Nixpkgs and Home-Manager helpful functions
+        lib = nixpkgs.lib // home-manager.lib;
+
+        # Your custom packages and modifications, exported as overlays
+        overlays = import ./overlays { inherit inputs; };
+
+        # Reusable nixos modules you might want to export
+        # These are usually stuff you would upstream into nixpkgs
+        nixosModules = import ./modules/nixos;
+
+        # Reusable home-manager modules you might want to export
+        # These are usually stuff you would upstream into home-manager
+        homeManagerModules = import ./modules/home;
+
+        # Reusable server modules you might want to export
+        # These are usually stuff you would upstream services to global
+        serverModules = import ./modules/server;
+
+        # NixOS configuration entrypoint
+        # Available through 'nixos-rebuild --flake .#your-hostname'
+        nixosConfigurations = {
+          "Kolyma-1" = nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs outputs; };
+            modules = [
+              # > Our main nixos configuration file <
+              ./nixos/kolyma-1/configuration.nix
+            ];
           };
-        in
-        pkgs.mkShell {
-          NIX_CONFIG = "extra-experimental-features = nix-command flakes repl-flake";
-          buildInputs = with pkgs; [
-            nix
-            nil
-            git
-            nixd
-            just
-            nixpkgs-fmt
-            nixpkgs-lint
-          ];
-
-          # Set environment variables, if needed
-          shellHook = ''
-            # export SOME_VAR=some_value
-            echo "Welcome to Kolyma's dotfiles!"
-          '';
+          "Kolyma-2" = nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs outputs; };
+            modules = [
+              # > Our main nixos configuration file <
+              ./nixos/kolyma-2/configuration.nix
+            ];
+          };
+          "Kolyma-3" = nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs outputs; };
+            modules = [
+              # > Our main nixos configuration file <
+              ./nixos/kolyma-3/configuration.nix
+            ];
+          };
+          "Kolyma-4" = nixpkgs.lib.nixosSystem {
+            specialArgs = { inherit inputs outputs; };
+            modules = [
+              # > Our main nixos configuration file <
+              ./nixos/kolyma-4/configuration.nix
+            ];
+          };
         };
-    in
-    {
-      inherit lib;
 
-      # Your custom packages
-      # Acessible through 'nix build', 'nix shell', etc
-      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
-
-      # Formatter for your nix files, available through 'nix fmt'
-      # Other options beside 'alejandra' include 'nixpkgs-fmt'
-      formatter =
-        forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
-
-      # Your custom packages and modifications, exported as overlays
-      overlays = import ./overlays { inherit inputs; };
-
-      # Reusable nixos modules you might want to export
-      # These are usually stuff you would upstream into nixpkgs
-      nixosModules = import ./modules/nixos;
-
-      # Reusable home-manager modules you might want to export
-      # These are usually stuff you would upstream into home-manager
-      homeManagerModules = import ./modules/home;
-
-      # Reusable server modules you might want to export
-      # These are usually stuff you would upstream services to global
-      serverModules = import ./modules/server;
-
-      # Reusable home-manager modules you might want to export
-      # These are usually stuff you would upstream into home-manager
-      # homeManagerModules = import ./modules/home;
-
-      # NixOS configuration entrypoint
-      # Available through 'nixos-rebuild --flake .#your-hostname'
-      nixosConfigurations = {
-        "Kolyma-1" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            # > Our main nixos configuration file <
-            ./nixos/kolyma-1/configuration.nix
-          ];
-        };
-        "Kolyma-2" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            # > Our main nixos configuration file <
-            ./nixos/kolyma-2/configuration.nix
-          ];
-        };
-        "Kolyma-3" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            # > Our main nixos configuration file <
-            ./nixos/kolyma-3/configuration.nix
-          ];
-        };
-        "Kolyma-4" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            # > Our main nixos configuration file <
-            ./nixos/kolyma-4/configuration.nix
-          ];
-        };
       };
-
-      # Development shells
-      devShell = lib.mapAttrs (system: _: devShellFor system) (lib.genAttrs systems { });
-      # devShells = lib.mapAttrs (system: _: devShellFor system) (lib.genAttrs systems {});
-    };
+    in
+    # Merging all final results
+    afse // afes;
 }
