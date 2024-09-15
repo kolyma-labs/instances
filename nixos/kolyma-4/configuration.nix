@@ -4,7 +4,8 @@
 , config
 , pkgs
 , ...
-}: {
+}:
+{
   imports = [
     # If you want to use modules your own flake exports (from modules/nixos):
     outputs.nixosModules.ssh
@@ -19,6 +20,7 @@
 
     # User configs
     outputs.nixosModules.users.sakhib
+    outputs.nixosModules.users.sardor
 
     # Import your deployed service list
     ./services.nix
@@ -31,7 +33,15 @@
   ];
 
   # Hostname of the system
-  networking.hostName = "Kolyma-1";
+  networking.hostName = "Kolyma-4";
+
+  # Entirely disable hibernation
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=no
+    AllowHibernation=no
+    AllowHybridSleep=no
+    AllowSuspendThenHibernate=no
+  '';
 
   # Don't ask for password
   security.sudo.wheelNeedsPassword = false;

@@ -5,6 +5,7 @@
   ssh = import ./ssh.nix;
   zsh = import ./zsh.nix;
   users = import ./users;
+  root = import ./root.nix;
   maid = import ./maid.nix;
   boot = import ./boot.nix;
   motd = import ./motd.nix;

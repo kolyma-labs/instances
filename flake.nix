@@ -156,6 +156,13 @@
             ./nixos/kolyma-3/configuration.nix
           ];
         };
+        "Kolyma-4" = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            # > Our main nixos configuration file <
+            ./nixos/kolyma-4/configuration.nix
+          ];
+        };
       };
 
       # Development shells

@@ -19,3 +19,5 @@ Cargo.lock
 result
 result-*
 
+# Ignore nohup
+nohup.out
