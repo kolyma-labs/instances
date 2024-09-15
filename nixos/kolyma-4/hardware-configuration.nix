@@ -51,5 +51,4 @@
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
