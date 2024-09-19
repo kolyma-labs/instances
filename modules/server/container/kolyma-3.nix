@@ -9,16 +9,6 @@
   ];
 
   virtualisation.oci-containers.containers = {
-    #  _       __     __         _ __
-    # | |     / /__  / /_  _____(_) /____
-    # | | /| / / _ \/ __ \/ ___/ / __/ _ \
-    # | |/ |/ /  __/ /_/ (__  ) / /_/  __/
-    # |__/|__/\___/_.___/____/_/\__/\___/
-    website = {
-      image = "ghcr.io/kolyma-labs/gate@sha256:3014ffb25d3e15351d5c70afe0ef2f00242cc14c294aaf0facc2741041de30fb";
-      ports = [ "8440:80" ];
-    };
-
     khakimovs = {
       image = "ghcr.io/khakimovs/website@sha256:87827e103623f301dff0b55dfea34ee9a841c5a5718a065b777a1e2d730db494";
       ports = [ "8441:3000" ];

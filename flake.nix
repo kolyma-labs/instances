@@ -25,6 +25,9 @@
 
     # Flake utils for eachSystem
     flake-utils.url = "github:numtide/flake-utils";
+
+    # Main homepage website
+    gate.url = "github:kolyma-labs/gate";
   };
 
   # In this context, outputs are mostly about getting home-manager what it
@@ -35,29 +38,34 @@
     , nixpkgs-unstable
     , home-manager
     , flake-utils
+    , gate
     , ...
     } @ inputs:
     let
       # Self instance pointer
       outputs = self;
 
-      afes = flake-utils.lib.eachDefaultSystem (system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-        in
-        # Nixpkgs packages for the current system
-        {
-          # Your custom packages
-          # Acessible through 'nix build', 'nix shell', etc
-          packages = import ./pkgs { inherit pkgs; };
+      afes = flake-utils.lib.eachDefaultSystem
+        (system:
+          let
+            # Packages for the current <arch>
+            pkgs = nixpkgs.legacyPackages.${system};
+          in
+          # Nixpkgs packages for the current system
+          {
+            # Your custom packages
+            # Acessible through 'nix build', 'nix shell', etc
+            packages = import ./pkgs {
+              inherit pkgs;
+            };
 
-          # Formatter for your nix files, available through 'nix fmt'
-          # Other options beside 'alejandra' include 'nixpkgs-fmt'
-          formatter = pkgs.nixpkgs-fmt;
+            # Formatter for your nix files, available through 'nix fmt'
+            # Other options beside 'alejandra' include 'nixpkgs-fmt'
+            formatter = pkgs.nixpkgs-fmt;
 
-          # Development shells
-          devShells.default = import ./shell.nix { inherit pkgs; };
-        });
+            # Development shells
+            devShells.default = import ./shell.nix { inherit pkgs; };
+          });
 
       afse = {
         # Nixpkgs and Home-Manager helpful functions

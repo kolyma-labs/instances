@@ -1,6 +1,7 @@
 { config
 , lib
 , pkgs
+, inputs
 , ...
 }: {
   config = {
@@ -19,7 +20,8 @@
             "http://2a01:4f8:161:714c::"
           ];
           extraConfig = ''
-            reverse_proxy 127.0.0.1:8440
+            root * ${pkgs.personal.gate}/www
+            file_server
           '';
         };
 

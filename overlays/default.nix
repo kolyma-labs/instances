@@ -3,6 +3,13 @@
   # This one brings our custom packages from the 'pkgs' directory
   additions = final: _prev: import ../pkgs { pkgs = final; };
 
+  # Make input added packages accesible via pkgs
+  personal-packages = final: _prev: rec {
+    personal = {
+      gate = inputs.gate.packages."${final.system}".default;
+    };
+  };
+
   # This one contains whatever you want to overlay
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
