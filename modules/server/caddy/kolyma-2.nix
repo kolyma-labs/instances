@@ -19,7 +19,8 @@
             "http://2a01:4f9:5a:5110::"
           ];
           extraConfig = ''
-            reverse_proxy 127.0.0.1:8440
+            root * ${pkgs.personal.gate}/www
+            file_server
           '';
         };
 
