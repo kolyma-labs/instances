@@ -1,20 +1,12 @@
-{ config
-, lib
-, pkgs
-, outputs
-, ...
-}: {
-  # Deployed Services
+{ outputs, ... }: {
   imports = [
     outputs.serverModules.bind
-    outputs.serverModules.caddy.kolyma-1
-    outputs.serverModules.container.kolyma-1
   ];
 
   # Enable Nameserver hosting
   services.nameserver = {
     enable = true;
-    type = "master";
+    type = "slave";
     zones = [
       # Personal Space
       "orzklv.uz"
@@ -33,6 +25,6 @@
       "xinux.uz"
       "haskell.uz"
     ];
-    slaves = [ "65.109.61.35" ];
+    masters = [ "5.9.66.12" ];
   };
 }

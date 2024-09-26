@@ -24,7 +24,7 @@
     outputs.nixosModules.users.jakhongir
 
     # Import your deployed service list
-    ./services.nix
+    ./services
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix

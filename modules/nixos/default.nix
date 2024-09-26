@@ -10,7 +10,6 @@
   boot = import ./boot.nix;
   motd = import ./motd.nix;
   data = import ./data.nix;
-  docker = import ./docker.nix;
   network = import ./network.nix;
   nixpkgs = import ./nixpkgs.nix;
 }

@@ -36,7 +36,7 @@ let
     system.activationScripts.copyZones = lib.mkForce {
       text = ''
         mkdir -p /var/dns
-        for zoneFile in ${./zones}/*.zone; do
+        for zoneFile in ${../../configs/zones}/*.zone; do
           cp -f "$zoneFile" /var/dns/
         done
       '';
