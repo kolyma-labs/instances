@@ -13,8 +13,10 @@ let
     [
       "kolyma.uz"
       "www.kolyma.uz"
-      config.services.www.alias
-    ] ++ ipv4 ++ ipv6;
+    ]
+    ++ ipv4
+    ++ ipv6
+    ++ config.services.www.alias;
 
   default = {
     # Configure Caddy
