@@ -11,8 +11,9 @@ let
       ipv6 = if config.network.ipv6.address != null then [ "http://${config.network.ipv6.address}" ] else [ ];
     in
     [
+      "kolyma.uz"
       "www.kolyma.uz"
-      "ns1.kolyma.uz"
+      config.services.www.alias
     ] ++ ipv4 ++ ipv6;
 
   default = {
@@ -58,6 +59,12 @@ in
         type = lib.types.bool;
         default = false;
         description = "Enable the web server/proxy";
+      };
+
+      alias = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [ ];
+        description = "List of extra aliases to host.";
       };
 
       hosts = lib.mkOption {

@@ -6,7 +6,7 @@
   # Enable web server & proxy
   services.www = {
     enable = true;
-
+    alias = [ "ns3.kolyma.uz" ];
     hosts = {
       "khakimovs.uz" = {
         serverAliases = [
