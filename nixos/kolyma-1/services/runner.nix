@@ -7,6 +7,5 @@
   services.containers = {
     enable = true;
     instances = { };
-    ports = [ ];
   };
 }

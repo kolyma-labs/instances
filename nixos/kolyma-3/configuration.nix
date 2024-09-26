@@ -18,6 +18,7 @@
     outputs.nixosModules.nixpkgs
 
     # User configs
+    outputs.nixosModules.users.kei
     outputs.nixosModules.users.sakhib
     outputs.nixosModules.users.sardor
     outputs.nixosModules.users.shakhzod

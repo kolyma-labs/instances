@@ -3,7 +3,7 @@
     outputs.serverModules.container
   ];
 
-  # Enable Nameserver hosting
+  # Enable containerization
   services.containers = {
     enable = true;
 
