@@ -26,3 +26,6 @@ hook   IN    AAAA  2600:1901:0:6D85::
 
 ; Deno Deploy verifications
 _acme-challenge.hook  IN  CNAME  5966f6479a2a22a47c03689d._acme.deno.dev
+
+; Bsky verification for Orzklv
+_atproto              IN  TXT    did=did:plc:xxr6jn32gom2ncw66uxfabmb
