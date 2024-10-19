@@ -5,7 +5,7 @@ $TTL 86400
              1800       ; Retry
              604800     ; Expire
              86400 )    ; Minimum TTL
-    
+
 ; Nameservers
 @      IN    NS    ns1.kolyma.uz.
 @      IN    NS    ns2.kolyma.uz.
@@ -22,8 +22,11 @@ _github-pages-challenge-orzklv          IN    TXT    "3d5ce2b8dae82ac62af937b9a9
 _github-pages-challenge-orzklv.pages    IN    TXT    "307a41f23aa243d950ca496eb30a5d"
 _github-challenge-dark-voyage-org       IN    TXT    "8193f09f31"
 
+; Bsky verification for Orzklv
+_atproto              IN  TXT    did=did:plc:xxr6jn32gom2ncw66uxfabmb
+
 ; GitHub Pages
-license IN CNAME orzklv.github.io. 
+license IN CNAME orzklv.github.io.
 
 ; Main website (Caddy)
 @      IN    A     185.199.108.153
