@@ -9,7 +9,8 @@
 
     whitelist = {
       ORZKLV = "3e220001-9544-48bb-8fd0-ca7139727207";
-      Overlord77 = "32274912-6f48-4e6d-9819-1bde2ead4d27";
+      Overlord77_ = "d2976424-f364-4343-85ab-819a54058d2f";
+      BronnzyLegit = "ee0babea-2c7e-4184-9546-4aa0f62db2ef";
     };
 
     serverProperties = {
