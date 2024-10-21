@@ -17,7 +17,7 @@
       difficulty = 3;
       gamemode = 1;
       max-players = 20;
-      motd = "§f§lWelcome to Orzklv's CXSMXS§r\n§lMore at\:§r §nhttps\://cxsmxs.space";
+      motd = "\\u00A74WELCOME TO CXSMXS SERVER!\\u00A7r\\n\\u00A7c\\u00A7k!!!\\u00A7r \\u00A7bHAVE A NICE TRIP! \\u00A7r\\u00A7c\\u00A7k!!!";
       white-list = true;
       enable-rcon = true;
       "rcon.password" = "Fuck1ngSlav3s!!!";
