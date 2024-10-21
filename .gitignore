@@ -21,3 +21,4 @@ result-*
 
 # Ignore nohup
 nohup.out
+./idea/*
