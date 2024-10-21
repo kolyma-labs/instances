@@ -7,5 +7,8 @@
 
     # Web server & proxy virtual hosts via caddy
     ./caddy.nix
+
+    # Minecraft server configurations
+    ./minecraft.nix
   ];
 }

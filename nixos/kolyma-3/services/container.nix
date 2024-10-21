@@ -20,33 +20,6 @@
           /srv/bots/xinuxmgr.env
         ];
       };
-
-      #     __  ___                                  ______
-      #    /  |/  /___  __  ______  ______________ _/ __/ /_
-      #   / /|_/ / __ \/ / / / __ \/ ___/ ___/ __ `/ /_/ __/
-      #  / /  / / /_/ / /_/ / / / / /__/ /  / /_/ / __/ /_
-      # /_/  /_/\____/\__, /_/ /_/\___/_/   \__,_/_/  \__/
-      #              /____/
-      minecraft = {
-        image = "itzg/minecraft-server:latest";
-        volumes = [
-          "/srv/minecraft:/data"
-        ];
-        ports = [
-          "25565:25565"
-          "25656:25656"
-          "8100:8100"
-        ];
-        environment = {
-          TYPE = "SPIGOT";
-          EULA = "TRUE";
-          MEMORY = "12G";
-        };
-      };
     };
-
-    ports = [
-      25565 # Minecraft
-    ];
   };
 }
