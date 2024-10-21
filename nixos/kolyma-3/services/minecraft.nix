@@ -1,10 +1,10 @@
-{ ... }: {
+{ pkgs, ... }: {
   services.minecraft-server = {
     enable = true;
     eula = true;
     declarative = true;
     openFirewall = true;
-
+    package = pkgs.unstable.minecraft-server;
     jvmOpts = "-Xms12288M -Xmx12288M -XX:+UseG1GC -XX:ParallelGCThreads=4 -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10";
 
     whitelist = {
