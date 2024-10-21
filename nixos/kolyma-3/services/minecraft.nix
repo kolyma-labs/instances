@@ -5,7 +5,7 @@
     declarative = true;
     openFirewall = true;
 
-    jvmOpts = "-Xms12288M -Xmx12288M -XX:+UseG1GC -XX:+CMSClassUnloadingEnabled -XX:ParallelGCThreads=4 -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10";
+    jvmOpts = "-Xms12288M -Xmx12288M -XX:+UseG1GC -XX:ParallelGCThreads=4 -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10";
 
     whitelist = {
       ORZKLV = "3e220001-9544-48bb-8fd0-ca7139727207";
