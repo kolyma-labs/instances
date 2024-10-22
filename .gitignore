@@ -21,4 +21,7 @@ result-*
 
 # Ignore nohup
 nohup.out
-./idea/*
+
+# IDE and Editors
+.vscode
+.idea

@@ -6,4 +6,5 @@
   sardor = import ./sardor.nix;
   shakhzod = import ./shakhzod.nix;
   jakhongir = import ./jakhongir.nix;
+  manuchehr = import ./manuchehr.nix;
 }

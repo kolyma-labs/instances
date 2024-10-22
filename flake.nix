@@ -28,6 +28,12 @@
 
     # Main homepage website
     gate.url = "github:kolyma-labs/gate";
+
+    # Orzklv's Nix configuration
+    orzklv = {
+      url = "github:orzklv/nix/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # In this context, outputs are mostly about getting home-manager what it
@@ -38,6 +44,7 @@
     , nixpkgs-unstable
     , home-manager
     , flake-utils
+    , orzklv
     , gate
     , ...
     } @ inputs:
