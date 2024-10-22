@@ -1,6 +1,6 @@
 { outputs, ... }: {
   imports = [
-    outputs.serverModules.bind
+    outputs.nixosModules.bind
   ];
 
   # Enable Nameserver hosting

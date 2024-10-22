@@ -1,6 +1,6 @@
 { outputs, ... }: {
   imports = [
-    outputs.serverModules.container
+    outputs.nixosModules.container
   ];
 
   # Enable containerization

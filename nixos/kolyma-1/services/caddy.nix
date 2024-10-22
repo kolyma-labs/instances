@@ -1,6 +1,6 @@
 { outputs, ... }: {
   imports = [
-    outputs.serverModules.caddy
+    outputs.nixosModules.caddy
   ];
 
   # Enable web server & proxy

@@ -5,11 +5,14 @@
   ssh = import ./ssh.nix;
   zsh = import ./zsh.nix;
   users = import ./users;
+  bind = import ./bind.nix;
   root = import ./root.nix;
   maid = import ./maid.nix;
   boot = import ./boot.nix;
   motd = import ./motd.nix;
   data = import ./data.nix;
+  caddy = import ./caddy.nix;
   network = import ./network.nix;
   nixpkgs = import ./nixpkgs.nix;
+  container = import ./container.nix;
 }

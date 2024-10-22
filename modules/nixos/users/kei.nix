@@ -5,10 +5,14 @@
 , config
 , packages
 , ...
-}: {
+}:
+let
+  username = "kei";
+in
+{
   config = {
     users.users = {
-      kei = {
+      "${username}" = {
         isNormalUser = true;
         description = "Kei Thelissimus";
         initialPassword = "AlwaysLam6daBlyat!!!";
@@ -23,7 +27,9 @@
       extraSpecialArgs = { inherit inputs outputs; };
       users = {
         # Import your home-manager configuration
-        kei = import ../../../home/kei.nix;
+        "${username}" = import ../../../home.nix {
+          inherit inputs outputs username;
+        };
       };
     };
   };

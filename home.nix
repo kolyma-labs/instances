@@ -1,33 +1,31 @@
 { inputs
-, lib
-, pkgs
-, config
 , outputs
-, packages
-, self
+, username
 , ...
 }: {
   imports = [
-    outputs.homeManagerModules.zsh
-    outputs.homeManagerModules.nixpkgs
-    outputs.homeManagerModules.packages
+    inputs.orzklv.homeModules.zsh
+    inputs.orzklv.homeModules.helix
+    inputs.orzklv.homeModules.nixpkgs
+    inputs.orzklv.homeModules.topgrade
+    inputs.orzklv.homeModules.packages
   ];
 
   # This is required information for home-manager to do its job
   home = {
     stateVersion = "24.05";
-    username = "jakhongir";
-    homeDirectory = "/home/jakhongir";
+    username = username;
+    homeDirectory = "/home/${username}";
 
     # Tell it to map everything in the `config` directory in this
     # repository to the `.config` in my home-manager directory
     file.".config" = {
-      source = ../configs/config;
+      source = ./configs/config;
       recursive = true;
     };
 
     file.".local/share" = {
-      source = ../configs/share;
+      source = ./configs/share;
       recursive = true;
     };
 

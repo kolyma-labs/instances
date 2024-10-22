@@ -51,83 +51,52 @@
     let
       # Self instance pointer
       outputs = self;
-
-      afes = flake-utils.lib.eachDefaultSystem
-        (system:
-          let
-            # Packages for the current <arch>
-            pkgs = nixpkgs.legacyPackages.${system};
-          in
-          # Nixpkgs packages for the current system
-          {
-            # Your custom packages
-            # Acessible through 'nix build', 'nix shell', etc
-            packages = import ./pkgs {
-              inherit pkgs;
-            };
-
-            # Formatter for your nix files, available through 'nix fmt'
-            # Other options beside 'alejandra' include 'nixpkgs-fmt'
-            formatter = pkgs.nixpkgs-fmt;
-
-            # Development shells
-            devShells.default = import ./shell.nix { inherit pkgs; };
-          });
-
-      afse = {
-        # Nixpkgs and Home-Manager helpful functions
-        lib = nixpkgs.lib // home-manager.lib;
-
-        # Your custom packages and modifications, exported as overlays
-        overlays = import ./overlays { inherit inputs; };
-
-        # Reusable nixos modules you might want to export
-        # These are usually stuff you would upstream into nixpkgs
-        nixosModules = import ./modules/nixos;
-
-        # Reusable home-manager modules you might want to export
-        # These are usually stuff you would upstream into home-manager
-        homeManagerModules = import ./modules/home;
-
-        # Reusable server modules you might want to export
-        # These are usually stuff you would upstream services to global
-        serverModules = import ./modules/server;
-
-        # NixOS configuration entrypoint
-        # Available through 'nixos-rebuild --flake .#your-hostname'
-        nixosConfigurations = {
-          "Kolyma-1" = nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs outputs; };
-            modules = [
-              # > Our main nixos configuration file <
-              ./nixos/kolyma-1/configuration.nix
-            ];
-          };
-          "Kolyma-2" = nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs outputs; };
-            modules = [
-              # > Our main nixos configuration file <
-              ./nixos/kolyma-2/configuration.nix
-            ];
-          };
-          "Kolyma-3" = nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs outputs; };
-            modules = [
-              # > Our main nixos configuration file <
-              ./nixos/kolyma-3/configuration.nix
-            ];
-          };
-          "Kolyma-4" = nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs outputs; };
-            modules = [
-              # > Our main nixos configuration file <
-              ./nixos/kolyma-4/configuration.nix
-            ];
-          };
-        };
-
-      };
     in
-    # Merging all final results
-    afse // afes;
+
+    # Attributes for each system
+    flake-utils.lib.eachDefaultSystem
+      (system:
+      let
+        # Packages for the current <arch>
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+      # Nixpkgs packages for the current system
+      {
+        # Your custom packages
+        # Acessible through 'nix build', 'nix shell', etc
+        packages = import ./pkgs { inherit pkgs; };
+
+        # Formatter for your nix files, available through 'nix fmt'
+        # Other options beside 'alejandra' include 'nixpkgs-fmt'
+        formatter = pkgs.nixpkgs-fmt;
+
+        # Development shells
+        devShells.default = import ./shell.nix { inherit pkgs; };
+      })
+
+    # and ...
+    //
+
+    # Attribute from static evaluation
+    {
+      # Nixpkgs and Home-Manager helpful functions
+      lib = nixpkgs.lib // home-manager.lib // orzklv.lib;
+
+      # Your custom packages and modifications, exported as overlays
+      overlays = import ./overlays { inherit inputs; };
+
+      # Reusable nixos modules you might want to export
+      # These are usually stuff you would upstream into nixpkgs
+      nixosModules = import ./modules/nixos;
+
+      # NixOS configuration entrypoint
+      # Available through 'nixos-rebuild --flake .#your-hostname'
+      nixosConfigurations =
+        self.lib.config.mapSystem {
+          inherit inputs outputs;
+          opath = ./.;
+          list = [ "Kolyma-1" "Kolyma-2" "Kolyma-3" "Kolyma-4" ];
+        };
+    };
+
 }
