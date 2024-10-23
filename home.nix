@@ -1,6 +1,7 @@
 { inputs
 , outputs
 , username
+, lib
 , ...
 }: {
   imports = [
@@ -20,7 +21,8 @@
     # Tell it to map everything in the `config` directory in this
     # repository to the `.config` in my home-manager directory
     file.".config" = {
-      source = ./configs/config;
+      # source = ./configs/config;
+      source = "${inputs.orzklv}/configs/config";
       recursive = true;
     };
 
@@ -31,6 +33,11 @@
 
     # Don't check if home manager is same as nixpkgs
     enableNixpkgsReleaseCheck = false;
+  };
+
+  programs.topgrade.settings.linux = lib.mkForce {
+    nix_arguments = "--flake github:kolyma-labs/instances";
+    home_manager_arguments = [ "--flake" "github:kolyma-labs/instances" ];
   };
 
   # Let's enable home-manager
