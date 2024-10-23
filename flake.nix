@@ -62,6 +62,7 @@
     , orzklv
     , gate
     , khakimovs
+    , xinux
     , ...
     } @ inputs:
     let
