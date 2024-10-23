@@ -29,6 +29,9 @@
     # Main homepage website
     gate.url = "github:kolyma-labs/gate";
 
+    # Khakimov's website
+    khakimovs.url = "github:khakimovs/website";
+
     # Orzklv's Nix configuration
     orzklv = {
       url = "github:orzklv/nix/master";
@@ -46,6 +49,7 @@
     , flake-utils
     , orzklv
     , gate
+    , khakimovs
     , ...
     } @ inputs:
     let

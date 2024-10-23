@@ -1,4 +1,4 @@
-{ outputs, ... }: {
+{ outputs, pkgs, ... }: {
   imports = [
     outputs.nixosModules.caddy
   ];
@@ -13,7 +13,8 @@
           "www.khakimovs.uz"
         ];
         extraConfig = ''
-          reverse_proxy 127.0.0.1:8441
+          root * ${pkgs.personal.khakimovs}/www
+          file_server
         '';
       };
 

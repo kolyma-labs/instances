@@ -7,6 +7,7 @@
   personal-packages = final: _prev: rec {
     personal = {
       gate = inputs.gate.packages."${final.system}".default;
+      khakimovs = inputs.khakimovs.packages."${final.system}".default;
     };
   };
 
