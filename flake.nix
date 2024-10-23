@@ -27,10 +27,22 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     # Main homepage website
-    gate.url = "github:kolyma-labs/gate";
+    gate = {
+      url = "github:kolyma-labs/gate";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Khakimov's website
-    khakimovs.url = "github:khakimovs/website";
+    khakimovs = {
+      url = "github:khakimovs/website";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Xinux Community
+    xinux = {
+      url = "github:xinux-org/telegram";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Orzklv's Nix configuration
     orzklv = {

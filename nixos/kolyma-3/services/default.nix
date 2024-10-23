@@ -10,5 +10,8 @@
 
     # Minecraft server configurations
     ./minecraft.nix
+
+    # Xinux deployment & services
+    ./xinux.nix
   ];
 }
