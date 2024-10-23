@@ -27,7 +27,7 @@
     };
 
     file.".local/share" = {
-      source = ./configs/share;
+      source = "${inputs.orzklv}/configs/share";
       recursive = true;
     };
 
