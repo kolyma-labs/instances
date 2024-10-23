@@ -161,11 +161,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1729642029,
-        "narHash": "sha256-NYtviidWp0QLzcG5lcTV/c2PJaBXcLHbVqvBVfkLSX0=",
+        "lastModified": 1729644848,
+        "narHash": "sha256-maPcUHdmhNXYVXveMRt4iGMBTbCigAWdvhM9p4QXkFE=",
         "owner": "khakimovs",
         "repo": "website",
-        "rev": "39b1132ed84ea95a74b17d9a1c900462a2dbc988",
+        "rev": "c23640bb4c3f2fe1374d028d0b16087343db3fb2",
         "type": "github"
       },
       "original": {
