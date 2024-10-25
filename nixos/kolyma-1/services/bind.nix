@@ -24,6 +24,7 @@
       "osmon-lang.uz"
       "xinux.uz"
       "haskell.uz"
+      "niggerlicious.uz"
     ];
     slaves = [ "65.109.61.35" ];
   };
