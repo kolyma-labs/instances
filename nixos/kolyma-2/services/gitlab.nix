@@ -11,12 +11,23 @@
     };
   };
 
-  services.nginx = {
-    enable = true;
-    recommendedProxySettings = true;
-    virtualHosts = {
-      localhost = {
-        locations."/".proxyPass = "http://unix:/run/gitlab/gitlab-workhorse.socket";
+  # services.nginx = {
+  #   enable = true;
+  #   recommendedProxySettings = true;
+  #   virtualHosts = {
+  #     localhost = {
+  #       locations."/".proxyPass = "http://unix:/run/gitlab/gitlab-workhorse.socket";
+  #     };
+  #   };
+  # };
+
+  # Enable web server & proxy
+  services.www = {
+    hosts = {
+      "git.kolyma.uz" = {
+        extraConfig = ''
+          reverse_proxy unix//run/gitlab/gitlab-workhorse.socket
+        '';
       };
     };
   };
