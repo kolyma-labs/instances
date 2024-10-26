@@ -1,6 +1,6 @@
 { outputs, ... }: {
   imports = [
-    outputs.nixosModules.nginx
+    outputs.nixosModules.caddy
   ];
 
   # Enable web server & proxy

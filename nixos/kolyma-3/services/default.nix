@@ -6,7 +6,7 @@
     ./container.nix
 
     # Web server & proxy virtual hosts via caddy
-    ./caddy.nix
+    ./www.nix
 
     # Minecraft server configurations
     ./minecraft.nix

@@ -1,6 +1,6 @@
 { outputs, ... }: {
   imports = [
-    outputs.nixosModules.nginx
+    outputs.nixosModules.caddy
   ];
 
   # Enable web server & proxy
@@ -9,9 +9,10 @@
     alias = [ "ns1.kolyma.uz" ];
     hosts = {
       "cdn.kolyma.uz" = {
-        forceSSL = true;
-        enableACME = true;
-        root = "/srv/cdn";
+        extraConfig = ''
+          root * /srv/cdn
+          file_server browse
+        '';
       };
     };
   };
