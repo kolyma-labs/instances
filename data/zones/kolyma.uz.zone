@@ -68,6 +68,8 @@ www    IN    AAAA  2a01:4f9:3071:31ce::
 ; Git (GitLab)
 git    IN    A     65.109.61.35
 git    IN    AAAA  2a01:4f9:5a:5110::
+old    IN    A     65.109.61.35
+old    IN    AAAA  2a01:4f9:5a:5110::
 
 ; Remote Access (RustDesk)
 remote IN    A     65.109.61.35

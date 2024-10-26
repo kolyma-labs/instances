@@ -13,6 +13,12 @@
           reverse_proxy 127.0.0.1:8460
         '';
       };
+
+      "old.kolyma.uz" = {
+        extraConfig = ''
+          reverse_proxy 127.0.0.1:8450
+        '';
+      };
     };
   };
 }
