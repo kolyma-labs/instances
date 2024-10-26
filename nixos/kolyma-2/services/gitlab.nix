@@ -1,4 +1,4 @@
-{ outputs, pkgs, ... }: {
+{ pkgs, ... }: {
   services.gitlab = {
     enable = true;
     databasePasswordFile = pkgs.writeText "dbPassword" "zgvcyfwsxzcwr85l";
@@ -10,16 +10,6 @@
       jwsFile = pkgs.runCommand "oidcKeyBase" { } "${pkgs.openssl}/bin/openssl genrsa 2048 > $out";
     };
   };
-
-  # services.nginx = {
-  #   enable = true;
-  #   recommendedProxySettings = true;
-  #   virtualHosts = {
-  #     localhost = {
-  #       locations."/".proxyPass = "http://unix:/run/gitlab/gitlab-workhorse.socket";
-  #     };
-  #   };
-  # };
 
   # Enable web server & proxy
   services.www = {
