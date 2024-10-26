@@ -6,18 +6,12 @@
 }:
 let
   fallbacks = config:
-    let
-      ipv4 = if config.network.ipv4.address != null then [ "http://${config.network.ipv4.address}" ] else [ ];
-      ipv6 = if config.network.ipv6.address != null then [ "http://${config.network.ipv6.address}" ] else [ ];
-    in
     [
       "kolyma.uz"
       "www.kolyma.uz"
       "niggerlicious.uz"
       "www.niggerlicious.uz"
     ]
-    ++ ipv4
-    ++ ipv6
     ++ config.services.www.alias;
 
   default = {
