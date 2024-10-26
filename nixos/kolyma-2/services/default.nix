@@ -12,6 +12,6 @@
     ./caddy.nix
 
     # GitLab server
-    ./gitlab.nix
+    # ./gitlab.nix
   ];
 }
