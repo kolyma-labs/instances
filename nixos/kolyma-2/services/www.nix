@@ -16,7 +16,7 @@
 
       "old.kolyma.uz" = {
         extraConfig = ''
-          reverse_proxy 127.0.0.1:8450
+          reverse_proxy 127.0.0.1:8450 { transparent }
         '';
       };
     };
