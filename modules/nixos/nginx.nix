@@ -21,20 +21,27 @@ let
     ++ config.services.www.alias;
 
   default = {
-    # Configure Caddy
-    services.caddy = {
-      # Enable the Caddy web server
+    # Configure Nginx
+    services.nginx = {
+      # Enable the Nginx web server
       enable = true;
 
       # Default virtual host
       virtualHosts = {
         "kolyma.uz" = {
+          forceSSL = true;
+          enableACME = true;
           serverAliases = fallbacks config;
-          extraConfig = ''
-            root * ${pkgs.personal.gate}/www
-            file_server
-          '';
+          root = "${pkgs.personal.gate}/www";
         };
+      };
+    };
+
+    # Accepting ACME Terms
+    security.acme = {
+      acceptTerms = true;
+      defaults = {
+        email = "admin@kolyma.uz";
       };
     };
 
@@ -44,8 +51,8 @@ let
   };
 
   extra = {
-    # Extra configurations for Caddy
-    services.caddy = {
+    # Extra configurations for Nginx
+    services.nginx = {
       # User provided hosts
       virtualHosts = config.services.www.hosts;
     };

@@ -10,5 +10,8 @@
 
     # Web server & proxy virtual hosts via caddy
     ./caddy.nix
+
+    # GitLab server
+    ./gitlab.nix
   ];
 }
