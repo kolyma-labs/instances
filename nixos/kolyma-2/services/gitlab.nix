@@ -27,6 +27,7 @@
 
     extraConfig = {
       gitlab = {
+        email_from = "staff@kolyma.uz";
         email_display_name = "Kolyma Git's Administration";
         email_reply_to = "noreply@kolyma.uz";
       };
