@@ -8,28 +8,6 @@
     enable = true;
 
     instances = {
-      #    _______ __  __          __
-      #   / ____(_) /_/ /   ____ _/ /_
-      #  / / __/ / __/ /   / __ `/ __ \
-      # / /_/ / / /_/ /___/ /_/ / /_/ /
-      # \____/_/\__/_____/\__,_/_.___/
-      git = {
-        image = "gitlab/gitlab-ee:latest";
-        hostname = "old.kolyma.uz";
-        volumes = [
-          "/srv/git/config:/etc/gitlab"
-          "/srv/git/logs:/var/log/gitlab"
-          "/srv/git/data:/var/opt/gitlab"
-        ];
-        ports = [
-          "8450:80"
-          # "22:22"
-        ];
-        extraOptions = [
-          "--shm-size=268435456"
-        ];
-      };
-
       #    _____ __        __                    __
       #   / ___// /_____ _/ /      ______ ______/ /_
       #   \__ \/ __/ __ `/ / | /| / / __ `/ ___/ __/
