@@ -13,9 +13,10 @@
   nativeBuildInputs = with pkgs; [
     nix
     nil
-    nixd
-    nixpkgs-fmt
     git
+    nixd
+    sops
+    nixpkgs-fmt
   ];
 
   NIX_CONFIG = "extra-experimental-features = nix-command flakes";

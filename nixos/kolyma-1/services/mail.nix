@@ -1,7 +1,4 @@
 { pkgs, ... }:
-let
-  domain = "mail.kolyma.uz";
-in
 {
   environment.etc = {
     "stalwart/mail-pw1".text = "foobar";

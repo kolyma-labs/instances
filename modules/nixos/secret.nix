@@ -5,7 +5,7 @@
 , ...
 }:
 let
-  key = "/home/sakhib/.config/sops/age/keys.txt";
+  key = "${config.users.users.sakhib.home}/.config/sops/age/keys.txt";
 in
 {
   imports = [
