@@ -3,8 +3,8 @@
   services.gitlab = {
     enable = true;
     host = "git.kolyma.uz";
-    databasePasswordFile = pkgs.writeText "dbPassword" "zgvcyfwsxzcwr85l";
-    initialRootPasswordFile = pkgs.writeText "rootPassword" "dakqdvp4ovhksxer";
+    databasePasswordFile = pkgs.writeText "dbPassword" "n6DAe1ZcNWHHmMqLQoyVgcnz814V9q8yBRyg7ZhmnGgG6Az98r";
+    initialRootPasswordFile = pkgs.writeText "rootPassword" "MImVJlIY7CTvloWaRyeCfvUpxPGoRgfMh2RFSgUOIhCu6DDvg6";
     secrets = {
       secretFile = pkgs.writeText "secret" "xlHvN7tfexeTbFVHbkVKESQbyTZXG9v1TZ1me9Txa4GtxUMeKI";
       otpFile = pkgs.writeText "otpsecret" "ME5h5Wh4NUjlvSqIM2tbBs9v44BVJb0BMrpGjOInGGJeJ6U7rE";
