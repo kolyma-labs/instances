@@ -7,5 +7,8 @@
 
     # Web server & proxy virtual hosts via caddy
     ./www.nix
+
+    # Mail server for the datacenter
+    # ./mail.nix
   ];
 }

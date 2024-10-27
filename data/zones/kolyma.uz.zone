@@ -23,8 +23,10 @@ ns4    IN    AAAA  2a01:4f9:3071:31ce::
 ; Mail server (Stalwart)
 @      IN    MX    10 mail.kolyma.uz.
 @      IN    TXT   "v=spf1 mx ra=postmaster -all"
-mail   IN    A     65.109.61.35
-mail   IN    AAAA  2a01:4f9:5a:5110::
+wm     IN    A     5.9.66.12
+wm     IN    AAAA  2a01:4f8:161:714c::
+mail   IN    A     5.9.66.12
+mail   IN    AAAA  2a01:4f8:161:714c::
 mail   IN    TXT   "v=spf1 a ra=postmaster -all"
 autoconfig         IN CNAME mail.kolyma.uz.
 autodiscover       IN CNAME mail.kolyma.uz.
@@ -68,17 +70,11 @@ www    IN    AAAA  2a01:4f9:3071:31ce::
 ; Git (GitLab)
 git    IN    A     65.109.61.35
 git    IN    AAAA  2a01:4f9:5a:5110::
-old    IN    A     65.109.61.35
-old    IN    AAAA  2a01:4f9:5a:5110::
-
-; Remote Access (RustDesk)
-remote IN    A     65.109.61.35
-remote IN    AAAA  2a01:4f9:5a:5110::
 
 ; CDN Hosting (Caddy)
 cdn    IN    A     5.9.66.12
 cdn    IN    AAAA  2a01:4f8:161:714c::
 
 ; Builds Hosting (Caddy)
-meta    IN    A     65.109.74.214
-meta    IN    AAAA  2a01:4f9:3071:31ce::
+build  IN    A     65.109.74.214
+build  IN    AAAA  2a01:4f9:3071:31ce::

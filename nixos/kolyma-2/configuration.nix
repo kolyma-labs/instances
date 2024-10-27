@@ -14,6 +14,7 @@
     outputs.nixosModules.maid
     outputs.nixosModules.motd
     outputs.nixosModules.root
+    outputs.nixosModules.secret
     outputs.nixosModules.network
     outputs.nixosModules.nixpkgs
 

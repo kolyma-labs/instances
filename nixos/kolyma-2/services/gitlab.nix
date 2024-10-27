@@ -1,14 +1,27 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
+let
+  secret-management = {
+    owner = config.services.gitlab.user;
+  };
+in
 {
+  sops.secrets = {
+    "git/database" = secret-management;
+    "git/root" = secret-management;
+    "git/secret" = secret-management;
+    "git/otp" = secret-management;
+    "git/db" = secret-management;
+  };
+
   services.gitlab = {
     enable = true;
     host = "git.kolyma.uz";
-    databasePasswordFile = pkgs.writeText "dbPassword" "n6DAe1ZcNWHHmMqLQoyVgcnz814V9q8yBRyg7ZhmnGgG6Az98r";
-    initialRootPasswordFile = pkgs.writeText "rootPassword" "MImVJlIY7CTvloWaRyeCfvUpxPGoRgfMh2RFSgUOIhCu6DDvg6";
+    databasePasswordFile = config.sops.secrets."git/database".path;
+    initialRootPasswordFile = config.sops.secrets."git/root".path;
     secrets = {
-      secretFile = pkgs.writeText "secret" "xlHvN7tfexeTbFVHbkVKESQbyTZXG9v1TZ1me9Txa4GtxUMeKI";
-      otpFile = pkgs.writeText "otpsecret" "ME5h5Wh4NUjlvSqIM2tbBs9v44BVJb0BMrpGjOInGGJeJ6U7rE";
-      dbFile = pkgs.writeText "dbsecret" "HNWvNMIv9APPn9jl7K02Jh7EEpqtmPPrfgF7o0wUx4IrbmOFww";
+      secretFile = config.sops.secrets."git/secret".path;
+      otpFile = config.sops.secrets."git/otp".path;
+      dbFile = config.sops.secrets."git/db".path;
       jwsFile = pkgs.runCommand "oidcKeyBase" { } "${pkgs.openssl}/bin/openssl genrsa 2048 > $out";
     };
 
@@ -46,13 +59,11 @@
 
 
   # Enable web server & proxy
-  services.www = {
-    hosts = {
-      "git.kolyma.uz" = {
-        extraConfig = ''
-          reverse_proxy unix//run/gitlab/gitlab-workhorse.socket
-        '';
-      };
+  services.www.hosts = {
+    "git.kolyma.uz" = {
+      extraConfig = ''
+        reverse_proxy unix//run/gitlab/gitlab-workhorse.socket
+      '';
     };
   };
 

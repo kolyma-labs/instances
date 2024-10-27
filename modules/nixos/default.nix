@@ -13,6 +13,7 @@
   data = import ./data.nix;
   caddy = import ./caddy.nix;
   nginx = import ./nginx.nix;
+  secret = import ./secret.nix;
   network = import ./network.nix;
   nixpkgs = import ./nixpkgs.nix;
   container = import ./container.nix;

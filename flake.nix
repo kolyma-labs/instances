@@ -26,6 +26,12 @@
     # Flake utils for eachSystem
     flake-utils.url = "github:numtide/flake-utils";
 
+    # Secrets management
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Main homepage website
     gate = {
       url = "github:kolyma-labs/gate";
