@@ -25,13 +25,13 @@
       passwordFile = "/srv/git/mail-password.env";
     };
 
-    extraConfig = {
-      gitlab = {
-        email_from = "staff@kolyma.uz";
-        email_display_name = "Kolyma Git's Administration";
-        email_reply_to = "noreply@kolyma.uz";
-      };
-    };
+    extraGitlabRb = ''
+      #! If your SMTP server does not like the default 'From: gitlab@gitlab.example.com'
+      #! can change the 'From' with this setting.
+      gitlab_rails['gitlab_email_from'] = 'staff@kolyma.uz'
+      gitlab_rails['gitlab_email_display_name'] = 'Kolyma Git Station'
+      gitlab_rails['gitlab_email_reply_to'] = 'noreply@kolyma.uz'
+    '';
   };
 
 
