@@ -25,14 +25,20 @@
       passwordFile = "/srv/git/mail-password.env";
     };
 
-    extraGitlabRb = ''
-      #! If your SMTP server does not like the default 'From: gitlab@gitlab.example.com'
-      #! can change the 'From' with this setting.
-      gitlab_rails['gitlab_email_from'] = 'staff@kolyma.uz'
-      gitlab_rails['gitlab_email_display_name'] = 'Kolyma Git Station'
-      gitlab_rails['gitlab_email_reply_to'] = 'noreply@kolyma.uz'
-    '';
+    extraConfig = {
+      gitlab = {
+        content_security_policy = {
+          email_from = "staff@kolyma.uz";
+          email_display_name = "Kolyma Git's Administration";
+          email_reply_to = "noreply@kolyma.uz";
+        };
+      };
+      # gitlab_shell = {
+      #   ssh_port = 2222;
+      # };
+    };
   };
+
 
   # Enable web server & proxy
   services.www = {
@@ -46,5 +52,4 @@
   };
 
   systemd.services.gitlab-backup.environment.BACKUP = "dump";
-
 }
