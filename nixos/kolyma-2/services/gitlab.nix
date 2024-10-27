@@ -27,11 +27,9 @@
 
     extraConfig = {
       gitlab = {
-        content_security_policy = {
-          email_from = "staff@kolyma.uz";
-          email_display_name = "Kolyma Git Administration";
-          email_reply_to = "noreply@kolyma.uz";
-        };
+        email_from = "staff@kolyma.uz";
+        email_display_name = "Kolyma Git Administration";
+        email_reply_to = "noreply@kolyma.uz";
       };
     };
   };
