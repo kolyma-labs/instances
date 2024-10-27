@@ -6,11 +6,11 @@ let
 in
 {
   sops.secrets = {
-    "git/database" = secret-management;
+    "git/db" = secret-management;
+    "git/otp" = secret-management;
     "git/root" = secret-management;
     "git/secret" = secret-management;
-    "git/otp" = secret-management;
-    "git/db" = secret-management;
+    "git/database" = secret-management;
   };
 
   services.gitlab = {
@@ -19,9 +19,9 @@ in
     databasePasswordFile = config.sops.secrets."git/database".path;
     initialRootPasswordFile = config.sops.secrets."git/root".path;
     secrets = {
-      secretFile = config.sops.secrets."git/secret".path;
-      otpFile = config.sops.secrets."git/otp".path;
       dbFile = config.sops.secrets."git/db".path;
+      otpFile = config.sops.secrets."git/otp".path;
+      secretFile = config.sops.secrets."git/secret".path;
       jwsFile = pkgs.runCommand "oidcKeyBase" { } "${pkgs.openssl}/bin/openssl genrsa 2048 > $out";
     };
 
