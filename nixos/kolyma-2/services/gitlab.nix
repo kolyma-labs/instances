@@ -12,24 +12,34 @@
       jwsFile = pkgs.runCommand "oidcKeyBase" { } "${pkgs.openssl}/bin/openssl genrsa 2048 > $out";
     };
 
+    # Sending mail via Kolyma's SMTP
     smtp = {
+      # Enabling smtp mailing
       enable = true;
-      port = 465;
+
+      # Connection configuration
       tls = true;
+      port = 465;
+      authentication = "plain";
+      domain = "mail.kolyma.uz";
       opensslVerifyMode = "none";
       address = "mail.kolyma.uz";
-      domain = "mail.kolyma.uz";
-      authentication = "plain";
       enableStartTLSAuto = false;
-      username = "orzklv";
+
+      # Credentials for SMTP
+      username = "git";
       passwordFile = "/srv/git/mail-password.env";
     };
 
+    # Settings to be appended at gitlab.yml
     extraConfig = {
       gitlab = {
         email_from = "staff@kolyma.uz";
         email_display_name = "Kolyma Git Administration";
         email_reply_to = "noreply@kolyma.uz";
+      };
+      gitlab_shell = {
+        ssh_port = 2222;
       };
     };
   };
