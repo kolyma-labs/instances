@@ -21,21 +21,15 @@
       domain = "mail.kolyma.uz";
       authentication = "plain";
       enableStartTLSAuto = false;
-      username = "gitlab";
+      username = "orzklv";
       passwordFile = "/srv/git/mail-password.env";
     };
 
     extraConfig = {
       gitlab = {
-        content_security_policy = {
-          email_from = "staff@kolyma.uz";
-          email_display_name = "Kolyma Git's Administration";
-          email_reply_to = "noreply@kolyma.uz";
-        };
+        email_display_name = "Kolyma Git's Administration";
+        email_reply_to = "noreply@kolyma.uz";
       };
-      # gitlab_shell = {
-      #   ssh_port = 2222;
-      # };
     };
   };
 
