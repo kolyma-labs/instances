@@ -21,7 +21,7 @@
       motd = "\\u00A74WELCOME TO CXSMXS SERVER!\\u00A7r\\n\\u00A7c\\u00A7k!!!\\u00A7r \\u00A7bHAVE A NICE TRIP! \\u00A7r\\u00A7c\\u00A7k!!!";
       white-list = true;
       enable-rcon = true;
-      "rcon.password" = "Fuck1ngSlav3s!!!";
+      "rcon.password" = "Asa>d30|TK>G6jT4B£g@=W3exGh(c||6S:+f*C&`dRAr]=kP_G";
     };
   };
 }

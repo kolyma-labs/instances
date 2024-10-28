@@ -1,5 +1,19 @@
-{ pkgs, ... }:
+{ inputs, config, pkgs, ... }:
+let
+  secret-management = {
+    owner = config.users.users.stalwart-mail.name;
+  };
+in
 {
+  imports = [
+    "${inputs.nixpkgs-unstable}/nixos/modules/services/mail/stalwart-mail.nix"
+  ];
+
+  sops.secrets = {
+    "mail/users/git/username" = secret-management;
+    "mail/users/git/password" = secret-management;
+  };
+
   environment.etc = {
     "stalwart/mail-pw1".text = "foobar";
     "stalwart/mail-pw2".text = "foobar";
@@ -10,15 +24,17 @@
   services.stalwart-mail = {
     enable = true;
     package = pkgs.stalwart-mail;
-    # openFirewall = true;
+    openFirewall = true;
 
     settings = {
       server = {
-        hostname = "mx.kolyma.uz";
+        hostname = "mail.kolyma.uz";
+
         tls = {
           enable = true;
           implicit = true;
         };
+
         listener = {
           smtp = {
             protocol = "smtp";
@@ -43,22 +59,26 @@
           };
         };
       };
+
       lookup.default = {
-        hostname = "mx.kolyma.uz";
+        hostname = "mail.kolyma.uz";
         domain = "kolyma.uz";
       };
+
       acme."letsencrypt" = {
         directory = "https://acme-v02.api.letsencrypt.org/directory";
         challenge = "dns-01";
-        contact = "user1@kolyma.uz";
-        domains = [ "kolyma.uz" "mx.kolyma.uz" ];
+        contact = "admin@kolyma.uz";
+        domains = [ "kolyma.uz" "mail.kolyma.uz" ];
         provider = "cloudflare";
         secret = "%{file:/etc/stalwart/acme-secret}%";
       };
+
       session.auth = {
         mechanisms = "[plain]";
         directory = "'in-memory'";
       };
+
       storage.directory = "in-memory";
       session.rcpt.directory = "'in-memory'";
       queue.outbound.next-hop = "'local'";
@@ -68,9 +88,9 @@
         principals = [
           {
             class = "individual";
-            name = "User 1";
+            name = "Sokhibjon Orzikulov";
             secret = "%{file:/etc/stalwart/mail-pw1}%";
-            email = [ "user1@kolyma.uz" ];
+            email = [ "orzklv@kolyma.uz" "admin@kolyma.uz" ];
           }
           {
             class = "individual";
@@ -80,6 +100,7 @@
           }
         ];
       };
+
       authentication.fallback-admin = {
         user = "admin";
         secret = "%{file:/etc/stalwart/admin-pw}%";
