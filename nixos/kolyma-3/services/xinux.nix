@@ -4,10 +4,7 @@
   ];
 
   sops.secrets = {
-    "xinux/bot" = {
-      owner = config.services.xinux.bot.user;
-      group = config.services.xinux.bot.user;
-    };
+    "xinux/bot" = { };
   };
 
   # Enable xinux bots
@@ -16,6 +13,7 @@
     token = config.sops.secrets."xinux/bot".path;
 
     webhook = {
+      enable = true;
       proxy = "caddy";
       domain = "xinuxmgr.xinux.uz";
       port = 8445;
