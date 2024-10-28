@@ -4,7 +4,10 @@
   ];
 
   sops.secrets = {
-    "xinux/bot" = { };
+    "xinux/bot" = {
+      owner = config.services.xinux.bot.user;
+      group = config.services.xinux.bot.user;
+    };
   };
 
   # Enable xinux bots
