@@ -4,13 +4,15 @@
   ];
 
   sops.secrets = {
-    "xinux/bot" = { };
+    "xinux/bot" = {
+      owner = config.services.xinux.bot.user;
+    };
   };
 
   # Enable xinux bots
   services.xinux.bot = {
     enable = true;
-    # token = config.sops.secrets."xinux/bot".path;
+    token = config.sops.secrets."xinux/bot".path;
 
     webhook = {
       enable = true;
