@@ -19,9 +19,5 @@ in
     age = {
       keyFile = key;
     };
-
-    secrets.message = {
-      owner = config.users.users.sakhib.name;
-    };
   };
 }
