@@ -402,11 +402,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1730151133,
-        "narHash": "sha256-9TyxqI37ZlAhoj8daN/pSFjqAZkD4CXMoS+CKF8bHD4=",
+        "lastModified": 1730151868,
+        "narHash": "sha256-UGlhmScI3Dzpg/ZHkeCApDWYHnNn0vjG4zyoT6xs6z8=",
         "owner": "xinux-org",
         "repo": "telegram",
-        "rev": "f46cb691f4c08df14e87515e58589d3b5eceddda",
+        "rev": "b2024f6b50b0a4360da77914ff27f7cae6c86fc2",
         "type": "github"
       },
       "original": {
