@@ -10,7 +10,7 @@
   # Enable xinux bots
   services.xinux.bot = {
     enable = true;
-    token = config.sops.secrets."xinux/bot".path;
+    # token = config.sops.secrets."xinux/bot".path;
 
     webhook = {
       enable = true;
