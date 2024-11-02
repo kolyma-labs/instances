@@ -1,7 +1,7 @@
 { inputs, config, pkgs, ... }:
 let
   secret-management = {
-    owner = "misskey"; # config.users.users.misskey.name;
+    owner = config.users.users.misskey.name;
   };
 in
 {
@@ -14,6 +14,13 @@ in
     "misskey/redis/password" = secret-management;
     "misskey/meilisearch/password" = secret-management;
   };
+
+  users.users."misskey" = {
+    description = "Misskey daemon user";
+    group = "misskey";
+  };
+
+  users.groups."misskey" = { };
 
   services.misskey = {
     enable = true;
