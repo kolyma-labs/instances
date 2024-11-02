@@ -13,5 +13,8 @@
 
     # Xinux deployment & services
     ./xinux.nix
+
+    # Misskey portal
+    ./misskey.nix
   ];
 }
