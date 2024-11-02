@@ -1,7 +1,7 @@
 { inputs, config, pkgs, ... }:
 let
   secret-management = {
-    # owner = config.users.users.misskey.name;
+    owner = "misskey"; # config.users.users.misskey.name;
   };
 in
 {
