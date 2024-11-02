@@ -25,6 +25,7 @@
       "xinux.uz"
       "haskell.uz"
       "niggerlicious.uz"
+      "misskey.uz"
     ];
     slaves = [ "65.109.61.35" ];
   };

@@ -25,6 +25,7 @@
       "xinux.uz"
       "haskell.uz"
       "niggerlicious.uz"
+      "misskey.uz"
     ];
     masters = [ "5.9.66.12" ];
   };
