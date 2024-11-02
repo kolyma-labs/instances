@@ -17,6 +17,7 @@ in
 
   users.users."misskey" = {
     description = "Misskey daemon user";
+    isNormalUser = true;
     group = "misskey";
   };
 
