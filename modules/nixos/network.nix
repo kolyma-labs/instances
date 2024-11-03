@@ -41,7 +41,7 @@ let
 
       interfaces = {
         "${config.network.interface}" = {
-          useDHCP = true;
+          useDHCP = false;
 
           ipv6.addresses = [
             {
