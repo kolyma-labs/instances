@@ -49,15 +49,9 @@ let
       enable = config.services.nameserver.enable;
       directory = "/var/bind";
       zones = zonesMap config.services.nameserver.zones config.services.nameserver.type;
-
-      extraOptions = ''
-        recursion yes;
-        allow-recursion { any; };
-        allow-query { any; };
-      '';
-
-      forwarders = [ "8.8.8.8" "8.8.4.4" ];
     };
+
+    networking.resolvconf.useLocalResolver = false;
 
     # DNS standard port for connections + that require more than 512 bytes
     networking.firewall.allowedUDPPorts = [ 53 ];
