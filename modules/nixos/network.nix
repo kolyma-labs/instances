@@ -62,9 +62,11 @@ let
 
   cfg = lib.mkIf config.network.enable {
     networking = {
+      useDHCP = false;
+
       interfaces = {
         "${config.network.interface}" = {
-          useDHCP = true;
+          useDHCP = false;
         };
       };
 
