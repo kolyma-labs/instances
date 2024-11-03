@@ -111,7 +111,7 @@ in
   services.www.hosts = {
     "wm.kolyma.uz" = {
       extraConfig = ''
-        reverse_proxy http://127.0.01:8080
+        reverse_proxy http://127.0.0.1:8080
       '';
       serverAliases = [
         "mta-sts.kolyma.uz"
