@@ -21,13 +21,6 @@ in
     "mail/users/misskey" = secret-management;
   };
 
-  # environment.etc = {
-  #   "stalwart/mail-pw1".text = "foobar";
-  #   "stalwart/mail-pw2".text = "foobar";
-  #   "stalwart/admin-pw".text = "foobar";
-  #   "stalwart/acme-secret".text = "secret123";
-  # };
-
   services.stalwart-mail = {
     enable = true;
     package = pkgs.unstable.stalwart-mail;
