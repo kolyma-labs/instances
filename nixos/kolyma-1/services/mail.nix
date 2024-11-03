@@ -53,7 +53,7 @@ in
           jmap = {
             bind = "[::]:8080";
             url = "https://mail.kolyma.uz";
-            protocol = "jmap";
+            protocol = "http";
           };
           management = {
             bind = [ "127.0.0.1:8080" ];
