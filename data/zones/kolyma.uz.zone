@@ -20,34 +20,23 @@ ns3    IN    AAAA  2a01:4f9:3070:322c::
 ns4    IN    A     65.109.74.214
 ns4    IN    AAAA  2a01:4f9:3071:31ce::
 
-; Mail server (Stalwart)
-@                  IN    MX    10 mail.kolyma.uz.
-@                  IN    TXT   "v=spf1 mx ra=postmaster -all"
+; Mail server (Caddy)
 mail               IN    A     5.9.66.12
 mail               IN    AAAA  2a01:4f8:161:714c::
-mail               IN    TXT   "v=spf1 a ra=postmaster -all"
-wm                 IN    CNAME mail.kolyma.uz.
 mta-sts            IN    CNAME mail.kolyma.uz.
 autoconfig         IN    CNAME mail.kolyma.uz.
 autodiscover       IN    CNAME mail.kolyma.uz.
-_imaps._tcp        IN    SRV 0 1 993 mail.kolyma.uz.
-_imap._tcp         IN    SRV 0 1 143 mail.kolyma.uz.
-_pop3s._tcp        IN    SRV 0 1 995 mail.kolyma.uz.
-_pop3._tcp         IN    SRV 0 1 110 mail.kolyma.uz.
-_submissions._tcp  IN    SRV 0 1 465 mail.kolyma.uz.
-_submission._tcp   IN    SRV 0 1 587 mail.kolyma.uz.
-_smtp._tls         IN    TXT "v=TLSRPTv1; rua=mailto:postmaster@kolyma.uz"
-_dmarc             IN    TXT "v=DMARC1; p=reject; rua=mailto:postmaster@kolyma.uz; ruf=mailto:postmaster@kolyma.uz"
-202406e._domainkey IN    TXT "v=DKIM1; k=ed25519; h=sha256; p=Pp+x6pyf74CJtVh/fzUk97HlVG75LNVWHO+hwup6fX8="
-202406r._domainkey IN    TXT (
-    "v=DKIM1; k=rsa; h=sha256; "
-    "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0Rj5mty6fsSakyQi4cuX1sNALLeVlD9QuhvEL+jPbrLm7NC4dAMvS7/"
-    "NskXKKlLOrjU2i1i8ChVG7FipGNnWG38j6GLvGvElTYHrcEgXA1vnWdiO6z5avA0O9ACvE8YHgs/"
-    "RcR0n+mWLfTaD5h7b3u4VDUKUqD7ZT+j/5llX/fGLef6Dt7mawBXXzDYxcFKurj+B7vnFxpX0DSfHZUpVuMSRT5WNXr9JoU+"
-    "1d9Bc1+hQ8Txbcml4f/JPK7Oa7pQNd0szjGOZd63JIJAyXFYtfJKLQXXp7P/"
-    "ihhW8nVYg6DsUlqjKmJdbQif2stWCDIdZIPh20StO6KC/9oxeF+j7oQIDAQAB"
-)
 
+; Mail server (Stalwart)
+@                  IN    MX    10 mail.kolyma.uz.
+202411e._domainkey IN    TXT   "v=DKIM1; k=ed25519; h=sha256; p=suy+nE+z0f+DQDg2zajPH3es9XwFDZPwsIJBLXSr2v0="
+202411r._domainkey IN    TXT   "v=DKIM1; k=rsa; h=sha256; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA55AMa5jzFczl6ys3FKeLqjuLcprLGg1wo6PZQy21f0Y495lYUwapBE3AI1BdKKwclmfwYNR9NPS5P6arDThwa3f/aaOjH3WaqWF2vaVP1DiGPbcuQN5bKxxTKK3UM7md1pIesQH6JXWw+VKbsusmzcbMseL5y3zZXIdFGph3CE6c92nkvrQQuYHIrGOYpjGpUlYx9wgp6SDL9JM+An6Dkr1NVMRPe2RkWc2e++VvmjyMxKJujGyuqH4qIRkyVMdkG3AY/7DzLbXQGscuc2mU3sLcmvrhTa6dxP/CK9paBtKtOYaJ7xDMu/HR4N1nijd00l1lmLoLn/LtvtYPXF8YkQIDAQAB"
+mail               IN    TXT   "v=spf1 a ra=postmaster -all"
+@                  IN    TXT   "v=spf1 mx ra=postmaster -all"
+_imap._tcp         IN    SRV   0 1 993 mail.kolyma.uz.
+_submission._tcp   IN    SRV   0 1 465 mail.kolyma.uz.
+_dmarc             IN    TXT   "v=DMARC1; p=reject; rua=mailto:postmaster@kolyma.uz; ruf=mailto:postmaster@kolyma.uz"
+_smtp._tls         IN    TXT   "v=TLSRPTv1; rua=mailto:postmaster@kolyma.uz"
 
 ; Main website (Caddy)
 @      IN    A     65.109.61.35

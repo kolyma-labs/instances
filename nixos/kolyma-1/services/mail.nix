@@ -104,7 +104,7 @@ in
   };
 
   services.www.hosts = {
-    "wm.kolyma.uz" = {
+    "mail.kolyma.uz" = {
       extraConfig = ''
         reverse_proxy http://127.0.0.1:8080
       '';
@@ -112,7 +112,6 @@ in
         "mta-sts.kolyma.uz"
         "autoconfig.kolyma.uz"
         "autodiscover.kolyma.uz"
-        "mail.kolyma.uz"
       ];
     };
   };
