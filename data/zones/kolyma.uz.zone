@@ -28,15 +28,15 @@ autoconfig         IN    CNAME mail.kolyma.uz.
 autodiscover       IN    CNAME mail.kolyma.uz.
 
 ; Mail server (Stalwart)
-@                  IN    MX    10 mail.kolyma.uz.
-202411e._domainkey IN    TXT   "v=DKIM1; k=ed25519; h=sha256; p=suy+nE+z0f+DQDg2zajPH3es9XwFDZPwsIJBLXSr2v0="
-202411r._domainkey IN    TXT   "v=DKIM1; k=rsa; h=sha256; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA55AMa5jzFczl6ys3FKeLqjuLcprLGg1wo6PZQy21f0Y495lYUwapBE3AI1BdKKwclmfwYNR9NPS5P6arDThwa3f/aaOjH3WaqWF2vaVP1DiGPbcuQN5bKxxTKK3UM7md1pIesQH6JXWw+VKbsusmzcbMseL5y3zZXIdFGph3CE6c92nkvrQQuYHIrGOYpjGpUlYx9wgp6SDL9JM+An6Dkr1NVMRPe2RkWc2e++VvmjyMxKJujGyuqH4qIRkyVMdkG3AY/7DzLbXQGscuc2mU3sLcmvrhTa6dxP/CK9paBtKtOYaJ7xDMu/HR4N1nijd00l1lmLoLn/LtvtYPXF8YkQIDAQAB"
-mail               IN    TXT   "v=spf1 a ra=postmaster -all"
-@                  IN    TXT   "v=spf1 mx ra=postmaster -all"
-_imap._tcp         IN    SRV   0 1 993 mail.kolyma.uz.
-_submission._tcp   IN    SRV   0 1 465 mail.kolyma.uz.
-_dmarc             IN    TXT   "v=DMARC1; p=reject; rua=mailto:postmaster@kolyma.uz; ruf=mailto:postmaster@kolyma.uz"
-_smtp._tls         IN    TXT   "v=TLSRPTv1; rua=mailto:postmaster@kolyma.uz"
+@                  IN MX  10 mail.kolyma.uz.
+202411e._domainkey IN TXT "v=DKIM1; k=ed25519; h=sha256; p=suy+nE+z0f+DQDg2zajPH3es9XwFDZPwsIJBLXSr2v0="
+202411r._domainkey IN TXT "v=DKIM1; k=rsa; h=sha256; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA55AMa5jzFczl6ys3FKeLqjuLcprLGg1wo6PZQy21f0Y495lYUwapBE3AI1BdKKwclmfwYNR9NPS5P6arDThwa3f/aaOjH3WaqWF2vaVP1DiGPbcuQN5bKxxTKK3UM7md1pIesQH6JXWw+VKbsusmzcbMseL5y3zZXIdFGph3CE6c92nkvrQQuYH" "IrGOYpjGpUlYx9wgp6SDL9JM+An6Dkr1NVMRPe2RkWc2e++VvmjyMxKJujGyuqH4qIRkyVMdkG3AY/7DzLbXQGscuc2mU3sLcmvrhTa6dxP/CK9paBtKtOYaJ7xDMu/HR4N1nijd00l1lmLoLn/LtvtYPXF8YkQIDAQAB"
+mail               IN TXT "v=spf1 a ra=postmaster -all"
+@                  IN TXT "v=spf1 mx ra=postmaster -all"
+_imap._tcp         IN SRV 0 1 993 mail.kolyma.uz.
+_submission._tcp   IN SRV 0 1 465 mail.kolyma.uz.
+_dmarc             IN TXT "v=DMARC1; p=reject; rua=mailto:postmaster@kolyma.uz; ruf=mailto:postmaster@kolyma.uz"
+_smtp._tls         IN TXT "v=TLSRPTv1; rua=mailto:postmaster@kolyma.uz"
 
 ; Main website (Caddy)
 @      IN    A     65.109.61.35
