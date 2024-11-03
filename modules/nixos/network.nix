@@ -72,6 +72,12 @@ let
 
       # DNS configuration
       nameservers = config.network.nameserver;
+
+      # Resolver issues
+      resolvconf.extraConfig = ''
+        nameserver 8.8.8.8
+        nameserver 8.8.4.4
+      '';
     };
   };
 in
