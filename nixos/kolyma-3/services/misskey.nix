@@ -35,15 +35,16 @@ in
     };
 
     redis.createLocally = true;
-    redis.passwordFile = config.sops.secrets."misskey/redis/password".path;
+    # redis.passwordFile = config.sops.secrets."misskey/redis/password".path;
 
     meilisearch.createLocally = true;
-    meilisearch.keyFile = config.sops.secrets."misskey/meilisearch/password".path;
+    # meilisearch.keyFile = config.sops.secrets."misskey/meilisearch/password".path;
 
     database.createLocally = true;
-    database.passwordFile = config.sops.secrets."misskey/database/password".path;
+    # database.passwordFile = config.sops.secrets."misskey/database/password".path;
 
     settings = {
+
       port = 9001;
     };
   };
