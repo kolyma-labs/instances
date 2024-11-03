@@ -52,7 +52,7 @@ in
   services.www.hosts = {
     "misskey.uz" = {
       extraConfig = ''
-        reverse_proxy http://127.0.0.1:${config.services.misskey.settings.port}
+        reverse_proxy http://127.0.0.1:${toString config.services.misskey.settings.port}
       '';
     };
   };
