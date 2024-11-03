@@ -16,6 +16,8 @@ in
   sops.secrets = {
     "mail/acme" = secret-management;
     "mail/admin" = secret-management;
+    "mail/public-cert" = secret-management;
+    "mail/private-cert" = secret-management;
     "mail/users/git" = secret-management;
     "mail/users/sakhib" = secret-management;
     "mail/users/misskey" = secret-management;
@@ -72,6 +74,12 @@ in
         domains = [ "kolyma.uz" "mail.kolyma.uz" ];
         provider = "cloudflare";
         secret = "%{file:${config.sops.secrets."mail/acme".path}}%";
+      };
+
+      certificate."default" = {
+        cert = "%{file:${config.sops.secrets."mail/public-cert".path}}%";
+        private-key = "%{file:${config.sops.secrets."mail/private-cert".path}}%";
+        default = true;
       };
 
       session.auth = {
