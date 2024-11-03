@@ -34,8 +34,13 @@ in
       webserver.caddy = { };
     };
 
+    redis.createLocally = true;
     redis.passwordFile = config.sops.secrets."misskey/redis/password".path;
+
+    meilisearch.createLocally = true;
     meilisearch.keyFile = config.sops.secrets."misskey/meilisearch/password".path;
+
+    database.createLocally = true;
     database.passwordFile = config.sops.secrets."misskey/database/password".path;
 
     settings = {
