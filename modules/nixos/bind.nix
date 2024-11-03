@@ -50,7 +50,7 @@ let
       directory = "/var/bind";
       zones = zonesMap config.services.nameserver.zones config.services.nameserver.type;
 
-      extraConfig = ''
+      extraOptions = ''
         recursion yes;
         allow-recursion { any; };
         allow-query { any; };
