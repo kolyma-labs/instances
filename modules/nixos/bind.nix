@@ -48,8 +48,15 @@ let
     services.bind = {
       enable = config.services.nameserver.enable;
       directory = "/var/bind";
-      forwarders = [ "8.8.8.8" "8.8.4.4" ];
       zones = zonesMap config.services.nameserver.zones config.services.nameserver.type;
+
+      extraConfig = ''
+        recursion yes;
+        allow-recursion { any; };
+        allow-query { any; };
+      '';
+
+      forwarders = [ "8.8.8.8" "8.8.4.4" ];
     };
 
     # DNS standard port for connections + that require more than 512 bytes
