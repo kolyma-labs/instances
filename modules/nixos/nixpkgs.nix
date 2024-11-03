@@ -18,6 +18,19 @@
         # You can also add overlays exported from other flakes:
         # neovim-nightly-overlay.overlays.default
 
+        # Broken wasm-bindgen
+        (final: prev: {
+          stalwart-mail = final.unstable.stalwart-mail.overrideAttrs (old: {
+            passthru.webadmin = final.unstable.stalwart-mail.webadmin.override {
+              wasm-bindgen-cli = final.unstable.wasm-bindgen-cli.override {
+                version = "0.2.93";
+                hash = "sha256-DDdu5mM3gneraM85pAepBXWn3TMofarVR4NbjMdz3r0=";
+                cargoHash = "sha256-birrg+XABBHHKJxfTKAMSlmTVYLmnmqMDfRnmG6g/YQ=";
+              };
+            };
+          });
+        })
+
         # Or define it inline, for example:
         # (final: prev: {
         #   hi = final.hello.overrideAttrs (oldAttrs: {

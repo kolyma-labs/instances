@@ -21,19 +21,6 @@ in
     "mail/users/misskey" = secret-management;
   };
 
-  # Broken wasm-bindgen
-  nixpkgs.config.packageOverrides = pkgs: {
-    stalwart-mail = pkgs.unstable.stalwart-mail.overrideAttrs (old: {
-      passthru.webadmin = pkgs.unstable.stalwart-mail.webadmin.override {
-        wasm-bindgen-cli = pkgs.unstable.wasm-bindgen-cli.override {
-          version = "0.2.93";
-          hash = "sha256-DDdu5mM3gneraM85pAepBXWn3TMofarVR4NbjMdz3r0=";
-          cargoHash = "sha256-birrg+XABBHHKJxfTKAMSlmTVYLmnmqMDfRnmG6g/YQ=";
-        };
-      };
-    });
-  };
-
   services.stalwart-mail = {
     enable = true;
     package = pkgs.stalwart-mail;
