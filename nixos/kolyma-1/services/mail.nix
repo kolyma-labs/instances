@@ -5,25 +5,32 @@ let
   };
 in
 {
+  disabledModules = [
+    "services/mail/stalwart-mail.nix"
+  ];
+
   imports = [
     "${inputs.nixpkgs-unstable}/nixos/modules/services/mail/stalwart-mail.nix"
   ];
 
   sops.secrets = {
-    "mail/users/git/username" = secret-management;
-    "mail/users/git/password" = secret-management;
+    "mail/acme" = secret-management;
+    "mail/admin" = secret-management;
+    "mail/users/git" = secret-management;
+    "mail/users/sakhib" = secret-management;
+    "mail/users/misskey" = secret-management;
   };
 
-  environment.etc = {
-    "stalwart/mail-pw1".text = "foobar";
-    "stalwart/mail-pw2".text = "foobar";
-    "stalwart/admin-pw".text = "foobar";
-    "stalwart/acme-secret".text = "secret123";
-  };
+  # environment.etc = {
+  #   "stalwart/mail-pw1".text = "foobar";
+  #   "stalwart/mail-pw2".text = "foobar";
+  #   "stalwart/admin-pw".text = "foobar";
+  #   "stalwart/acme-secret".text = "secret123";
+  # };
 
   services.stalwart-mail = {
     enable = true;
-    package = pkgs.stalwart-mail;
+    package = pkgs.unstable.stalwart-mail;
     openFirewall = true;
 
     settings = {
@@ -71,7 +78,7 @@ in
         contact = "admin@kolyma.uz";
         domains = [ "kolyma.uz" "mail.kolyma.uz" ];
         provider = "cloudflare";
-        secret = "%{file:/etc/stalwart/acme-secret}%";
+        secret = "%{file:${config.sops.secrets."mail/acme".path}}%";
       };
 
       session.auth = {
@@ -89,13 +96,13 @@ in
           {
             class = "individual";
             name = "Sokhibjon Orzikulov";
-            secret = "%{file:/etc/stalwart/mail-pw1}%";
+            secret = "%{file:${config.sops.secrets."mail/users/sakhib".path}}%";
             email = [ "orzklv@kolyma.uz" "admin@kolyma.uz" ];
           }
           {
             class = "individual";
             name = "postmaster";
-            secret = "%{file:/etc/stalwart/mail-pw1}%";
+            secret = "%{file:${config.sops.secrets."mail/users/sakhib".path}}%";
             email = [ "postmaster@kolyma.uz" ];
           }
         ];
@@ -103,7 +110,7 @@ in
 
       authentication.fallback-admin = {
         user = "admin";
-        secret = "%{file:/etc/stalwart/admin-pw}%";
+        secret = "%{file:${config.sops.secrets."mail/admin".path}}%";
       };
     };
   };

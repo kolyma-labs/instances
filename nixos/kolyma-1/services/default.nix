@@ -9,6 +9,6 @@
     ./www.nix
 
     # Mail server for the datacenter
-    # ./mail.nix
+    ./mail.nix
   ];
 }
