@@ -20,7 +20,7 @@
 
         # Broken wasm-bindgen
         (final: prev: {
-          stalwart-mail = final.unstable.stalwart-mail.overrideAttrs (old: {
+          stalwart-mail-wbf = final.unstable.stalwart-mail.overrideAttrs (old: {
             passthru.webadmin = final.unstable.stalwart-mail.webadmin.override {
               wasm-bindgen-cli = final.unstable.wasm-bindgen-cli.override {
                 version = "0.2.93";

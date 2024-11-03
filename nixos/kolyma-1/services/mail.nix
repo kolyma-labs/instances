@@ -23,7 +23,7 @@ in
 
   services.stalwart-mail = {
     enable = true;
-    package = pkgs.stalwart-mail;
+    package = pkgs.stalwart-mail-wbf;
     openFirewall = true;
 
     settings = {
@@ -88,15 +88,10 @@ in
         principals = [
           {
             class = "individual";
-            name = "Sokhibjon Orzikulov";
+            name = "orzklv";
+            description = "Sokhibjon Orzikulov";
             secret = "%{file:${config.sops.secrets."mail/users/sakhib".path}}%";
-            email = [ "orzklv@kolyma.uz" "admin@kolyma.uz" ];
-          }
-          {
-            class = "individual";
-            name = "postmaster";
-            secret = "%{file:${config.sops.secrets."mail/users/sakhib".path}}%";
-            email = [ "postmaster@kolyma.uz" ];
+            email = [ "orzklv@kolyma.uz" "admin@kolyma.uz" "postmaster@kolyma.uz" ];
           }
         ];
       };
