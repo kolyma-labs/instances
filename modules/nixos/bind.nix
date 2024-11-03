@@ -48,6 +48,7 @@ let
     services.bind = {
       enable = config.services.nameserver.enable;
       directory = "/var/bind";
+      forwarders = [ "8.8.8.8" "8.8.4.4" ];
       zones = zonesMap config.services.nameserver.zones config.services.nameserver.type;
     };
 
