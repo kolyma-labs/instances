@@ -42,13 +42,37 @@ in
             protocol = "smtp";
             bind = "[::]:25";
           };
+          submission = {
+            bind = "[::]:587";
+            protocol = "smtp";
+          };
           submissions = {
             bind = "[::]:465";
             protocol = "smtp";
+            tls.implicit = true;
           };
-          imaps = {
+          imap = {
+            bind = "[::]:143";
+            protocol = "imap";
+          };
+          imaptls = {
             bind = "[::]:993";
             protocol = "imap";
+            tls.implicit = true;
+          };
+          pop3 = {
+            bind = "[::]:110";
+            protocol = "pop3";
+          };
+          pop3s = {
+            bind = "[::]:995";
+            protocol = "pop3";
+            tls.implicit = true;
+          };
+          sieve = {
+            bind = "[::]:4190";
+            protocol = "managesieve";
+
           };
           jmap = {
             bind = "[::]:8080";
