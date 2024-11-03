@@ -45,6 +45,8 @@
       enable = true;
       address = "2a01:4f8:161:714c::";
     };
+
+    nameserver = [ "8.8.8.8" "8.8.4.4" ];
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
