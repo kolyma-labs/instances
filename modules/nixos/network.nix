@@ -12,12 +12,8 @@ let
 
   ipv4 = lib.mkIf config.network.ipv4.enable {
     networking = {
-      useDHCP = false;
-
       interfaces = {
         "${config.network.interface}" = {
-          useDHCP = true;
-
           ipv4.addresses = [
             {
               address = config.network.ipv4.address;
@@ -37,12 +33,8 @@ let
 
   ipv6 = lib.mkIf config.network.ipv6.enable {
     networking = {
-      useDHCP = false;
-
       interfaces = {
         "${config.network.interface}" = {
-          useDHCP = false;
-
           ipv6.addresses = [
             {
               address = config.network.ipv6.address;
