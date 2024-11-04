@@ -50,5 +50,7 @@
     };
   };
 
+  networking.interfaces."eth0".useDHCP = true;
+
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }
