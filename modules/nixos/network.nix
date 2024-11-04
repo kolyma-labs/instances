@@ -52,6 +52,13 @@ let
     };
   };
 
+  packs = lib.mkIf config.network.enable {
+    environment.systemPackages = with pkgs; [
+      dig
+      inetutils
+    ];
+  };
+
   cfg = lib.mkIf config.network.enable {
     networking = {
       useDHCP = false;
@@ -118,5 +125,5 @@ in
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  config = lib.mkMerge [ ipv4 ipv6 cfg ];
+  config = lib.mkMerge [ ipv4 ipv6 cfg packs ];
 }
