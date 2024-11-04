@@ -11,6 +11,7 @@ in
     "git/root" = secret-management;
     "git/secret" = secret-management;
     "git/database" = secret-management;
+    "mail/users/git" = secret-management;
   };
 
   services.gitlab = {
