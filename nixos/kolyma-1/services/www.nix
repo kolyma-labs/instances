@@ -10,7 +10,7 @@
     hosts = {
       "cdn.kolyma.uz" = {
         extraConfig = ''
-          root * /srv/cdn
+          root * /srv
           file_server browse
         '';
       };
