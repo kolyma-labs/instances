@@ -41,7 +41,7 @@ in
 
       # Credentials for SMTP
       username = "git";
-      passwordFile = "/srv/git/mail-password.env";
+      passwordFile = config.sops.secrets."mail/users/git".path;
     };
 
     # Settings to be appended at gitlab.yml
