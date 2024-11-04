@@ -50,10 +50,5 @@
     };
   };
 
-  # I don't know why but forcing static ip address with no
-  # dhcpd breaks networking, so need to use dhcp alongside
-  # static ip addresses.
-  networking.interfaces."eth0".useDHCP = lib.mkForce true;
-
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }

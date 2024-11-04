@@ -65,7 +65,7 @@ let
 
       interfaces = {
         "${config.network.interface}" = {
-          useDHCP = false;
+          useDHCP = true;
         };
       };
 
