@@ -7,5 +7,8 @@
 
     # Web server & proxy virtual hosts via caddy
     ./www.nix
+
+    # GitHub Runner configurations
+    ./runner.nix
   ];
 }
