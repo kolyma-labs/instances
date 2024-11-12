@@ -24,7 +24,7 @@ in
   services.github-runners = {
     "${name}" = {
       enable = true;
-      url = "https://github.com/kibertexnik";
+      url = "./config.sh --url https://github.com/kibertexnik --token ANBCKXCNH62TSOR7WNGBQI3HGMTXY";
       tokenFile = config.sops.secrets."github/runners/kibertexnik".path;
       replace = true;
       extraLabels = [ name ];
