@@ -16,7 +16,7 @@ in
 
   services.gitlab = {
     enable = true;
-    host = "git.kolyma.uz";
+    host = "gulag.uz";
     databasePasswordFile = config.sops.secrets."git/database".path;
     initialRootPasswordFile = config.sops.secrets."git/root".path;
     secrets = {
@@ -61,7 +61,7 @@ in
 
   # Enable web server & proxy
   services.www.hosts = {
-    "git.kolyma.uz" = {
+    "gulag.uz" = {
       extraConfig = ''
         reverse_proxy unix//run/gitlab/gitlab-workhorse.socket
       '';
