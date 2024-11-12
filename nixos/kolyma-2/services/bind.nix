@@ -12,6 +12,7 @@
       "orzklv.uz"
       "kolyma.uz"
       "katsuki.moe"
+      "gulag.uz"
 
       # Not that personal
       "khakimovs.uz"
