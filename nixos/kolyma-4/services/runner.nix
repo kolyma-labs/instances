@@ -27,12 +27,7 @@ in
       url = "https://github.com/kibertexnik";
       tokenFile = config.sops.secrets."github/runners/kibertexnik".path;
       replace = true;
-      serviceOverrides.StateDirectory = [
-        "github-runner/${name}"
-      ];
-      workDir = "/var/lib/github-runner/${name}";
       extraLabels = [ name ];
-
       user = user;
       group = user;
     };
