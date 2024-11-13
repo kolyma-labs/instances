@@ -21,6 +21,7 @@
 
     # User configs
     outputs.nixosModules.users.kei
+    outputs.nixosModules.users.hsv
     outputs.nixosModules.users.sakhib
     outputs.nixosModules.users.sardor
     outputs.nixosModules.users.manuchehr

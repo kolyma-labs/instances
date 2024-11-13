@@ -2,6 +2,7 @@
 {
   # List your users here
   kei = import ./kei.nix;
+  hsv = import ./hsv.nix;
   sakhib = import ./sakhib.nix;
   sardor = import ./sardor.nix;
   shakhzod = import ./shakhzod.nix;
