@@ -15,7 +15,9 @@ in
 
   users.users.${user} = {
     description = "GitHub Runner user for kibretexnik";
-    isSystemUser = true;
+    # isSystemUser = true;
+    isNormalUser = true;
+    createHome = false;
     extraGroups = [ "admins" ];
     group = user;
   };
