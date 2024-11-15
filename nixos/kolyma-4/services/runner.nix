@@ -15,8 +15,8 @@ in
 
   users.users.${user} = {
     description = "GitHub Runner user for kibretexnik";
-    isNormalUser = true;
-    createHome = false;
+    isSystemUser = true;
+    extraGroups = [ "admins" ];
     group = user;
   };
 
@@ -31,6 +31,12 @@ in
       extraLabels = [ name ];
       user = user;
       group = user;
+      serviceOverrides = {
+        ProtectSystem = "full";
+        ReadWritePaths = "/srv";
+        PrivateMounts = false;
+        UMask = 0022;
+      };
     };
   };
 }
