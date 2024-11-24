@@ -15,3 +15,7 @@ $TTL 86400
 @      IN    AAAA  2a01:4f9:3070:322c::
 www    IN    A     95.216.248.25
 www    IN    AAAA  2a01:4f9:3070:322c::
+
+; Map observer for the Minecraft server
+map    IN    A     95.216.248.25
+map    IN    AAAA  2a01:4f9:3070:322c::
