@@ -4,7 +4,7 @@
     eula = true;
     declarative = true;
     openFirewall = true;
-    package = pkgs.unstable.minecraft-server;
+    package = pkgs.unstable.papermc;
     jvmOpts = "-Xms12288M -Xmx12288M -XX:+UseG1GC -XX:ParallelGCThreads=4 -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10";
 
     whitelist = {
