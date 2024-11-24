@@ -55,6 +55,11 @@
       url = "github:orzklv/nix/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Minecraft server
+    minecraft = {
+      url = "github:Infinidoge/nix-minecraft";
+    };
   };
 
   # In this context, outputs are mostly about getting home-manager what it
@@ -69,6 +74,7 @@
     , gate
     , khakimovs
     , xinux
+    , minecraft
     , ...
     } @ inputs:
     let
