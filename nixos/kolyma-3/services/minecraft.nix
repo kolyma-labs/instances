@@ -17,8 +17,8 @@
       server-port = 25565;
       difficulty = 3;
       gamemode = 0;
-      max-players = 20;
-      motd = "\\u00A74WELCOME TO CXSMXS SERVER!\\u00A7r\\n\\u00A7c\\u00A7k!!!\\u00A7r \\u00A7bHAVE A NICE TRIP! \\u00A7r\\u00A7c\\u00A7k!!!";
+      max-players = 50;
+      motd = "\\u00A7f\\u00A7lWelcome to Orzklv's Server\\u00A7r\\n\\u00A7lMore at\:\\u00A7r \\u00A7nhttps\://slave.uz";
       white-list = true;
       enable-rcon = true;
       "rcon.password" = "Asa>d30|TK>G6jT4B£g@=W3exGh(c||6S:+f*C&`dRAr]=kP_G";
