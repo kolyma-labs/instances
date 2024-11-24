@@ -18,9 +18,9 @@
         '';
       };
 
-      "cxsmxs.space" = {
+      "slave.uz" = {
         serverAliases = [
-          "www.cxsmxs.space"
+          "www.slave.uz"
         ];
         extraConfig = ''
           reverse_proxy 127.0.0.1:8100

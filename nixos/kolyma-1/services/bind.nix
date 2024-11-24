@@ -19,7 +19,7 @@
       "dumba.uz"
 
       # Projects
-      "cxsmxs.space"
+      "slave.uz"
       "floss.uz"
       "rust-lang.uz"
       "osmon-lang.uz"
