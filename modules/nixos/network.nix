@@ -1,10 +1,12 @@
-{ pkgs
-, lib
-, config
-, ...
+{
+  pkgs,
+  lib,
+  config,
+  ...
 }:
 let
-  gateway = ip:
+  gateway =
+    ip:
     let
       parts = lib.splitString "." ip;
     in
@@ -115,7 +117,10 @@ in
 
       nameserver = lib.mkOption {
         type = lib.types.listOf lib.types.str;
-        default = [ "8.8.8.8" "8.8.4.4" ];
+        default = [
+          "8.8.8.8"
+          "8.8.4.4"
+        ];
         description = "DNS nameserver.";
       };
     };
@@ -125,5 +130,10 @@ in
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  config = lib.mkMerge [ ipv4 ipv6 cfg packs ];
+  config = lib.mkMerge [
+    ipv4
+    ipv6
+    cfg
+    packs
+  ];
 }

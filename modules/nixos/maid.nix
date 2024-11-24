@@ -1,9 +1,11 @@
-{ config
-, lib
-, pkgs
-, inputs
-, ...
-}: {
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+{
   config = {
     nix.gc = {
       automatic = true;

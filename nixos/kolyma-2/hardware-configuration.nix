@@ -1,14 +1,19 @@
-{ config
-, lib
-, pkgs
-, modulesPath
-, ...
-}: {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
+{
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" ];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "ahci"
+    "nvme"
+    "usbhid"
+  ];
   boot.initrd.kernelModules = [ "nvme" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
@@ -29,9 +34,7 @@
     fsType = "vfat";
   };
 
-  swapDevices = [
-    { device = "/dev/disk/by-uuid/3ad38ead-cb6a-4e4c-9b5d-acb1fc67e444"; }
-  ];
+  swapDevices = [ { device = "/dev/disk/by-uuid/3ad38ead-cb6a-4e4c-9b5d-acb1fc67e444"; } ];
 
   network = {
     enable = true;

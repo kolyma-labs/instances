@@ -1,11 +1,13 @@
-{ config
-, lib
-, pkgs
-, inputs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
 }:
 let
-  fallbacks = config:
+  fallbacks =
+    config:
     [
       "kolyma.uz"
       "www.kolyma.uz"
@@ -42,8 +44,14 @@ let
     };
 
     # Ensure the firewall allows HTTP and HTTPS traffic
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
-    networking.firewall.allowedUDPPorts = [ 80 443 ];
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+    ];
+    networking.firewall.allowedUDPPorts = [
+      80
+      443
+    ];
   };
 
   extra = {

@@ -1,22 +1,23 @@
-{ pkgs ? let
-    lock = (builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.nixpkgs.locked;
-    nixpkgs = fetchTarball {
-      url = "https://github.com/nixos/nixpkgs/archive/${lock.rev}.tar.gz";
-      sha256 = lock.narHash;
-    };
-  in
-  import nixpkgs { overlays = [ ]; }
-, ...
-}: pkgs.stdenv.mkDerivation {
+{
+  pkgs ?
+    let
+      lock = (builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.nixpkgs.locked;
+      nixpkgs = fetchTarball {
+        url = "https://github.com/nixos/nixpkgs/archive/${lock.rev}.tar.gz";
+        sha256 = lock.narHash;
+      };
+    in
+    import nixpkgs { overlays = [ ]; },
+  ...
+}:
+pkgs.stdenv.mkDerivation {
   name = "instances";
 
   nativeBuildInputs = with pkgs; [
-    nix
-    nil
     git
     nixd
     sops
-    nixpkgs-fmt
+    nixfmt-rfc-style
   ];
 
   NIX_CONFIG = "extra-experimental-features = nix-command flakes";

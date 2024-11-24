@@ -1,13 +1,16 @@
-{ inputs, config, pkgs, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}:
 let
   secret-management = {
     owner = config.users.users.misskey.name;
   };
 in
 {
-  imports = [
-    "${inputs.nixpkgs-unstable}/nixos/modules/services/web-apps/misskey.nix"
-  ];
+  imports = [ "${inputs.nixpkgs-unstable}/nixos/modules/services/web-apps/misskey.nix" ];
 
   sops.secrets = {
     "misskey/database/password" = secret-management;
@@ -44,7 +47,6 @@ in
     # database.passwordFile = config.sops.secrets."misskey/database/password".path;
 
     settings = {
-
       port = 9001;
     };
   };

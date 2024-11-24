@@ -1,17 +1,18 @@
-{ inputs, config, pkgs, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}:
 let
   secret-management = {
     owner = config.users.users.stalwart-mail.name;
   };
 in
 {
-  disabledModules = [
-    "services/mail/stalwart-mail.nix"
-  ];
+  disabledModules = [ "services/mail/stalwart-mail.nix" ];
 
-  imports = [
-    "${inputs.nixpkgs-unstable}/nixos/modules/services/mail/stalwart-mail.nix"
-  ];
+  imports = [ "${inputs.nixpkgs-unstable}/nixos/modules/services/mail/stalwart-mail.nix" ];
 
   sops.secrets = {
     "mail/acme" = secret-management;
@@ -72,7 +73,6 @@ in
           sieve = {
             bind = "[::]:4190";
             protocol = "managesieve";
-
           };
           jmap = {
             bind = "[::]:8080";
@@ -95,7 +95,10 @@ in
         directory = "https://acme-v02.api.letsencrypt.org/directory";
         challenge = "dns-01";
         contact = "admin@kolyma.uz";
-        domains = [ "kolyma.uz" "mail.kolyma.uz" ];
+        domains = [
+          "kolyma.uz"
+          "mail.kolyma.uz"
+        ];
         provider = "cloudflare";
         secret = "%{file:${config.sops.secrets."mail/acme".path}}%";
       };
@@ -123,7 +126,11 @@ in
             name = "orzklv";
             description = "Sokhibjon Orzikulov";
             secret = "%{file:${config.sops.secrets."mail/users/sakhib".path}}%";
-            email = [ "orzklv@kolyma.uz" "admin@kolyma.uz" "postmaster@kolyma.uz" ];
+            email = [
+              "orzklv@kolyma.uz"
+              "admin@kolyma.uz"
+              "postmaster@kolyma.uz"
+            ];
           }
         ];
       };

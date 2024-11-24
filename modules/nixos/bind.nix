@@ -1,48 +1,54 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
   # Statically defined list of zones
   zones = [ "kolyma.uz" ];
 
-  generateZone = zone: type:
+  generateZone =
+    zone: type:
     let
       master = type == "master";
       file = "/var/dns/${zone}.zone";
     in
-    if master
-    then {
-      inherit master file;
-      slaves = config.services.nameserver.slaves;
-    }
-    else {
-      inherit master file;
-      masters = config.services.nameserver.masters;
-    };
+    if master then
+      {
+        inherit master file;
+        slaves = config.services.nameserver.slaves;
+      }
+    else
+      {
+        inherit master file;
+        masters = config.services.nameserver.masters;
+      };
 
   # Map through given array of zones and generate zone object list
-  zonesMap = zones: type:
-    lib.listToAttrs (map
-      (zone: {
+  zonesMap =
+    zones: type:
+    lib.listToAttrs (
+      map (zone: {
         name = zone;
         value = generateZone zone type;
-      })
-      zones);
+      }) zones
+    );
 
   # If type is master, activate system.activationScripts.copyZones
-  zoneFiles = lib.mkIf (config.services.nameserver.enable && config.services.nameserver.type == "master") {
-    system.activationScripts.copyZones = lib.mkForce {
-      text = ''
-        mkdir -p /var/dns
-        for zoneFile in ${../../data/zones}/*.zone; do
-          cp -f "$zoneFile" /var/dns/
-        done
-      '';
-      deps = [ ];
-    };
-  };
+  zoneFiles =
+    lib.mkIf (config.services.nameserver.enable && config.services.nameserver.type == "master")
+      {
+        system.activationScripts.copyZones = lib.mkForce {
+          text = ''
+            mkdir -p /var/dns
+            for zoneFile in ${../../data/zones}/*.zone; do
+              cp -f "$zoneFile" /var/dns/
+            done
+          '';
+          deps = [ ];
+        };
+      };
 
   cfg = lib.mkIf config.services.nameserver.enable {
     services.bind = {
@@ -68,7 +74,10 @@ in
       };
 
       type = lib.mkOption {
-        type = lib.types.enum [ "master" "slave" ];
+        type = lib.types.enum [
+          "master"
+          "slave"
+        ];
         default = "master";
         description = "The type of the bind zone, either 'master' or 'slave'.";
       };

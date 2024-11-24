@@ -1,7 +1,8 @@
-{ pkgs
-, lib
-, config
-, ...
+{
+  pkgs,
+  lib,
+  config,
+  ...
 }:
 let
   raid = lib.mkIf config.boot.bios.raided {
@@ -29,9 +30,7 @@ let
     ];
   };
 
-  cfg = lib.mkIf config.boot.bios.enable {
-    boot.loader.grub.enable = true;
-  };
+  cfg = lib.mkIf config.boot.bios.enable { boot.loader.grub.enable = true; };
 in
 {
   options = {
@@ -62,5 +61,10 @@ in
     };
   };
 
-  config = lib.mkMerge [ raid mirrors uefi cfg ];
+  config = lib.mkMerge [
+    raid
+    mirrors
+    uefi
+    cfg
+  ];
 }

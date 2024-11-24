@@ -1,9 +1,11 @@
-{ inputs
-, outputs
-, username
-, lib
-, ...
-}: {
+{
+  inputs,
+  outputs,
+  username,
+  lib,
+  ...
+}:
+{
   imports = [
     inputs.orzklv.homeModules.zsh
     inputs.orzklv.homeModules.helix
@@ -37,7 +39,10 @@
 
   programs.topgrade.settings.linux = lib.mkForce {
     nix_arguments = "--flake github:kolyma-labs/instances";
-    home_manager_arguments = [ "--flake" "github:kolyma-labs/instances" ];
+    home_manager_arguments = [
+      "--flake"
+      "github:kolyma-labs/instances"
+    ];
   };
 
   # Let's enable home-manager

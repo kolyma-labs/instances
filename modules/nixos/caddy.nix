@@ -1,14 +1,18 @@
-{ config
-, lib
-, pkgs
-, inputs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
 }:
 let
-  fallbacks = config:
+  fallbacks =
+    config:
     let
-      ipv4 = if config.network.ipv4.address != null then [ "http://${config.network.ipv4.address}" ] else [ ];
-      ipv6 = if config.network.ipv6.address != null then [ "http://${config.network.ipv6.address}" ] else [ ];
+      ipv4 =
+        if config.network.ipv4.address != null then [ "http://${config.network.ipv4.address}" ] else [ ];
+      ipv6 =
+        if config.network.ipv6.address != null then [ "http://${config.network.ipv6.address}" ] else [ ];
     in
     [
       "kolyma.uz"
@@ -39,8 +43,14 @@ let
     };
 
     # Ensure the firewall allows HTTP and HTTPS traffic
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
-    networking.firewall.allowedUDPPorts = [ 80 443 ];
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+    ];
+    networking.firewall.allowedUDPPorts = [
+      80
+      443
+    ];
   };
 
   extra = {

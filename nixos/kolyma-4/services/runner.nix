@@ -37,7 +37,7 @@ in
         ProtectSystem = "full";
         ReadWritePaths = "/srv";
         PrivateMounts = false;
-        UMask = 0022;
+        UMask = 22;
       };
     };
   };

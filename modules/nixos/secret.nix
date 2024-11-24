@@ -1,16 +1,15 @@
-{ config
-, inputs
-, lib
-, pkgs
-, ...
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
 }:
 let
   key = "${config.users.users.sakhib.home}/.config/sops/age/keys.txt";
 in
 {
-  imports = [
-    inputs.sops-nix.nixosModules.sops
-  ];
+  imports = [ inputs.sops-nix.nixosModules.sops ];
 
   sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;

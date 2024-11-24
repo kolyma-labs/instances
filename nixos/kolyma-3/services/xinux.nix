@@ -1,7 +1,6 @@
-{ config, inputs, ... }: {
-  imports = [
-    inputs.xinux.nixosModules.xinux.bot
-  ];
+{ config, inputs, ... }:
+{
+  imports = [ inputs.xinux.nixosModules.xinux.bot ];
 
   sops.secrets = {
     "xinux/bot" = {

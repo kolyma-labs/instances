@@ -1,7 +1,6 @@
-{ inputs, pkgs, ... }: {
-  imports = [
-    inputs.minecraft.nixosModules.minecraft-servers
-  ];
+{ inputs, pkgs, ... }:
+{
+  imports = [ inputs.minecraft.nixosModules.minecraft-servers ];
 
   services.minecraft-servers = {
     enable = true;
