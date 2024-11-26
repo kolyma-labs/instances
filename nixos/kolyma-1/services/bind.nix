@@ -20,6 +20,7 @@
       # Projects
       "slave.uz"
       "floss.uz"
+      "sabine.uz"
       "rust-lang.uz"
       "osmon-lang.uz"
       "xinux.uz"
