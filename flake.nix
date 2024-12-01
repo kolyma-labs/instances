@@ -45,10 +45,7 @@
     };
 
     # Khakimov's website
-    khakimovs = {
-      url = "github:khakimovs/website";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    khakimovs.url = "github:khakimovs/website";
 
     # Xinux Community
     xinux = {
