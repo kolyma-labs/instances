@@ -26,6 +26,7 @@
     outputs.nixosModules.users.sabine
     outputs.nixosModules.users.sakhib
     outputs.nixosModules.users.sardor
+    outputs.nixosModules.users.shakhzod
     outputs.nixosModules.users.manuchehr
 
     # Import your deployed service list

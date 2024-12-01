@@ -8,7 +8,6 @@
 {
   imports = [
     inputs.orzklv.homeModules.zsh
-    inputs.orzklv.homeModules.helix
     inputs.orzklv.homeModules.nixpkgs
     inputs.orzklv.homeModules.topgrade
     inputs.orzklv.homeModules.packages
