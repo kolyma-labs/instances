@@ -3,6 +3,26 @@
     "disko": {
       "inputs": {
         "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1732988076,
+        "narHash": "sha256-2uMaVAZn7fiyTUGhKgleuLYe5+EAAYB/diKxrM7g3as=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "2814a5224a47ca19e858e027f7e8bff74a8ea9f1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
+    "disko_2": {
+      "inputs": {
+        "nixpkgs": [
           "orzklv",
           "nixpkgs"
         ]
@@ -353,7 +373,7 @@
     },
     "orzklv": {
       "inputs": {
-        "disko": "disko",
+        "disko": "disko_2",
         "flake-utils": "flake-utils_5",
         "home-manager": "home-manager_2",
         "nix-darwin": "nix-darwin",
@@ -379,6 +399,7 @@
     },
     "root": {
       "inputs": {
+        "disko": "disko",
         "flake-utils": "flake-utils",
         "gate": "gate",
         "home-manager": "home-manager",

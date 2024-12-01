@@ -23,6 +23,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Disko
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Flake utils for eachSystem
     flake-utils.url = "github:numtide/flake-utils";
 
@@ -127,6 +133,7 @@
             "Kolyma-2"
             "Kolyma-3"
             "Kolyma-4"
+            "Kolyma-5"
           ];
         };
       };
