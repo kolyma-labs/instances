@@ -9,7 +9,7 @@
     hosts = {
       "build.kibertexnik.uz" = {
         extraConfig = ''
-          root * /srv
+          root * /srv/builds
           file_server browse
         '';
       };
