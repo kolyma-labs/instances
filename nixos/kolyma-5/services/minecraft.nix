@@ -10,7 +10,7 @@
       slave = {
         enable = true;
         openFirewall = true;
-        package = pkgs.paperServers.paper-1_21_1;
+        package = pkgs.paperServers.paper-1_21_3;
         jvmOpts = "-Xms12288M -Xmx12288M -XX:+UseG1GC -XX:ParallelGCThreads=4 -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10";
 
         serverProperties = {
