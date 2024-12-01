@@ -19,6 +19,8 @@ ns3    IN    A     95.216.248.25
 ns3    IN    AAAA  2a01:4f9:3070:322c::
 ns4    IN    A     65.109.74.214
 ns4    IN    AAAA  2a01:4f9:3071:31ce::
+ns5    IN    A     167.235.96.40
+ns5    IN    AAAA  2a01:4f8:2190:2914::
 
 ; Mail server (Stalwart)
 @                  IN MX   10 mail.kolyma.uz.

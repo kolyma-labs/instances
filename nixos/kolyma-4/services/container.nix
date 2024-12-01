@@ -5,7 +5,8 @@
   # Enable containerization
   services.containers = {
     enable = true;
-    instances = { };
     ports = [ ];
+
+    instances = { };
   };
 }
