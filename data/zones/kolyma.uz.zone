@@ -22,6 +22,18 @@ ns4    IN    AAAA  2a01:4f9:3071:31ce::
 ns5    IN    A     167.235.96.40
 ns5    IN    AAAA  2a01:4f8:2190:2914::
 
+; Summarized A & AAAA across whole datacenter
+nsx    IN    A     5.9.66.12
+nsx    IN    AAAA  2a01:4f8:161:714c::
+nsx    IN    A     65.109.61.35
+nsx    IN    AAAA  2a01:4f9:5a:5110::
+nsx    IN    A     95.216.248.25
+nsx    IN    AAAA  2a01:4f9:3070:322c::
+nsx    IN    A     65.109.74.214
+nsx    IN    AAAA  2a01:4f9:3071:31ce::
+nsx    IN    A     167.235.96.40
+nsx    IN    AAAA  2a01:4f8:2190:2914::
+
 ; Mail server (Stalwart)
 @                  IN MX   10 mail.kolyma.uz.
 @                  IN TXT  "v=spf1 mx ra=postmaster -all"
@@ -47,22 +59,8 @@ _25._tcp           IN TLSA 3 1 2 edb3fc2c0b152150915d60b3c5a0fe8a71007546abaf2c7
 202411r._domainkey IN TXT  "v=DKIM1; k=rsa; h=sha256; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA55AMa5jzFczl6ys3FKeLqjuLcprLGg1wo6PZQy21f0Y495lYUwapBE3AI1BdKKwclmfwYNR9NPS5P6arDThwa3f/aaOjH3WaqWF2vaVP1DiGPbcuQN5bKxxTKK3UM7md1pIesQH6JXWw+VKbsusmzcbMseL5y3zZXIdFGph3CE6c92nkvrQQuYH" "IrGOYpjGpUlYx9wgp6SDL9JM+An6Dkr1NVMRPe2RkWc2e++VvmjyMxKJujGyuqH4qIRkyVMdkG3AY/7DzLbXQGscuc2mU3sLcmvrhTa6dxP/CK9paBtKtOYaJ7xDMu/HR4N1nijd00l1lmLoLn/LtvtYPXF8YkQIDAQAB"
 
 ; Main website (Caddy)
-@      IN    A     65.109.61.35
-@      IN    AAAA  2a01:4f9:5a:5110::
-@      IN    A     5.9.66.12
-@      IN    AAAA  2a01:4f8:161:714c::
-@      IN    A     95.216.248.25
-@      IN    AAAA  2a01:4f9:3070:322c::
-@      IN    A     65.109.74.214
-@      IN    AAAA  2a01:4f9:3071:31ce::
-www    IN    A     65.109.61.35
-www    IN    AAAA  2a01:4f9:5a:5110::
-www    IN    A     5.9.66.12
-www    IN    AAAA  2a01:4f8:161:714c::
-www    IN    A     95.216.248.25
-www    IN    AAAA  2a01:4f9:3070:322c::
-www    IN    A     65.109.74.214
-www    IN    AAAA  2a01:4f9:3071:31ce::
+@      IN    CNAME nsx.kolyma.uz.
+www    IN    CNAME nsx.kolyma.uz.
 
 ; Git (GitLab)
 git    IN    A     65.109.61.35
