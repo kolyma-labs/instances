@@ -6,6 +6,12 @@
     # Bind nameserver service for hosting personal domains
     ./bind.nix
 
+    # GitLab instance & Git server
+    ./gitlab.nix
+
+    # Mail server
+    ./mail.nix
+
     # Minecraft server configurations
     ./minecraft.nix
 
