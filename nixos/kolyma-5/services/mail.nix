@@ -15,7 +15,10 @@ in
     "mail/admin" = secret-management;
     "mail/public-cert" = secret-management;
     "mail/private-cert" = secret-management;
-    "mail/users/git" = secret-management;
+    "mail/users/git" = {
+      owner = config.users.users.stalwart-mail.name;
+      key = "git";
+    };
     "mail/users/sakhib" = secret-management;
     "mail/users/misskey" = secret-management;
   };
