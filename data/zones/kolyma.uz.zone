@@ -25,8 +25,8 @@ ns5    IN    AAAA  2a01:4f8:2190:2914::
 ; Mail server (Stalwart)
 @                  IN MX   10 mail.kolyma.uz.
 @                  IN TXT  "v=spf1 mx ra=postmaster -all"
-mail               IN A     5.9.66.12
-mail               IN AAAA  2a01:4f8:161:714c::
+mail               IN A     167.235.96.40
+mail               IN AAAA  2a01:4f8:2190:2914::
 mail               IN TXT  "v=spf1 a ra=postmaster -all"
 autoconfig         IN CNAME mail.kolyma.uz.
 autodiscover       IN CNAME mail.kolyma.uz.
@@ -63,10 +63,6 @@ www    IN    A     95.216.248.25
 www    IN    AAAA  2a01:4f9:3070:322c::
 www    IN    A     65.109.74.214
 www    IN    AAAA  2a01:4f9:3071:31ce::
-
-; Git (GitLab)
-git    IN    A     65.109.61.35
-git    IN    AAAA  2a01:4f9:5a:5110::
 
 ; CDN Hosting (Caddy)
 cdn    IN    A     5.9.66.12

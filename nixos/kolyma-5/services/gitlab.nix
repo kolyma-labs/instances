@@ -16,7 +16,7 @@ in
 
   services.gitlab = {
     enable = true;
-    host = "old.gulag.uz";
+    host = "gulag.uz";
     databasePasswordFile = config.sops.secrets."git/database".path;
     initialRootPasswordFile = config.sops.secrets."git/root".path;
     secrets = {
