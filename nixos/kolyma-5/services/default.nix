@@ -6,9 +6,6 @@
     # Bind nameserver service for hosting personal domains
     ./bind.nix
 
-    # List of docker instances hosted in this machine
-    ./container.nix
-
     # Web server & proxy virtual hosts via caddy
     ./www.nix
   ];
