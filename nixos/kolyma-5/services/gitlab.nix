@@ -12,7 +12,7 @@ in
     "git/secret" = secret-management;
     "git/database" = secret-management;
     "mail/users/git" = {
-      owner = config.users.users.stalwart-mail.name;
+      owner = config.services.gitlab.user;
       key = "git";
     };
   };
