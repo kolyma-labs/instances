@@ -1,4 +1,4 @@
-{ outputs, ... }:
+{ outputs, pkgs, ... }:
 {
   imports = [ outputs.nixosModules.caddy ];
 
@@ -6,8 +6,14 @@
   services.www = {
     enable = true;
     alias = [ "ns5.kolyma.uz" ];
-    hosts =
-      {
+    hosts = {
+      "khakimovs.uz" = {
+        serverAliases = [ "www.khakimovs.uz" ];
+        extraConfig = ''
+          root * ${pkgs.personal.khakimovs}/www
+          file_server
+        '';
       };
+    };
   };
 }

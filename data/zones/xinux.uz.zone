@@ -17,8 +17,8 @@ $TTL 86400
 @      IN    A     185.199.111.153
 
 ; Telegram Bots
-xinuxmgr    IN    A    95.216.248.25
-xinuxmgr    IN    AAAA 2a01:4f9:3070:322c::
+xinuxmgr    IN    A    65.109.74.214
+xinuxmgr    IN    AAAA 2a01:4f9:3071:31ce::
 
 ; GitHub Verifications
 _github-challenge-xinux-org-org      IN      TXT      1a06c6d74b

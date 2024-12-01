@@ -9,10 +9,13 @@
     # List of docker instances hosted in this machine
     ./container.nix
 
+    # GitHub Runner configurations
+    ./runner.nix
+
     # Web server & proxy virtual hosts via caddy
     ./www.nix
 
-    # GitHub Runner configurations
-    ./runner.nix
+    # Xinux deployment & services
+    ./xinux.nix
   ];
 }

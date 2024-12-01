@@ -8,11 +8,5 @@
 
     # Web server & proxy virtual hosts via caddy
     ./www.nix
-
-    # Minecraft server configurations
-    ./minecraft.nix
-
-    # Xinux deployment & services
-    ./xinux.nix
   ];
 }
