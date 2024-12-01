@@ -11,9 +11,9 @@ in
     "git/root" = secret-management;
     "git/secret" = secret-management;
     "git/database" = secret-management;
-    "mail/users/git" = {
+    "mail-users-git-git" = {
       owner = config.services.gitlab.user;
-      key = "git";
+      key = "mail/users/git";
     };
   };
 
