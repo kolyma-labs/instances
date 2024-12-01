@@ -60,7 +60,7 @@ in
 
   # Enable web server & proxy
   services.www.hosts = {
-    "old.gulag.uz" = {
+    "gulag.uz" = {
       extraConfig = ''
         reverse_proxy unix//run/gitlab/gitlab-workhorse.socket
       '';
