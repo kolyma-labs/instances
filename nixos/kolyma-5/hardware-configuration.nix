@@ -40,12 +40,12 @@
 
     ipv4 = {
       enable = true;
-      address = "65.109.74.214";
+      address = "167.235.96.40";
     };
 
     ipv6 = {
       enable = true;
-      address = "2a01:4f9:3071:31ce::";
+      address = "2a01:4f8:2190:2914::";
     };
   };
 
