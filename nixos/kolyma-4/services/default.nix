@@ -3,6 +3,9 @@
 {
   # List all modules here to be included on config
   imports = [
+    # Bind nameserver service for hosting personal domains
+    ./bind.nix
+
     # List of docker instances hosted in this machine
     ./container.nix
 
