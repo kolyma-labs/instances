@@ -12,10 +12,7 @@
       "kolyma.uz"
       "katsuki.moe"
       "gulag.uz"
-
-      # Not that personal
       "khakimovs.uz"
-      "dumba.uz"
 
       # Projects
       "slave.uz"
@@ -26,7 +23,6 @@
       "xinux.uz"
       "haskell.uz"
       "niggerlicious.uz"
-      "misskey.uz"
     ];
     masters = [ "5.9.66.12" ];
   };
