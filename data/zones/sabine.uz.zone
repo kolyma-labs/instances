@@ -11,10 +11,10 @@ $TTL 86400
 @      IN    NS    ns2.kolyma.uz.
 
 ; Entry points
-; @      IN    A     95.216.248.25
-; @      IN    AAAA  2a01:4f9:3070:322c::
-; www    IN    A     95.216.248.25
-; www    IN    AAAA  2a01:4f9:3070:322c::
+; @      IN    A     65.109.74.214
+; @      IN    AAAA  2a01:4f9:3071:31ce::
+; www    IN    A     65.109.74.214
+; www    IN    AAAA  2a01:4f9:3071:31ce::
 
 ; GitHub Verification
 _gh-sabine-lang-o IN TXT ae4d97ae07

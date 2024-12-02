@@ -20,10 +20,10 @@ www    IN    CNAME rust-lang-uz.github.io.
 doc    IN    CNAME rust-lang-uz.github.io.
 
 ; Telegram Bots
-rustina    IN    A    65.109.61.35
-rustina    IN    AAAA 2A01:4F9:5A:5110::2
-rustacean  IN    A    65.109.61.35
-rustacean  IN    AAAA 2A01:4F9:5A:5110::2
+;rustina    IN    A    65.109.74.214
+;rustina    IN    AAAA 2a01:4f9:3071:31ce::
+;rustacean  IN    A    65.109.74.214
+;rustacean  IN    AAAA 2a01:4f9:3071:31ce::
 
 ; GitHub Verifications
 _github-pages-challenge-rust-lang-uz      IN      TXT      4f8ece26a062d0ec6e1fea50bc99fd
