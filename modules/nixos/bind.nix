@@ -84,13 +84,13 @@ in
 
       masters = lib.mkOption {
         type = lib.types.listOf lib.types.str;
-        default = [ "5.9.66.12" ];
+        default = [ "167.235.96.40" ];
         description = "IP address of the master server.";
       };
 
       slaves = lib.mkOption {
         type = lib.types.listOf lib.types.str;
-        default = [ "65.109.61.35" ];
+        default = [ "65.109.74.214" ];
         description = "List of slave servers.";
       };
 
