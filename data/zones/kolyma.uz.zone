@@ -11,16 +11,21 @@ $TTL 86400
 @      IN    NS    ns2.kolyma.uz.
 
 ; A & AAAA records for nameservers
-ns1    IN    A     5.9.66.12
-ns1    IN    AAAA  2a01:4f8:161:714c::
-ns2    IN    A     65.109.61.35
-ns2    IN    AAAA  2a01:4f9:5a:5110::
+;ns1    IN    A     5.9.66.12
+;ns1    IN    AAAA  2a01:4f8:161:714c::
+;ns2    IN    A     65.109.61.35
+;ns2    IN    AAAA  2a01:4f9:5a:5110::
+
+ns1    IN    A     167.235.96.40
+ns1    IN    AAAA  2a01:4f8:2190:2914::
+ns2    IN    A     65.109.74.214
+ns2    IN    AAAA  2a01:4f9:3071:31ce::
 ns3    IN    A     95.216.248.25
 ns3    IN    AAAA  2a01:4f9:3070:322c::
-ns4    IN    A     65.109.74.214
-ns4    IN    AAAA  2a01:4f9:3071:31ce::
-ns5    IN    A     167.235.96.40
-ns5    IN    AAAA  2a01:4f8:2190:2914::
+ns4    IN    A     5.9.66.12
+ns4    IN    AAAA  2a01:4f8:161:714c::
+ns5    IN    A     65.109.61.35
+ns5    IN    AAAA  2a01:4f9:5a:5110::
 
 ; Mail server (Stalwart)
 @                  IN MX   10 mail.kolyma.uz.
