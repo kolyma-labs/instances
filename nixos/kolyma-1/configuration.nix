@@ -36,6 +36,14 @@
   # Hostname of the system
   networking.hostName = "Kolyma-1";
 
+  # Entirely disable hibernation
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=no
+    AllowHibernation=no
+    AllowHybridSleep=no
+    AllowSuspendThenHibernate=no
+  '';
+
   # Don't ask for password
   security.sudo.wheelNeedsPassword = false;
 

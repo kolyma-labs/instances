@@ -21,7 +21,13 @@
     outputs.nixosModules.nixpkgs
 
     # User configs
+    outputs.nixosModules.users.kei
+    outputs.nixosModules.users.hsv
+    outputs.nixosModules.users.sabine
     outputs.nixosModules.users.sakhib
+    outputs.nixosModules.users.sardor
+    outputs.nixosModules.users.shakhzod
+    outputs.nixosModules.users.manuchehr
 
     # Import your deployed service list
     ./services
@@ -35,6 +41,14 @@
 
   # Hostname of the system
   networking.hostName = "Kolyma-2";
+
+  # Entirely disable hibernation
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=no
+    AllowHibernation=no
+    AllowHybridSleep=no
+    AllowSuspendThenHibernate=no
+  '';
 
   # Don't ask for password
   security.sudo.wheelNeedsPassword = false;

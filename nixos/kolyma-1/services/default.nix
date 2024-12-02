@@ -6,6 +6,9 @@
     # Bind nameserver service for hosting personal domains
     ./bind.nix
 
+    # Minecraft server configurations
+    ./minecraft.nix
+
     # Web server & proxy virtual hosts via caddy
     ./www.nix
   ];
