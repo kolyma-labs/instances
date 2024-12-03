@@ -10,6 +10,7 @@ let
 in
 {
   sops.secrets = {
+    "github/runners/kolyma" = secret-management;
     "github/runners/kibertexnik" = secret-management;
   };
 
