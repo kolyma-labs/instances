@@ -5,7 +5,7 @@
   # Enable web server & proxy
   services.www = {
     enable = true;
-    alias = [ "ns4.kolyma.uz" ];
+    alias = [ "ns2.kolyma.uz" ];
     hosts = {
       "build.kibertexnik.uz" = {
         extraConfig = ''
