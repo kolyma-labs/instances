@@ -38,26 +38,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Main homepage website
-    gate = {
-      url = "github:kolyma-labs/gate";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Khakimov's website
-    khakimovs.url = "github:khakimovs/website";
-
-    # Xinux Community
-    xinux = {
-      url = "github:xinux-org/telegram";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Orzklv's Nix configuration
     orzklv = {
       url = "github:orzklv/nix/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Main homepage website
+    gate.url = "github:kolyma-labs/gate";
+
+    # Khakimov's website
+    khakimovs.url = "github:khakimovs/website";
+
+    # Xinux Community
+    xinux.url = "github:xinux-org/telegram";
 
     # Minecraft server
     minecraft = {
