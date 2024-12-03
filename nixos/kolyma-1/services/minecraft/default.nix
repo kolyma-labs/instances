@@ -45,6 +45,7 @@ in
             url = "https://cdn.modrinth.com/data/swbUV1cr/versions/Ap3wfaNh/bluemap-5.5-spigot.jar";
             sha512 = "f21b72760545389403d3f13b0b85b95ec20ca63b01f4b369c797a816b6d14d945b13babc0ce8098a3f3243c0a28efcd907149ed7201462f9a115894fba4e3804";
           };
+          "server-icon.png" = ./server-icon.png;
         };
       };
     };
