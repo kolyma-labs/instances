@@ -7,7 +7,7 @@
     ./bind.nix
 
     # Minecraft server configurations
-    ./minecraft.nix
+    ./minecraft
 
     # Web server & proxy virtual hosts via caddy
     ./www.nix

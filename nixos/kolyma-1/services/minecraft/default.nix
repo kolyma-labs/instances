@@ -48,6 +48,8 @@ in
               };
             }
           );
+
+          BlueMapConfig = ./plugins/BlueMap;
         };
       };
     };
