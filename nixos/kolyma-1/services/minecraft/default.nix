@@ -5,8 +5,8 @@
   ...
 }:
 let
+  # Global variables
   version = "1.21.3";
-  server = lib.replaceStrings [ "." ] [ "_" ] "paper-${version}";
 in
 {
   imports = [ inputs.minecraft.nixosModules.minecraft-servers ];
@@ -16,7 +16,11 @@ in
     eula = true;
 
     servers = {
-      slave = {
+      slave =
+      let
+        server = lib.replaceStrings [ "." ] [ "_" ] "paper-${version}";
+      in
+      {
         enable = true;
         openFirewall = true;
         package = pkgs.paperServers.${server};
