@@ -49,7 +49,7 @@ in
             }
           );
 
-          BlueMapConfig = ./plugins/BlueMap;
+          "plugins/BlueMap" = ./plugins/BlueMap;
         };
       };
     };
