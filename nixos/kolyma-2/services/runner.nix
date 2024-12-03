@@ -25,7 +25,7 @@ in
   users.groups.${user} = { };
 
   services.github-runners = {
-    "${name}" = {
+    "${name}-Kibertexnik" = {
       enable = true;
       url = "https://github.com/kibertexnik";
       tokenFile = config.sops.secrets."github/runners/kibertexnik".path;
