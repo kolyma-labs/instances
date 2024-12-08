@@ -32,3 +32,7 @@ www    IN    AAAA  2a01:4f9:3071:31ce::
 ; Builds Hosting (Caddy)
 build  IN    A     65.109.74.214
 build  IN    AAAA  2a01:4f9:3071:31ce::
+
+; Builds Hosting (Caddy)
+cdn  IN    A     65.109.74.214
+cdn  IN    AAAA  2a01:4f9:3071:31ce::

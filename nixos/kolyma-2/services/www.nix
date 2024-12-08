@@ -7,6 +7,13 @@
     enable = true;
     alias = [ "ns2.kolyma.uz" ];
     hosts = {
+      "cdn.kolyma.uz" = {
+        extraConfig = ''
+          root * /srv/cdn
+          file_server browse
+        '';
+      };
+
       "build.kibertexnik.uz" = {
         extraConfig = ''
           root * /srv/builds
