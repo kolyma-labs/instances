@@ -1,6 +1,5 @@
-{ outputs, ... }:
-{
-  imports = [ outputs.nixosModules.bind ];
+{outputs, ...}: {
+  imports = [outputs.nixosModules.bind];
 
   # Enable Nameserver hosting
   services.nameserver = {
@@ -27,6 +26,6 @@
       "niggerlicious.uz"
       "misskey.uz"
     ];
-    masters = [ "167.235.96.40" ];
+    masters = ["167.235.96.40"];
   };
 }

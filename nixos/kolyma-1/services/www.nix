@@ -1,14 +1,17 @@
-{ outputs, pkgs, ... }:
 {
-  imports = [ outputs.nixosModules.caddy ];
+  outputs,
+  pkgs,
+  ...
+}: {
+  imports = [outputs.nixosModules.caddy];
 
   # Enable web server & proxy
   services.www = {
     enable = true;
-    alias = [ "ns1.kolyma.uz" ];
+    alias = ["ns1.kolyma.uz"];
     hosts = {
       "khakimovs.uz" = {
-        serverAliases = [ "www.khakimovs.uz" ];
+        serverAliases = ["www.khakimovs.uz"];
         extraConfig = ''
           root * ${pkgs.personal.khakimovs}/www
           file_server

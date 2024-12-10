@@ -61,68 +61,65 @@
 
   # In this context, outputs are mostly about getting home-manager what it
   # needs since it will be the one using the flake
-  outputs =
-    {
-      self,
-      nixpkgs,
-      nixpkgs-unstable,
-      home-manager,
-      flake-utils,
-      orzklv,
-      gate,
-      khakimovs,
-      xinux,
-      minecraft,
-      ...
-    }@inputs:
-    let
-      # Self instance pointer
-      outputs = self;
-    in
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-unstable,
+    home-manager,
+    flake-utils,
+    orzklv,
+    gate,
+    khakimovs,
+    xinux,
+    minecraft,
+    ...
+  } @ inputs: let
+    # Self instance pointer
+    outputs = self;
+  in
     # Attributes for each system
     flake-utils.lib.eachDefaultSystem (
-      system:
-      let
+      system: let
         # Packages for the current <arch>
         pkgs = nixpkgs.legacyPackages.${system};
       in
-      # Nixpkgs packages for the current system
-      {
-        # Your custom packages
-        # Acessible through 'nix build', 'nix shell', etc
-        packages = import ./pkgs { inherit pkgs; };
+        # Nixpkgs packages for the current system
+        {
+          # Your custom packages
+          # Acessible through 'nix build', 'nix shell', etc
+          packages = import ./pkgs {inherit pkgs;};
 
-        # Formatter for your nix files, available through 'nix fmt'
-        # Other options beside 'alejandra' include 'nixpkgs-fmt'
-        formatter = pkgs.nixfmt-rfc-style;
-
-        # Development shells
-        devShells.default = import ./shell.nix { inherit pkgs; };
-      }
+          # Development shells
+          devShells.default = import ./shell.nix {inherit pkgs;};
+        }
     )
     # and ...
     //
-      # Attribute from static evaluation
-      {
-        # Nixpkgs and Home-Manager helpful functions
-        lib = nixpkgs.lib // home-manager.lib // orzklv.lib;
+    # Attribute from static evaluation
+    {
+      # Nixpkgs and Home-Manager helpful functions
+      lib = nixpkgs.lib // home-manager.lib // orzklv.lib;
 
-        # Your custom packages and modifications, exported as overlays
-        overlays = import ./overlays { inherit inputs; };
+      # Formatter for your nix files, available through 'nix fmt'
+      # Other options beside 'alejandra' include 'nixpkgs-fmt'
+      formatter = orzklv.formatter;
 
-        # Reusable nixos modules you might want to export
-        # These are usually stuff you would upstream into nixpkgs
-        nixosModules = import ./modules/nixos;
+      # Your custom packages and modifications, exported as overlays
+      overlays = import ./overlays {inherit inputs;};
 
-        # NixOS configuration entrypoint
-        # Available through 'nixos-rebuild --flake .#your-hostname'
-        nixosConfigurations = self.lib.config.mapSystem {
-          inherit inputs outputs;
-          opath = ./.;
-          list = [
-            "Kolyma-1"
-            "Kolyma-2"
-          ];
-        };
+      # Reusable nixos modules you might want to export
+      # These are usually stuff you would upstream into nixpkgs
+      nixosModules = import ./modules/nixos;
+
+      # NixOS configuration entrypoint
+      # Available through 'nixos-rebuild --flake .#your-hostname'
+      nixosConfigurations = self.lib.config.mapSystem {
+        inherit inputs outputs;
+        opath = ./.;
+        list = [
+          "Kolyma-1"
+          "Kolyma-2"
+        ];
       };
+    };
 }

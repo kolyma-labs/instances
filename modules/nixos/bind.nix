@@ -3,52 +3,48 @@
   pkgs,
   lib,
   ...
-}:
-let
+}: let
   # Statically defined list of zones
-  zones = [ "kolyma.uz" ];
+  zones = ["kolyma.uz"];
 
-  generateZone =
-    zone: type:
-    let
-      master = type == "master";
-      file = "/var/dns/${zone}.zone";
-    in
-    if master then
-      {
-        inherit master file;
-        slaves = config.services.nameserver.slaves;
-      }
-    else
-      {
-        inherit master file;
-        masters = config.services.nameserver.masters;
-      };
+  generateZone = zone: type: let
+    master = type == "master";
+    file = "/var/dns/${zone}.zone";
+  in
+    if master
+    then {
+      inherit master file;
+      slaves = config.services.nameserver.slaves;
+    }
+    else {
+      inherit master file;
+      masters = config.services.nameserver.masters;
+    };
 
   # Map through given array of zones and generate zone object list
-  zonesMap =
-    zones: type:
+  zonesMap = zones: type:
     lib.listToAttrs (
       map (zone: {
         name = zone;
         value = generateZone zone type;
-      }) zones
+      })
+      zones
     );
 
   # If type is master, activate system.activationScripts.copyZones
   zoneFiles =
     lib.mkIf (config.services.nameserver.enable && config.services.nameserver.type == "master")
-      {
-        system.activationScripts.copyZones = lib.mkForce {
-          text = ''
-            mkdir -p /var/dns
-            for zoneFile in ${../../data/zones}/*.zone; do
-              cp -f "$zoneFile" /var/dns/
-            done
-          '';
-          deps = [ ];
-        };
+    {
+      system.activationScripts.copyZones = lib.mkForce {
+        text = ''
+          mkdir -p /var/dns
+          for zoneFile in ${../../data/zones}/*.zone; do
+            cp -f "$zoneFile" /var/dns/
+          done
+        '';
+        deps = [];
       };
+    };
 
   cfg = lib.mkIf config.services.nameserver.enable {
     services.bind = {
@@ -60,11 +56,10 @@ let
     networking.resolvconf.useLocalResolver = false;
 
     # DNS standard port for connections + that require more than 512 bytes
-    networking.firewall.allowedUDPPorts = [ 53 ];
-    networking.firewall.allowedTCPPorts = [ 53 ];
+    networking.firewall.allowedUDPPorts = [53];
+    networking.firewall.allowedTCPPorts = [53];
   };
-in
-{
+in {
   options = {
     services.nameserver = {
       enable = lib.mkOption {
@@ -84,13 +79,13 @@ in
 
       masters = lib.mkOption {
         type = lib.types.listOf lib.types.str;
-        default = [ "167.235.96.40" ];
+        default = ["167.235.96.40"];
         description = "IP address of the master server.";
       };
 
       slaves = lib.mkOption {
         type = lib.types.listOf lib.types.str;
-        default = [ "65.109.74.214" ];
+        default = ["65.109.74.214"];
         description = "List of slave servers.";
       };
 

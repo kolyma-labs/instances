@@ -6,11 +6,9 @@
   config,
   packages,
   ...
-}:
-let
+}: let
   username = "sakhib";
-in
-{
+in {
   config = {
     users.users = {
       "${username}" = {

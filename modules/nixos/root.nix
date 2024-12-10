@@ -4,8 +4,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   config = {
     # To be able to SSH into the system on emergency
     users.users.root.openssh.authorizedKeys.keys = [

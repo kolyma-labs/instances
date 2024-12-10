@@ -4,8 +4,7 @@
   username,
   lib,
   ...
-}:
-{
+}: {
   imports = [
     inputs.orzklv.homeModules.zsh
     inputs.orzklv.homeModules.nixpkgs

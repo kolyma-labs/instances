@@ -3,14 +3,11 @@
   lib,
   config,
   ...
-}:
-let
-  gateway =
-    ip:
-    let
-      parts = lib.splitString "." ip;
-    in
-    lib.concatStringsSep "." (lib.take 3 parts ++ [ "1" ]);
+}: let
+  gateway = ip: let
+    parts = lib.splitString "." ip;
+  in
+    lib.concatStringsSep "." (lib.take 3 parts ++ ["1"]);
 
   ipv4 = lib.mkIf config.network.ipv4.enable {
     networking = {
@@ -75,8 +72,7 @@ let
       nameservers = config.network.nameserver;
     };
   };
-in
-{
+in {
   options = {
     network = {
       enable = lib.mkOption {

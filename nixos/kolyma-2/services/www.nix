@@ -1,11 +1,10 @@
-{ outputs, ... }:
-{
-  imports = [ outputs.nixosModules.caddy ];
+{outputs, ...}: {
+  imports = [outputs.nixosModules.caddy];
 
   # Enable web server & proxy
   services.www = {
     enable = true;
-    alias = [ "ns2.kolyma.uz" ];
+    alias = ["ns2.kolyma.uz"];
     hosts = {
       "cdn.kolyma.uz" = {
         extraConfig = ''

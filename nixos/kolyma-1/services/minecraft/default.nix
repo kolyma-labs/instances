@@ -3,24 +3,20 @@
   lib,
   pkgs,
   ...
-}:
-let
+}: let
   # Global variables
   version = "1.21.3";
-in
-{
-  imports = [ inputs.minecraft.nixosModules.minecraft-servers ];
+in {
+  imports = [inputs.minecraft.nixosModules.minecraft-servers];
 
   services.minecraft-servers = {
     enable = true;
     eula = true;
 
     servers = {
-      slave =
-      let
-        server = lib.replaceStrings [ "." ] [ "_" ] "paper-${version}";
-      in
-      {
+      slave = let
+        server = lib.replaceStrings ["."] ["_"] "paper-${version}";
+      in {
         enable = true;
         openFirewall = true;
         package = pkgs.paperServers.${server};
@@ -33,7 +29,9 @@ in
           max-players = 50;
           motd = "\\u00A7f\\u00A7lWelcome to Orzklv's Server\\u00A7r\\n\\u00A7lMore at\:\\u00A7r \\u00A7nhttps\://slave.uz";
           white-list = true;
-          enable-rcon = false;
+          enable-rcon = true;
+          "rcon.port" = 25575;
+          "rcon.password" = "F1st1ng15300Buck!?";
         };
 
         whitelist = {

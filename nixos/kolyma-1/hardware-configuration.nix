@@ -5,8 +5,7 @@
   pkgs,
   modulesPath,
   ...
-}:
-{
+}: {
   imports = [
     # Disko partitioning
     inputs.disko.nixosModules.disko
@@ -22,9 +21,9 @@
     "nvme"
     "usbhid"
   ];
-  boot.initrd.kernelModules = [ "nvme" ];
-  boot.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.kernelModules = ["nvme"];
+  boot.kernelModules = [];
+  boot.extraModulePackages = [];
 
   boot.bios = {
     enable = true;

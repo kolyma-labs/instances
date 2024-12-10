@@ -4,8 +4,7 @@
   pkgs,
   inputs,
   ...
-}:
-let
+}: let
   general = {
     virtualisation = {
       docker = {
@@ -33,8 +32,7 @@ let
     general
     ports
   ];
-in
-{
+in {
   options = {
     services.containers = {
       enable = lib.mkOption {
@@ -45,13 +43,13 @@ in
 
       instances = lib.mkOption {
         type = lib.types.attrsOf lib.types.anything;
-        default = { };
+        default = {};
         description = "List of hosted container instances.";
       };
 
       ports = lib.mkOption {
         type = lib.types.listOf lib.types.port;
-        default = [ ];
+        default = [];
         description = "List of zones to be served.";
       };
     };

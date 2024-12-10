@@ -1,5 +1,8 @@
-{ config, outputs, ... }:
-let
+{
+  config,
+  outputs,
+  ...
+}: let
   # Name for GitHub runner
   name = "${config.networking.hostName}-default";
   user = "gitlab-runner";
@@ -7,8 +10,7 @@ let
   secret-management = {
     owner = user;
   };
-in
-{
+in {
   sops.secrets = {
     "github/runners/kolyma" = secret-management;
     "github/runners/kibertexnik" = secret-management;
@@ -20,11 +22,11 @@ in
     # isSystemUser = true;
     isNormalUser = true;
     createHome = false;
-    extraGroups = [ "admins" ];
+    extraGroups = ["admins"];
     group = user;
   };
 
-  users.groups.${user} = { };
+  users.groups.${user} = {};
 
   services.github-runners = {
     # Kolyma Labs runner
@@ -33,7 +35,7 @@ in
       url = "https://github.com/orzklv/nix";
       tokenFile = config.sops.secrets."github/runners/orzklv/nix".path;
       replace = true;
-      extraLabels = [ name ];
+      extraLabels = [name];
       user = user;
       group = user;
       serviceOverrides = {
@@ -50,7 +52,7 @@ in
       url = "https://github.com/kolyma-labs";
       tokenFile = config.sops.secrets."github/runners/kolyma".path;
       replace = true;
-      extraLabels = [ name ];
+      extraLabels = [name];
       user = user;
       group = user;
       serviceOverrides = {
@@ -67,7 +69,7 @@ in
       url = "https://github.com/kibertexnik";
       tokenFile = config.sops.secrets."github/runners/kibertexnik".path;
       replace = true;
-      extraLabels = [ name ];
+      extraLabels = [name];
       user = user;
       group = user;
       serviceOverrides = {

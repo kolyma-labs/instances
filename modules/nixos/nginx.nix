@@ -4,10 +4,8 @@
   pkgs,
   inputs,
   ...
-}:
-let
-  fallbacks =
-    config:
+}: let
+  fallbacks = config:
     [
       "kolyma.uz"
       "www.kolyma.uz"
@@ -66,8 +64,7 @@ let
     default
     extra
   ];
-in
-{
+in {
   options = {
     services.www = {
       enable = lib.mkOption {
@@ -78,13 +75,13 @@ in
 
       alias = lib.mkOption {
         type = lib.types.listOf lib.types.str;
-        default = [ ];
+        default = [];
         description = "List of extra aliases to host.";
       };
 
       hosts = lib.mkOption {
         type = lib.types.attrsOf lib.types.anything;
-        default = { };
+        default = {};
         description = "List of hosted container instances.";
       };
     };

@@ -4,16 +4,17 @@
   pkgs,
   inputs,
   ...
-}:
-let
-  fallbacks =
-    config:
-    let
-      ipv4 =
-        if config.network.ipv4.address != null then [ "http://${config.network.ipv4.address}" ] else [ ];
-      ipv6 =
-        if config.network.ipv6.address != null then [ "http://${config.network.ipv6.address}" ] else [ ];
-    in
+}: let
+  fallbacks = config: let
+    ipv4 =
+      if config.network.ipv4.address != null
+      then ["http://${config.network.ipv4.address}"]
+      else [];
+    ipv6 =
+      if config.network.ipv6.address != null
+      then ["http://${config.network.ipv6.address}"]
+      else [];
+  in
     [
       "kolyma.uz"
       "www.kolyma.uz"
@@ -65,8 +66,7 @@ let
     default
     extra
   ];
-in
-{
+in {
   options = {
     services.www = {
       enable = lib.mkOption {
@@ -77,13 +77,13 @@ in
 
       alias = lib.mkOption {
         type = lib.types.listOf lib.types.str;
-        default = [ ];
+        default = [];
         description = "List of extra aliases to host.";
       };
 
       hosts = lib.mkOption {
         type = lib.types.attrsOf lib.types.anything;
-        default = { };
+        default = {};
         description = "List of hosted container instances.";
       };
     };

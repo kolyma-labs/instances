@@ -7,7 +7,7 @@
 }:
 (writeShellApplication {
   name = "fp";
-  runtimeInputs = [ git ];
+  runtimeInputs = [git];
   text = builtins.readFile ./fp.sh;
 })
 // {
