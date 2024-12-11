@@ -13,9 +13,9 @@ $TTL 86400
 ; Mail server (iCloud)
 @      IN    MX    10 mx01.mail.icloud.com.
 @      IN    MX    10 mx02.mail.icloud.com.
-@      IN    TXT   "apple-domain=xuNObR194p6NpOCx"
+@      IN    TXT   "apple-domain=c8Y17cyhBQPFiHui"
 @      IN    TXT   "v=spf1 include:icloud.com ~all"
-sig1._domainkey    IN CNAME sig1.dkim.khakimovs.uz.at.icloudmailadmin.com
+sig1._domainkey    IN CNAME sig1.dkim.khakimovs.uz.at.icloudmailadmin.com.
 
 ; Main website (Caddy)
 @      IN    A     167.235.96.40
