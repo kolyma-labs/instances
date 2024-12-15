@@ -20,6 +20,10 @@
 
       "flac.orzklv.uz" = {
         extraConfig = ''
+          basic_auth {
+        		damn $2a$14$AG1UgXWK.f4KlLn7eNvDuOBc.xuueQ9ZO1.Gt3D/fS4ejERGSmoUy
+         	}
+
           root * /srv/flac
           file_server browse
         '';
