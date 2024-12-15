@@ -18,6 +18,13 @@
         '';
       };
 
+      "flac.orzklv.uz" = {
+        extraConfig = ''
+          root * /srv/flac
+          file_server browse
+        '';
+      };
+
       "map.slave.uz" = {
         extraConfig = ''
           reverse_proxy 127.0.0.1:8100
