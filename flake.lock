@@ -795,11 +795,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1734932982,
-        "narHash": "sha256-PREGyaYjSEIBFqr0LymZprvEjFlm6V0XWQG/5+IAaRI=",
+        "lastModified": 1734934255,
+        "narHash": "sha256-I0tjiLywiTBsk75M4r++t0A4jKgckDw/2q6bgd9eJNI=",
         "owner": "rust-lang-uz",
         "repo": "telegram",
-        "rev": "e7b4b4a972dc65cee597c7c123523f2f3774a8c5",
+        "rev": "3389b2afeb01468cc31a1ac1ca5d20cf1fca3fcf",
         "type": "github"
       },
       "original": {
