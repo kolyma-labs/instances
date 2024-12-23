@@ -20,7 +20,8 @@ www    IN    CNAME rust-lang-uz.github.io.
 doc    IN    CNAME rust-lang-uz.github.io.
 
 ; Telegram Bots
-bot    IN    CNAME ns2.kolyma.uz.
+bot    IN    A     65.109.74.214
+bot    IN    AAAA  2a01:4f9:3071:31ce::
 
 ; GitHub Verifications
 _github-pages-challenge-rust-lang-uz      IN      TXT      4f8ece26a062d0ec6e1fea50bc99fd
