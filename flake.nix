@@ -50,8 +50,11 @@
     # Khakimov's website
     khakimovs.url = "github:khakimovs/website";
 
-    # Xinux Community
+    # Xinux Bot from Xinux Community
     xinux.url = "github:xinux-org/telegram";
+
+    # Rustina from Rust Uzbekistan
+    rustina.url = "github:rust-lang-uz/telegram";
 
     # Minecraft server
     minecraft = {

@@ -16,5 +16,8 @@
 
     # Xinux deployment & services
     ./xinux.nix
+
+    # Rustina bot from Rust Uzbekistan
+    ./rustina.nix
   ];
 }
