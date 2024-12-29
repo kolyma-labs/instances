@@ -40,6 +40,7 @@ in {
           BronnzyLegit = "ee0babea-2c7e-4184-9546-4aa0f62db2ef";
           VODIYLIK = "ff179f82-7960-4f63-8137-8251fbd13e59";
           Ghost = "9a8986ff-a720-4fa0-88aa-15be041089c0";
+          AniSarik = "48ed1b8a-ed65-4321-aae7-76734fe8cc27";
         };
 
         symlinks = with pkgs; {
