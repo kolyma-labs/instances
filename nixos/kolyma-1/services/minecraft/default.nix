@@ -43,6 +43,7 @@ in {
           Overlo = "d2976424-f364-4343-85ab-819a54058d2f";
           Bronnz = "ee0babea-2c7e-4184-9546-4aa0f62db2ef";
           Shakhz = "1c786ec6-0f65-4448-9ecf-ab53b75bf867";
+          Nixxer = "8fdd80ef-c294-432d-b381-e43353a3db27";
         };
 
         symlinks = with pkgs; {
