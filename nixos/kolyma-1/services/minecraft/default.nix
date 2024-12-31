@@ -39,9 +39,10 @@ in {
           Vodiyl = "ff179f82-7960-4f63-8137-8251fbd13e59";
           AniSar = "48ed1b8a-ed65-4321-aae7-76734fe8cc27";
           OwOssi = "14f4fba3-bd65-48d3-b212-2e77383c1b1d";
-          thelis = "2c3a8eb7-921b-4e4a-ba60-c5e3a83d941f";
+          Thelis = "2c3a8eb7-921b-4e4a-ba60-c5e3a83d941f";
           Overlo = "d2976424-f364-4343-85ab-819a54058d2f";
           Bronnz = "ee0babea-2c7e-4184-9546-4aa0f62db2ef";
+          Shakhz = "1c786ec6-0f65-4448-9ecf-ab53b75bf867";
         };
 
         symlinks = with pkgs; {
