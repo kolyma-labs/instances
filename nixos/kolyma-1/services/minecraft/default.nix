@@ -52,6 +52,10 @@ in {
             url = "https://cdn.modrinth.com/data/swbUV1cr/versions/Ap3wfaNh/bluemap-5.5-spigot.jar";
             sha512 = "f21b72760545389403d3f13b0b85b95ec20ca63b01f4b369c797a816b6d14d945b13babc0ce8098a3f3243c0a28efcd907149ed7201462f9a115894fba4e3804";
           };
+          "plugins/Chunky-Bukkit-1.4.28.jar" = fetchurl {
+            url = "https://cdn.modrinth.com/data/fALzjamp/versions/ytBhnGfO/Chunky-Bukkit-1.4.28.jar";
+            sha512 = "3e9d241adafe1d7979c83ab2796d37f6aee1bcc9373cdf1404d6107df5157a0a31dbea642ffb8aeab018e9ab48fe648d2161a069c346063ea840873300dbd573";
+          };
           "server-icon.png" = ./server-icon.png;
         };
       };
