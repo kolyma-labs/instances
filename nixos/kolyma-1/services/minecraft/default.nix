@@ -44,7 +44,7 @@ in {
           Bronnz = "ee0babea-2c7e-4184-9546-4aa0f62db2ef";
           Shakhz = "1c786ec6-0f65-4448-9ecf-ab53b75bf867";
           Nixxer = "8fdd80ef-c294-432d-b381-e43353a3db27";
-          NurM   = "13831a9f-9d7c-47b7-8865-d089ac7d6e1f";
+          NurMuh = "13831a9f-9d7c-47b7-8865-d089ac7d6e1f";
         };
 
         symlinks = with pkgs; {
