@@ -37,3 +37,6 @@ www    IN    CNAME orzklv.github.io.
 
 ; FLACs
 flac   IN    CNAME ns1.kolyma.uz.
+
+; Nostalgi
+tiesto IN    CNAME ns1.kolyma.uz.
