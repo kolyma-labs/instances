@@ -31,7 +31,7 @@
 
       "tiesto.orzklv.uz" = {
         extraConfig = ''
-          root * /srv/flac/tiesto
+          root * /srv/flac/Tiesto
           file_server browse
         '';
       };
