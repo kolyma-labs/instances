@@ -16,6 +16,7 @@
       "dumba.uz"
 
       # Projects
+      "shar.af"
       "slave.uz"
       "floss.uz"
       "sabine.uz"
