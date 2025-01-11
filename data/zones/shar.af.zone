@@ -17,6 +17,9 @@ $TTL 86400
 @      IN    TXT   "v=spf1 include:icloud.com ~all"
 sig1._domainkey    IN CNAME sig1.dkim.shar.af.at.icloudmailadmin.com.
 
+; GitHub Verification
+_gh-sharaf-org-o IN TXT 1ca236c2b8
+
 ; Main website (Caddy)
 ;@      IN    A     65.109.74.214
 ;@      IN    AAAA  2a01:4f9:3071:31ce::
