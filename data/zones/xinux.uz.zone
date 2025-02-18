@@ -23,3 +23,6 @@ xinuxmgr    IN    AAAA 2a01:4f9:3071:31ce::
 ; GitHub Verifications
 _github-challenge-xinux-org-org      IN      TXT      1a06c6d74b
 _github-challenge-xinux-archive-org  IN      TXT      a604047c1d
+
+; GitHub Deployments
+graph  IN    CNAME xinux-org.github.io.
