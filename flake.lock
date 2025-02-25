@@ -611,11 +611,11 @@
         "nvf": "nvf"
       },
       "locked": {
-        "lastModified": 1740441444,
-        "narHash": "sha256-ddK5vnTc2KrSdO1EZjjQ0t8gcgDBytO2jSkkHAdwpyo=",
+        "lastModified": 1740442035,
+        "narHash": "sha256-8FIH23edHFekXEm1PEheVeMblt/g/NOONjBlSY9gVeo=",
         "owner": "orzklv",
         "repo": "nix",
-        "rev": "345052467ba5af9f91ed58efe8c77c0d05c8db1c",
+        "rev": "01ad3d1b9afea0cefbf3908678bde0374c576338",
         "type": "github"
       },
       "original": {
