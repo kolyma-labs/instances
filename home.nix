@@ -20,8 +20,8 @@
 
     # Tell it to map everything in the `config` directory in this
     # repository to the `.config` in my home-manager directory
-    file.".local/share" = {
-      source = "${inputs.orzklv}/configs/share";
+    file.".local/share/fastfetch" = {
+      source = "${inputs.orzklv}/configs/fastfetch";
       recursive = true;
     };
 
