@@ -15,6 +15,7 @@ in {
     "github/runners/kolyma" = secret-management;
     "github/runners/kibertexnik" = secret-management;
     "github/runners/orzklv/nix" = secret-management;
+    "github/runners/orzklv/pack" = secret-management;
   };
 
   users.users.${user} = {
@@ -29,11 +30,28 @@ in {
   users.groups.${user} = {};
 
   services.github-runners = {
-    # Kolyma Labs runner
+    # Orkzlv -> Nix runner
     "${name}-Orzklv" = {
       enable = true;
       url = "https://github.com/orzklv/nix";
       tokenFile = config.sops.secrets."github/runners/orzklv/nix".path;
+      replace = true;
+      extraLabels = [name];
+      user = user;
+      group = user;
+      serviceOverrides = {
+        ProtectSystem = "full";
+        ReadWritePaths = "/srv";
+        PrivateMounts = false;
+        UMask = 22;
+      };
+    };
+
+    # Orkzlv -> Pack runner
+    "${name}-Orzklv-Pack" = {
+      enable = true;
+      url = "https://github.com/orzklv/pack";
+      tokenFile = config.sops.secrets."github/runners/orzklv/pack".path;
       replace = true;
       extraLabels = [name];
       user = user;
