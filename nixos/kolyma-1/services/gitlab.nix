@@ -75,5 +75,13 @@ in {
     };
   };
 
+  # Ensure the firewall allows HTTP and HTTPS traffic
+  networking.firewall.allowedTCPPorts = [
+    22 # GitLab Shell
+  ];
+  networking.firewall.allowedUDPPorts = [
+    22 # GitLab Shell
+  ];
+
   systemd.services.gitlab-backup.environment.BACKUP = "dump";
 }
