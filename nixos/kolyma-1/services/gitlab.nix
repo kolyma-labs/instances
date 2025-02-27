@@ -68,6 +68,12 @@ in {
         reverse_proxy unix//run/gitlab/gitlab-workhorse.socket
       '';
     };
+
+    "git.kolyma.uz" = {
+      extraConfig = ''
+        redir https://gulag.uz{uri} permanent
+      '';
+    };
   };
 
   systemd.services.gitlab-backup.environment.BACKUP = "dump";
