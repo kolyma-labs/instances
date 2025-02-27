@@ -1,8 +1,5 @@
 # This file defines overlays
 {inputs, ...}: {
-  # This one brings our custom packages from the 'pkgs' directory
-  additions = final: _prev: import ../pkgs {pkgs = final;};
-
   # Make input added packages accesible via pkgs
   personal-packages = final: _prev: rec {
     personal = {

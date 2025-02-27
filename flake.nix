@@ -44,6 +44,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Orzklv's packages repository
+    orzklv-pkgs = {
+      url = "github:orzklv/pkgs/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Main homepage website
     gate.url = "github:kolyma-labs/gate";
 
@@ -71,6 +77,7 @@
     home-manager,
     flake-utils,
     orzklv,
+    orzklv-pkgs,
     gate,
     khakimovs,
     xinux,
@@ -88,10 +95,6 @@
       in
         # Nixpkgs packages for the current system
         {
-          # Your custom packages
-          # Acessible through 'nix build', 'nix shell', etc
-          packages = import ./pkgs {inherit pkgs;};
-
           # Development shells
           devShells.default = import ./shell.nix {inherit pkgs;};
         }
