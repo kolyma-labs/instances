@@ -44,7 +44,7 @@ in {
       enableStartTLSAuto = false;
 
       # Credentials for SMTP
-      username = config.sops.secrets."mail/username".path;
+      username = "sakhib.orzklv@icloud.com";
       passwordFile = config.sops.secrets."mail/password".path;
     };
 
