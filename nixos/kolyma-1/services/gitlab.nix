@@ -35,13 +35,12 @@ in {
       enable = true;
 
       # Connection configuration
-      tls = true;
       port = 587;
       authentication = "plain";
       domain = "smtp.mail.me.com";
       opensslVerifyMode = "none";
       address = "smtp.mail.me.com";
-      enableStartTLSAuto = false;
+      enableStartTLSAuto = true;
 
       # Credentials for SMTP
       username = "sakhib.orzklv@icloud.com";
