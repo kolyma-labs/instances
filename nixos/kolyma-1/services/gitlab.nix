@@ -55,7 +55,7 @@ in {
         email_reply_to = "support@kolyma.uz";
       };
       gitlab_shell = {
-        ssh_port = 22;
+        ssh_port = 2222;
       };
     };
   };
