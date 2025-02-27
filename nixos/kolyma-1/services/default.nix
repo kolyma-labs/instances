@@ -9,7 +9,7 @@
     ./minecraft
 
     # Git server for storing personal git projects
-    # ./gitlab.nix
+    ./gitlab.nix
 
     # Web server & proxy virtual hosts via caddy
     ./www.nix
