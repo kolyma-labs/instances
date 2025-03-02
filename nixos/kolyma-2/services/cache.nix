@@ -4,9 +4,7 @@
   ...
 }: {
   sops.secrets = {
-    "nix-serve/private" = {
-      owner = "nix-serve";
-    };
+    "nix-serve/private" = {};
   };
 
   # Enable binary cache server in 5000 port
