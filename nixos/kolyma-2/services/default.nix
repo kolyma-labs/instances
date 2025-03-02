@@ -6,7 +6,7 @@
     ./bind.nix
 
     # Binary cache server
-    # ./cache.nix
+    ./cache.nix
 
     # List of docker instances hosted in this machine
     ./container.nix
