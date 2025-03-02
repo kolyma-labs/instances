@@ -26,3 +26,6 @@ _github-challenge-xinux-archive-org  IN      TXT      a604047c1d
 
 ; GitHub Deployments
 graph  IN    CNAME xinux-org.github.io.
+
+; Binary cache server
+cache  IN    CNAME ns2.kolyma.uz.

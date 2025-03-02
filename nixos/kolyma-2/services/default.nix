@@ -5,6 +5,9 @@
     # Bind nameserver service for hosting personal domains
     ./bind.nix
 
+    # Binary cache server
+    # ./cache.nix
+
     # List of docker instances hosted in this machine
     ./container.nix
 
