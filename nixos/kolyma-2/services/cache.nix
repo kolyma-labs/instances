@@ -3,10 +3,16 @@
   inputs,
   ...
 }: {
+  sops.secrets = {
+    "nix-serve/private" = {
+      owner = "nix-serve";
+    };
+  };
+
   # Enable binary cache server in 5000 port
   services.nix-serve = {
     enable = true;
-    secretKeyFile = "/var/cache-priv-key.pem";
+    secretKeyFile = config.sops.secrets."nix-serve/private".path;
   };
 
   services.www.hosts = {
