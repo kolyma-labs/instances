@@ -32,12 +32,12 @@ in {
   services.github-runners = {
     # Orkzlv -> Nix runner
     "${name}-Orzklv" = {
+      inherit user;
       enable = true;
       url = "https://github.com/orzklv/nix";
       tokenFile = config.sops.secrets."github/runners/orzklv/nix".path;
       replace = true;
       extraLabels = [name];
-      user = user;
       group = user;
       serviceOverrides = {
         ProtectSystem = "full";
@@ -49,12 +49,12 @@ in {
 
     # Orkzlv -> Pack runner
     "${name}-Orzklv-Pack" = {
+      inherit user;
       enable = true;
       url = "https://github.com/orzklv/pack";
       tokenFile = config.sops.secrets."github/runners/orzklv/pack".path;
       replace = true;
       extraLabels = [name];
-      user = user;
       group = user;
       serviceOverrides = {
         ProtectSystem = "full";
@@ -66,12 +66,12 @@ in {
 
     # Kolyma Labs runner
     "${name}-Kolyma" = {
+      inherit user;
       enable = true;
       url = "https://github.com/kolyma-labs";
       tokenFile = config.sops.secrets."github/runners/kolyma".path;
       replace = true;
       extraLabels = [name];
-      user = user;
       group = user;
       serviceOverrides = {
         ProtectSystem = "full";
@@ -83,12 +83,12 @@ in {
 
     # Kibertexnik runner
     "${name}-Kibertexnik" = {
+      inherit user;
       enable = true;
       url = "https://github.com/kibertexnik";
       tokenFile = config.sops.secrets."github/runners/kibertexnik".path;
       replace = true;
       extraLabels = [name];
-      user = user;
       group = user;
       serviceOverrides = {
         ProtectSystem = "full";

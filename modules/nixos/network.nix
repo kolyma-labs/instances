@@ -15,7 +15,7 @@
         "${config.network.interface}" = {
           ipv4.addresses = [
             {
-              address = config.network.ipv4.address;
+              inherit (config.network.ipv4) address;
               prefixLength = 24;
             }
           ];
@@ -36,7 +36,7 @@
         "${config.network.interface}" = {
           ipv6.addresses = [
             {
-              address = config.network.ipv6.address;
+              inherit (config.network.ipv6) address;
               prefixLength = 64;
             }
           ];

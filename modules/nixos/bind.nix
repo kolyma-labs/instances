@@ -14,11 +14,11 @@
     if master
     then {
       inherit master file;
-      slaves = config.services.nameserver.slaves;
+      inherit (config.services.nameserver) slaves;
     }
     else {
       inherit master file;
-      masters = config.services.nameserver.masters;
+      inherit (config.services.nameserver) masters;
     };
 
   # Map through given array of zones and generate zone object list
@@ -48,7 +48,7 @@
 
   cfg = lib.mkIf config.services.nameserver.enable {
     services.bind = {
-      enable = config.services.nameserver.enable;
+      inherit (config.services.nameserver) enable;
       directory = "/var/bind";
       zones = zonesMap config.services.nameserver.zones config.services.nameserver.type;
     };

@@ -14,8 +14,8 @@
 
   # This is required information for home-manager to do its job
   home = {
+    inherit username;
     stateVersion = "24.11";
-    username = username;
     homeDirectory = "/home/${username}";
 
     # Tell it to map everything in the `config` directory in this
@@ -29,6 +29,10 @@
     enableNixpkgsReleaseCheck = false;
   };
 
+  # Remove cache cleaninx as it deletes all derivations
+  programs.topgrade.settings.pre_commands = lib.mkForce {};
+
+  # Target configuration link to another
   programs.topgrade.settings.linux = lib.mkForce {
     nix_arguments = "--flake github:kolyma-labs/instances";
     home_manager_arguments = [
