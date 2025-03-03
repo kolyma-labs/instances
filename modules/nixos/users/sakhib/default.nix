@@ -38,13 +38,8 @@ in {
 
       users = {
         # Import your home-manager configuration
-        "${username}" = import ../../../home.nix {
-          inherit
-            inputs
-            outputs
-            username
-            lib
-            ;
+        "${username}" = import ../../../../home.nix {
+          inherit inputs outputs username lib;
         };
       };
     };

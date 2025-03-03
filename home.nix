@@ -7,9 +7,12 @@
 }: {
   imports = [
     inputs.orzklv.homeModules.zsh
+    inputs.orzklv.homeModules.helix
+    inputs.orzklv.homeModules.secret
     inputs.orzklv.homeModules.nixpkgs
     inputs.orzklv.homeModules.topgrade
     inputs.orzklv.homeModules.packages
+    inputs.orzklv.homeModules.fastfetch
   ];
 
   # This is required information for home-manager to do its job
