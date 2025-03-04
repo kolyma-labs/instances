@@ -501,11 +501,11 @@
         "sops-nix": "sops-nix"
       },
       "locked": {
-        "lastModified": 1741096799,
-        "narHash": "sha256-tKk62n3G12TV/UKxynO0d+nIywl26EMaDStTos55+d8=",
+        "lastModified": 1741097961,
+        "narHash": "sha256-JJR9rCT1V58RgUPr04EU3vP0XHP+Jhy7Nm8X5I7oKBQ=",
         "owner": "orzklv",
         "repo": "nix",
-        "rev": "b643bc70f72e7bf35a19639153505e97215186a4",
+        "rev": "b6e977249ede396471166fd5f3e16a499e99cf9a",
         "type": "github"
       },
       "original": {
