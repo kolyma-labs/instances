@@ -1,6 +1,6 @@
 {
   inputs,
-  outputs,
+  # outputs,
   username,
   lib,
   ...
@@ -32,16 +32,14 @@
     enableNixpkgsReleaseCheck = false;
   };
 
-  # Remove cache cleaninx as it deletes all derivations
-  programs.topgrade.settings.pre_commands = lib.mkForce {};
+  programs.topgrade.settings = {
+    # Remove cache cleaninx as it deletes all derivations
+    pre_commands = lib.mkForce {};
 
-  # Target configuration link to another
-  programs.topgrade.settings.linux = lib.mkForce {
-    nix_arguments = "--flake github:kolyma-labs/instances";
-    home_manager_arguments = [
-      "--flake"
-      "github:kolyma-labs/instances"
-    ];
+    # Target configuration link to another
+    linux = lib.mkForce {
+      nix_arguments = "--flake github:kolyma-labs/instances --option tarball-ttl 0";
+    };
   };
 
   # Let's enable home-manager

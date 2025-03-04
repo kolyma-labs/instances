@@ -63,9 +63,7 @@
     rustina.url = "github:rust-lang-uz/telegram";
 
     # Minecraft server
-    minecraft = {
-      url = "github:Infinidoge/nix-minecraft";
-    };
+    minecraft.url = "github:Infinidoge/nix-minecraft";
   };
 
   # In this context, outputs are mostly about getting home-manager what it
@@ -73,15 +71,9 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-unstable,
     home-manager,
     flake-utils,
     orzklv,
-    orzklv-pkgs,
-    gate,
-    khakimovs,
-    xinux,
-    minecraft,
     ...
   } @ inputs: let
     # Self instance pointer

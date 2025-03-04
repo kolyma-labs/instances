@@ -1,8 +1,4 @@
-{
-  config,
-  inputs,
-  ...
-}: let
+{config, ...}: let
   account = "nix-serve";
 in {
   sops.secrets = {

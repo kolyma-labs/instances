@@ -1,8 +1,6 @@
 {
   inputs,
-  config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }: {
@@ -15,24 +13,27 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = [
-    "xhci_pci"
-    "ahci"
-    "nvme"
-    "usbhid"
-  ];
-  boot.initrd.kernelModules = ["nvme"];
-  boot.kernelModules = [];
-  boot.extraModulePackages = [];
-
-  boot.bios = {
-    enable = true;
-    uefi = true;
-    raided = true;
-    mirrors = [
-      "/dev/nvme0n1"
-      "/dev/nvme1n1"
-    ];
+  boot = {
+    kernelModules = [];
+    extraModulePackages = [];
+    initrd = {
+      kernelModules = ["nvme"];
+      availableKernelModules = [
+        "xhci_pci"
+        "ahci"
+        "nvme"
+        "usbhid"
+      ];
+    };
+    bios = {
+      enable = true;
+      uefi = true;
+      raided = true;
+      mirrors = [
+        "/dev/nvme0n1"
+        "/dev/nvme1n1"
+      ];
+    };
   };
 
   network = {

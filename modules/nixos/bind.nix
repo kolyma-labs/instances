@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   lib,
   ...
 }: let
@@ -53,11 +52,15 @@
       zones = zonesMap config.services.nameserver.zones config.services.nameserver.type;
     };
 
-    networking.resolvconf.useLocalResolver = false;
+    networking = {
+      resolvconf.useLocalResolver = false;
 
-    # DNS standard port for connections + that require more than 512 bytes
-    networking.firewall.allowedUDPPorts = [53];
-    networking.firewall.allowedTCPPorts = [53];
+      # DNS standard port for connections + that require more than 512 bytes
+      firewall = {
+        allowedUDPPorts = [53];
+        allowedTCPPorts = [53];
+      };
+    };
   };
 in {
   options = {

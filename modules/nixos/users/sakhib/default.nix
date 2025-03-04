@@ -1,10 +1,7 @@
 {
-  pkgs,
   inputs,
   outputs,
   lib,
-  config,
-  packages,
   ...
 }: let
   username = "sakhib";
