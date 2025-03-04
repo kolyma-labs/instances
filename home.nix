@@ -1,18 +1,23 @@
 {
   inputs,
-  # outputs,
   username,
   lib,
   ...
-}: {
-  imports = [
-    inputs.orzklv.homeModules.zsh
-    inputs.orzklv.homeModules.helix
-    inputs.orzklv.homeModules.nixpkgs
-    inputs.orzklv.homeModules.topgrade
-    inputs.orzklv.homeModules.packages
-    inputs.orzklv.homeModules.fastfetch
+}: let
+  specific-mods = lib.orzklv.condition.mkArrIf (username == "sakhib") [
+    inputs.orzklv.homeModules.git
   ];
+in {
+  imports =
+    [
+      inputs.orzklv.homeModules.zsh
+      inputs.orzklv.homeModules.helix
+      inputs.orzklv.homeModules.nixpkgs
+      inputs.orzklv.homeModules.topgrade
+      inputs.orzklv.homeModules.packages
+      inputs.orzklv.homeModules.fastfetch
+    ]
+    ++ specific-mods;
 
   # This is required information for home-manager to do its job
   home = {
