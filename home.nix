@@ -42,6 +42,9 @@
     };
   };
 
+  # Overwrite secrets file to current repo's
+  sops.defaultSopsFile = lib.mkForce ./secrets/secrets.yaml;
+
   # Let's enable home-manager
   programs.home-manager.enable = true;
 }
