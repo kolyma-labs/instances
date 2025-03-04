@@ -23,7 +23,7 @@ in {
     "haskell-restart" = {
       wantedBy = ["multi-user.target"];
       after = ["docker.service"];
-      path = [pkgs.bash];
+      path = with pkgs; [bash docker docker-compose];
 
       serviceConfig = {
         Type = "oneshot";
