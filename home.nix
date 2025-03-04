@@ -8,7 +8,6 @@
   imports = [
     inputs.orzklv.homeModules.zsh
     inputs.orzklv.homeModules.helix
-    inputs.orzklv.homeModules.secret
     inputs.orzklv.homeModules.nixpkgs
     inputs.orzklv.homeModules.topgrade
     inputs.orzklv.homeModules.packages
@@ -41,9 +40,6 @@
       nix_arguments = "--flake github:kolyma-labs/instances --option tarball-ttl 0";
     };
   };
-
-  # Overwrite secrets file to current repo's
-  sops.defaultSopsFile = lib.mkForce ./secrets/secrets.yaml;
 
   # Let's enable home-manager
   programs.home-manager.enable = true;
