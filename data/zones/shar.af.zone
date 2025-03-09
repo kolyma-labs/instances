@@ -1,6 +1,6 @@
 $TTL 86400
 @      IN    SOA    ns1.kolyma.uz. admin.kolyma.uz. (
-             2024061900 ; Serial YYYYMMDDNN (NN is the revision number)
+             2025030901 ; Serial YYYYMMDDNN (NN is the revision number)
              3600       ; Refresh
              1800       ; Retry
              604800     ; Expire
@@ -9,6 +9,12 @@ $TTL 86400
 ; Nameservers
 @      IN    NS    ns1.kolyma.uz.
 @      IN    NS    ns2.kolyma.uz.
+
+; Entry points
+@      IN    A     65.109.74.214
+@      IN    AAAA  2a01:4f9:3071:31ce::
+www    IN    CNAME shar.af.
+
 
 ; Mail server (iCloud)
 @      IN    MX    10 mx01.mail.icloud.com.
@@ -19,9 +25,3 @@ sig1._domainkey    IN CNAME sig1.dkim.shar.af.at.icloudmailadmin.com.
 
 ; GitHub Verification
 _gh-sharaf-org-o IN TXT 1ca236c2b8
-
-; Main website (Caddy)
-;@      IN    A     65.109.74.214
-;@      IN    AAAA  2a01:4f9:3071:31ce::
-;www    IN    A     65.109.74.214
-;www    IN    AAAA  2a01:4f9:3071:31ce::

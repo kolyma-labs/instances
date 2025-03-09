@@ -1,6 +1,6 @@
 $TTL 86400
 @      IN    SOA    ns1.kolyma.uz. admin.kolyma.uz. (
-             2024061900 ; Serial YYYYMMDDNN (NN is the revision number)
+             2025030901 ; Serial YYYYMMDDNN (NN is the revision number)
              3600       ; Refresh
              1800       ; Retry
              604800     ; Expire
@@ -10,8 +10,7 @@ $TTL 86400
 @      IN    NS    ns1.kolyma.uz.
 @      IN    NS    ns2.kolyma.uz.
 
-; Main website (Caddy)
+; Entry points
 @      IN    A     65.109.74.214
 @      IN    AAAA  2a01:4f9:3071:31ce::
-www    IN    A     65.109.74.214
-www    IN    AAAA  2a01:4f9:3071:31ce::
+www    IN    CNAME haskell.uz.

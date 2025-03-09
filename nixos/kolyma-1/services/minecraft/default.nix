@@ -5,7 +5,7 @@
   ...
 }: let
   # Global variables
-  version = "1.21.3";
+  version = "1.21.4";
 in {
   imports = [inputs.minecraft.nixosModules.minecraft-servers];
 
@@ -27,7 +27,7 @@ in {
           difficulty = 3;
           gamemode = 0;
           max-players = 50;
-          motd = "\\u00A7f\\u00A7lWelcome to Orzklv's Server\\u00A7r\\n\\u00A7lMore at\:\\u00A7r \\u00A7nhttps\://slave.uz";
+          motd = "\\u00A7f\\u00A7lWelcome to Orzklv's Server\\u00A7r\\n\\u00A7lMore at\:\\u00A7r \\u00A7nhttps\://niggerlicious.uz";
           white-list = true;
           enable-rcon = true;
           "rcon.port" = 25575;
@@ -50,7 +50,7 @@ in {
         symlinks = with pkgs; {
           "plugins/BlueMap" = ./plugins/BlueMap;
           "plugins/bluemap-5.5-spigot.jar" = fetchurl {
-            url = "https://cdn.modrinth.com/data/swbUV1cr/versions/Ap3wfaNh/bluemap-5.5-spigot.jar";
+            url = "https://cdn.modrinth.com/data/swbUV1cr/versions/wBnzat7x/bluemap-5.7-spigot.jar";
             sha512 = "f21b72760545389403d3f13b0b85b95ec20ca63b01f4b369c797a816b6d14d945b13babc0ce8098a3f3243c0a28efcd907149ed7201462f9a115894fba4e3804";
           };
           "plugins/Chunky-Bukkit-1.4.28.jar" = fetchurl {

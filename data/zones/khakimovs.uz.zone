@@ -1,6 +1,6 @@
 $TTL 86400
 @      IN    SOA    ns1.kolyma.uz. admin.kolyma.uz. (
-             2024061900 ; Serial YYYYMMDDNN (NN is the revision number)
+             2025030901 ; Serial YYYYMMDDNN (NN is the revision number)
              3600       ; Refresh
              1800       ; Retry
              604800     ; Expire
@@ -10,18 +10,17 @@ $TTL 86400
 @      IN    NS    ns1.kolyma.uz.
 @      IN    NS    ns2.kolyma.uz.
 
+; Entry points
+@      IN    A     167.235.96.40
+@      IN    AAAA  2a01:4f8:2190:2914::
+www    IN    CNAME khakimovs.uz.
+
 ; Mail server (iCloud)
 @      IN    MX    10 mx01.mail.icloud.com.
 @      IN    MX    10 mx02.mail.icloud.com.
 @      IN    TXT   "apple-domain=c8Y17cyhBQPFiHui"
 @      IN    TXT   "v=spf1 include:icloud.com ~all"
 sig1._domainkey    IN CNAME sig1.dkim.khakimovs.uz.at.icloudmailadmin.com.
-
-; Main website (Caddy)
-@      IN    A     167.235.96.40
-@      IN    AAAA  2a01:4f8:2190:2914::
-www    IN    A     167.235.96.40
-www    IN    AAAA  2a01:4f8:2190:2914::
 
 ; GitHub Verifications
 _github-challenge-khakimovs-org         IN    TXT    "1131e559ea"

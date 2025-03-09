@@ -1,6 +1,6 @@
 $TTL 86400
 @      IN    SOA    ns1.kolyma.uz. admin.kolyma.uz. (
-             2024061900 ; Serial YYYYMMDDNN (NN is the revision number)
+             2025030901 ; Serial YYYYMMDDNN (NN is the revision number)
              3600       ; Refresh
              1800       ; Retry
              604800     ; Expire
@@ -9,6 +9,13 @@ $TTL 86400
 ; Nameservers
 @      IN    NS    ns1.kolyma.uz.
 @      IN    NS    ns2.kolyma.uz.
+
+; Entry points
+@      IN    A     185.199.108.153
+@      IN    A     185.199.109.153
+@      IN    A     185.199.110.153
+@      IN    A     185.199.111.153
+www    IN    CNAME orzklv.github.io.
 
 ; Mail server (iCloud)
 @      IN    MX    10 mx01.mail.icloud.com.
@@ -23,14 +30,7 @@ _github-pages-challenge-orzklv.pages    IN    TXT    "307a41f23aa243d950ca496eb3
 _github-challenge-dark-voyage-org       IN    TXT    "8193f09f31"
 
 ; GitHub Pages
-license IN CNAME orzklv.github.io.
-
-; Main website (Caddy)
-@      IN    A     185.199.108.153
-@      IN    A     185.199.109.153
-@      IN    A     185.199.110.153
-@      IN    A     185.199.111.153
-www    IN    CNAME orzklv.github.io.
+license IN   CNAME orzklv.github.io.
 
 ; FLACs
 flac   IN    CNAME ns1.kolyma.uz.

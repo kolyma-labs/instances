@@ -8,8 +8,6 @@
     [
       "kolyma.uz"
       "www.kolyma.uz"
-      "niggerlicious.uz"
-      "www.niggerlicious.uz"
     ]
     ++ config.services.www.alias;
 

@@ -1,6 +1,6 @@
 $TTL 86400
 @      IN    SOA    ns1.kolyma.uz. admin.kolyma.uz. (
-             2024061903 ; Serial YYYYMMDDNN (NN is the revision number)
+             2025030901 ; Serial YYYYMMDDNN (NN is the revision number)
              3600       ; Refresh
              1800       ; Retry
              604800     ; Expire
@@ -20,8 +20,7 @@ www    IN    CNAME rust-lang-uz.github.io.
 doc    IN    CNAME rust-lang-uz.github.io.
 
 ; Telegram Bots
-bot    IN    A     65.109.74.214
-bot    IN    AAAA  2a01:4f9:3071:31ce::
+bot    IN    CNAME ns2.kolyma.uz.
 
 ; GitHub Verifications
 _github-pages-challenge-rust-lang-uz      IN      TXT      4f8ece26a062d0ec6e1fea50bc99fd

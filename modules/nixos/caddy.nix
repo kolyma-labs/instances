@@ -17,8 +17,6 @@
     [
       "kolyma.uz"
       "www.kolyma.uz"
-      "niggerlicious.uz"
-      "www.niggerlicious.uz"
     ]
     ++ ipv4
     ++ ipv6
