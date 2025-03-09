@@ -10,6 +10,13 @@
     enable = true;
     alias = ["ns1.kolyma.uz"];
     hosts = {
+      "cdn1.kolyma.uz" = {
+        extraConfig = ''
+          root * /srv/cdn
+          file_server browse
+        '';
+      };
+
       "khakimovs.uz" = {
         serverAliases = ["www.khakimovs.uz"];
         extraConfig = ''

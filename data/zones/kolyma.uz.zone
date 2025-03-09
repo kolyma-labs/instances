@@ -29,7 +29,8 @@ ns2    IN    AAAA  2a01:4f9:3071:31ce::
 sig1._domainkey    IN CNAME sig1.dkim.kolyma.uz.at.icloudmailadmin.com.
 
 ; Builds Hosting (Caddy)
-cdn    IN    CNAME ns2.kolyma.uz.
+cdn1    IN    CNAME ns1.kolyma.uz.
+cdn2    IN    CNAME ns2.kolyma.uz.
 
 ; Old Git Redirect (Caddy)
 git    IN    CNAME ns1.kolyma.uz.
