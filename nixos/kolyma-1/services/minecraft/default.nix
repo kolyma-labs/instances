@@ -55,7 +55,7 @@ in {
           };
           "plugins/Chunky-Bukkit.jar" = fetchurl {
             url = "https://cdn.modrinth.com/data/fALzjamp/versions/ytBhnGfO/Chunky-Bukkit-1.4.28.jar";
-            hash = "sha256-lTeyxzJNQeMdu1IVdovNMtgn77jRIhSybLdMbTkf2Ww=";
+            hash = "sha256-G6MwUA+JUDJRkbpwvOC4PnR0k+XuCvcIJnDDXFF3oy4=";
           };
           "server-icon.png" = ./server-icon.png;
         };
