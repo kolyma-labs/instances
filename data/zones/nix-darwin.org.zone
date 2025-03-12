@@ -11,7 +11,7 @@ $TTL 86400
 @      IN    NS    ns2.kolyma.uz.
 
 ; GitHub Verifications
-_gh-nix-darwin-o    IN    TXT    "501f710451"
+_gh-nix-darwin-o    IN    TXT    501f710451
 
 ; Entry points
 @      IN    A     213.230.122.228
