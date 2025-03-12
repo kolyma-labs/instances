@@ -30,7 +30,7 @@ _github-pages-challenge-orzklv.pages    IN    TXT    "307a41f23aa243d950ca496eb3
 _github-challenge-dark-voyage-org       IN    TXT    "8193f09f31"
 
 ; Discord Verifications
-_discord.orzklv.uz                      IN    TXT    "dh=40507df5bf75296fe7e475228a89bc3b5b0c8a86"
+_discord                                IN    TXT    "dh=40507df5bf75296fe7e475228a89bc3b5b0c8a86"
 
 ; GitHub Pages
 license IN   CNAME orzklv.github.io.
