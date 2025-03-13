@@ -16,3 +16,6 @@ _gh-nix-darwin-o    IN    TXT    501f710451
 ; Entry points
 @      IN    A     213.230.122.228
 www    IN    CNAME slave.uz.
+
+; Options search
+options IN   CNAME nix-darwin.github.io.
