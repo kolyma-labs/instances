@@ -20,7 +20,6 @@
       "osmon-lang.uz"
       "xinux.uz"
       "haskell.uz"
-      "nix-darwin.org"
       "niggerlicious.uz"
     ];
     masters = ["167.235.96.40"];

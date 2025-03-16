@@ -20,7 +20,6 @@
       "osmon-lang.uz"
       "xinux.uz"
       "haskell.uz"
-      "nix-darwin.org"
       "niggerlicious.uz"
     ];
     slaves = ["65.109.74.214"];
