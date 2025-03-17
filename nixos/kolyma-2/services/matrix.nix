@@ -1,20 +1,12 @@
 {
   config,
   inputs,
+  pkgs,
   ...
 }: let
   domain_name = "floss.uz";
-  user_name = "orzklv";
   secure_token = "niggerlicious";
 in {
-  networking = {
-    firewall = {
-      enable = true;
-      allowedTCPPorts = [8448];
-      allowedUDPPorts = [53];
-    };
-  };
-
   services.matrix-conduit = {
     enable = true;
     settings.global = {
@@ -30,14 +22,41 @@ in {
   services.www.hosts = {
     "${domain_name}" = {
       extraConfig = ''
+        handle_path /.well-known/matrix/client {
+          header Content-Type application/json
+          header Access-Control-Allow-Origin "*"
+
+          respond `{
+            "m.homeserver": {
+              "base_url": "https://${domain_name}"
+            }
+          }`
+        }
+
+        handle_path /.well-known/matrix/server {
+          header Content-Type application/json
+
+          respond `{
+            "m.server": "${domain_name}"
+          }`
+        }
+
         handle_path /_matrix/* {
-            reverse_proxy 127.0.0.1:6167
+          reverse_proxy ${config.services.matrix-conduit.settings.global.address}:${toString config.services.matrix-conduit.settings.global.port}
         }
 
         handle {
-            redir https://www.{host}{uri} permanent
+          redir https://www.{host}{uri} permanent
         }
       '';
+    };
+  };
+
+  networking = {
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [8448];
+      allowedUDPPorts = [53 8448];
     };
   };
 }
