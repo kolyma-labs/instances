@@ -13,7 +13,7 @@ $TTL 86400
 ; Entry points
 @      IN    A     65.109.74.214
 @      IN    AAAA  2a01:4f9:3071:31ce::
-www    IN    CNAME floss.uz.
+www    IN    CNAME floss-uz.github.io.
 
 ; Mail server (iCloud)
 @      IN    MX    10 mx01.mail.icloud.com.

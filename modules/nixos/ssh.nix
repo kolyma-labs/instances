@@ -13,5 +13,9 @@
         UsePAM = false;
       };
     };
+
+    # Ensure the firewall allows HTTP and HTTPS traffic
+    networking.firewall.allowedTCPPorts = [22];
+    networking.firewall.allowedUDPPorts = [22];
   };
 }
