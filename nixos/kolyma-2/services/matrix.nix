@@ -30,9 +30,13 @@ in {
   services.www.hosts = {
     "${domain_name}" = {
       extraConfig = ''
-        reverse_proxy /_matrix/* 127.0.0.1:6167
+        handle_path /_matrix/* {
+            reverse_proxy 127.0.0.1:6167
+        }
 
-        redir https://www.{host}{uri}
+        handle {
+            redir https://www.{host}{uri} permanent
+        }
       '';
     };
   };
