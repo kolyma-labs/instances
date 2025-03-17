@@ -32,6 +32,11 @@ in {
         database_backend = "rocksdb";
         port = 6167;
         server_name = "${server_name}";
+        trusted_servers = [
+          "nixos.org"
+          "matrix.org"
+          "mozilla.org"
+        ];
       };
       package = pkgs.conduwuit;
     };
