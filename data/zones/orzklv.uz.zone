@@ -40,3 +40,6 @@ flac   IN    CNAME ns1.kolyma.uz.
 
 ; Nostalgi
 tiesto IN    CNAME ns1.kolyma.uz.
+
+; Livstreaming
+live   IN    CNAME ns1.kolyma.uz.
