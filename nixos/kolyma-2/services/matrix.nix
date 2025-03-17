@@ -1,60 +1,82 @@
-{config, ...}: let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   server_name = "floss.uz";
   secure_token = "niggerlicious";
   matrix_hostname = "matrix.${server_name}";
 in {
-  services.matrix-conduit = {
-    enable = true;
-    settings.global = {
-      address = "127.0.0.1";
-      allow_registration = true;
-      registration_token = "${secure_token}";
-      database_backend = "rocksdb";
-      port = 6167;
-      server_name = "${server_name}";
+  options = {
+    services.matrix-conduit.settings = lib.mkOption {
+      apply = old:
+        old
+        // (
+          if (old.global ? "unix_socket_path")
+          then {global = builtins.removeAttrs old.global ["address" "port"];}
+          else {}
+        );
     };
   };
 
-  services.www.hosts = {
-    "${server_name}" = {
-      extraConfig = ''
-        handle_path /.well-known/matrix/client {
-          header Content-Type application/json
-          header Access-Control-Allow-Origin "*"
+  config = {
+    systemd.services.conduit.serviceConfig.RestrictAddressFamilies = ["AF_UNIX"];
 
-          respond `{
-            "m.homeserver": {
-              "base_url": "https://${matrix_hostname}"
-            }
-          }`
-        }
-
-        handle_path /.well-known/matrix/server {
-          header Content-Type application/json
-
-          respond `{
-            "m.server": "${matrix_hostname}"
-          }`
-        }
-
-        handle {
-          redir https://www.{host}{uri} permanent
-        }
-      '';
-    };
-
-    "${matrix_hostname}" = {
-      extraConfig = ''
-        reverse_proxy /_matrix/* ${config.services.matrix-conduit.settings.global.address}:${toString config.services.matrix-conduit.settings.global.port}
-      '';
-    };
-  };
-
-  networking = {
-    firewall = {
+    services.matrix-conduit = {
       enable = true;
-      allowedTCPPorts = [8448];
-      allowedUDPPorts = [53 8448];
+      settings.global = {
+        address = "127.0.0.1";
+        allow_registration = true;
+        registration_token = "${secure_token}";
+        database_backend = "rocksdb";
+        port = 6167;
+        server_name = "${server_name}";
+      };
+      package = pkgs.conduwuit;
+    };
+
+    services.www.hosts = {
+      "${server_name}" = {
+        extraConfig = ''
+          handle_path /.well-known/matrix/client {
+            header Content-Type application/json
+            header Access-Control-Allow-Origin "*"
+
+            respond `{
+              "m.homeserver": {
+                "base_url": "https://${matrix_hostname}"
+              }
+            }`
+          }
+
+          handle_path /.well-known/matrix/server {
+            header Content-Type application/json
+
+            respond `{
+              "m.server": "${matrix_hostname}"
+            }`
+          }
+
+          handle {
+            redir https://www.{host}{uri} permanent
+          }
+        '';
+      };
+
+      "${matrix_hostname}" = {
+        extraConfig = ''
+          reverse_proxy /_matrix/* ${config.services.matrix-conduit.settings.global.address}:${toString config.services.matrix-conduit.settings.global.port}
+        '';
+      };
+    };
+
+    networking = {
+      firewall = {
+        enable = true;
+        allowedTCPPorts = [8448];
+        allowedUDPPorts = [53 8448];
+      };
     };
   };
 }
