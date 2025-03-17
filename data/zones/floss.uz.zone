@@ -15,6 +15,9 @@ $TTL 86400
 @      IN    AAAA  2a01:4f9:3071:31ce::
 www    IN    CNAME floss-uz.github.io.
 
+; Matrix server
+matrix IN    CNAME ns2.kolyma.uz.
+
 ; Mail server (iCloud)
 @      IN    MX    10 mx01.mail.icloud.com.
 @      IN    MX    10 mx02.mail.icloud.com.
