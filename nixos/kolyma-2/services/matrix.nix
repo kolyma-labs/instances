@@ -36,6 +36,7 @@ in {
           "nixos.org"
           "matrix.org"
           "mozilla.org"
+          "puppygock.gay"
         ];
       };
       package = pkgs.conduwuit;
