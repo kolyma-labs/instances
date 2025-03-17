@@ -15,7 +15,7 @@ in {
     };
   };
 
-  matrix-conduit = {
+  services.matrix-conduit = {
     enable = true;
     settings.global = {
       address = "127.0.0.1";

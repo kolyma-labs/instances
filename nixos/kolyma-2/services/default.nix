@@ -24,6 +24,6 @@
     ./rustina.nix
 
     # Matrix self-hosted server
-    # ./matrix.nix
+    ./matrix.nix
   ];
 }
