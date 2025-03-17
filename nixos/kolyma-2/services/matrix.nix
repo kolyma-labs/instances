@@ -1,11 +1,7 @@
-{
-  config,
-  inputs,
-  pkgs,
-  ...
-}: let
-  domain_name = "floss.uz";
+{config, ...}: let
+  server_name = "floss.uz";
   secure_token = "niggerlicious";
+  matrix_hostname = "matrix.${server_name}";
 in {
   services.matrix-conduit = {
     enable = true;
@@ -15,12 +11,12 @@ in {
       registration_token = "${secure_token}";
       database_backend = "rocksdb";
       port = 6167;
-      server_name = "${domain_name}";
+      server_name = "${server_name}";
     };
   };
 
   services.www.hosts = {
-    "${domain_name}" = {
+    "${server_name}" = {
       extraConfig = ''
         handle_path /.well-known/matrix/client {
           header Content-Type application/json
@@ -28,7 +24,7 @@ in {
 
           respond `{
             "m.homeserver": {
-              "base_url": "https://${domain_name}"
+              "base_url": "https://${matrix_hostname}"
             }
           }`
         }
@@ -37,17 +33,19 @@ in {
           header Content-Type application/json
 
           respond `{
-            "m.server": "${domain_name}"
+            "m.server": "${matrix_hostname}"
           }`
-        }
-
-        handle_path /_matrix/* {
-          reverse_proxy ${config.services.matrix-conduit.settings.global.address}:${toString config.services.matrix-conduit.settings.global.port}
         }
 
         handle {
           redir https://www.{host}{uri} permanent
         }
+      '';
+    };
+
+    "${matrix_hostname}" = {
+      extraConfig = ''
+        reverse_proxy /_matrix/* ${config.services.matrix-conduit.settings.global.address}:${toString config.services.matrix-conduit.settings.global.port}
       '';
     };
   };
