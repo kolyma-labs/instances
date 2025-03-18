@@ -25,5 +25,8 @@
 
     # Matrix self-hosted server
     ./matrix.nix
+
+    # Local mastodon self-hosted server
+    ./mastodon.nix
   ];
 }
