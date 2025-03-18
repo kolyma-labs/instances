@@ -16,6 +16,8 @@ in {
       enable = true;
       localDomain = domain;
 
+      package = pkgs.mastodon-custom;
+
       smtp = {
         port = 587;
         host = "smtp.mail.me.com";
