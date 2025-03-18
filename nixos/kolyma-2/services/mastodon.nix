@@ -29,7 +29,7 @@ in {
 
       streamingProcesses = 30;
       extraConfig = {
-        MAX_CHARS = 1000;
+        MAX_CHARS = "1000";
         # SINGLE_USER_MODE = "true";
       };
     };
