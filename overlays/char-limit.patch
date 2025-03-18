@@ -1,0 +1,31 @@
+--- a/app/javascript/mastodon/features/compose/components/compose_form.jsx
++++ b/app/javascript/mastodon/features/compose/components/compose_form.jsx
+@@ -100,7 +100,7 @@ class ComposeForm extends ImmutablePureComponent {
+     const fulltext = this.getFulltextForCharacterCounting();
+     const isOnlyWhitespace = fulltext.length !== 0 && fulltext.trim().length === 0;
+ 
+-    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > 500 || (isOnlyWhitespace && !anyMedia));
++    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > 2000 || (isOnlyWhitespace && !anyMedia));
+   };
+ 
+   handleSubmit = (e) => {
+@@ -297,7 +297,7 @@ class ComposeForm extends ImmutablePureComponent {
+             </div>
+ 
+             <div className='character-counter__wrapper'>
+-              <CharacterCounter max={500} text={this.getFulltextForCharacterCounting()} />
++              <CharacterCounter max={2000} text={this.getFulltextForCharacterCounting()} />
+             </div>
+           </div>
+         </div>
+--- a/app/validators/status_length_validator.rb
++++ b/app/validators/status_length_validator.rb
+@@ -1,7 +1,7 @@
+ # frozen_string_literal: true
+ 
+ class StatusLengthValidator < ActiveModel::Validator
+-  MAX_CHARS = 500
++  MAX_CHARS = 2000
+   URL_PLACEHOLDER_CHARS = 23
+   URL_PLACEHOLDER = 'x' * 23
+ 
