@@ -24,8 +24,7 @@ in {
         host = "smtp.mail.me.com";
 
         user = "sakhib.orzklv@icloud.com";
-        passwordFile = config.sops.secrets."mastodon/smtp;
-        # passwordFile = config.sops.secrets."mastodon/smtp".path;
+        passwordFile = config.sops.secrets."mastodon/smtp".path;
 
         authenticate = true;
         fromAddress = "support@floss.uz";
