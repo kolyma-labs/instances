@@ -1,31 +1,22 @@
---- a/app/javascript/mastodon/features/compose/components/compose_form.jsx
-+++ b/app/javascript/mastodon/features/compose/components/compose_form.jsx
-@@ -100,7 +100,7 @@ class ComposeForm extends ImmutablePureComponent {
-     const fulltext = this.getFulltextForCharacterCounting();
-     const isOnlyWhitespace = fulltext.length !== 0 && fulltext.trim().length === 0;
+--- a/app/javascript/mastodon/features/compose/containers/compose_form_container.js
++++ b/app/javascript/mastodon/features/compose/containers/compose_form_container.js
+@@ -27,7 +27,7 @@ const mapStateToProps = state => ({
+   isUploading: state.getIn(['compose', 'is_uploading']),
+   anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
+   isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
+   lang: state.getIn(['compose', 'language']),
+-  maxChars: state.getIn(['server', 'server', 'configuration', 'statuses', 'max_characters'], 500),
++  maxChars: state.getIn(['server', 'server', 'configuration', 'statuses', 'max_characters'], 1000),
+ });
  
--    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > 500 || (isOnlyWhitespace && !anyMedia));
-+    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > 2000 || (isOnlyWhitespace && !anyMedia));
-   };
- 
-   handleSubmit = (e) => {
-@@ -297,7 +297,7 @@ class ComposeForm extends ImmutablePureComponent {
-             </div>
- 
-             <div className='character-counter__wrapper'>
--              <CharacterCounter max={500} text={this.getFulltextForCharacterCounting()} />
-+              <CharacterCounter max={2000} text={this.getFulltextForCharacterCounting()} />
-             </div>
-           </div>
-         </div>
 --- a/app/validators/status_length_validator.rb
 +++ b/app/validators/status_length_validator.rb
 @@ -1,7 +1,7 @@
- # frozen_string_literal: true
+ RSpec.describe StatusLengthValidator do
+   describe '#validate' do
+-    before { stub_const("#{described_class}::MAX_CHARS", 500) } # Example values below are relative to this baseline
++    before { stub_const("#{described_class}::MAX_CHARS", 1000) } # Example values below are relative to this baseline
  
- class StatusLengthValidator < ActiveModel::Validator
--  MAX_CHARS = 500
-+  MAX_CHARS = 2000
-   URL_PLACEHOLDER_CHARS = 23
-   URL_PLACEHOLDER = 'x' * 23
- 
+     it 'does not add errors onto remote statuses' do
+       status = instance_double(Status, local?: false)
+       allow(status).to receive(:errors)
