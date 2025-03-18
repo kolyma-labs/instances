@@ -28,7 +28,10 @@ in {
       };
 
       streamingProcesses = 30;
-      # extraConfig.SINGLE_USER_MODE = "true";
+      extraConfig = {
+        MAX_CHARS = 1000;
+        # SINGLE_USER_MODE = "true";
+      };
     };
 
     users.users.caddy.extraGroups = ["mastodon"];
