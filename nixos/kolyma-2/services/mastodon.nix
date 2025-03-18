@@ -16,14 +16,16 @@ in {
       enable = true;
       localDomain = domain;
 
-      package = pkgs.mastodon-custom;
+      package = pkgs.mastodon;
+      # package = pkgs.mastodon-custom;
 
       smtp = {
         port = 587;
         host = "smtp.mail.me.com";
 
         user = "sakhib.orzklv@icloud.com";
-        passwordFile = config.sops.secrets."mastodon/smtp".path;
+        passwordFile = config.sops.secrets."mastodon/smtp;
+        # passwordFile = config.sops.secrets."mastodon/smtp".path;
 
         authenticate = true;
         fromAddress = "support@floss.uz";

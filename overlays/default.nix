@@ -16,11 +16,11 @@
     # ...
     # });
 
-    mastodon-custom = prev.mastodon.override {
-        patches = [
-          ./char-limit.patch
-        ];
-      };
+    # mastodon-custom = prev.mastodon.override {
+    #   patches = [
+    #     ./char-limit.patch
+    #   ];
+    # };
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
