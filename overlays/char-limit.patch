@@ -12,11 +12,10 @@
 --- a/app/validators/status_length_validator.rb
 +++ b/app/validators/status_length_validator.rb
 @@ -1,7 +1,7 @@
- RSpec.describe StatusLengthValidator do
-   describe '#validate' do
--    before { stub_const("#{described_class}::MAX_CHARS", 500) } # Example values below are relative to this baseline
-+    before { stub_const("#{described_class}::MAX_CHARS", 1000) } # Example values below are relative to this baseline
+ # frozen_string_literal: true
  
-     it 'does not add errors onto remote statuses' do
-       status = instance_double(Status, local?: false)
-       allow(status).to receive(:errors)
+ class StatusLengthValidator < ActiveModel::Validator
+-  MAX_CHARS = 500
++  MAX_CHARS = 1000
+   URL_PLACEHOLDER_CHARS = 23
+   URL_PLACEHOLDER = 'x' * 23
