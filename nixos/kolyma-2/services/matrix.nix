@@ -15,7 +15,7 @@ in {
 
       settings = {
         server_name = server;
-        public_baseurl = domain;
+        public_baseurl = "https://${domain}";
         listeners = [
           {
             port = 8008;
