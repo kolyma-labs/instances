@@ -17,6 +17,7 @@ www    IN    CNAME floss-uz.github.io.
 
 ; Matrix server
 chat   IN    CNAME ns2.kolyma.uz.
+matrix IN    CNAME ns2.kolyma.uz.
 
 ; Mastodon server
 social IN    CNAME ns2.kolyma.uz.

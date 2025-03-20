@@ -5,17 +5,19 @@
   ...
 }: let
   domain = "floss.uz";
-  server = "chat.${domain}";
-
-  temp = "sniggers_and_maniggas";
-
-  front = pkgs.element-web.override {
-    conf = {
-      default_server_config = {
-        "m.homeserver".base_url = "https://${domain}";
+  server = "matrix.${domain}";
+  client = {
+    address = "chat.${domain}";
+    pkg = pkgs.element-web.override {
+      conf = {
+        default_server_config = {
+          "m.homeserver".base_url = "https://${domain}";
+        };
       };
     };
   };
+
+  temp = "sniggers_and_maniggas";
 in {
   config = {
     services.postgresql = {
@@ -84,9 +86,9 @@ in {
             }`
           }
 
-          handle {
-            redir https://www.{host}{uri} permanent
-          }
+          # handle {
+          #   redir https://www.{host}{uri} permanent
+          # }
         '';
       };
 
@@ -94,8 +96,12 @@ in {
         extraConfig = ''
           reverse_proxy /_matrix/* localhost:8008
           reverse_proxy /_synapse/client/* localhost:8008
+        '';
+      };
 
-          root * ${front}
+      "${client.address}" = {
+        extraConfig = ''
+          root * ${client.pkg}
           file_server
         '';
       };
