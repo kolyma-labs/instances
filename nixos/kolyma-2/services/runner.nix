@@ -10,7 +10,6 @@ in {
   sops.secrets = {
     "github/runners/kolyma" = secret-management;
     "github/runners/xinux" = secret-management;
-    "github/runners/kibertexnik" = secret-management;
     "github/runners/orzklv/nix" = secret-management;
     "github/runners/orzklv/pack" = secret-management;
   };
