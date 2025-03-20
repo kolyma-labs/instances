@@ -13,17 +13,6 @@
         '';
       };
 
-      "build.kibertexnik.uz" = {
-        extraConfig = ''
-          basic_auth {
-          kibertexnik $2a$14$8PT3WB2gjSsZ4gm1ImetTudnNuOdxZ1Fi61kS5Bq8DP8amMjdF63m
-          }
-
-          root * /srv/builds
-          file_server browse
-        '';
-      };
-
       "haskell.uz" = {
         serverAliases = [
           "www.haskell.uz"

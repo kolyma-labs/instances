@@ -44,7 +44,7 @@ in {
       };
     };
 
-    # Orkzlv -> Pack runner
+    # Orkzlv -> Pkgs runner
     "${name}-Orzklv-Pack" = {
       inherit user;
       enable = true;
@@ -84,23 +84,6 @@ in {
       enable = true;
       url = "https://github.com/xinux-org";
       tokenFile = config.sops.secrets."github/runners/xinux".path;
-      replace = true;
-      extraLabels = [name];
-      group = user;
-      serviceOverrides = {
-        ProtectSystem = "full";
-        ReadWritePaths = "/srv";
-        PrivateMounts = false;
-        UMask = 22;
-      };
-    };
-
-    # Kibertexnik runner
-    "${name}-Kibertexnik" = {
-      inherit user;
-      enable = true;
-      url = "https://github.com/kibertexnik";
-      tokenFile = config.sops.secrets."github/runners/kibertexnik".path;
       replace = true;
       extraLabels = [name];
       group = user;
