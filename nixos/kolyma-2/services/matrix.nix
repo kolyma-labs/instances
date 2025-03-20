@@ -38,12 +38,11 @@ in {
       settings = {
         server_name = domain;
         public_baseurl = "https://${server}";
+        enable_registration = true;
 
         database.args = {
           password = "${temp}";
         };
-
-        registration_shared_secret = "5UmnPFtBwLqu94eJ2PVUV0cOJNEGfZTtVaoPxpX7PWOevx6PrSfaYKzrCAQJzJ2H";
 
         listeners = [
           {
