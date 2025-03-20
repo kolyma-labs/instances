@@ -36,6 +36,9 @@ in {
       settings = {
         server_name = server;
         public_baseurl = "https://${domain}";
+        database.args = {
+          password = "${temp}";
+        };
         listeners = [
           {
             port = 8008;
