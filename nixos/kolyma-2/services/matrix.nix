@@ -46,7 +46,7 @@ in {
       content = ''
         email:
           smtp_pass: "${config.sops.placeholder."matrix/mail"}"
-          notif_from: Your buddy from %(app) <support@floss.uz>
+          notif_from: "Floss Chat from <support@floss.uz>"
       '';
     };
 
