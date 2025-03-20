@@ -36,9 +36,13 @@ in {
       settings = {
         server_name = server;
         public_baseurl = "https://${domain}";
+
         database.args = {
           password = "${temp}";
         };
+
+        registration_shared_secret = "5UmnPFtBwLqu94eJ2PVUV0cOJNEGfZTtVaoPxpX7PWOevx6PrSfaYKzrCAQJzJ2H";
+
         listeners = [
           {
             port = 8008;
@@ -100,11 +104,6 @@ in {
           file_server
         '';
       };
-    };
-
-    networking.firewall = {
-      allowedTCPPorts = [8008];
-      allowedUDPPorts = [8008];
     };
   };
 }
