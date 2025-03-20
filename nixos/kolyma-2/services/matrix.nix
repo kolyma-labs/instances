@@ -80,7 +80,7 @@ in {
             header Access-Control-Allow-Origin "*"
 
             respond `{
-              "m.server": "${server}"
+              "m.server": "${server}:443"
             }`
           }
 
@@ -92,13 +92,8 @@ in {
 
       "${server}" = {
         extraConfig = ''
-          handle_path /_matrix/* {
-            reverse_proxy http://127.0.0.1:8008
-          }
-
-          handle_path /_synapse/client {
-            reverse_proxy http://127.0.0.1:8008
-          }
+          reverse_proxy /_matrix/* localhost:8008
+          reverse_proxy /_synapse/client/* localhost:8008
 
           root * ${front}
           file_server
