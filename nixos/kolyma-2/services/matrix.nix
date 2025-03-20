@@ -11,7 +11,7 @@
     pkg = pkgs.element-web.override {
       conf = {
         default_server_config = {
-          "m.homeserver".base_url = "https://${domain}";
+          "m.homeserver".base_url = "https://${server}";
         };
       };
     };
