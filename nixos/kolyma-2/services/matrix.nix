@@ -4,46 +4,35 @@
   config,
   ...
 }: let
-  server_name = "floss.uz";
-  secure_token = "niggerlicious";
-  matrix_hostname = "matrix.${server_name}";
+  domain = "floss.uz";
+  server = "chat.${domain}";
 in {
-  options = {
-    services.matrix-conduit.settings = lib.mkOption {
-      apply = old:
-        old
-        // (
-          if (old.global ? "unix_socket_path")
-          then {global = builtins.removeAttrs old.global ["address" "port"];}
-          else {}
-        );
-    };
-  };
-
   config = {
-    systemd.services.conduit.serviceConfig.RestrictAddressFamilies = ["AF_UNIX"];
+    services.postgresql.enable = true;
 
-    services.matrix-conduit = {
+    services.matrix-synapse = {
       enable = true;
-      settings.global = {
-        address = "127.0.0.1";
-        allow_registration = true;
-        registration_token = "${secure_token}";
-        database_backend = "rocksdb";
-        port = 6167;
-        server_name = "${server_name}";
-        trusted_servers = [
-          "nixos.org"
-          "matrix.org"
-          "mozilla.org"
-          "puppygock.gay"
-        ];
-      };
-      package = pkgs.conduwuit;
+      settings.server_name = server;
+      settings.public_baseurl = domain;
+      settings.listeners = [
+        {
+          port = 8008;
+          bind_addresses = ["127.0.0.1" "::1"];
+          type = "http";
+          tls = false;
+          x_forwarded = true;
+          resources = [
+            {
+              names = ["client" "federation"];
+              compress = true;
+            }
+          ];
+        }
+      ];
     };
 
     services.www.hosts = {
-      "${server_name}" = {
+      "${domain}" = {
         extraConfig = ''
           handle_path /.well-known/matrix/client {
             header Content-Type application/json
@@ -51,16 +40,17 @@ in {
 
             respond `{
               "m.homeserver": {
-                "base_url": "https://${matrix_hostname}"
+                "base_url": "https://${server}"
               }
             }`
           }
 
           handle_path /.well-known/matrix/server {
             header Content-Type application/json
+            header Access-Control-Allow-Origin "*"
 
             respond `{
-              "m.server": "${matrix_hostname}"
+              "m.server": "${server}"
             }`
           }
 
@@ -70,19 +60,16 @@ in {
         '';
       };
 
-      "${matrix_hostname}" = {
+      "${server}" = {
         extraConfig = ''
-          reverse_proxy /_matrix/* ${config.services.matrix-conduit.settings.global.address}:${toString config.services.matrix-conduit.settings.global.port}
+          reverse_proxy /_matrix/* http://127.0.0.1:8008
         '';
       };
     };
 
-    networking = {
-      firewall = {
-        enable = true;
-        allowedTCPPorts = [8448];
-        allowedUDPPorts = [53 8448];
-      };
+    networking.firewall = {
+      allowedTCPPorts = [8008];
+      allowedUDPPorts = [8008];
     };
   };
 }

@@ -16,7 +16,7 @@ $TTL 86400
 www    IN    CNAME floss-uz.github.io.
 
 ; Matrix server
-matrix IN    CNAME ns2.kolyma.uz.
+chat   IN    CNAME ns2.kolyma.uz.
 
 ; Mastodon server
 social IN    CNAME ns2.kolyma.uz.
