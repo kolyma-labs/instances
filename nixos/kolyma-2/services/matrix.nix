@@ -36,8 +36,8 @@ in {
       enable = true;
 
       settings = {
-        server_name = server;
-        public_baseurl = "https://${domain}";
+        server_name = domain;
+        public_baseurl = "https://${server}";
 
         database.args = {
           password = "${temp}";
