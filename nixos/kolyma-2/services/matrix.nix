@@ -6,9 +6,30 @@
 }: let
   domain = "floss.uz";
   server = "chat.${domain}";
+
+  front = pkgs.element-web.override {
+    conf = {
+      default_server_config = {
+        "m.homeserver".base_url = "https://${domain}";
+      };
+    };
+  };
 in {
   config = {
-    services.postgresql.enable = true;
+    services.postgresql = {
+      enable = lib.mkDefault true;
+
+      ensureDatabases = [
+        "matrix-synapse"
+      ];
+
+      ensureUsers = [
+        {
+          name = "matrix-synapse";
+          ensureDBOwnership = true;
+        }
+      ];
+    };
 
     services.matrix-synapse = {
       enable = true;
@@ -73,8 +94,8 @@ in {
             reverse_proxy http://127.0.0.1:8008
           }
 
-          @unmatched not path /_matrix/* /_synapse/client
-          respond @unmatched 404
+          root * ${front}
+          file_server
         '';
       };
     };
