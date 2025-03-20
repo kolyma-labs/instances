@@ -21,7 +21,12 @@
         serverAliases = ["www.khakimovs.uz"];
         extraConfig = ''
           root * ${pkgs.personal.khakimovs}/www
-          file_server
+          @stripExtensions path_regexp strip (.*)\.(html)
+          redir @stripExtensions {re.strip.1} 301
+          file_server {
+          	index index.html
+          }
+          try_files {path} {path}/ {path}.html
         '';
       };
 
