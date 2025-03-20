@@ -80,7 +80,6 @@ in {
           force_tls = true;
           require_transport_security = true;
           enable_tls = true;
-          notif_from = "Your buddy from %(app) <support@floss.uz>";
           app_name = "Floss Chat";
           enable_notifs = true;
           notif_for_new_users = false;
