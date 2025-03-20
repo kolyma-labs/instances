@@ -35,7 +35,7 @@ in {
     };
 
     sops.secrets = {
-      "mastodon/mail" = {
+      "matrix/mail" = {
         owner = config.systemd.services.matrix-synapse.serviceConfig.User;
         key = "mail/password";
       };
@@ -45,7 +45,7 @@ in {
       owner = config.systemd.services.matrix-synapse.serviceConfig.User;
       content = ''
         email:
-          smtp_pass: "${config.sops.placeholder."mastodon/mail"}"
+          smtp_pass: "${config.sops.placeholder."matrix/mail"}"
       '';
     };
 
