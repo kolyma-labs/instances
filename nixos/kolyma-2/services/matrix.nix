@@ -7,6 +7,8 @@
   domain = "floss.uz";
   server = "chat.${domain}";
 
+  temp = "sniggers_and_maniggas";
+
   front = pkgs.element-web.override {
     conf = {
       default_server_config = {
@@ -19,16 +21,13 @@ in {
     services.postgresql = {
       enable = lib.mkDefault true;
 
-      ensureDatabases = [
-        "matrix-synapse"
-      ];
-
-      ensureUsers = [
-        {
-          name = "matrix-synapse";
-          ensureDBOwnership = true;
-        }
-      ];
+      initialScript = pkgs.writeText "synapse-init.sql" ''
+        CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD '${temp}';
+        CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
+          TEMPLATE template0
+          LC_COLLATE = "C"
+          LC_CTYPE = "C";
+      '';
     };
 
     services.matrix-synapse = {
