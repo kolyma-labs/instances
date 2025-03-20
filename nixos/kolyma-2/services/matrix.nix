@@ -62,7 +62,16 @@ in {
 
       "${server}" = {
         extraConfig = ''
-          reverse_proxy /_matrix/* http://127.0.0.1:8008
+          handle_path /_matrix/* {
+            reverse_proxy http://127.0.0.1:8008
+          }
+
+          handle_path /_synapse/client {
+            reverse_proxy http://127.0.0.1:8008
+          }
+
+          @unmatched not path /_matrix/* /_synapse/client
+          respond @unmatched 404
         '';
       };
     };
