@@ -4,6 +4,8 @@
   config,
   ...
 }: let
+  usergroup = "matrix-synapse";
+
   domain = "floss.uz";
   server = "matrix.${domain}";
   client = {
@@ -32,13 +34,58 @@ in {
       # '';
     };
 
+    sops.secrets = {
+      "mastodon/mail" = {
+        owner = config.systemd.services.matrix-synapse.serviceConfig.User;
+        key = "mail/password";
+      };
+    };
+
+    sops.templates."extra-matrix-conf.yaml" = {
+      owner = config.systemd.services.matrix-synapse.serviceConfig.User;
+      content = ''
+        email:
+          smtp_pass: "${config.sops.placeholder."mastodon/mail"}"
+      '';
+    };
+
     services.matrix-synapse = {
       enable = true;
+
+      extraConfigFiles = [
+        config.sops.templates."extra-matrix-conf.yaml".path
+      ];
 
       settings = {
         server_name = domain;
         public_baseurl = "https://${server}";
+
+        allow_guest_access = true;
         enable_registration = true;
+        default_identity_server = ["https://matrix.org"];
+        registrations_require_3pid = ["email"];
+
+        enable_3pid_changes = true;
+        enable_set_displayname = true;
+        enable_set_avatar_url = true;
+
+        admin_contact = "mailto:support@floss.uz";
+
+        email = {
+          smtp_host = "smtp.mail.me.com";
+          smtp_port = 587;
+          smtp_user = "sakhib.orzklv@icloud.com";
+          force_tls = true;
+          require_transport_security = true;
+          enable_tls = true;
+          notif_from = "Your buddy from %(app) <support@floss.uz>";
+          app_name = "Floss Chat";
+          enable_notifs = true;
+          notif_for_new_users = false;
+          client_base_url = "https://matrix.floss.uz";
+          validation_token_lifetime = "15m";
+          invite_client_location = "https://chat.floss.uz";
+        };
 
         database.args = {
           password = "${temp}";

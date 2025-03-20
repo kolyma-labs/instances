@@ -7,8 +7,9 @@
 in {
   config = {
     sops.secrets = {
-      "mastodon/smtp" = {
+      "mastodon/mail" = {
         owner = config.services.mastodon.user;
+        key = "mail/password";
       };
     };
 
@@ -17,14 +18,13 @@ in {
       localDomain = domain;
 
       package = pkgs.mastodon;
-      # package = pkgs.mastodon-custom;
 
       smtp = {
         port = 587;
         host = "smtp.mail.me.com";
 
         user = "sakhib.orzklv@icloud.com";
-        passwordFile = config.sops.secrets."mastodon/smtp".path;
+        passwordFile = config.sops.secrets."mastodon/mail".path;
 
         authenticate = true;
         fromAddress = "support@floss.uz";

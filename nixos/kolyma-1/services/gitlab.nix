@@ -13,8 +13,10 @@ in {
     "gitlab/root" = secret-management;
     "gitlab/secret" = secret-management;
     "gitlab/database" = secret-management;
-    "mail/username" = secret-management;
-    "mail/password" = secret-management;
+    "gitlab/mail" = {
+      owner = config.services.gitlab.user;
+      key = "mail/password";
+    };
   };
 
   services.gitlab = {
@@ -44,7 +46,7 @@ in {
 
       # Credentials for SMTP
       username = "sakhib.orzklv@icloud.com";
-      passwordFile = config.sops.secrets."mail/password".path;
+      passwordFile = config.sops.secrets."gitlab/mail".path;
     };
 
     # Settings to be appended at gitlab.yml
