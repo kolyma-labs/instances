@@ -12,23 +12,26 @@ in {
 
     services.matrix-synapse = {
       enable = true;
-      settings.server_name = server;
-      settings.public_baseurl = domain;
-      settings.listeners = [
-        {
-          port = 8008;
-          bind_addresses = ["127.0.0.1" "::1"];
-          type = "http";
-          tls = false;
-          x_forwarded = true;
-          resources = [
-            {
-              names = ["client" "federation"];
-              compress = true;
-            }
-          ];
-        }
-      ];
+
+      settings = {
+        server_name = server;
+        public_baseurl = domain;
+        listeners = [
+          {
+            port = 8008;
+            bind_addresses = ["127.0.0.1" "::1"];
+            type = "http";
+            tls = false;
+            x_forwarded = true;
+            resources = [
+              {
+                names = ["client" "federation"];
+                compress = true;
+              }
+            ];
+          }
+        ];
+      };
     };
 
     services.www.hosts = {
