@@ -46,6 +46,7 @@ in {
       content = ''
         email:
           smtp_pass: "${config.sops.placeholder."matrix/mail"}"
+          notif_from: Your buddy from %(app) <support@floss.uz>
       '';
     };
 
@@ -63,6 +64,7 @@ in {
         allow_guest_access = true;
         enable_registration = true;
         default_identity_server = ["https://matrix.org"];
+        suppress_key_server_warning = true;
         registrations_require_3pid = ["email"];
 
         enable_3pid_changes = true;
