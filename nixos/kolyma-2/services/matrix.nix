@@ -76,7 +76,7 @@ in {
           smtp_port = 587;
           smtp_user = "sakhib.orzklv@icloud.com";
           force_tls = false;
-          require_transport_security = true;
+          require_transport_security = false;
           enable_tls = true;
           app_name = "Floss Chat";
           enable_notifs = true;
