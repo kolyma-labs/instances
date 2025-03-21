@@ -75,8 +75,7 @@ in {
           smtp_host = "smtp.mail.me.com";
           smtp_port = 587;
           smtp_user = "sakhib.orzklv@icloud.com";
-          force_tls = false;
-          require_transport_security = false;
+          force_tls = true;
           enable_tls = true;
           app_name = "Floss Chat";
           enable_notifs = true;
