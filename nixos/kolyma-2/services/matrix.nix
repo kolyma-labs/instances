@@ -8,36 +8,36 @@
   server = "matrix.${domain}";
   client = {
     address = "chat.${domain}";
-    pkg = pkgs.element-web.override {
-      conf = {
-        show_labs_settings = true;
-        default_theme = "dark";
-        brand = "Floss Chat";
+    # pkg = pkgs.element-web.override {
+    #   conf = {
+    #     show_labs_settings = true;
+    #     default_theme = "dark";
+    #     brand = "Floss Chat";
 
-        branding = {
-          welcome_background_url = "https://cdn2.kolyma.uz/element/bg-floss-uz.png";
-          auth_header_logo_url = "https://cdn2.kolyma.uz/element/floss-uz.svg";
-          auth_footer_links = [
-            {
-              text = "Mastodon";
-              url = "https://social.floss.uz";
-            }
-            {
-              text = "GitHub";
-              url = "https://github.com/floss-uz";
-            }
-          ];
-        };
+    #     branding = {
+    #       welcome_background_url = "https://cdn2.kolyma.uz/element/bg-floss-uz.png";
+    #       auth_header_logo_url = "https://cdn2.kolyma.uz/element/floss-uz.svg";
+    #       auth_footer_links = [
+    #         {
+    #           text = "Mastodon";
+    #           url = "https://social.floss.uz";
+    #         }
+    #         {
+    #           text = "GitHub";
+    #           url = "https://github.com/floss-uz";
+    #         }
+    #       ];
+    #     };
 
-        permalink_prefix = "https://${client.address}";
-        default_server_config = {
-          "m.homeserver" = {
-            base_url = "https://${server}";
-            server_name = "${domain}";
-          };
-        };
-      };
-    };
+    #     permalink_prefix = "https://${client.address}";
+    #     default_server_config = {
+    #       "m.homeserver" = {
+    #         base_url = "https://${server}";
+    #         server_name = "${domain}";
+    #       };
+    #     };
+    #   };
+    # };
   };
 
   temp = "sniggers_and_maniggas";
@@ -228,12 +228,12 @@ in {
         '';
       };
 
-      "${client.address}" = {
-        extraConfig = ''
-          root * ${client.pkg}
-          file_server
-        '';
-      };
+      # "${client.address}" = {
+      #   extraConfig = ''
+      #     root * ${client.pkg}
+      #     file_server
+      #   '';
+      # };
     };
   };
 }
