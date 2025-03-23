@@ -12,8 +12,29 @@
       conf = {
         show_labs_settings = true;
         default_theme = "dark";
+        brand = "Floss Chat";
+
+        branding = {
+          welcome_background_url = "https://cdn2.kolyma.uz/element/bg-floss-uz.png";
+          auth_header_logo_url = "https://cdn2.kolyma.uz/element/floss-uz.svg";
+          auth_footer_links = [
+            {
+              text = "Mastodon";
+              url = "https://social.floss.uz";
+            }
+            {
+              text = "GitHub";
+              url = "https://github.com/floss-uz";
+            }
+          ];
+        };
+
+        permalink_prefix = "https://${client.address}";
         default_server_config = {
-          "m.homeserver".base_url = "https://${server}";
+          "m.homeserver" = {
+            base_url = "https://${server}";
+            server_name = "${domain}";
+          };
         };
       };
     };
@@ -82,7 +103,7 @@ in {
                 display_name_template: "{{ user.name }}"
 
           - idp_id: mastodon
-            idp_name: "Floss Mastodon"
+            idp_name: "Mastodon"
             discover: false
             issuer: "https://social.floss.uz/@orzklv"
             client_id: "${config.sops.placeholder."matrix/oath/mastodon/id"}"
