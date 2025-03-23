@@ -106,6 +106,14 @@ in {
         config.sops.templates."extra-matrix-conf.yaml".path
       ];
 
+      extras = lib.mkForce [
+        "oidc"
+        "systemd"
+        "postgres"
+        "url-preview"
+        "user-search"
+      ];
+
       settings = {
         server_name = domain;
         public_baseurl = "https://${server}";
@@ -124,10 +132,6 @@ in {
           "#community:floss.uz"
           "#chat:floss.uz"
           "#help:floss.uz"
-        ];
-
-        plugins = [
-          "oidc"
         ];
 
         email = {
