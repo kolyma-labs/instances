@@ -4,14 +4,14 @@
   config,
   ...
 }: let
-  usergroup = "matrix-synapse";
-
   domain = "floss.uz";
   server = "matrix.${domain}";
   client = {
     address = "chat.${domain}";
     pkg = pkgs.element-web.override {
       conf = {
+        show_labs_settings = true;
+        default_theme = "dark";
         default_server_config = {
           "m.homeserver".base_url = "https://${server}";
         };
@@ -39,6 +39,22 @@ in {
         owner = config.systemd.services.matrix-synapse.serviceConfig.User;
         key = "mail/password";
       };
+      "matrix/oath/github/id" = {
+        owner = config.systemd.services.matrix-synapse.serviceConfig.User;
+        key = "oath/github/id";
+      };
+      "matrix/oath/github/secret" = {
+        owner = config.systemd.services.matrix-synapse.serviceConfig.User;
+        key = "oath/github/secret";
+      };
+      "matrix/oath/mastodon/id" = {
+        owner = config.systemd.services.matrix-synapse.serviceConfig.User;
+        key = "oath/mastodon/id";
+      };
+      "matrix/oath/mastodon/secret" = {
+        owner = config.systemd.services.matrix-synapse.serviceConfig.User;
+        key = "oath/mastodon/secret";
+      };
     };
 
     sops.templates."extra-matrix-conf.yaml" = {
@@ -47,6 +63,39 @@ in {
         email:
           smtp_pass: "${config.sops.placeholder."matrix/mail"}"
           notif_from: "Floss Chat from <support@floss.uz>"
+        oidc_providers:
+          - idp_id: github
+            idp_name: Github
+            idp_brand: "github"
+            discover: false
+            issuer: "https://github.com/"
+            client_id: "${config.sops.placeholder."matrix/oath/github/id"}"
+            client_secret: "${config.sops.placeholder."matrix/oath/github/secret"}"
+            authorization_endpoint: "https://github.com/login/oauth/authorize"
+            token_endpoint: "https://github.com/login/oauth/access_token"
+            userinfo_endpoint: "https://api.github.com/user"
+            scopes: ["read:user"]
+            user_mapping_provider:
+              config:
+                subject_claim: "id"
+                localpart_template: "{{ user.login }}"
+                display_name_template: "{{ user.name }}"
+
+          - idp_id: mastodon
+            idp_name: "Floss Mastodon"
+            discover: false
+            issuer: "https://social.floss.uz/@orzklv"
+            client_id: "${config.sops.placeholder."matrix/oath/mastodon/id"}"
+            client_secret: "${config.sops.placeholder."matrix/oath/mastodon/secret"}"
+            authorization_endpoint: "https://social.floss.uz/oauth/authorize"
+            token_endpoint: "https://social.floss.uz/oauth/token"
+            userinfo_endpoint: "https://social.floss.uz/api/v1/accounts/verify_credentials"
+            scopes: ["read"]
+            user_mapping_provider:
+              config:
+                subject_template: "{{ user.id }}"
+                localpart_template: "{{ user.username }}"
+                display_name_template: "{{ user.display_name }}"
       '';
     };
 
@@ -71,6 +120,16 @@ in {
 
         admin_contact = "mailto:support@floss.uz";
 
+        auto_join_rooms = [
+          "#community:floss.uz"
+          "#chat:floss.uz"
+          "#help:floss.uz"
+        ];
+
+        plugins = [
+          "matrix-synapse-oidc"
+        ];
+
         email = {
           smtp_host = "smtp.mail.me.com";
           smtp_port = 587;
@@ -80,7 +139,7 @@ in {
           require_transport_security = true;
           app_name = "Floss Chat";
           enable_notifs = true;
-          notif_for_new_users = false;
+          notif_for_new_users = true;
           client_base_url = "https://matrix.floss.uz";
           validation_token_lifetime = "15m";
           invite_client_location = "https://chat.floss.uz";
