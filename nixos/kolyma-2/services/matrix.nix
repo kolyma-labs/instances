@@ -127,7 +127,7 @@ in {
         ];
 
         plugins = [
-          "matrix-synapse-oidc"
+          "oidc"
         ];
 
         email = {
