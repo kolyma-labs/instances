@@ -28,8 +28,8 @@ in {
           gamemode = 0;
           max-players = 50;
           motd = "\\u00A7f\\u00A7lWelcome to Orzklv's Server\\u00A7r\\n\\u00A7lMore at\:\\u00A7r \\u00A7nhttps\://niggerlicious.uz";
-          white-list = true;
-          enable-rcon = true;
+          white-list = false;
+          enable-rcon = false;
           "rcon.port" = 25575;
           "rcon.password" = "F1st1ng15300Buck!?";
         };
