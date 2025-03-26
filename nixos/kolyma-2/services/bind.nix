@@ -13,13 +13,13 @@
       "khakimovs.uz"
 
       # Projects
-      "shar.af"
       "slave.uz"
       "floss.uz"
       "rust-lang.uz"
       "osmon-lang.uz"
       "xinux.uz"
       "haskell.uz"
+      "sabine.uz"
       "niggerlicious.uz"
     ];
     masters = ["167.235.96.40"];

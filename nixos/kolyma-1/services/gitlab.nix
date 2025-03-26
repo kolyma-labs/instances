@@ -56,6 +56,7 @@ in {
         email_display_name = "Kolyma Administration";
         email_reply_to = "support@kolyma.uz";
       };
+      # Do `sudo passwd -d gitlab` if ssh stops working
       gitlab_shell = {
         ssh_port = 22;
       };

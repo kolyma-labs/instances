@@ -23,6 +23,9 @@
     # Rustina bot from Rust Uzbekistan
     ./rustina.nix
 
+    # Minecraft server configurations
+    ./minecraft
+
     # Matrix self-hosted server
     ./matrix.nix
 
