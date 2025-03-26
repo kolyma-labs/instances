@@ -9,11 +9,13 @@
 in {
   imports = [inputs.minecraft.nixosModules.minecraft-servers];
 
+  users.users.minecraft.extraGroups = ["admins"];
+
   services.minecraft-servers = {
     enable = true;
     eula = true;
 
-    dataDir = "/var/lib/minecraft";
+    # dataDir = "/var/lib/minecraft";
 
     servers = {
       sabine = let
