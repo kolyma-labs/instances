@@ -5,7 +5,7 @@
   ...
 }: let
   # Global variables
-  version = "1.21.1";
+  version = "1.21.4";
 in {
   imports = [inputs.minecraft.nixosModules.minecraft-servers];
 
