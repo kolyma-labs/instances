@@ -5,13 +5,15 @@
   ...
 }: let
   # Global variables
-  version = "1.21.4";
+  version = "1.21.1";
 in {
   imports = [inputs.minecraft.nixosModules.minecraft-servers];
 
   services.minecraft-servers = {
     enable = true;
     eula = true;
+
+    dataDir = "/var/lib/minecraft";
 
     servers = {
       sabine = let
