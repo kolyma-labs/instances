@@ -14,7 +14,7 @@ in {
     eula = true;
 
     servers = {
-      slave = let
+      sabine = let
         server = lib.replaceStrings ["."] ["_"] "paper-${version}";
       in {
         enable = true;
