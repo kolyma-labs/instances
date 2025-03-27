@@ -150,9 +150,18 @@ in {
         admin_contact = "mailto:support@floss.uz";
 
         auto_join_rooms = [
+          # Spaces
           "#community:floss.uz"
+          "#xinux:floss.uz"
+          "#rust:floss.uz"
+
+          # Rooms
           "#chat:floss.uz"
           "#help:floss.uz"
+          "#mod:floss.uz"
+          "#infra:floss.uz"
+          "#awesome:floss.uz"
+          "#stds:floss.uz"
         ];
 
         email = {
