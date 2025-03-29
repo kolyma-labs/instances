@@ -64,6 +64,9 @@
 
     # Minecraft server
     minecraft.url = "github:Infinidoge/nix-minecraft";
+
+    # Floss Uzbekistan website
+    floss-website.url = "github:floss-uz/website";
   };
 
   # In this context, outputs are mostly about getting home-manager what it

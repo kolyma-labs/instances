@@ -31,5 +31,8 @@
 
     # Local mastodon self-hosted server
     ./mastodon.nix
+
+    # Floss Uzbekistan's website
+    ./floss-www.nix
   ];
 }
