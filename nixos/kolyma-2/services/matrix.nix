@@ -202,34 +202,6 @@ in {
     };
 
     services.www.hosts = {
-      "${domain}" = {
-        extraConfig = ''
-          handle_path /.well-known/matrix/client {
-            header Content-Type application/json
-            header Access-Control-Allow-Origin "*"
-
-            respond `{
-              "m.homeserver": {
-                "base_url": "https://${server}"
-              }
-            }`
-          }
-
-          handle_path /.well-known/matrix/server {
-            header Content-Type application/json
-            header Access-Control-Allow-Origin "*"
-
-            respond `{
-              "m.server": "${server}:443"
-            }`
-          }
-
-          # handle {
-          #   redir https://www.{host}{uri} permanent
-          # }
-        '';
-      };
-
       "${server}" = {
         extraConfig = ''
           reverse_proxy /_matrix/* localhost:8008
