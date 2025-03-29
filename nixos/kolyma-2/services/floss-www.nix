@@ -46,7 +46,7 @@ in {
         }
 
         handle {
-          reverse_proxy ${config.services.floss-website.host}:${config.services.floss-website.port}
+          reverse_proxy ${config.services.floss-website.host}:${toString config.services.floss-website.port}
         }
       '';
     };
