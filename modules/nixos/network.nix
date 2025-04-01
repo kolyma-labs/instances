@@ -94,8 +94,8 @@ in {
       };
 
       ipv4.address = lib.mkOption {
-        type = lib.types.str;
-        default = "";
+        type = with lib.types; nullOr str;
+        default = null;
         description = "IPv4 address.";
       };
 
@@ -106,8 +106,8 @@ in {
       };
 
       ipv6.address = lib.mkOption {
-        type = lib.types.str;
-        default = "";
+        type = with lib.types; nullOr str;
+        default = null;
         description = "IPv6 address.";
       };
 
