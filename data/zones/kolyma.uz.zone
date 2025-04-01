@@ -35,3 +35,6 @@ cdn2    IN    CNAME ns2.kolyma.uz.
 
 ; Old Git Redirect (Caddy)
 git    IN    CNAME ns1.kolyma.uz.
+
+; NixOS cache server
+cache  IN    CNAME ns3.kolyma.uz.

@@ -5,6 +5,9 @@
     # Web server & proxy virtual hosts via caddy
     ./www.nix
 
+    # NixOS binary proxy server
+    ./cache.nix
+
     # Minecraft server configurations
     ./minecraft
   ];
