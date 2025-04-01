@@ -120,6 +120,7 @@
         list = [
           "Kolyma-1"
           "Kolyma-2"
+          "Kolyma-3"
         ];
       };
     };

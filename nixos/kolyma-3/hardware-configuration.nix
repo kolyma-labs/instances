@@ -9,6 +9,9 @@
     inputs.disko.nixosModules.disko
     ./disk-configuration.nix
 
+    # QEMU modules
+    (modulesPath + "/profiles/qemu-guest.nix")
+
     # Not available hardware modules
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -18,39 +21,24 @@
     extraModulePackages = [];
 
     initrd = {
-      kernelModules = ["nvme"];
+      kernelModules = [];
       availableKernelModules = [
-        "xhci_pci"
-        "ahci"
-        "nvme"
-        "usbhid"
+        "ata_piix"
+        "uhci_hcd"
+        "virtio_pci"
+        "virtio_scsi"
+        "sd_mod"
+        "sr_mod"
       ];
     };
 
     bios = {
       enable = true;
       uefi = true;
-      raided = true;
-      mirrors = [
-        "/dev/nvme0n1"
-        "/dev/nvme1n1"
-      ];
     };
   };
 
-  network = {
-    enable = true;
-
-    ipv4 = {
-      enable = true;
-      address = "65.109.74.214";
-    };
-
-    ipv6 = {
-      enable = true;
-      address = "2a01:4f9:3071:31ce::";
-    };
-  };
+  networking.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }

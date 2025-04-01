@@ -16,6 +16,7 @@
   boot = {
     kernelModules = [];
     extraModulePackages = [];
+
     initrd = {
       kernelModules = ["nvme"];
       availableKernelModules = [
@@ -25,6 +26,7 @@
         "usbhid"
       ];
     };
+
     bios = {
       enable = true;
       uefi = true;
