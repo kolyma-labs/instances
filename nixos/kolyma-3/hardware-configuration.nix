@@ -38,7 +38,19 @@
     };
   };
 
-  networking.useDHCP = lib.mkDefault true;
+  network = {
+    enable = true;
+
+    ipv4 = {
+      enable = true;
+      address = "192.168.0.20";
+    };
+
+    ipv6 = {
+      enable = false;
+      address = null;
+    };
+  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
