@@ -13,3 +13,6 @@ $TTL 86400
 ; Entry points
 @      IN    A     213.230.122.228
 www    IN    CNAME slave.uz.
+
+; Minecraft Map
+map    IN    CNAME slave.uz.

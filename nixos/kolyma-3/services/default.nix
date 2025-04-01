@@ -6,6 +6,6 @@
     ./www.nix
 
     # Minecraft server configurations
-    # ./minecraft
+    ./minecraft
   ];
 }
