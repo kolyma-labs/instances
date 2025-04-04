@@ -20,6 +20,7 @@
       "xinux.uz"
       "haskell.uz"
       "sabine.uz"
+      "trashiston.uz"
       "niggerlicious.uz"
     ];
     masters = ["167.235.96.40"];
