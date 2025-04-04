@@ -11,8 +11,5 @@ $TTL 86400
 @      IN    NS    ns2.kolyma.uz.
 
 ; Entry points
-@      IN    A     185.199.108.153
-@      IN    A     185.199.109.153
-@      IN    A     185.199.110.153
-@      IN    A     185.199.111.153
+@      IN    A     76.76.21.21
 www    IN    CNAME devops-journey.uz.
