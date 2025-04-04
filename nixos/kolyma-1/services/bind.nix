@@ -20,6 +20,7 @@
       "xinux.uz"
       "haskell.uz"
       "sabine.uz"
+      "devops-journey.uz"
       "trashiston.uz"
       "niggerlicious.uz"
     ];
