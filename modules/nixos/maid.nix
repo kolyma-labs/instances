@@ -10,14 +10,12 @@
       enable = true;
       dates = "daily";
       flags = [
-        "--update-input"
-        "nixpkgs"
         "-L" # print build logs
       ];
       allowReboot = true;
       operation = "boot";
       randomizedDelaySec = "10min";
-      flake = "github:kolyma-org/instances";
+      flake = "github:kolyma-labs/instances";
       rebootWindow = {
         lower = "01:00";
         upper = "05:00";
