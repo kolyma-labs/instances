@@ -47,7 +47,10 @@
     # Orzklv's packages repository
     orzklv-pkgs = {
       url = "github:orzklv/pkgs/master";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-unstable.follows = "nixpkgs-unstable";
+      };
     };
 
     # Main homepage website
@@ -77,6 +80,7 @@
     home-manager,
     flake-utils,
     orzklv,
+    orzklv-pkgs,
     ...
   } @ inputs: let
     # Self instance pointer
@@ -99,7 +103,7 @@
     # Attribute from static evaluation
     {
       # Nixpkgs and Home-Manager helpful functions
-      lib = nixpkgs.lib // home-manager.lib // orzklv.lib;
+      lib = nixpkgs.lib // home-manager.lib // orzklv-pkgs.lib;
 
       # Formatter for your nix files, available through 'nix fmt'
       # Other options beside 'alejandra' include 'nixpkgs-fmt'

@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  specific-mods = lib.orzklv.condition.mkArrIf (username == "sakhib") [
+  specific-mods = inputs.orzklv-pkgs.lib.condition.mkArrIf (username == "sakhib") [
     inputs.orzklv.homeModules.git
   ];
 in {
