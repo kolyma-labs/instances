@@ -8,12 +8,16 @@
 
     system.autoUpgrade = {
       enable = true;
-      dates = "daily";
+      dates = "hourly";
       flags = [
         "-L" # print build logs
       ];
-      allowReboot = true;
-      operation = "boot";
+      # Reboot mode
+      # allowReboot = true;
+      # operation = "boot";
+      # Switch mode
+      allowReboot = false;
+      operation = "switch";
       randomizedDelaySec = "10min";
       flake = "github:kolyma-labs/instances";
       rebootWindow = {
