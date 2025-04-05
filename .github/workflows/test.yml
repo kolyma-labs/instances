@@ -30,7 +30,7 @@ jobs:
 
   update-merge:
     name: "Dependabot"
-    needs: [test-flake, build-instance]
+    needs: [test-flake, build-instances]
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'github-actions[bot]' && github.event_name == 'pull_request'}}
     steps:
