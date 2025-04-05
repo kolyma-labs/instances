@@ -23,14 +23,3 @@ jobs:
         uses: DeterminateSystems/update-flake-lock@main
         with:
           token: ${{ secrets.PAT }}
-          # pr-reviewers: orzklv
-          git-author-name: "github-actions[bot]"
-          git-author-email: "github-actions[bot]@users.noreply.github.com"
-          git-committer-name: "github-actions[bot]"
-          git-committer-email: "github-actions[bot]@users.noreply.github.com"
-
-      # - name: Merge
-      #   run: gh pr merge --auto "${{ steps.update.outputs.pull-request-number }}" --rebase
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.PAT }}
-      #   if: ${{ steps.update.outputs.pull-request-number != '' }}

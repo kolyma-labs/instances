@@ -33,7 +33,7 @@ jobs:
     name: "Merge Update PRs"
     needs: [test-flake, build-instances]
     runs-on: ubuntu-latest
-    if: ${{ github.actor == 'github-actions[bot]' && github.event_name == 'pull_request'}}
+    if: ${{ github.actor == 'orzklv' && github.event_name == 'pull_request'}}
 
     steps:
       - name: Enable auto-merge for Update PRs
