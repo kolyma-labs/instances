@@ -4,6 +4,7 @@ on: [push, pull_request]
 
 jobs:
   test-flake:
+    name: "Test flake options"
     runs-on: self-hosted
 
     steps:
@@ -14,11 +15,11 @@ jobs:
         run: nix flake check --all-systems --show-trace
 
   build-instances:
+    name: "Build Configurations"
     strategy:
       fail-fast: false
       matrix:
         instance: [1, 2]
-
     runs-on: self-hosted
 
     steps:
@@ -29,10 +30,11 @@ jobs:
         run: nix build .#nixosConfigurations.Kolyma-${{ matrix.instance }}.config.system.build.toplevel --show-trace
 
   update-merge:
-    name: "Dependabot"
+    name: "Merge Update PRs"
     needs: [test-flake, build-instances]
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'github-actions[bot]' && github.event_name == 'pull_request'}}
+
     steps:
       - name: Enable auto-merge for Update PRs
         run: gh pr merge --auto --merge "$PR_URL"
