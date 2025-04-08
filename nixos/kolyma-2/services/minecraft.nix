@@ -23,7 +23,6 @@ in {
         CUSTOM_SERVER = "https://github.com/CyberdyneCC/Thermos/releases/download/58/Thermos-1.7.10-1614-server.jar";
         JVM_OPTS = lib.strings.concatStringsSep " " [
           "-XX:+UseG1GC"
-          "-XX:+UseFastAccessorMethods"
           "-XX:+OptimizeStringConcat"
           "-XX:MetaspaceSize=2048m"
           "-XX:MaxMetaspaceSize=4096m"
