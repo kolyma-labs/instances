@@ -34,6 +34,14 @@ in {
           "rcon.port" = 25575;
           "rcon.password" = "F1st1ng15300Buck!?";
         };
+
+        symlinks = with pkgs; {
+          "mods/BlueMap-3.13-fabric-1.19.jar" = fetchurl {
+            url = "https://cdn.modrinth.com/data/swbUV1cr/versions/51epxpKG/BlueMap-3.13-fabric-1.19.jar";
+            hash = "sha256-mZ00IyPVe4GD1C6+B47MA9X/P+MQZ5dpaOX/hEec0d0=";
+          };
+          "server-icon.png" = ./server-icon.png;
+        };
       };
     };
   };
