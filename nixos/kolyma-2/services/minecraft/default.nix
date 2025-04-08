@@ -19,7 +19,7 @@ in {
       in {
         enable = true;
         openFirewall = true;
-        package = pkgs.fabricServers.${server}.override {loaderVersion = "0.14.6";};
+        package = pkgs.fabricServers.${server}.override {loaderVersion = "0.14.9";};
         jvmOpts = "-Xms12288M -Xmx12288M -XX:+UseG1GC -XX:ParallelGCThreads=4 -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10";
 
         serverProperties = {
