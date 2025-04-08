@@ -36,6 +36,10 @@ in {
         };
 
         symlinks = with pkgs; {
+          "mods/fabric-api-0.77.0-1.19.2.jar" = fetchurl {
+            url = "https://cdn.modrinth.com/data/P7dR8mSH/versions/6g95K303/fabric-api-0.77.0%2B1.19.2.jar";
+            hash = "sha256-5+0KhV8a6oa1AqHP3dnoHpfuan/9AG5NLuSxXNbwc3I=";
+          };
           "mods/BlueMap-3.13-fabric-1.19.jar" = fetchurl {
             url = "https://cdn.modrinth.com/data/swbUV1cr/versions/51epxpKG/BlueMap-3.13-fabric-1.19.jar";
             hash = "sha256-5+0KhV8a6oa1AqHP3dnoHpfuan/9AG5NLuSxXNbwc3I=";
