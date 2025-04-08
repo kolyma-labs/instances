@@ -26,18 +26,13 @@ in {
           server-port = 25565;
           difficulty = 3;
           gamemode = 0;
+          online-mode = false;
           max-players = 50;
-          motd = "\\u00A7f\\u00A7lWelcome to Orzklv's Personal Server\\u00A7r\\n\\u00A7lMore at\:\\u00A7r \\u00A7nhttps\://map.slave.uz";
-          white-list = true;
+          motd = "\\u00A7f\\u00A7lWelcome to Sabine's Server\\u00A7r\\n\\u00A7lMore at\:\\u00A7r \\u00A7nhttps\://sabine.uz";
+          white-list = false;
           enable-rcon = false;
           "rcon.port" = 25575;
           "rcon.password" = "F1st1ng15300Buck!?";
-        };
-
-        whitelist = {
-          Orzklv = "3e220001-9544-48bb-8fd0-ca7139727207";
-          OwOssi = "14f4fba3-bd65-48d3-b212-2e77383c1b1d";
-          Nixxer = "8fdd80ef-c294-432d-b381-e43353a3db27";
         };
 
         symlinks = with pkgs; {

@@ -9,7 +9,8 @@
       "ns3.kolyma.uz"
     ];
     hosts = {
-      "map.slave.uz" = {
+      "sabine.uz" = {
+        serverAliases = ["www.sabine.uz"];
         extraConfig = ''
           reverse_proxy 127.0.0.1:8100
         '';

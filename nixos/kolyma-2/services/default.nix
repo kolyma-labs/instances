@@ -24,7 +24,7 @@
     ./rustina.nix
 
     # Minecraft server configurations
-    ./minecraft
+    ./minecraft.nix
 
     # Matrix self-hosted server
     ./matrix.nix
