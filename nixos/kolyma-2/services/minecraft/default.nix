@@ -38,7 +38,7 @@ in {
         symlinks = with pkgs; {
           "mods/BlueMap-3.13-fabric-1.19.jar" = fetchurl {
             url = "https://cdn.modrinth.com/data/swbUV1cr/versions/51epxpKG/BlueMap-3.13-fabric-1.19.jar";
-            hash = "sha256-mZ00IyPVe4GD1C6+B47MA9X/P+MQZ5dpaOX/hEec0d0=";
+            hash = "sha256-5+0KhV8a6oa1AqHP3dnoHpfuan/9AG5NLuSxXNbwc3I=";
           };
           "server-icon.png" = ./server-icon.png;
         };
