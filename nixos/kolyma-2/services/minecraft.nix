@@ -26,7 +26,6 @@ in {
           "-XX:+OptimizeStringConcat"
           "-XX:MetaspaceSize=2048m"
           "-XX:MaxMetaspaceSize=4096m"
-          "-XX:+AggressiveOpts"
           "-XX:ParallelGCThreads=15"
           "-XX:MaxGCPauseMillis=10"
           "-XX:+UseStringDeduplication"
