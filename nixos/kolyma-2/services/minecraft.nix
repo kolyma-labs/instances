@@ -19,7 +19,7 @@ in {
         EULA = "TRUE";
         TYPE = "CRUCIBLE";
         VERSION = "1.7.10";
-        CRUCIBLE_RELEASE = "v5.3";
+        CRUCIBLE_RELEASE = "latest";
         MEMORY = "24G";
       };
     };
