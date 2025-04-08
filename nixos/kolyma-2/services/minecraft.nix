@@ -17,22 +17,10 @@ in {
 
       environment = {
         EULA = "TRUE";
-        TYPE = "CUSTOM";
+        TYPE = "CRUCIBLE";
+        VERSION = "1.7.10";
+        CRUCIBLE_RELEASE = "latest";
         MEMORY = "24G";
-        EXTRA_ARGS = "--log-strip-color";
-        CUSTOM_SERVER = "https://github.com/CyberdyneCC/Thermos/releases/download/58/Thermos-1.7.10-1614-server.jar";
-        JVM_OPTS = lib.strings.concatStringsSep " " [
-          "-XX:+UseG1GC"
-          "-XX:+OptimizeStringConcat"
-          "-XX:MetaspaceSize=2048m"
-          "-XX:MaxMetaspaceSize=4096m"
-          "-XX:ParallelGCThreads=15"
-          "-XX:MaxGCPauseMillis=10"
-          "-XX:+UseStringDeduplication"
-          "-XX:+UnlockExperimentalVMOptions"
-          "-XX:hashCode=5"
-          "-Dfile.encoding=UTF-8"
-        ];
       };
     };
   };
