@@ -29,6 +29,7 @@ in {
           "-XX:ParallelGCThreads=15"
           "-XX:MaxGCPauseMillis=10"
           "-XX:+UseStringDeduplication"
+          "-XX:+UnlockExperimentalVMOptions"
           "-XX:hashCode=5"
           "-Dfile.encoding=UTF-8"
         ];
