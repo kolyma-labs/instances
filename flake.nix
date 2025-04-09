@@ -70,6 +70,9 @@
 
     # Floss Uzbekistan website
     floss-website.url = "github:floss-uz/website";
+
+    # DevOps Journey website
+    devops-journey.url = "github:devops-journey-uz/devops-journey";
   };
 
   # In this context, outputs are mostly about getting home-manager what it

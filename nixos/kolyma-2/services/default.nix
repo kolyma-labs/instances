@@ -34,5 +34,8 @@
 
     # Floss Uzbekistan's website
     ./floss-www.nix
+
+    # DevOps Jorney's website
+    ./devops-journey.nix
   ];
 }
