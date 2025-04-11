@@ -607,11 +607,11 @@
         "sops-nix": "sops-nix"
       },
       "locked": {
-        "lastModified": 1744372872,
-        "narHash": "sha256-Cog/d+YslchN+EwfO7OnWJqt+UcQ9pFNUVm2aljxetQ=",
+        "lastModified": 1744379554,
+        "narHash": "sha256-BqC/wNSMm+rVUSuDAYhLt+6+gUIKGAsMgIhLpP+iSkQ=",
         "owner": "orzklv",
         "repo": "nix",
-        "rev": "eb4ff016926c1d603eb26a46af28dd703dec141c",
+        "rev": "e5db4ff4cbad6566fb5b0fa5ea1c5c8032204ce1",
         "type": "github"
       },
       "original": {
