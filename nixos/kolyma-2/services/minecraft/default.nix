@@ -14,12 +14,12 @@ in {
     eula = true;
     dataDir = "/var/lib/minecraft";
     servers = {
-      slave = let
+      mod = let
         server = lib.replaceStrings ["."] ["_"] "fabric-${version}";
       in {
         enable = true;
         openFirewall = true;
-        package = pkgs.fabricServers.${server}.override {loaderVersion = "0.14.9";};
+        package = pkgs.fabricServers.${server}.override {loaderVersion = "0.14.6";};
         jvmOpts = "-Xms12288M -Xmx12288M -XX:+UseG1GC -XX:ParallelGCThreads=4 -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10";
 
         serverProperties = {
@@ -36,8 +36,8 @@ in {
         };
 
         symlinks = with pkgs; {
-          "mods/fabric-api-0.77.0-1.19.2.jar" = fetchurl {
-            url = "https://cdn.modrinth.com/data/P7dR8mSH/versions/6g95K303/fabric-api-0.77.0%2B1.19.2.jar";
+          "mods/fabric-api-0.75.1-1.19.2.jar" = fetchurl {
+            url = "https://cdn.modrinth.com/data/P7dR8mSH/versions/6iOab8Tp/fabric-api-0.75.1%2B1.19.2.jar";
             hash = "sha256-D8YnRKOPYp/ghAiTcT5qER7RJjcZ+T5JnJkGiIEYJOw=";
           };
           "mods/BlueMap-3.13-fabric-1.19.jar" = fetchurl {
