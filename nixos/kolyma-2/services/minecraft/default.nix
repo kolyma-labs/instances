@@ -40,10 +40,10 @@ in {
             url = "https://cdn.modrinth.com/data/P7dR8mSH/versions/6iOab8Tp/fabric-api-0.75.1%2B1.19.2.jar";
             hash = "sha256-yhJ+HJlSb7N0//+OKJtPSLcoAec54In1uwfAtp3jWsQ=";
           };
-          "mods/BlueMap-3.13-fabric-1.19.jar" = fetchurl {
-            url = "https://cdn.modrinth.com/data/swbUV1cr/versions/51epxpKG/BlueMap-3.13-fabric-1.19.jar";
-            hash = "sha256-5+0KhV8a6oa1AqHP3dnoHpfuan/9AG5NLuSxXNbwc3I=";
-          };
+          # "mods/BlueMap-3.13-fabric-1.19.jar" = fetchurl {
+          #   url = "https://cdn.modrinth.com/data/swbUV1cr/versions/51epxpKG/BlueMap-3.13-fabric-1.19.jar";
+          #   hash = "sha256-5+0KhV8a6oa1AqHP3dnoHpfuan/9AG5NLuSxXNbwc3I=";
+          # };
           "server-icon.png" = ./server-icon.png;
         };
       };
