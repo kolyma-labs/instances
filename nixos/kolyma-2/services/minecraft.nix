@@ -8,6 +8,7 @@ in {
     minecraft = {
       image = "itzg/minecraft-server:java21";
       ports = [
+        "24454:24454"
         "25565:25565"
       ];
 
