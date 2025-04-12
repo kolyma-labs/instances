@@ -19,9 +19,9 @@ in {
         EULA = "TRUE";
         TYPE = "FABRIC";
         MEMORY = "24G";
+        VERSION = "1.19.2";
         FABRIC_LAUNCHER_VERSION = "1.0.3";
         FABRIC_LOADER_VERSION = "0.16.13";
-        MODRINTH_PROJECTS = "fabric-api";
       };
     };
   };
