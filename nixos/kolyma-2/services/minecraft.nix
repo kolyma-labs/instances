@@ -8,7 +8,7 @@ in {
     minecraft = {
       image = "itzg/minecraft-server:java21";
       ports = [
-        "127.0.0.1:25565:25565"
+        "25565:25565"
       ];
 
       volumes = [
