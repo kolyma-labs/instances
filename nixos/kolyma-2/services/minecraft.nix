@@ -27,7 +27,7 @@ in {
     };
 
     minecraft-fear = {
-      image = "itzg/minecraft-server:java23";
+      image = "itzg/minecraft-server:java17";
       ports = [
         "25566:25565"
       ];
