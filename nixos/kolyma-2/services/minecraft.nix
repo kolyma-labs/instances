@@ -38,12 +38,10 @@ in {
 
       environment = {
         EULA = "TRUE";
-        TYPE = "MODRINTH";
+        TYPE = "FORGE";
         MEMORY = "24G";
         VERSION = "1.20.1";
-        MODRINTH_MODPACK = "fearnightfall";
-        MODRINTH_VERSION = "kFoOyRmJ";
-        MODRINTH_LOADER = "forge";
+        FORGE_VERSION = "latest";
       };
     };
   };
