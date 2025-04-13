@@ -48,7 +48,7 @@ in {
     minecraft-fear-demo = {
       image = "itzg/minecraft-server:java23";
       ports = [
-        "25566:25565"
+        "25567:25565"
       ];
 
       volumes = [
