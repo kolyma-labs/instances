@@ -44,6 +44,24 @@ in {
         FORGE_VERSION = "latest";
       };
     };
+
+    minecraft-fear-demo = {
+      image = "itzg/minecraft-server:java23";
+      ports = [
+        "25566:25565"
+      ];
+
+      volumes = [
+        "/srv/minecraft/fear-demo:/data"
+      ];
+
+      environment = {
+        EULA = "TRUE";
+        TYPE = "MODRINTH";
+        MEMORY = "24G";
+        MODRINTH_MODPACK = "https://modrinth.com/modpack/fearnightfall/version/v1.0.11";
+      };
+    };
   };
 
   networking = {
