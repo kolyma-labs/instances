@@ -14,3 +14,6 @@ $TTL 86400
 @      IN    A     65.109.74.214
 @      IN    AAAA  2a01:4f9:3071:31ce::
 www    IN    CNAME haskell.uz.
+
+; GitHub Verifications
+_gh-haskelluz-o     IN      TXT      96073c96b4
