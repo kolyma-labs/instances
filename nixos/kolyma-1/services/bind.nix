@@ -15,6 +15,7 @@
       # Projects
       "slave.uz"
       "floss.uz"
+      "ecma.uz"
       "nyan.uz"
       "rust-lang.uz"
       "osmon-lang.uz"

@@ -41,3 +41,4 @@ sig1._domainkey    IN CNAME sig1.dkim.floss.uz.at.icloudmailadmin.com.
 
 ; GitHub Verifications
 _gh-floss-uz-o      IN      TXT      33adfc2641
+_gh-floss-uz-community-o IN TXT      661cc1ffca
