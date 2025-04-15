@@ -44,6 +44,25 @@ in {
         FORGE_VERSION = "latest";
       };
     };
+
+    minecraft-deceased = {
+      image = "itzg/minecraft-server:java17";
+      ports = [
+        "25567:25565"
+      ];
+
+      volumes = [
+        "/srv/minecraft/deceased:/data"
+      ];
+
+      environment = {
+        EULA = "TRUE";
+        TYPE = "FORGE";
+        MEMORY = "24G";
+        VERSION = "1.18.2";
+        FORGE_VERSION = "latest";
+      };
+    };
   };
 
   networking = {
