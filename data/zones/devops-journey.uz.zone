@@ -14,3 +14,6 @@ $TTL 86400
 @      IN    A     65.109.74.214
 @      IN    AAAA  2a01:4f9:3071:31ce::
 www    IN    CNAME devops-journey.uz.
+
+; GitHub verifications
+_gh-devops-journey-uz-o IN TXT      464d64b6bc
