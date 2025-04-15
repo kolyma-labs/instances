@@ -22,6 +22,9 @@ std    IN    CNAME floss-uz.github.io.
 ; Trash contents
 trash  IN    CNAME floss-uz.github.io.
 
+; Awesome contents
+awesome IN   CNAME floss-uz.github.io.
+
 ; Matrix server
 chat   IN    CNAME ns2.kolyma.uz.
 matrix IN    CNAME ns2.kolyma.uz.
