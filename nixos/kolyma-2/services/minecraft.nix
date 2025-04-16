@@ -6,7 +6,7 @@
 in {
   virtualisation.oci-containers.containers = {
     minecraft-gamemania = {
-      image = "itzg/minecraft-server:java21";
+      image = "itzg/minecraft-server:java17";
       ports = [
         "24454:24454"
         "25565:25565"
@@ -18,11 +18,10 @@ in {
 
       environment = {
         EULA = "TRUE";
-        TYPE = "FABRIC";
+        TYPE = "FORGE";
         MEMORY = "24G";
         VERSION = "1.19.2";
-        FABRIC_LAUNCHER_VERSION = "1.0.3";
-        FABRIC_LOADER_VERSION = "0.16.13";
+        FORGE_VERSION = "latest";
       };
     };
 
