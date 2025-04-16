@@ -4,6 +4,7 @@
   ...
 }: let
   domain = "floss.uz";
+  alt-domain = "foss.uz";
   server = "matrix.${domain}";
 in {
   imports = [inputs.floss-website.nixosModules.server];
@@ -23,6 +24,8 @@ in {
     "${domain}" = {
       serverAliases = [
         "www.${domain}"
+        "${alt-domain}"
+        "www.${alt-domain}"
       ];
       extraConfig = ''
         handle_path /.well-known/matrix/client {

@@ -14,6 +14,7 @@
 
       # Projects
       "slave.uz"
+      "foss.uz"
       "floss.uz"
       "ecma.uz"
       "nyan.uz"
