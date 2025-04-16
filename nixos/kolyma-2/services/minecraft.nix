@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{...}: let
 in {
   virtualisation.oci-containers.containers = {
     minecraft-gamemania = {

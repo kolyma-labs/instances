@@ -1,8 +1,4 @@
-{
-  config,
-  inputs,
-  ...
-}: let
+{inputs, ...}: let
   domain = "devops-journey.uz";
 in {
   imports = [inputs.devops-journey.nixosModules.server];
