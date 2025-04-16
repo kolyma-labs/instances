@@ -39,6 +39,7 @@ social IN    CNAME ns2.kolyma.uz.
 @      IN    TXT   "v=spf1 include:icloud.com ~all"
 sig1._domainkey    IN CNAME sig1.dkim.floss.uz.at.icloudmailadmin.com.
 
+wm           IN    CNAME ns1.kolyma.uz.
 mail         IN    CNAME ns1.kolyma.uz.
 mta-sts      IN    CNAME ns1.kolyma.uz.
 autoconfig   IN    CNAME ns1.kolyma.uz.
