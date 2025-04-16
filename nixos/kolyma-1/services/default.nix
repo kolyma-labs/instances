@@ -16,5 +16,8 @@
 
     # Streaming service self hosted
     ./streaming.nix
+
+    # Mail server
+    ./mail.nix
   ];
 }
