@@ -87,7 +87,7 @@ in {
         principals = [
           {
             class = "individual";
-            name = "Sokhibjon Orzikulov";
+            name = "orzklv";
             secret = "%{file:${config.sops.secrets."stalwart/sakhib".path}}%";
             email = ["orzklv@floss.uz" "admin@floss.uz"];
           }
