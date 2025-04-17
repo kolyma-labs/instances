@@ -12,7 +12,7 @@ in {
     proxy = {
       inherit domain;
       enable = true;
-      proxy = "caddy";
+      proxy = "nginx";
       aliases = ["www.${domain}"];
     };
   };

@@ -23,9 +23,14 @@ in {
 
   services.www.hosts = {
     "cache.xinux.uz" = {
-      extraConfig = ''
-        reverse_proxy 127.0.0.1:5000
-      '';
+      addSSL = true;
+      enableACME = true;
+
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:5000";
+        proxyWebsockets = true;
+        extraConfig = "proxy_ssl_server_name on;";
+      };
     };
   };
 }
