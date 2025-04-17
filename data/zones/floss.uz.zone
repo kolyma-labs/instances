@@ -32,18 +32,21 @@ matrix IN    CNAME ns2.kolyma.uz.
 ; Mastodon server
 social IN    CNAME ns2.kolyma.uz.
 
-; Mail server (iCloud)
-@      IN    MX    10 mx01.mail.icloud.com.
-@      IN    MX    10 mx02.mail.icloud.com.
-@      IN    TXT   "apple-domain=0TF9ZVSEqRQl5H8y"
-@      IN    TXT   "v=spf1 include:icloud.com ~all"
-sig1._domainkey    IN CNAME sig1.dkim.floss.uz.at.icloudmailadmin.com.
-
-wm           IN    CNAME ns1.kolyma.uz.
-mail         IN    CNAME ns1.kolyma.uz.
-mta-sts      IN    CNAME ns1.kolyma.uz.
-autoconfig   IN    CNAME ns1.kolyma.uz.
-autodiscover IN    CNAME ns1.kolyma.uz.
+; Mail server
+@                  IN MX  10 mail.floss.uz.
+202504e._domainkey IN TXT "v=DKIM1; k=ed25519; h=sha256; p=Rj1l9kKLPpmJhaI9aIvTUTL1j6y8INVUWdmOTcCA1N0="
+202504r._domainkey IN TXT "v=DKIM1; k=rsa; h=sha256; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5uZFxZqrhfAGIyvDXjc1w/eIOYxLYYoNUAtU/alLw58pAHSl5Fwa4o7wEx8245YX+2IBB7kZAeX/VmT9cVXoHJGAWwfmcbcLeLYw4LNLluNZMSmfJq9ubZSAJkmN8uvgYIfoWXCkQB50+FB5/9SbdGFgNbjKvnuAPgjZwaQSVwdY4tbXzFlCdX1" "yKpK2vourpp+dmbVz8RzGtD82JopmANbBemgFXECrchwm6uSCKzw+HVgeUdoIfNY5Gqxt7NmQ0o8uq2ajz3ZqmypnfpSv/RjzA9edWAhLw22PlHnk5a6/LGf9PfCYPWQEQrPHd77HdTB60eq7kVx0ae06oxkuTwIDAQAB"
+mail               IN TXT "v=spf1 a ra=postmaster -all"
+@                  IN TXT "v=spf1 mx ra=postmaster -all"
+_imap._tcp         IN SRV 0 1 993 mail.floss.uz.
+_submission._tcp   IN SRV 0 1 465 mail.floss.uz.
+_dmarc             IN TXT "v=DMARC1; p=reject; rua=mailto:postmaster@floss.uz; ruf=mailto:postmaster@floss.uz"
+_smtp._tls         IN TXT "v=TLSRPTv1; rua=mailto:postmaster@floss.uz"
+wm                 IN    CNAME ns1.kolyma.uz.
+mail               IN    CNAME ns1.kolyma.uz.
+mta-sts            IN    CNAME ns1.kolyma.uz.
+autoconfig         IN    CNAME ns1.kolyma.uz.
+autodiscover       IN    CNAME ns1.kolyma.uz.
 
 ; GitHub Verifications
 _gh-floss-uz-o           IN TXT      33adfc2641
