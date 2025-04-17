@@ -40,9 +40,13 @@ in {
 
   services.www.hosts = {
     "cache.kolyma.uz" = {
-      extraConfig = ''
-        reverse_proxy 127.0.0.1:8501
-      '';
+      addSSL = true;
+      enableACME = true;
+
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8501";
+        extraConfig = "proxy_ssl_server_name on;";
+      };
     };
   };
 }
