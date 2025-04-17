@@ -22,6 +22,9 @@ in {
 
   services.www.hosts = {
     "${domain}" = {
+      addSSL = true;
+      enableACME = true;
+
       serverAliases = [
         "www.${domain}"
         "${alt-domain}"
