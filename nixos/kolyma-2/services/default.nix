@@ -17,6 +17,9 @@
     # Web server & proxy virtual hosts via caddy
     ./www.nix
 
+    # Mail server
+    ./mail.nix
+
     # Xinux deployment & services
     ./xinux.nix
 
