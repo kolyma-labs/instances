@@ -26,8 +26,8 @@
           try_files $uri $uri/ $uri.html =404;
         '';
 
-        locations."~ ^/(.*)\.html$".extraConfig = ''
-          return 301 /$1;
+        locations."~ ^/(.*)\\.html$".extraConfig = ''
+          rewrite ^/(.*)\\.html$ /$1 permanent;
         '';
       };
 
