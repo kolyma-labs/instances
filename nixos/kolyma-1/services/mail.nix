@@ -34,14 +34,14 @@ in {
         tls = {
           enable = true;
           implicit = true;
-          # certificate = "default";
+          certificate = "default";
         };
 
-        # certificate.default = {
-        #   default = true;
-        #   cert = "%{file:/opt/stalwart-mail/cert/example.com.pem}%";
-        #   private-key = "%{file:/opt/stalwart-mail/cert/example.com.priv.pem}%";
-        # };
+        certificate.default = {
+          default = true;
+          cert = "%{file:/var/lib/stalwart-mail/certs/floss.uz.pem}%";
+          private-key = "%{file:/var/lib/stalwart-mail/certs/floss.uz.priv.pem}%";
+        };
 
         listener = {
           smtp = {
@@ -107,13 +107,13 @@ in {
     };
   };
 
-  # services.cron = {
-  #   enable = true;
-  #   systemCronJobs = [
-  #     "0 3 * * * root cat /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/floss.uz/floss.uz.crt > /opt/stalwart-mail/cert/floss.uz.pem"
-  #     "0 3 * * * root cat /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/floss.uz/floss.uz.key > /opt/stalwart-mail/cert/floss.uz.priv.pem"
-  #   ];
-  # };
+  services.cron = {
+    enable = true;
+    systemCronJobs = [
+      "0 3 * * * root cat /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/floss.uz/floss.uz.crt > /var/lib/stalwart-mail/certs/floss.uz.pem"
+      "0 3 * * * root cat /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/floss.uz/floss.uz.key > /var/lib/stalwart-mail/certs/floss.uz.priv.pem"
+    ];
+  };
 
   services.www.hosts = {
     "wm.floss.uz" = {
