@@ -63,17 +63,30 @@ in {
     };
   };
 
+  # users.groups.gitlab.members = ["nginx"];
+
   # Enable web server & proxy
   services.www.hosts = {
     "gulag.uz" = {
-      extraConfig = ''
-        reverse_proxy unix//run/gitlab/gitlab-workhorse.socket
-      '';
+      addSSL = true;
+      enableACME = true;
+
+      locations."/".proxyPass = "http://unix:/run/gitlab/gitlab-workhorse.socket";
+
+      extraConfig =
+        # required when the target is also TLS server with multiple hosts
+        "proxy_ssl_server_name on;"
+        +
+        # required when the server wants to use HTTP Authentication
+        "proxy_pass_header Authorization;";
     };
 
     "git.kolyma.uz" = {
+      addSSL = true;
+      enableACME = true;
+
       extraConfig = ''
-        redir https://gulag.uz{uri} permanent
+        return 301 https://gulag.uz$request_uri;
       '';
     };
   };

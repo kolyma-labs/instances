@@ -16,6 +16,8 @@
     services.nginx = {
       # Enable the Nginx web server
       enable = true;
+      recommendedProxySettings = true;
+      recommendedTlsSettings = true;
 
       # Default virtual host
       virtualHosts = {

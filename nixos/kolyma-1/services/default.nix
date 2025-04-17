@@ -15,6 +15,6 @@
     ./www.nix
 
     # Streaming service self hosted
-    ./streaming.nix
+    # ./streaming.nix
   ];
 }
