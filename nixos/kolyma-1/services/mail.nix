@@ -57,12 +57,12 @@ in {
             protocol = "imap";
           };
           jmap = {
-            bind = "[::]:8080";
+            bind = "[::]:8093";
             url = "https://mail.floss.uz";
             protocol = "jmap";
           };
           management = {
-            bind = ["127.0.0.1:8080"];
+            bind = ["127.0.0.1:8093"];
             protocol = "http";
           };
         };
@@ -110,15 +110,15 @@ in {
   # services.cron = {
   #   enable = true;
   #   systemCronJobs = [
-  #     "0 3 * * * root cat /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/floss.uz/floss.uz.crt > /opt/stalwart-mail/cert/example.com.pem"
-  #     "0 3 * * * root cat /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/floss.uz/floss.uz.key > /opt/stalwart-mail/cert/example.com.priv.pem"
+  #     "0 3 * * * root cat /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/floss.uz/floss.uz.crt > /opt/stalwart-mail/cert/floss.uz.pem"
+  #     "0 3 * * * root cat /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/floss.uz/floss.uz.key > /opt/stalwart-mail/cert/floss.uz.priv.pem"
   #   ];
   # };
 
   services.www.hosts = {
     "wm.floss.uz" = {
       extraConfig = ''
-        reverse_proxy http://127.0.0.1:8080
+        reverse_proxy http://127.0.0.1:8093
       '';
       serverAliases = [
         "mta-sts.floss.uz"
