@@ -7,9 +7,16 @@ in {
 
     services.www.hosts = {
       "live.orzklv.uz" = {
-        extraConfig = ''
-          reverse_proxy ${config.services.owncast.listen}:${toString config.services.owncast.port}
-        '';
+        addSSL = true;
+        enableACME = true;
+
+        locations."/" = {
+          proxyPass = "http://${config.services.owncast.listen}:${toString config.services.owncast.port}";
+          proxyWebsockets = true;
+          extraConfig =
+            "proxy_ssl_server_name on;"
+            + "proxy_pass_header Authorization;";
+        };
       };
     };
 
