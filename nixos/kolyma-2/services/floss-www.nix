@@ -35,7 +35,7 @@ in {
         extraConfig = ''
           add_header Content-Type application/json;
           add_header Access-Control-Allow-Origin *;
-          return 200 '{"m.homeserver": {"base_url": "https://your.domain.com"}}';
+          return 200 '{"m.homeserver": {"base_url": "https://${server}"}}';
         '';
       };
 
@@ -43,7 +43,7 @@ in {
         extraConfig = ''
           add_header Content-Type application/json;
           add_header Access-Control-Allow-Origin *;
-          return 200 '{"m.server": "your.domain.com:443"}';
+          return 200 '{"m.server": "${server}:443"}';
         '';
       };
 
