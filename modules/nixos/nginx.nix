@@ -35,8 +35,8 @@
       acceptTerms = true;
       defaults = {
         email = "admin@kolyma.uz";
-        dnsResolver = "1.1.1.1:53";
-        dnsPropagationCheck = true;
+        # dnsResolver = "1.1.1.1:53";
+        # dnsPropagationCheck = true;
       };
     };
 
