@@ -203,17 +203,26 @@ in {
 
     services.www.hosts = {
       "${server}" = {
-        extraConfig = ''
-          reverse_proxy /_matrix/* localhost:8008
-          reverse_proxy /_synapse/client/* localhost:8008
+        addSSL = true;
+        enableACME = true;
+
+        locations."/".extraConfig = ''
+          return 404;
         '';
+
+        locations."/_matrix/" = {
+          proxyPass = "http://localhost:8008";
+        };
+
+        locations."/_synapse/client/" = {
+          proxyPass = "http://localhost:8008";
+        };
       };
 
       "${client.address}" = {
-        extraConfig = ''
-          root * ${client.pkg}
-          file_server
-        '';
+        addSSL = true;
+        enableACME = true;
+        root = client.pkg;
       };
     };
   };

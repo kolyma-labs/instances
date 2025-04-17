@@ -24,7 +24,7 @@
 
     webhook = {
       enable = true;
-      proxy = "caddy";
+      proxy = "nginx";
       domain = "bot.rust-lang.uz";
       port = 8446;
     };

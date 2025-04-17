@@ -18,7 +18,7 @@
 
     webhook = {
       enable = true;
-      proxy = "caddy";
+      proxy = "nginx";
       domain = "xinuxmgr.xinux.uz";
       port = 8445;
     };

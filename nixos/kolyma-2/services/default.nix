@@ -18,7 +18,7 @@
     ./www.nix
 
     # Mail server
-    ./mail.nix
+    # ./mail.nix
 
     # Xinux deployment & services
     ./xinux.nix
