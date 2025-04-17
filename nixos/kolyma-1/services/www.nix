@@ -22,12 +22,12 @@
         serverAliases = ["www.khakimovs.uz"];
         root = "${pkgs.personal.khakimovs}/www";
 
-        location."~ ^/(.*)\.html$".extraConfig = ''
-          return 301 /$1;
+        locations."/".extraConfig = ''
+          try_files $uri $uri/ $uri.html =404;
         '';
 
-        location."/".extraConfig = ''
-          try_files $uri $uri/ $uri.html =404;
+        locations."~ ^/(.*)\.html$".extraConfig = ''
+          return 301 /$1;
         '';
       };
 
