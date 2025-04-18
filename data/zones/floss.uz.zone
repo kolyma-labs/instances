@@ -37,6 +37,7 @@ mail            IN  A     65.109.74.214
 mail            IN  AAAA  2a01:4f9:3071:31ce::
 @               IN  MX    10 mail.floss.uz
 @               IN  TXT   "v=spf1 a:mail.floss.uz -all"
+_dmarc          IN  TXT   "v=DMARC1; p=none"
 mail._domainkey IN  TXT   ( "v=DKIM1; k=rsa; "
       "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCHR3DlCEG4En2904+17lCM/fITIr0cast/M5sUixYDLt8th/o4WCrBc+dBwaZNkprtl4CxB2WBI/P7rmGHyUzYqWIbQpxzvyhSLIRvqghBd8Cn44/xRyy/vHKsiiJ3bWn8ojEm2ccl4YwRT3ceDch36LkSruuyjUio3qGTm/OBwIDAQAB" )
 
