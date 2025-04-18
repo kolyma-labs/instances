@@ -21,6 +21,9 @@ in {
     fqdn = "mail.floss.uz";
     domains = ["floss.uz"];
 
+    enableSubmission = true;
+    enableSubmissionSsl = true;
+
     loginAccounts = {
       "admin@floss.uz" = {
         hashedPasswordFile = config.sops.secrets."mail/floss/admin".path;
