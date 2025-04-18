@@ -22,8 +22,16 @@ in {
     fqdn = "mail.floss.uz";
     domains = ["floss.uz"];
 
-    enableSubmission = true;
-    enableSubmissionSsl = true;
+    localDnsResolver = false;
+
+    fullTextSearch = {
+      enable = true;
+      # index new email as they arrive
+      autoIndex = true;
+      # this only applies to plain text attachments, binary attachments are never indexed
+      indexAttachments = true;
+      enforced = "body";
+    };
 
     loginAccounts = {
       "admin@floss.uz" = {
@@ -32,7 +40,10 @@ in {
       };
       "support@floss.uz" = {
         hashedPasswordFile = config.sops.secrets."mail/floss/support".path;
-        aliases = ["noreply@floss.uz"];
+      };
+      "noreply@floss.uz" = {
+        sendOnly = true;
+        hashedPasswordFile = config.sops.secrets."mail/floss/support".path;
       };
     };
 
