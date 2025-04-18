@@ -4,128 +4,32 @@
   pkgs,
   ...
 }: let
-  secret-management = {
-    owner = config.users.users.stalwart-mail.name;
-  };
+  # secret-management = {
+  #   owner = config.users.users.stalwart-mail.name;
+  # };
 in {
-  disabledModules = [
-    "services/mail/stalwart-mail.nix"
-  ];
-
   imports = [
-    "${inputs.nixpkgs-unstable}/nixos/modules/services/mail/stalwart-mail.nix"
+    inputs.simple-nixos-mailserver.nixosModule
   ];
 
   sops.secrets = {
-    "stalwart/admin" = secret-management;
-    "stalwart/sakhib" = secret-management;
-    "stalwart/postmaster" = secret-management;
+    "mail/floss/admin" = {};
   };
 
-  services.stalwart-mail = {
+  mailserver = {
     enable = true;
-    package = pkgs.unstable.stalwart-mail;
-    openFirewall = true;
+    fqdn = "mail.floss.uz";
+    domains = ["floss.uz"];
 
-    settings = {
-      server = {
-        hostname = "mail.floss.uz";
-
-        tls = {
-          enable = true;
-          implicit = true;
-          certificate = "default";
-        };
-
-        certificate.default = {
-          default = true;
-          cert = "%{file:/var/lib/stalwart-mail/certs/floss.uz.pem}%";
-          private-key = "%{file:/var/lib/stalwart-mail/certs/floss.uz.priv.pem}%";
-        };
-
-        listener = {
-          smtp = {
-            protocol = "smtp";
-            bind = "[::]:25";
-          };
-          submissions = {
-            bind = "[::]:465";
-            protocol = "smtp";
-          };
-          imaps = {
-            bind = "[::]:993";
-            protocol = "imap";
-          };
-          jmap = {
-            bind = "[::]:8093";
-            url = "https://mail.floss.uz";
-            protocol = "jmap";
-          };
-          management = {
-            bind = ["127.0.0.1:8093"];
-            protocol = "http";
-          };
-        };
-      };
-
-      lookup.default = {
-        hostname = "mail.floss.uz";
-        domain = "floss.uz";
-      };
-
-      session.auth = {
-        mechanisms = "[plain]";
-        directory = "'in-memory'";
-      };
-
-      storage.directory = "in-memory";
-      session.rcpt.directory = "'in-memory'";
-      queue.outbound.next-hop = "'local'";
-      directory."imap".lookup.domains = ["floss.uz"];
-      directory."in-memory" = {
-        type = "memory";
-        principals = [
-          {
-            class = "individual";
-            name = "orzklv";
-            secret = "%{file:${config.sops.secrets."stalwart/sakhib".path}}%";
-            email = ["orzklv@floss.uz" "admin@floss.uz"];
-          }
-          {
-            class = "individual";
-            name = "postmaster";
-            secret = "%{file:${config.sops.secrets."stalwart/postmaster".path}}%";
-            email = ["postmaster@floss.uz" "support@floss.uz" "maintainers@floss.uz" "developers@floss.uz"];
-          }
-        ];
-      };
-
-      authentication.fallback-admin = {
-        user = "admin";
-        secret = "%{file:${config.sops.secrets."stalwart/admin".path}}%";
+    loginAccounts = {
+      "admin@floss.uz" = {
+        hashedPasswordFile = config.sops.secrets."mail/floss/admin".path;
+        aliases = ["postmaster@floss.uz"];
       };
     };
-  };
 
-  services.cron = {
-    enable = true;
-    systemCronJobs = [
-      "0 3 * * * root cat /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/floss.uz/floss.uz.crt > /var/lib/stalwart-mail/certs/floss.uz.pem"
-      "0 3 * * * root cat /var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/floss.uz/floss.uz.key > /var/lib/stalwart-mail/certs/floss.uz.priv.pem"
-    ];
-  };
-
-  services.www.hosts = {
-    "wm.floss.uz" = {
-      extraConfig = ''
-        reverse_proxy http://127.0.0.1:8093
-      '';
-      serverAliases = [
-        "mta-sts.floss.uz"
-        "autoconfig.floss.uz"
-        "autodiscover.floss.uz"
-        "mail.floss.uz"
-      ];
-    };
+    # Use Let's Encrypt certificates. Note that this needs to set up a stripped
+    # down nginx and opens port 80.
+    certificateScheme = "acme-nginx";
   };
 }

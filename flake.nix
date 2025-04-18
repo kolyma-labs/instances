@@ -38,6 +38,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Mail Server
+    simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-24.11";
+
     # Orzklv's Nix configuration
     orzklv = {
       url = "github:orzklv/nix/master";

@@ -33,22 +33,10 @@ matrix IN    CNAME ns2.kolyma.uz.
 social IN    CNAME ns2.kolyma.uz.
 
 ; Mail server
-mail               IN A     65.109.74.214
-mail               IN AAAA  2a01:4f9:3071:31ce::
-wm                 IN CNAME mail.floss.uz.
-mta-sts            IN CNAME mail.floss.uz.
-autoconfig         IN CNAME mail.floss.uz.
-autodiscover       IN CNAME mail.floss.uz.
-@                  IN MX  10 mail.floss.uz.
-202504e._domainkey IN TXT "v=DKIM1; k=ed25519; h=sha256; p=mEYTcFaXm2qeGvyX/YBe653dLgEM4OguZd31rHJ/qMc="
-202504r._domainkey IN TXT "v=DKIM1; k=rsa; h=sha256; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0GZDYcoioUgzw0gyp4YRm92ena9AE/eDhcxbqZ6B7UojlgZcQ3f3cSIbdMQDAzGcbeZLs5iRuP1dndIUezYEv41ftnkOWQiPVi8zOjvMqaRVOJ1EtoA9hrfyQ4EztJLS9jr/4oO1pktJN3cqWqg1HgeSDvJwVvWa0PrYI8rN58yeT5SmgYZ0h+1" "Xf+f6Dy5APcaThvZxOz/M+STg7jowZrsn4aWlZFTHh1eaGHDaYXbY1gMhazSMFi+gGsqhpzRcOIQFHlz2k5IUnF3NQgd2IcWlBRUDiuleGom0BmsMYyvcEcOx5yMTfm+w3qEJLoEq4PPnyKQmm9GTqBc3Jqj13QIDAQAB"
-mail               IN TXT "v=spf1 a ra=postmaster -all"
-@                  IN TXT "v=spf1 mx ra=postmaster -all"
-_imap._tcp         IN SRV 0 1 993 mail.floss.uz.
-_submission._tcp   IN SRV 0 1 465 mail.floss.uz.
-_dmarc             IN TXT "v=DMARC1; p=reject; rua=mailto:postmaster@floss.uz; ruf=mailto:postmaster@floss.uz"
-_smtp._tls         IN TXT "v=TLSRPTv1; rua=mailto:postmaster@floss.uz"
-
+mail   IN    A     65.109.74.214
+mail   IN    AAAA  2a01:4f9:3071:31ce::
+@      IN    MX    10 mail.floss.uz
+@      IN    TXT   "v=spf1 a:mail.floss.uz -all"
 
 ; GitHub Verifications
 _gh-floss-uz-o           IN TXT      33adfc2641
