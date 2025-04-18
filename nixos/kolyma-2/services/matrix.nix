@@ -142,7 +142,6 @@ in {
         allow_guest_access = true;
         enable_registration = true;
         registrations_require_3pid = ["email"];
-        enable_registration_without_verification = true;
         enable_3pid_changes = true;
         enable_set_displayname = true;
         enable_set_avatar_url = true;
@@ -168,9 +167,8 @@ in {
           smtp_host = "mail.floss.uz";
           smtp_port = 465;
           smtp_user = "noreply@floss.uz";
-          force_tls = false;
+          force_tls = true;
           enable_tls = true;
-          require_transport_security = true;
           app_name = "Floss Chat";
           enable_notifs = true;
           notif_for_new_users = true;
