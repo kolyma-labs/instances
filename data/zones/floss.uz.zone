@@ -35,7 +35,7 @@ social IN    CNAME ns2.kolyma.uz.
 ; Mail server
 mail              IN  A     65.109.74.214
 mail              IN  AAAA  2a01:4f9:3071:31ce::
-@                 IN  MX    10 mail.floss.uz
+@                 IN  MX    10 mail.floss.uz.
 @                 IN  TXT   "v=spf1 a:mail.floss.uz -all"
 _submission._tcp  IN  SRV   5 0 587 mail.floss.uz.
 _submissions._tcp IN  SRV   5 0 465 mail.floss.uz.
