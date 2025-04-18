@@ -63,8 +63,8 @@ in {
 
   networking = {
     firewall = {
-      allowedUDPPorts = [25565 25566 25567];
-      allowedTCPPorts = [25565 25566 25567];
+      allowedUDPPorts = [25565 25566 25567 25575];
+      allowedTCPPorts = [25565 25566 25567 25575];
     };
   };
 }
