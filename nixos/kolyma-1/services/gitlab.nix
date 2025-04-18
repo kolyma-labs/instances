@@ -15,7 +15,7 @@ in {
     "gitlab/database" = secret-management;
     "gitlab/mail" = {
       owner = config.services.gitlab.user;
-      key = "mail/password";
+      key = "mail/icloud/password";
     };
   };
 

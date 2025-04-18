@@ -13,8 +13,8 @@ in {
   ];
 
   sops.secrets = {
-    "mail/floss/admin" = {};
-    "mail/floss/support" = {};
+    "mail/floss/admin/hashed" = {};
+    "mail/floss/support/hashed" = {};
   };
 
   mailserver = {
@@ -35,15 +35,15 @@ in {
 
     loginAccounts = {
       "admin@floss.uz" = {
-        hashedPasswordFile = config.sops.secrets."mail/floss/admin".path;
+        hashedPasswordFile = config.sops.secrets."mail/floss/admin/hashed".path;
         aliases = ["postmaster@floss.uz" "orzklv@floss.uz"];
       };
       "support@floss.uz" = {
-        hashedPasswordFile = config.sops.secrets."mail/floss/support".path;
+        hashedPasswordFile = config.sops.secrets."mail/floss/support/hashed".path;
       };
       "noreply@floss.uz" = {
         sendOnly = true;
-        hashedPasswordFile = config.sops.secrets."mail/floss/support".path;
+        hashedPasswordFile = config.sops.secrets."mail/floss/support/hashed".path;
       };
     };
 

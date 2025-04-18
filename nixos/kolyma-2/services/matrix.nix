@@ -58,7 +58,7 @@ in {
     sops.secrets = {
       "matrix/mail" = {
         owner = config.systemd.services.matrix-synapse.serviceConfig.User;
-        key = "mail/password";
+        key = "mail/floss/support/raw";
       };
       "matrix/oath/github/id" = {
         owner = config.systemd.services.matrix-synapse.serviceConfig.User;
@@ -83,7 +83,7 @@ in {
       content = ''
         email:
           smtp_pass: "${config.sops.placeholder."matrix/mail"}"
-          notif_from: "Floss Chat from <support@floss.uz>"
+          notif_from: "Floss Chat from <noreply@floss.uz>"
         oidc_providers:
           - idp_id: github
             idp_name: Github
@@ -141,9 +141,9 @@ in {
 
         allow_guest_access = true;
         enable_registration = true;
-        # registrations_require_3pid = ["email"];
+        registrations_require_3pid = ["email"];
         enable_registration_without_verification = true;
-        # enable_3pid_changes = true;
+        enable_3pid_changes = true;
         enable_set_displayname = true;
         enable_set_avatar_url = true;
 
@@ -165,9 +165,9 @@ in {
         ];
 
         email = {
-          smtp_host = "smtp.mail.me.com";
-          smtp_port = 587;
-          smtp_user = "sakhib.orzklv@icloud.com";
+          smtp_host = "mail.floss.uz";
+          smtp_port = 465;
+          smtp_user = "noreply@floss.uz";
           force_tls = false;
           enable_tls = true;
           require_transport_security = true;

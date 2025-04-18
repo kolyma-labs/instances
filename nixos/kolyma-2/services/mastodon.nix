@@ -9,7 +9,7 @@ in {
     sops.secrets = {
       "mastodon/mail" = {
         owner = config.services.mastodon.user;
-        key = "mail/password";
+        key = "mail/floss/support/raw";
       };
     };
 
@@ -24,11 +24,11 @@ in {
         port = 587;
         host = "smtp.mail.me.com";
 
-        user = "sakhib.orzklv@icloud.com";
+        user = "noreply@floss.uz";
         passwordFile = config.sops.secrets."mastodon/mail".path;
 
         authenticate = true;
-        fromAddress = "support@floss.uz";
+        fromAddress = "noreply@floss.uz";
       };
 
       streamingProcesses = 30;
