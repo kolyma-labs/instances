@@ -14,6 +14,7 @@ in {
 
   sops.secrets = {
     "mail/floss/admin" = {};
+    "mail/floss/support" = {};
   };
 
   mailserver = {
@@ -27,7 +28,11 @@ in {
     loginAccounts = {
       "admin@floss.uz" = {
         hashedPasswordFile = config.sops.secrets."mail/floss/admin".path;
-        aliases = ["postmaster@floss.uz"];
+        aliases = ["postmaster@floss.uz" "orzklv@floss.uz"];
+      };
+      "support@floss.uz" = {
+        hashedPasswordFile = config.sops.secrets."mail/floss/support".path;
+        aliases = ["noreply@floss.uz"];
       };
     };
 
