@@ -22,7 +22,7 @@ in {
 
       smtp = {
         port = 465;
-        host = "smtp.mail.me.com";
+        host = "mail.floss.uz";
 
         user = "noreply@floss.uz";
         passwordFile = config.sops.secrets."mastodon/mail".path;
