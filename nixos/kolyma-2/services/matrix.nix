@@ -165,11 +165,10 @@ in {
 
         email = {
           smtp_host = "mail.floss.uz";
-          smtp_port = 587;
+          smtp_port = 465;
           smtp_user = "noreply@floss.uz";
           enable_tls = true;
-          force_tls = false;
-          require_transport_security = true;
+          force_tls = true;
           app_name = "Floss Chat";
           enable_notifs = true;
           notif_for_new_users = true;
