@@ -15,6 +15,7 @@ in {
   sops.secrets = {
     "mail/floss/admin/hashed" = {};
     "mail/floss/support/hashed" = {};
+    "mail/floss/raxmatov/hashed" = {};
   };
 
   mailserver = {
@@ -44,6 +45,9 @@ in {
       "noreply@floss.uz" = {
         sendOnly = true;
         hashedPasswordFile = config.sops.secrets."mail/floss/support/hashed".path;
+      };
+      "b.raxmatov@floss.uz" = {
+        hashedPasswordFile = config.sops.secrets."mail/floss/raxmatov/hashed".path;
       };
     };
 
