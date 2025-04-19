@@ -135,6 +135,12 @@ in {
         "user-search"
       ];
 
+      log = {
+        loggers."synapse.util.mail".level = "DEBUG";
+        loggers."synapse.handlers.email".level = "DEBUG";
+        root.level = "INFO";
+      };
+
       settings = {
         server_name = domain;
         public_baseurl = "https://${server}";
@@ -169,13 +175,16 @@ in {
           smtp_user = "noreply@floss.uz";
           enable_tls = true;
           # force_tls = true;
-          # require_transport_security = true;
+          require_transport_security = true;
           app_name = "Floss Chat";
           enable_notifs = true;
           notif_for_new_users = true;
           client_base_url = "https://matrix.floss.uz";
           validation_token_lifetime = "15m";
           invite_client_location = "https://chat.floss.uz";
+          tls_client_options = {
+            verify = false; # ← disable CA verification for debugging
+          };
         };
 
         database.args = {
