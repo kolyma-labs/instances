@@ -34,6 +34,8 @@ in {
       enforced = "body";
     };
 
+    # Generating hashed passwords:
+    # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
     loginAccounts = {
       "admin@floss.uz" = {
         hashedPasswordFile = config.sops.secrets."mail/floss/admin/hashed".path;
