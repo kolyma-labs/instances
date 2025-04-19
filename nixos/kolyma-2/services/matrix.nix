@@ -43,6 +43,8 @@
   temp = "sniggers_and_maniggas";
 in {
   config = {
+    environment.etc."ssl/certs/ca-certificates.crt".source = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
+
     services.postgresql = {
       enable = lib.mkDefault true;
 
