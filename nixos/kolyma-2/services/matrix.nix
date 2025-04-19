@@ -82,8 +82,19 @@ in {
       owner = config.systemd.services.matrix-synapse.serviceConfig.User;
       content = ''
         email:
-          enable_notifs: true
+          smtp_host: "mail.floss.uz"
+          smtp_port: 587
+          smtp_user: "noreply@floss.uz"
           smtp_pass: "${config.sops.placeholder."matrix/mail"}"
+          enable_tls: true
+          force_tls: false
+          require_transport_security: true
+          app_name: "Floss Chat"
+          enable_notifs: true
+          notif_for_new_users: true
+          client_base_url: "https://matrix.floss.uz"
+          validation_token_lifetime: "15m"
+          invite_client_location: "https://chat.floss.uz"
           notif_from: "Floss Chat from <noreply@floss.uz>"
         oidc_providers:
           - idp_id: github
@@ -169,24 +180,6 @@ in {
           "#awesome:floss.uz"
           "#stds:floss.uz"
         ];
-
-        email = {
-          smtp_host = "mail.floss.uz";
-          smtp_port = 587;
-          smtp_user = "noreply@floss.uz";
-          enable_tls = true;
-          # force_tls = true;
-          require_transport_security = true;
-          app_name = "Floss Chat";
-          enable_notifs = true;
-          notif_for_new_users = true;
-          client_base_url = "https://matrix.floss.uz";
-          validation_token_lifetime = "15m";
-          invite_client_location = "https://chat.floss.uz";
-          tls_client_options = {
-            verify = false; # ← disable CA verification for debugging
-          };
-        };
 
         database.args = {
           password = "${temp}";
