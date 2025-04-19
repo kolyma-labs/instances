@@ -21,7 +21,7 @@ in {
       package = pkgs.mastodon;
 
       smtp = {
-        port = 587;
+        port = 465;
         host = "smtp.mail.me.com";
 
         user = "noreply@floss.uz";
