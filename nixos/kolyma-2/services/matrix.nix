@@ -82,6 +82,7 @@ in {
       owner = config.systemd.services.matrix-synapse.serviceConfig.User;
       content = ''
         email:
+          enable_notifs: true
           smtp_pass: "${config.sops.placeholder."matrix/mail"}"
           notif_from: "Floss Chat from <noreply@floss.uz>"
         oidc_providers:
