@@ -609,11 +609,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1734649271,
-        "narHash": "sha256-4EVBRhOjMDuGtMaofAIqzJbg4Ql7Ai0PSeuVZTHjyKQ=",
+        "lastModified": 1744932701,
+        "narHash": "sha256-fusHbZCyv126cyArUwwKrLdCkgVAIaa/fQJYFlCEqiU=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d70bd19e0a38ad4790d3913bf08fcbfc9eeca507",
+        "rev": "b024ced1aac25639f8ca8fdfc2f8c4fbd66c48ef",
         "type": "github"
       },
       "original": {
@@ -760,11 +760,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1734934255,
-        "narHash": "sha256-I0tjiLywiTBsk75M4r++t0A4jKgckDw/2q6bgd9eJNI=",
+        "lastModified": 1745224679,
+        "narHash": "sha256-q91rIOYMpwGP1uVQxZJd5tHE9J+E6GvgKb7J+XnYLf0=",
         "owner": "rust-lang-uz",
         "repo": "telegram",
-        "rev": "3389b2afeb01468cc31a1ac1ca5d20cf1fca3fcf",
+        "rev": "1a2db4e14a3a61c88808ad74abc425532b149889",
         "type": "github"
       },
       "original": {
