@@ -34,6 +34,7 @@ _discord                                IN    TXT    "dh=40507df5bf75296fe7e4752
 
 ; GitHub Pages
 license IN   CNAME orzklv.github.io.
+stream  IN   CNAME orzklv.github.io.
 
 ; FLACs
 flac   IN    CNAME ns1.kolyma.uz.
