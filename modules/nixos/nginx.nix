@@ -4,12 +4,13 @@
   pkgs,
   ...
 }: let
-  fallbacks = config:
+  cfg = config.services.www;
+
+  fallbacks = cfg:
     [
-      "kolyma.uz"
-      "www.kolyma.uz"
+      "www.${cfg.domain}"
     ]
-    ++ config.services.www.alias;
+    ++ cfg.alias;
 
   default = {
     # Configure Nginx
@@ -23,10 +24,10 @@
 
       # Default virtual host
       virtualHosts = {
-        "kolyma.uz" = {
+        ${cfg.domain} = {
           forceSSL = true;
           enableACME = true;
-          serverAliases = fallbacks config;
+          serverAliases = fallbacks cfg;
           root = "${pkgs.personal.gate}/www";
         };
       };
@@ -37,8 +38,6 @@
       acceptTerms = true;
       defaults = {
         email = "admin@kolyma.uz";
-        # dnsResolver = "1.1.1.1:53";
-        # dnsPropagationCheck = true;
       };
     };
 
@@ -57,11 +56,11 @@
     # Extra configurations for Nginx
     services.nginx = {
       # User provided hosts
-      virtualHosts = config.services.www.hosts;
+      virtualHosts = cfg.hosts;
     };
   };
 
-  cfg = lib.mkMerge [
+  merge = lib.mkMerge [
     default
     extra
   ];
@@ -72,6 +71,12 @@ in {
         type = lib.types.bool;
         default = false;
         description = "Enable the web server/proxy";
+      };
+
+      domain = lib.mkOption {
+        type = lib.types.str;
+        default = "kolyma.uz";
+        description = "The default domain of instance.";
       };
 
       alias = lib.mkOption {
@@ -88,5 +93,5 @@ in {
     };
   };
 
-  config = lib.mkIf config.services.www.enable cfg;
+  config = lib.mkIf config.services.www.enable merge;
 }

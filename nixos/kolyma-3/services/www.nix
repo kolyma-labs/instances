@@ -4,8 +4,8 @@
   # Enable web server & proxy
   services.www = {
     enable = true;
+    domain = "slave.uz";
     alias = [
-      "slave.uz"
       "ns3.kolyma.uz"
     ];
     hosts = {
