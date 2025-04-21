@@ -43,6 +43,7 @@ in {
       };
       "support@floss.uz" = {
         hashedPasswordFile = config.sops.secrets."mail/floss/support/hashed".path;
+        aliases = ["developers@floss.uz" "maintainers@floss.uz"];
       };
       "noreply@floss.uz" = {
         sendOnly = true;
