@@ -669,11 +669,11 @@
         "sops-nix": "sops-nix"
       },
       "locked": {
-        "lastModified": 1745297686,
-        "narHash": "sha256-lzmrwNrA/q1aevj9n+5xbSYx4kyb75sNDE7VwqvgOdk=",
+        "lastModified": 1745299835,
+        "narHash": "sha256-B+9MaTD6iRtr1Jn3d6XWSglytBP4wI84mCw13AHwzCc=",
         "owner": "orzklv",
         "repo": "nix",
-        "rev": "e361dec15d079f66042cadefa4fc8ba4ed40e296",
+        "rev": "b24556e6856c22ad063333ac2f51914b39f6c7f8",
         "type": "github"
       },
       "original": {
