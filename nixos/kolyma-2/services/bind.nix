@@ -23,6 +23,7 @@
       "xinux.uz"
       "haskell.uz"
       "sabine.uz"
+      "uzbek.net.uz"
       "devops-journey.uz"
       "trashiston.uz"
       "niggerlicious.uz"
