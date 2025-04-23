@@ -26,3 +26,6 @@ nohup.out
 # IDE and Editors
 .vscode
 .idea
+
+# direnv
+.direnv
