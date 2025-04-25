@@ -22,11 +22,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1745204692,
+        "lastModified": 1745585709,
         "narHash": "sha256-GKyCfEo/vgpbaABzTXpr0ptDVxVU41sIswDRWhxIhvE=",
         "owner": "devops-journey-uz",
         "repo": "devops-journey",
-        "rev": "e189ae7b6efb4d848ef0073da4fe21355828149f",
+        "rev": "c34019e103fe3e5ec82da665330e0b8f7df0d805",
         "type": "github"
       },
       "original": {
