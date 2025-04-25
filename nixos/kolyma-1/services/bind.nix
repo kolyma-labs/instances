@@ -18,6 +18,7 @@
       "floss.uz"
       "ecma.uz"
       "nyan.uz"
+      "gopher.uz"
       "rust-lang.uz"
       "osmon-lang.uz"
       "xinux.uz"
@@ -28,6 +29,5 @@
       "trashiston.uz"
       "niggerlicious.uz"
     ];
-    slaves = ["65.109.74.214"];
   };
 }

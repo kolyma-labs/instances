@@ -4,7 +4,7 @@
   # Enable Nameserver hosting
   services.nameserver = {
     enable = true;
-    type = "slave";
+    type = "master";
     zones = [
       # Personal Space
       "orzklv.uz"
@@ -18,6 +18,7 @@
       "floss.uz"
       "ecma.uz"
       "nyan.uz"
+      "gopher.uz"
       "rust-lang.uz"
       "osmon-lang.uz"
       "xinux.uz"
@@ -28,6 +29,5 @@
       "trashiston.uz"
       "niggerlicious.uz"
     ];
-    masters = ["167.235.96.40"];
   };
 }
