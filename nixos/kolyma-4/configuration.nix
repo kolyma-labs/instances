@@ -30,7 +30,7 @@
   ];
 
   # Hostname of the system
-  networking.hostName = "Kolyma-3";
+  networking.hostName = "Kolyma-4";
 
   # Entirely disable hibernation
   systemd.sleep.extraConfig = ''
