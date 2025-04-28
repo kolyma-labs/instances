@@ -20,12 +20,16 @@ www    IN    AAAA  2a01:4f8:2190:2914::
 www    IN    A     65.109.74.214
 www    IN    AAAA  2a01:4f9:3071:31ce::
 
-; A & AAAA records for nameservers
+; A & AAAA records for global servers
 ns1    IN    A     167.235.96.40
 ns1    IN    AAAA  2a01:4f8:2190:2914::
 ns2    IN    A     65.109.74.214
 ns2    IN    AAAA  2a01:4f9:3071:31ce::
-ns4    IN    A     213.230.122.228
+ns3    IN    A     116.202.247.9
+ns3    IN    AAAA  2a01:4f8:241:44a8::
+
+; A & AAAA records for local exposed servers
+uz1    IN    A     213.230.122.228
 
 ; Mail server (iCloud)
 @      IN    MX    10 mx01.mail.icloud.com.
