@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        instance: [1, 2]
+        instance: [1, 2, 3]
     runs-on: self-hosted
 
     steps:
