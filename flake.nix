@@ -76,6 +76,9 @@
 
     # DevOps Journey website
     devops-journey.url = "github:devops-journey-uz/devops-journey";
+
+    # Tarmoqchi HTTP tunneling
+    tarmoqchi.url = "github:floss-uz-community/tarmoqchi";
   };
 
   # In this context, outputs are mostly about getting home-manager what it
