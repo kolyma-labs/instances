@@ -15,7 +15,7 @@ in {
     "tarmoqchi/github/secret" = management;
   };
 
-  # Enable xinux bots
+  # Enable tarmoqchi server
   services.tarmoqchi = {
     enable = true;
     port = 9876;
