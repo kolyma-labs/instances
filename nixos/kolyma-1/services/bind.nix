@@ -19,6 +19,7 @@
       "ecma.uz"
       "nyan.uz"
       "gopher.uz"
+      "tarmoqchi.uz"
       "rust-lang.uz"
       "osmon-lang.uz"
       "xinux.uz"
@@ -29,13 +30,5 @@
       "trashiston.uz"
       "niggerlicious.uz"
     ];
-    extra = ''
-      zone "tarmoqchi.uz" {
-        type master;
-        file "/var/dns/tarmoqchi.uz.zone";
-        allow-update { 116.202.247.9; 2a01:4f8:241:44a8::; };
-        allow-query { any; };
-      };
-    '';
   };
 }
