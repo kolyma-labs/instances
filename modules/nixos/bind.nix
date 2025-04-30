@@ -50,6 +50,7 @@
       inherit (config.services.nameserver) enable;
       directory = "/var/bind";
       zones = zonesMap config.services.nameserver.zones config.services.nameserver.type;
+      extraConfig = config.services.nameserver.extra;
     };
 
     networking = {
@@ -96,6 +97,12 @@ in {
         type = lib.types.listOf lib.types.str;
         default = zones;
         description = "List of zones to be served.";
+      };
+
+      extra = lib.mkOption {
+        type = lib.types.lines;
+        description = "Extra zone config to be appended at the end of the zone section.";
+        default = "";
       };
     };
   };
