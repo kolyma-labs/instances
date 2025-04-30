@@ -19,7 +19,6 @@
       "ecma.uz"
       "nyan.uz"
       "gopher.uz"
-      # "tarmoqchi.uz"
       "rust-lang.uz"
       "osmon-lang.uz"
       "xinux.uz"
