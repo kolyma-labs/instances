@@ -30,15 +30,10 @@
       "niggerlicious.uz"
     ];
     extra = ''
-      key "ns3-updater" {
-        algorithm hmac-sha256;
-        secret "g4GjyW4IgOlx7vH6tTefows+o1echLGBTeYS+KTmZrE=";
-      };
-
       zone "tarmoqchi.uz" {
         type master;
         file "/var/dns/tarmoqchi.uz.zone";
-        allow-update { key "ns3-updater"; };
+        allow-update { 116.202.247.9; };
         allow-query { any; };
       };
     '';
