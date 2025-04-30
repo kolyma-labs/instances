@@ -33,7 +33,7 @@
       zone "tarmoqchi.uz" {
         type master;
         file "/var/dns/tarmoqchi.uz.zone";
-        allow-update { 116.202.247.9; };
+        allow-update { 116.202.247.9; 2a01:4f8:241:44a8::; };
         allow-query { any; };
       };
     '';
