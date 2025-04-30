@@ -3,6 +3,8 @@
   inputs,
   ...
 }: let
+  cfg = config.services.tarmoqchi;
+
   management = {
     owner = config.services.tarmoqchi.user;
   };
@@ -21,9 +23,29 @@ in {
     port = 9876;
 
     proxy-reverse = {
-      enable = true;
+      enable = false;
       domain = "tarmoqchi.uz";
       proxy = "nginx";
+    };
+
+    security.acme = {
+      certs."tarmoqchi.uz" = {
+        dnsProvider = "rfc2136";
+        environmentFile = "/etc/acme/rfc2136.env";
+        extraDomainNames = ["*.tarmoqchi.uz"];
+      };
+    };
+
+    services.www.hosts = {
+      "${cfg.proxy-reverse.domain}" = {
+        addSSL = true;
+        enableACME = true;
+        serverAliases = ["*.${cfg.proxy-reverse.domain}"];
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:${toString cfg.port}";
+          proxyWebsockets = true;
+        };
+      };
     };
 
     github = {

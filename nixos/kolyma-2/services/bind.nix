@@ -40,6 +40,7 @@
         type master;
         file "/var/dns/tarmoqchi.uz.zone";
         allow-update { key "ns3-updater"; };
+        allow-query { any; };
       };
     '';
   };
