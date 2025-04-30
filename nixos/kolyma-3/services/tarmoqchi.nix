@@ -43,6 +43,7 @@ in {
       dnsProvider = "rfc2136";
       environmentFile = "/etc/acme/rfc2136.env";
       extraDomainNames = ["*.tarmoqchi.uz"];
+      webroot = null; # disable any inherited value
     };
   };
 
