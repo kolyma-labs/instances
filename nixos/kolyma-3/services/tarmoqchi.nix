@@ -51,8 +51,14 @@ in {
     "${cfg.proxy-reverse.domain}" = {
       addSSL = true;
       enableACME = true;
-      acmeRoot = null;
-      serverAliases = ["*.${cfg.proxy-reverse.domain}"];
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:${toString cfg.port}";
+        proxyWebsockets = true;
+      };
+    };
+    "${cfg.proxy-reverse.domain}" = {
+      addSSL = true;
+      useACMEHost = "tarmoqchi.uz";
       locations."/" = {
         proxyPass = "http://127.0.0.1:${toString cfg.port}";
         proxyWebsockets = true;
