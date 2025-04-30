@@ -28,26 +28,6 @@ in {
       proxy = "nginx";
     };
 
-    security.acme = {
-      certs."tarmoqchi.uz" = {
-        dnsProvider = "rfc2136";
-        environmentFile = "/etc/acme/rfc2136.env";
-        extraDomainNames = ["*.tarmoqchi.uz"];
-      };
-    };
-
-    services.www.hosts = {
-      "${cfg.proxy-reverse.domain}" = {
-        addSSL = true;
-        enableACME = true;
-        serverAliases = ["*.${cfg.proxy-reverse.domain}"];
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString cfg.port}";
-          proxyWebsockets = true;
-        };
-      };
-    };
-
     github = {
       id = config.sops.secrets."tarmoqchi/github/id".path;
       secret = config.sops.secrets."tarmoqchi/github/secret".path;
@@ -55,6 +35,26 @@ in {
 
     database = {
       passwordFile = config.sops.secrets."tarmoqchi/database".path;
+    };
+  };
+
+  security.acme = {
+    certs."tarmoqchi.uz" = {
+      dnsProvider = "rfc2136";
+      environmentFile = "/etc/acme/rfc2136.env";
+      extraDomainNames = ["*.tarmoqchi.uz"];
+    };
+  };
+
+  services.www.hosts = {
+    "${cfg.proxy-reverse.domain}" = {
+      addSSL = true;
+      enableACME = true;
+      serverAliases = ["*.${cfg.proxy-reverse.domain}"];
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:${toString cfg.port}";
+        proxyWebsockets = true;
+      };
     };
   };
 }
