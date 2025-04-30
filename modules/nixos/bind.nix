@@ -40,6 +40,9 @@
           for zoneFile in ${../../data/zones}/*.zone; do
             cp -f "$zoneFile" /var/dns/
           done
+          chown -R named:named /var/dns
+          chmod 750 /var/dns
+          find /var/dns -type f -exec chown named:named {} \;
         '';
         deps = [];
       };
@@ -83,13 +86,13 @@ in {
 
       masters = lib.mkOption {
         type = lib.types.listOf lib.types.str;
-        default = ["167.235.96.40"];
+        default = [];
         description = "IP address of the master server.";
       };
 
       slaves = lib.mkOption {
         type = lib.types.listOf lib.types.str;
-        default = ["65.109.74.214"];
+        default = [];
         description = "List of slave servers.";
       };
 
