@@ -17,6 +17,15 @@ in {
     "tarmoqchi/github/secret" = management;
   };
 
+  environment.etc = {
+    "acme/rfc2136.env".text = ''
+      RFC2136_TSIG_KEY=
+      RFC2136_TSIG_SECRET=
+      RFC2136_TSIG_ALGO=hmac-sha512.
+      RFC2136_NAMESERVER=ns2.kolyma.uz
+    '';
+  };
+
   # Enable tarmoqchi server
   services.tarmoqchi = {
     enable = true;
