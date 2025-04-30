@@ -18,7 +18,7 @@ in {
   # Enable tarmoqchi server
   services.tarmoqchi = {
     enable = true;
-    port = 8080;
+    port = 9876;
 
     proxy-reverse = {
       enable = true;
