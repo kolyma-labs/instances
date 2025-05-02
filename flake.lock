@@ -330,11 +330,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1746118495,
-        "narHash": "sha256-34YYlV5TaVLxbmRYA5yYVHqR5S49rhltiHF2wEi4Hrk=",
+        "lastModified": 1746176631,
+        "narHash": "sha256-+4/8blKLWho+bJux22aAQIaIShTFV54PZtvJi2N5KdI=",
         "owner": "floss-uz",
         "repo": "website",
-        "rev": "5b3d730e9c24edda3b24752ff63fcff4a18128ba",
+        "rev": "bfe240d90e1ce018c06045fe04c315bb5c2d27ea",
         "type": "github"
       },
       "original": {
