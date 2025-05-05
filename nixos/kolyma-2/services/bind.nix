@@ -13,22 +13,23 @@
       "khakimovs.uz"
 
       # Projects
-      "slave.uz"
       "foss.uz"
-      "floss.uz"
       "ecma.uz"
       "nyan.uz"
+      "slave.uz"
+      "xinux.uz"
+      "floss.uz"
       "gopher.uz"
+      "sabine.uz"
+      "haskell.uz"
+      "php.org.uz"
+      "uzbek.net.uz"
       "tarmoqchi.uz"
       "rust-lang.uz"
       "osmon-lang.uz"
-      "xinux.uz"
-      "haskell.uz"
-      "sabine.uz"
-      "uzbek.net.uz"
-      "devops-journey.uz"
       "trashiston.uz"
       "niggerlicious.uz"
+      "devops-journey.uz"
     ];
   };
 }
