@@ -28,6 +28,7 @@
       "rust-lang.uz"
       "osmon-lang.uz"
       "trashiston.uz"
+      "nix-darwin.uz"
       "niggerlicious.uz"
       "devops-journey.uz"
     ];
