@@ -41,6 +41,7 @@ in {
           Thelis = "2c3a8eb7-921b-4e4a-ba60-c5e3a83d941f";
           Shakhz = "1c786ec6-0f65-4448-9ecf-ab53b75bf867";
           Nixxer = "8fdd80ef-c294-432d-b381-e43353a3db27";
+          jkhngr = "8250cc4b-7844-4ba0-80e0-112df5f2cd5b";
         };
 
         symlinks = with pkgs; {
