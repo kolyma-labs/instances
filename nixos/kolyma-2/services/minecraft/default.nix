@@ -19,6 +19,7 @@ in {
       in {
         enable = true;
         openFirewall = true;
+        dataDir = "/var/lib/minecraft";
         package = pkgs.paperServers.${server};
         jvmOpts = "-Xms24576M -Xmx24576M -XX:+UseG1GC -XX:ParallelGCThreads=10 -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10";
 
