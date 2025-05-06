@@ -37,7 +37,6 @@ in {
         whitelist = {
           Orzklv = "3e220001-9544-48bb-8fd0-ca7139727207";
           Vodiyl = "ff179f82-7960-4f63-8137-8251fbd13e59";
-          AniSar = "48ed1b8a-ed65-4321-aae7-76734fe8cc27";
           OwOssi = "14f4fba3-bd65-48d3-b212-2e77383c1b1d";
           Thelis = "2c3a8eb7-921b-4e4a-ba60-c5e3a83d941f";
           Shakhz = "1c786ec6-0f65-4448-9ecf-ab53b75bf867";
