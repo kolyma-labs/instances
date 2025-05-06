@@ -28,7 +28,7 @@
         };
       };
 
-      "mod.sabine.uz" = {
+      "mc.floss.uz" = {
         addSSL = true;
         enableACME = true;
 
