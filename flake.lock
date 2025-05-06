@@ -1076,11 +1076,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1746472735,
-        "narHash": "sha256-v870+GDnCdWKDA2PkSPh3OU1AIDR1/10KLCyDGVRgqg=",
+        "lastModified": 1746525111,
+        "narHash": "sha256-mRrG8anzkhPNQ/yvZPD2FeasqJ2C6jBJOs+CvwryYCA=",
         "owner": "xinux-org",
         "repo": "telegram",
-        "rev": "c7c3352841f374306e8de6d0731eb38cf477c6e1",
+        "rev": "eb4b66b2f1663991e1d1bc42ab83442c4325d6d6",
         "type": "github"
       },
       "original": {
