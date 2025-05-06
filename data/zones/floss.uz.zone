@@ -29,6 +29,9 @@ awesome IN   CNAME floss-uz.github.io.
 chat   IN    CNAME ns2.kolyma.uz.
 matrix IN    CNAME ns2.kolyma.uz.
 
+; Minecraft server
+mc     IN    CNAME ns2.kolyma.uz.
+
 ; Mastodon server
 social IN    CNAME ns2.kolyma.uz.
 
