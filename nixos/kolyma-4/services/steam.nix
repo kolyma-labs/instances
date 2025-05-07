@@ -30,6 +30,8 @@
       Restart = "always";
 
       ExecStart = pkgs.writeShellScript "start-cs2" ''
+        export LD_LIBRARY_PATH=/home/sakhib/.steam/steam/linux64:$LD_LIBRARY_PATH
+
         # Read GLST
         steam_token=$(cat .token)
 
