@@ -7,5 +7,8 @@
 
     # NixOS binary proxy server
     ./cache.nix
+
+    # Steam and dedicated server
+    ./steam.nix
   ];
 }
