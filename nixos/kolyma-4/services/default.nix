@@ -7,8 +7,5 @@
 
     # NixOS binary proxy server
     ./cache.nix
-
-    # Minecraft server configurations
-    ./minecraft
   ];
 }
