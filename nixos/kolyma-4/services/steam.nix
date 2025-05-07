@@ -10,6 +10,13 @@
     localNetworkGameTransfers.openFirewall = true;
   };
 
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    # Add any missing dynamic libraries for unpackaged programs
+    # here, NOT in environment.systemPackages
+    glibc
+  ];
+
   systemd.services.cs2-server = {
     description = "CS2 Server for Floss Uzbekistan";
     documentation = ["https://floss.uz/"];
