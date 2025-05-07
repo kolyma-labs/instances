@@ -17,7 +17,7 @@
     glibc
   ];
 
-  systemd.services.cs2-server-mirage = {
+  systemd.services.cs2-server = {
     description = "CS2 Server for Floss Uzbekistan";
     documentation = ["https://floss.uz/"];
 
@@ -29,7 +29,7 @@
       User = "sakhib";
       Restart = "always";
 
-      ExecStart = pkgs.writeShellScript "start-cs2-mirage" ''
+      ExecStart = pkgs.writeShellScript "start-cs2" ''
         export LD_LIBRARY_PATH=/home/sakhib/.steam/steam/linux64:$LD_LIBRARY_PATH
 
         # Read GLST
@@ -40,84 +40,6 @@
           -dedicated +ip 0.0.0.0 \
           -port 27015 \
           +map de_mirage \
-          -maxplayers 10 \
-          +sv_setsteamaccount $steam_token \
-          +hostname "Floss Uzbekistan Mirage"
-      '';
-
-      WorkingDirectory = "/home/sakhib/.steam/steam";
-      StateDirectory = "steam-server";
-      StateDirectoryMode = "0750";
-
-      # Hardening
-      ProtectSystem = "strict";
-      PrivateTmp = true;
-      NoNewPrivileges = true;
-    };
-  };
-
-  systemd.services.cs2-server-dust2 = {
-    description = "CS2 Server for Floss Uzbekistan";
-    documentation = ["https://floss.uz/"];
-
-    after = ["network-online.target"];
-    wants = ["network-online.target"];
-    wantedBy = ["multi-user.target"];
-
-    serviceConfig = {
-      User = "sakhib";
-      Restart = "always";
-
-      ExecStart = pkgs.writeShellScript "start-cs-dust2" ''
-        export LD_LIBRARY_PATH=/home/sakhib/.steam/steam/linux64:$LD_LIBRARY_PATH
-
-        # Read GLST
-        steam_token=$(cat .dust2)
-
-        # Start the damned server
-        "/home/sakhib/.steam/steam/Steamapps/common/Counter-Strike Global Offensive/game/bin/linuxsteamrt64/cs2" \
-          -dedicated +ip 0.0.0.0 \
-          -port 27016 \
-          +map de_dust2 \
-          -maxplayers 10 \
-          +sv_setsteamaccount $steam_token \
-          +hostname "Floss Uzbekistan Dust2"
-      '';
-
-      WorkingDirectory = "/home/sakhib/.steam/steam";
-      StateDirectory = "steam-server";
-      StateDirectoryMode = "0750";
-
-      # Hardening
-      ProtectSystem = "strict";
-      PrivateTmp = true;
-      NoNewPrivileges = true;
-    };
-  };
-
-  systemd.services.cs2-server-inferno = {
-    description = "CS2 Server for Floss Uzbekistan";
-    documentation = ["https://floss.uz/"];
-
-    after = ["network-online.target"];
-    wants = ["network-online.target"];
-    wantedBy = ["multi-user.target"];
-
-    serviceConfig = {
-      User = "sakhib";
-      Restart = "always";
-
-      ExecStart = pkgs.writeShellScript "start-cs2-inferno" ''
-        export LD_LIBRARY_PATH=/home/sakhib/.steam/steam/linux64:$LD_LIBRARY_PATH
-
-        # Read GLST
-        steam_token=$(cat .inferno)
-
-        # Start the damned server
-        "/home/sakhib/.steam/steam/Steamapps/common/Counter-Strike Global Offensive/game/bin/linuxsteamrt64/cs2" \
-          -dedicated +ip 0.0.0.0 \
-          -port 27017 \
-          +map de_inferno \
           -maxplayers 10 \
           +sv_setsteamaccount $steam_token \
           +hostname "Floss Uzbekistan"
