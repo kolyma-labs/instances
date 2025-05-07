@@ -39,9 +39,14 @@
         "/home/sakhib/.steam/steam/Steamapps/common/Counter-Strike Global Offensive/game/bin/linuxsteamrt64/cs2" \
           -dedicated +ip 0.0.0.0 \
           -port 27015 \
+          -console \
+          -usercon \
+          -maxplayers 10 \
+          +mapgroup mg_active \
+          +rcon_password something \
+          # +game_alias competitive \
           +map de_mirage \
           +mp_endmatch_votenextmap 1 \
-          -maxplayers 10 \
           +sv_setsteamaccount $steam_token \
           +hostname "Floss Uzbekistan"
       '';
