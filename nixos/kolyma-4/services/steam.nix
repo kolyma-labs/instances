@@ -49,7 +49,6 @@
 
       # Hardening
       ProtectSystem = "strict";
-      ProtectHome = true;
       PrivateTmp = true;
       NoNewPrivileges = true;
     };
