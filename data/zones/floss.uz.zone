@@ -31,7 +31,7 @@ matrix IN    CNAME ns2.kolyma.uz.
 
 ; Game servers
 mc     IN    CNAME ns2.kolyma.uz.
-cs2     IN    CNAME uz1.kolyma.uz.
+cs2    IN    CNAME uz1.kolyma.uz.
 
 ; Mastodon server
 social IN    CNAME ns2.kolyma.uz.
