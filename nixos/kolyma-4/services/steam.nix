@@ -40,6 +40,7 @@
           -dedicated +ip 0.0.0.0 \
           -port 27015 \
           +map de_mirage \
+          +mp_endmatch_votenextmap 1 \
           -maxplayers 10 \
           +sv_setsteamaccount $steam_token \
           +hostname "Floss Uzbekistan"
