@@ -27,7 +27,6 @@
 
     serviceConfig = {
       User = "sakhib";
-      Group = "sakhib";
       Restart = "always";
 
       ExecStart = pkgs.writeShellScript "start-cs2" ''
