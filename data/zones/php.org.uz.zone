@@ -11,8 +11,10 @@ $TTL 86400
 @      IN    NS    ns2.kolyma.uz.
 
 ; Entry points
-@      IN    A     65.109.74.214
-@      IN    AAAA  2a01:4f9:3071:31ce::
+@      IN    A     185.199.108.153
+@      IN    A     185.199.109.153
+@      IN    A     185.199.110.153
+@      IN    A     185.199.111.153
 www    IN    CNAME php.org.uz.
 
 ; GitHub verifications
