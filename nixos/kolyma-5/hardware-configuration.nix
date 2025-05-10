@@ -33,6 +33,9 @@
     bios = {
       enable = true;
       uefi = false;
+      mirrors = [
+        "/dev/sda"
+      ];
     };
   };
 
