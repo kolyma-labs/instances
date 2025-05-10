@@ -9,9 +9,6 @@
     inputs.disko.nixosModules.disko
     ./disk-configuration.nix
 
-    # QEMU modules
-    (modulesPath + "/profiles/qemu-guest.nix")
-
     # Not available hardware modules
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -34,7 +31,7 @@
 
     bios = {
       enable = true;
-      uefi = true;
+      uefi = false;
     };
   };
 
@@ -43,7 +40,7 @@
 
     ipv4 = {
       enable = true;
-      address = "192.168.0.20";
+      address = "192.168.0.2";
     };
 
     ipv6 = {

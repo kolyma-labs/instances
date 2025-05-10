@@ -3,12 +3,9 @@
   # List all modules here to be included on config
   imports = [
     # Web server & proxy virtual hosts via caddy
-    ./www.nix
-
-    # NixOS binary proxy server
-    ./cache.nix
+    # ./www.nix
 
     # Steam and dedicated server
-    ./steam.nix
+    # ./steam.nix
   ];
 }
