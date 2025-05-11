@@ -4,5 +4,8 @@
   imports = [
     # Web server & proxy virtual hosts via caddy
     ./www.nix
+
+    # GitHub self-hosted runners
+    ./runner.nix
   ];
 }
