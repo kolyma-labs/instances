@@ -33,7 +33,7 @@
     bios = {
       enable = true;
       uefi = false;
-      mirrors = [
+      devices = [
         "/dev/sda"
       ];
     };

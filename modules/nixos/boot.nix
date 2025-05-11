@@ -29,6 +29,10 @@
     ];
   };
 
+  devices = lib.mkIf (config.boot.bios.devices != []) {
+    boot.loader.grub.devices = config.boot.bios.devices;
+  };
+
   cfg = lib.mkIf config.boot.bios.enable {boot.loader.grub.enable = true;};
 in {
   options = {
@@ -51,6 +55,12 @@ in {
         description = "List of devices to mirror the boot partition to.";
       };
 
+      devices = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [];
+        description = "List of devices to install GRUB.";
+      };
+
       uefi = lib.mkOption {
         type = lib.types.bool;
         default = false;
@@ -62,6 +72,7 @@ in {
   config = lib.mkMerge [
     raid
     mirrors
+    devices
     uefi
     cfg
   ];
