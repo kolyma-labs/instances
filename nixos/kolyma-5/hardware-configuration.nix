@@ -14,6 +14,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  # Bootloader shits
   boot = {
     kernelModules = ["kvm-intel"];
     extraModulePackages = [];
@@ -38,8 +39,10 @@
     };
   };
 
+  # Use DHCP (router will handle static behaviour)
   networking.useDHCP = lib.mkDefault true;
 
+  # Platform specific configurations
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
