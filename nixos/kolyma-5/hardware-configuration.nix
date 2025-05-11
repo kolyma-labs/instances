@@ -35,6 +35,7 @@
 
     bios = {
       enable = true;
+      # Use if you're going with msdos table
       # devices = ["/dev/sda"];
     };
   };
