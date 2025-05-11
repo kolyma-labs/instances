@@ -2,45 +2,42 @@
   disko.devices = {
     disk = {
       sda = {
-        device = "/dev/sda";
         type = "disk";
+        device = "/dev/sda";
         content = {
-          type = "table";
-          format = "msdos";
-          partitions = [
-            {
-              name = "boot";
-              part-type = "primary";
-              start = "1M";
-              end = "500M";
-              bootable = true;
+          type = "gpt";
+          partitions = {
+            BOOT = {
+              priority = 1;
+              size = "1M";
+              type = "EF02";
+            };
+            ESP = {
+              size = "512M";
+              type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
+                mountOptions = ["umask=0077"];
               };
-            }
-            {
-              name = "swap";
-              part-type = "primary";
-              start = "500M";
-              end = "33G";
+            };
+
+            SWAP = {
+              size = "34G";
               content = {
                 type = "swap";
               };
-            }
-            {
-              name = "root";
-              part-type = "primary";
-              start = "33G";
-              end = "100%";
+            };
+            ROOT = {
+              size = "100%";
               content = {
                 type = "filesystem";
                 format = "ext4";
                 mountpoint = "/";
               };
-            }
-          ];
+            };
+          };
         };
       };
     };
