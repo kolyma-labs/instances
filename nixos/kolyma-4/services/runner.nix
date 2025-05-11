@@ -24,20 +24,20 @@ in {
 
   services.github-runners = {
     # Xinux runner
-    # "${name}-Xinux" = {
-    #   inherit user;
-    #   enable = true;
-    #   url = "https://github.com/xinux-org";
-    #   tokenFile = config.sops.secrets."github/runners/xinux".path;
-    #   replace = true;
-    #   extraLabels = [name];
-    #   group = user;
-    #   serviceOverrides = {
-    #     ProtectSystem = "full";
-    #     ReadWritePaths = "/srv";
-    #     PrivateMounts = false;
-    #     UMask = 22;
-    #   };
-    # };
+    "${name}-Xinux" = {
+      inherit user;
+      enable = true;
+      url = "https://github.com/xinux-org";
+      tokenFile = config.sops.secrets."github/runners/xinux".path;
+      replace = true;
+      extraLabels = [name];
+      group = user;
+      serviceOverrides = {
+        ProtectSystem = "full";
+        ReadWritePaths = "/srv";
+        PrivateMounts = false;
+        UMask = 22;
+      };
+    };
   };
 }
