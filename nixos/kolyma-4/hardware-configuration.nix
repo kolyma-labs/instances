@@ -18,20 +18,23 @@
     extraModulePackages = [];
 
     initrd = {
-      kernelModules = [];
+      kernelModules = ["nvme"];
       availableKernelModules = [
-        "ata_piix"
-        "uhci_hcd"
-        "virtio_pci"
-        "virtio_scsi"
-        "sd_mod"
-        "sr_mod"
-        "hpilo"
+        "xhci_pci"
+        "ahci"
+        "nvme"
+        "usbhid"
       ];
     };
 
     bios = {
       enable = true;
+      uefi = true;
+      raided = true;
+      mirrors = [
+        "/dev/nvme0n1"
+        "/dev/nvme1n1"
+      ];
     };
   };
 
@@ -40,12 +43,12 @@
 
     ipv4 = {
       enable = true;
-      address = "192.168.0.2";
+      address = "37.27.66.50";
     };
 
     ipv6 = {
-      enable = false;
-      address = null;
+      enable = true;
+      address = "2a01:4f9:3081:33a6::";
     };
   };
 
