@@ -33,9 +33,6 @@
     bios = {
       enable = true;
       uefi = false;
-      devices = [
-        "/dev/sda"
-      ];
     };
   };
 
