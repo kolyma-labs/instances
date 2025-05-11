@@ -12,6 +12,13 @@
     ]
     ++ cfg.alias;
 
+  rest = cfg:
+    lib.filter (
+      e:
+        (builtins.elemAt cfg.alias 0) != e
+    )
+    cfg.alias;
+
   default = {
     # Configure Nginx
     services.nginx = {
@@ -23,14 +30,24 @@
       recommendedGzipSettings = true;
 
       # Default virtual host
-      virtualHosts = {
-        ${cfg.domain} = {
-          forceSSL = true;
-          enableACME = true;
-          serverAliases = fallbacks cfg;
-          root = "${pkgs.personal.gate}/www";
+      virtualHosts =
+        if cfg.no-default
+        then {
+          ${builtins.elemAt cfg.alias 0} = {
+            forceSSL = true;
+            enableACME = true;
+            serverAliases = rest cfg;
+            root = "${pkgs.personal.gate}/www";
+          };
+        }
+        else {
+          ${cfg.domain} = {
+            forceSSL = true;
+            enableACME = true;
+            serverAliases = fallbacks cfg;
+            root = "${pkgs.personal.gate}/www";
+          };
         };
-      };
     };
 
     # Accepting ACME Terms
@@ -73,6 +90,12 @@ in {
         description = "Enable the web server/proxy";
       };
 
+      no-default = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Disabling default domains as FQDN.";
+      };
+
       domain = lib.mkOption {
         type = lib.types.str;
         default = "kolyma.uz";
@@ -88,7 +111,7 @@ in {
       hosts = lib.mkOption {
         type = lib.types.attrsOf lib.types.anything;
         default = {};
-        description = "List of hosted container instances.";
+        description = "List of hosted services instances.";
       };
     };
   };

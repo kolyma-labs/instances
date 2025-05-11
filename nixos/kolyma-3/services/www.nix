@@ -5,6 +5,7 @@
   services.www = {
     enable = true;
     alias = ["ns3.kolyma.uz"];
+    no-default = true;
     hosts = {};
   };
 }
