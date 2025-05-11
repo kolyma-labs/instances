@@ -40,4 +40,15 @@ in {
       };
     };
   };
+
+  services.www.hosts = {
+    "cdn.xinux.uz" = {
+      addSSL = true;
+      enableACME = true;
+      root = "/srv/cdn";
+      extraConfig = ''
+        autoindex on;
+      '';
+    };
+  };
 }

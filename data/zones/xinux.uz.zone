@@ -28,3 +28,6 @@ graph  IN    CNAME xinux-org.github.io.
 
 ; Binary cache server
 cache  IN    CNAME ns4.kolyma.uz.
+
+; CDN after runners server
+cdn    IN    CNAME ns4.kolyma.uz.

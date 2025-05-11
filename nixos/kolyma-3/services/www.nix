@@ -6,6 +6,12 @@
     enable = true;
     alias = ["ns3.kolyma.uz"];
     no-default = true;
-    hosts = {};
+    hosts = {
+      "cdn3.kolyma.uz" = {
+        addSSL = true;
+        enableACME = true;
+        root = "/srv/cdn";
+      };
+    };
   };
 }

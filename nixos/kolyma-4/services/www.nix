@@ -6,6 +6,12 @@
     enable = true;
     alias = ["ns4.kolyma.uz"];
     no-default = true;
-    hosts = {};
+    hosts = {
+      "cdn4.kolyma.uz" = {
+        addSSL = true;
+        enableACME = true;
+        root = "/srv/cdn";
+      };
+    };
   };
 }
