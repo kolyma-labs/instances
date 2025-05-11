@@ -35,7 +35,7 @@
 
     bios = {
       enable = true;
-      devices = ["/dev/sda"];
+      # devices = ["/dev/sda"];
     };
   };
 
