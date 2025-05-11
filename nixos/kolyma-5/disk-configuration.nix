@@ -2,30 +2,45 @@
   disko.devices = {
     disk = {
       sda = {
-        type = "disk";
         device = "/dev/sda";
+        type = "disk";
         content = {
-          type = "gpt";
-          partitions = {
-            BOOT = {
-              size = "1M";
-              type = "EF02";
-            };
-            SWAP = {
-              size = "34G";
+          type = "table";
+          format = "msdos";
+          partitions = [
+            {
+              name = "boot";
+              part-type = "primary";
+              start = "1M";
+              end = "500M";
+              bootable = true;
+              content = {
+                type = "filesystem";
+                format = "fat32";
+                mountpoint = "/boot";
+              };
+            }
+            {
+              name = "swap";
+              part-type = "primary";
+              start = "500M";
+              end = "33G";
               content = {
                 type = "swap";
               };
-            };
-            ROOT = {
-              size = "100%";
+            }
+            {
+              name = "root";
+              part-type = "primary";
+              start = "33G";
+              end = "100%";
               content = {
                 type = "filesystem";
                 format = "ext4";
                 mountpoint = "/";
               };
-            };
-          };
+            }
+          ];
         };
       };
     };
