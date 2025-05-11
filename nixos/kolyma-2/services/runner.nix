@@ -9,13 +9,12 @@
 in {
   sops.secrets = {
     "github/runners/kolyma" = secret-management;
-    "github/runners/xinux" = secret-management;
     "github/runners/orzklv/nix" = secret-management;
     "github/runners/orzklv/pack" = secret-management;
   };
 
   users.users.${user} = {
-    description = "GitHub Runner user for kibretexnik";
+    description = "GitHub Runner user";
     # isSystemUser = true;
     isNormalUser = true;
     createHome = false;
@@ -66,23 +65,6 @@ in {
       enable = true;
       url = "https://github.com/kolyma-labs";
       tokenFile = config.sops.secrets."github/runners/kolyma".path;
-      replace = true;
-      extraLabels = [name];
-      group = user;
-      serviceOverrides = {
-        ProtectSystem = "full";
-        ReadWritePaths = "/srv";
-        PrivateMounts = false;
-        UMask = 22;
-      };
-    };
-
-    # Xinux runner
-    "${name}-Xinux" = {
-      inherit user;
-      enable = true;
-      url = "https://github.com/xinux-org";
-      tokenFile = config.sops.secrets."github/runners/xinux".path;
       replace = true;
       extraLabels = [name];
       group = user;
