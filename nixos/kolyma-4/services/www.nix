@@ -15,15 +15,6 @@
           autoindex on;
         '';
       };
-
-      "cdn.xinux.uz" = {
-        addSSL = true;
-        enableACME = true;
-        root = "/srv/xinux";
-        extraConfig = ''
-          autoindex on;
-        '';
-      };
     };
   };
 }
