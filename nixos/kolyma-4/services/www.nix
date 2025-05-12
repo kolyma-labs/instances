@@ -19,7 +19,7 @@
       "cdn.xinux.uz" = {
         addSSL = true;
         enableACME = true;
-        root = "/srv/cdn";
+        root = "/srv/xinux";
         extraConfig = ''
           autoindex on;
         '';
