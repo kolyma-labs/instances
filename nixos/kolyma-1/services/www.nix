@@ -14,6 +14,9 @@
         addSSL = true;
         enableACME = true;
         root = "/srv/cdn";
+        extraConfig = ''
+          autoindex on;
+        '';
       };
 
       "khakimovs.uz" = {
