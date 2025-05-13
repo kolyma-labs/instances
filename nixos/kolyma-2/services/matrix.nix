@@ -229,6 +229,8 @@ in {
         verbose
         # ban private IP ranges
         no-multicast-peers
+        external-ip=65.109.74.214
+        external-ip=2a01:4f9:3071:31ce::
         denied-peer-ip=0.0.0.0-0.255.255.255
         denied-peer-ip=10.0.0.0-10.255.255.255
         denied-peer-ip=100.64.0.0-100.127.255.255
@@ -254,18 +256,20 @@ in {
       '';
     };
 
-    networking.firewall = let
-      range = with config.services.coturn; [
-        {
-          from = min-port;
-          to = max-port;
-        }
-      ];
-    in {
-      allowedUDPPortRanges = range;
-      allowedUDPPorts = [3478 5349];
-      allowedTCPPortRanges = [];
-      allowedTCPPorts = [3478 5349];
+    networking.firewall = {
+      interfaces.eth0 = let
+        range = with config.services.coturn; [
+          {
+            from = min-port;
+            to = max-port;
+          }
+        ];
+      in {
+        allowedUDPPortRanges = range;
+        allowedUDPPorts = [3478 5349];
+        allowedTCPPortRanges = [];
+        allowedTCPPorts = [3478 5349];
+      };
     };
 
     users.users.nginx.extraGroups = [config.users.groups.turnserver.name];
