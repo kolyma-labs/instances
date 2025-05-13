@@ -25,9 +25,10 @@ trash  IN    CNAME floss-uz.github.io.
 ; Awesome contents
 awesome IN   CNAME floss-uz.github.io.
 
-; Matrix server
+; Matrix & Coturn server
 chat   IN    CNAME ns2.kolyma.uz.
 matrix IN    CNAME ns2.kolyma.uz.
+turn   IN    CNAME ns2.kolyma.uz.
 
 ; Game servers
 mc     IN    CNAME ns2.kolyma.uz.
