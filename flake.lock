@@ -1057,11 +1057,11 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1747287276,
-        "narHash": "sha256-E+FHzCh4mspZye02KdTXPZjm9ATaHYc0/HLfGVb90Us=",
+        "lastModified": 1747290717,
+        "narHash": "sha256-n9iNn6futoWHSBESQIsEZMlQ/2BtkQszXyRHXQgPpYQ=",
         "owner": "floss-uz-community",
         "repo": "tarmoqchi",
-        "rev": "3de1c8029c9cebfb5c799706f7c4afe527fda91c",
+        "rev": "5a33a3d6392b8a5242d4e96ef41d63ae55eabfcb",
         "type": "github"
       },
       "original": {
