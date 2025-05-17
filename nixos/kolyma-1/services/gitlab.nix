@@ -13,6 +13,9 @@ in {
     "gitlab/root" = secret-management;
     "gitlab/secret" = secret-management;
     "gitlab/database" = secret-management;
+    "gitlab/salt" = secret-management;
+    "gitlab/primary" = secret-management;
+    "gitlab/deterministic" = secret-management;
     "gitlab/mail" = {
       owner = config.services.gitlab.user;
       key = "mail/icloud/password";
@@ -29,6 +32,9 @@ in {
       otpFile = config.sops.secrets."gitlab/otp".path;
       secretFile = config.sops.secrets."gitlab/secret".path;
       jwsFile = pkgs.runCommand "oidcKeyBase" {} "${pkgs.openssl}/bin/openssl genrsa 2048 > $out";
+      activeRecordSaltFile = config.sops.secrets."gitlab/salt".path;
+      activeRecordPrimaryKeyFile = config.sops.secrets."gitlab/primary".path;
+      activeRecordDeterministicKeyFile = config.sops.secrets."gitlab/deterministic".path;
     };
 
     # Sending mail via Kolyma's SMTP
