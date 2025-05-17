@@ -42,7 +42,7 @@ in {
           Shakhz = "1c786ec6-0f65-4448-9ecf-ab53b75bf867";
           Nixxer = "8fdd80ef-c294-432d-b381-e43353a3db27";
           jkhngr = "8250cc4b-7844-4ba0-80e0-112df5f2cd5b";
-          crypton3264 = "744288bd-8710-4c61-b425-7f912d7831ad";
+          crypto = "744288bd-8710-4c61-b425-7f912d7831ad";
         };
 
         symlinks = with pkgs; {
