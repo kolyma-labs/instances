@@ -10,7 +10,7 @@ in {
   sops.secrets = {
     "github/runners/kolyma" = secret-management;
     "github/runners/orzklv/nix" = secret-management;
-    "github/runners/orzklv/pack" = secret-management;
+    "github/runners/orzklv/pkgs" = secret-management;
   };
 
   users.users.${user} = {
@@ -26,7 +26,7 @@ in {
 
   services.github-runners = {
     # Orkzlv -> Nix runner
-    "${name}-Orzklv" = {
+    "${name}-Orzklv-Nix" = {
       inherit user;
       enable = true;
       url = "https://github.com/orzklv/nix";
@@ -43,11 +43,11 @@ in {
     };
 
     # Orkzlv -> Pkgs runner
-    "${name}-Orzklv-Pack" = {
+    "${name}-Orzklv-Pkgs" = {
       inherit user;
       enable = true;
-      url = "https://github.com/orzklv/pack";
-      tokenFile = config.sops.secrets."github/runners/orzklv/pack".path;
+      url = "https://github.com/orzklv/pkgs";
+      tokenFile = config.sops.secrets."github/runners/orzklv/pkgs".path;
       replace = true;
       extraLabels = [name];
       group = user;
