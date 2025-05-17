@@ -5,6 +5,9 @@
     # Web server & proxy virtual hosts via caddy
     ./www.nix
 
+    # GitHub Runner configurations
+    ./runner.nix
+
     # Tarmoqchi HTTP tunneling
     ./tarmoqchi.nix
   ];

@@ -8,6 +8,9 @@
     # Minecraft server configurations
     ./minecraft
 
+    # GitHub Runner configurations
+    ./runner.nix
+
     # Git server for storing personal git projects
     ./gitlab.nix
 
