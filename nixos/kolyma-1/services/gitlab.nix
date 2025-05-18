@@ -25,8 +25,12 @@ in {
   services.gitlab = {
     enable = true;
     host = "gulag.uz";
+
+    # Passwords
     databasePasswordFile = config.sops.secrets."gitlab/database".path;
     initialRootPasswordFile = config.sops.secrets."gitlab/root".path;
+
+    # Secret token
     secrets = {
       dbFile = config.sops.secrets."gitlab/db".path;
       otpFile = config.sops.secrets."gitlab/otp".path;
