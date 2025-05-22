@@ -47,6 +47,9 @@ cdn3    IN    CNAME ns3.kolyma.uz.
 cdn4    IN    CNAME ns4.kolyma.uz.
 cdn5    IN    CNAME uz1.kolyma.uz.
 
+; GitHub verification
+_gh-kolyma-labs-o    IN    TXT     cc851471b9
+
 ; Old Git Redirect (Caddy)
 git    IN    CNAME ns1.kolyma.uz.
 
