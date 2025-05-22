@@ -120,22 +120,6 @@ in {
                 subject_claim: "id"
                 localpart_template: "{{ user.login }}"
                 display_name_template: "{{ user.name }}"
-
-          - idp_id: mastodon
-            idp_name: "Mastodon"
-            discover: false
-            issuer: "https://social.floss.uz/@orzklv"
-            client_id: "${config.sops.placeholder."matrix/oath/mastodon/id"}"
-            client_secret: "${config.sops.placeholder."matrix/oath/mastodon/secret"}"
-            authorization_endpoint: "https://social.floss.uz/oauth/authorize"
-            token_endpoint: "https://social.floss.uz/oauth/token"
-            userinfo_endpoint: "https://social.floss.uz/api/v1/accounts/verify_credentials"
-            scopes: ["read"]
-            user_mapping_provider:
-              config:
-                subject_template: "{{ user.id }}"
-                localpart_template: "{{ user.username }}"
-                display_name_template: "{{ user.display_name }}"
       '';
     };
 
