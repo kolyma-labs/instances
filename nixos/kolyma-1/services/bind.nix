@@ -31,6 +31,10 @@
       "nix-darwin.uz"
       "niggerlicious.uz"
       "devops-journey.uz"
+
+      # Dangarus zone
+      "oss.uzinfocom.uz"
+      "link.uzinfocom.uz"
     ];
   };
 }
