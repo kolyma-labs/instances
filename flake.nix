@@ -79,6 +79,9 @@
 
     # Tarmoqchi HTTP tunneling
     tarmoqchi.url = "github:floss-uz-community/tarmoqchi";
+
+    # Social website of uzinfocom
+    taggis.url = "github:uzinfocom-org/taggis";
   };
 
   # In this context, outputs are mostly about getting home-manager what it

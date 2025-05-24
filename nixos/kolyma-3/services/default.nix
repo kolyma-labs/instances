@@ -10,5 +10,8 @@
 
     # Tarmoqchi HTTP tunneling
     ./tarmoqchi.nix
+
+    # Taggis - social website of uzinfocom
+    ./taggis.nix
   ];
 }
