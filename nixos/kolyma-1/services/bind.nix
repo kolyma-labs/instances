@@ -12,7 +12,7 @@
       "gulag.uz"
       "khakimovs.uz"
 
-      # Projects
+      # Personal Projects
       "foss.uz"
       "ecma.uz"
       "nyan.uz"
@@ -32,7 +32,11 @@
       "niggerlicious.uz"
       "devops-journey.uz"
 
-      # Dangarus zone
+      # Goofy Ahh Zone
+      "efael.uz"
+      "efael.net"
+
+      # Dangarus Zone
       "oss.uzinfocom.uz"
       "link.uzinfocom.uz"
     ];

@@ -1,0 +1,21 @@
+$TTL 86400
+@      IN    SOA    ns1.kolyma.uz. admin.kolyma.uz. (
+             2025030901 ; Serial YYYYMMDDNN (NN is the revision number)
+             3600       ; Refresh
+             1800       ; Retry
+             604800     ; Expire
+             86400 )    ; Minimum TTL
+
+; Nameservers
+@      IN    NS    ns1.kolyma.uz.
+@      IN    NS    ns2.kolyma.uz.
+
+; Entry points
+@      IN    A     185.199.108.153
+@      IN    A     185.199.109.153
+@      IN    A     185.199.110.153
+@      IN    A     185.199.111.153
+www    IN    CNAME efael.net.
+
+; GitHub verifications
+_gh-efael-o         IN      TXT      1ff82b0fad
