@@ -1158,11 +1158,11 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1748110820,
-        "narHash": "sha256-+1/XhWeUCsKJukuK/poHkRuYJi3Bv7kqAC43a6njQTM=",
+        "lastModified": 1748123072,
+        "narHash": "sha256-YCzzqIUJMCz9e+MPAAitDaXWJfyYKA+Am/93EnNIAdE=",
         "owner": "uzinfocom-org",
         "repo": "taggis",
-        "rev": "f26a0423b0106f6b4cecc0ddf12ce720a1045db6",
+        "rev": "0f446860b558340cebb5f74c518af0f27757580d",
         "type": "github"
       },
       "original": {
