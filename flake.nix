@@ -81,7 +81,10 @@
     tarmoqchi.url = "github:floss-uz-community/tarmoqchi";
 
     # Social website of uzinfocom
-    taggis.url = "github:uzinfocom-org/taggis";
+    uzinfocom-website.url = "github:uzinfocom-org/website";
+
+    # Social website of uzinfocom
+    uzinfocom-taggis.url = "github:uzinfocom-org/taggis";
   };
 
   # In this context, outputs are mostly about getting home-manager what it
