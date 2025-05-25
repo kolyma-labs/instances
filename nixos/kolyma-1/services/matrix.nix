@@ -84,21 +84,6 @@ in {
     sops.templates."extra-matrix-conf.yaml" = {
       owner = config.systemd.services.matrix-synapse.serviceConfig.User;
       content = ''
-        email:
-          smtp_host: "mail.floss.uz"
-          smtp_port: 587
-          smtp_user: "noreply@floss.uz"
-          smtp_pass: "${config.sops.placeholder."matrix/mail"}"
-          enable_tls: true
-          force_tls: false
-          require_transport_security: true
-          app_name: "Floss Chat"
-          enable_notifs: true
-          notif_for_new_users: true
-          client_base_url: "https://matrix.floss.uz"
-          validation_token_lifetime: "15m"
-          invite_client_location: "https://chat.floss.uz"
-          notif_from: "Floss Chat from <noreply@floss.uz>"
         experimental_features:
           msc3861:
             enabled: true
@@ -107,6 +92,7 @@ in {
             client_auth_method: client_secret_basic
             client_secret: "${config.sops.placeholder."matrix/synapse/auth/secret"}"
           msc4108_enabled: true
+          msc2965_enabled: true
       '';
     };
 
@@ -193,7 +179,6 @@ in {
       ];
 
       extras = lib.mkForce [
-        "oidc"
         "systemd"
         "postgres"
         "url-preview"
@@ -395,6 +380,7 @@ in {
               "org.matrix.msc2965.authentication" = {
                 "issuer" = "https://auth.efael.net/";
                 "account" = "https://auth.efael.net";
+                "registration" = true;
               };
             };
           in ''
@@ -410,6 +396,10 @@ in {
             add_header Access-Control-Allow-Origin *;
             return 200 '{"m.server": "${server}:443"}';
           '';
+        };
+
+        locations."/.well-known/openid-configuration" = {
+          proxyPass = "http://localhost:8080/.well-known/openid-configuration";
         };
 
         locations."/" = {
