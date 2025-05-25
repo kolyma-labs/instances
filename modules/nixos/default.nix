@@ -4,6 +4,7 @@
   # List your module files here
   ssh = import ./ssh.nix;
   zsh = import ./zsh.nix;
+  mas = import ./mas.nix;
   users = import ./users;
   bind = import ./bind.nix;
   root = import ./root.nix;
