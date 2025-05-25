@@ -197,6 +197,7 @@ in {
       ];
 
       settings = {
+        upstream_oauth2.providers = {};
       };
     };
 
