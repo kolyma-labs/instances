@@ -88,6 +88,7 @@ in {
           msc3861:
             enabled: true
             issuer: https://auth.efael.net/
+            clients:
             client_id: 0000000000000000000SYNAPSE
             client_auth_method: client_secret_basic
             client_secret: "samething"
@@ -108,6 +109,10 @@ in {
           port: 587
           username: noreply@floss.uz
           password: "${config.sops.placeholder."matrix/mail"}"
+        clients:
+          - client_id: 0000000000000000000SYNAPSE
+            client_auth_method: client_secret_basic
+            client_secret: "samething"
         matrix:
           kind: synapse
           homeserver: ${domain}
