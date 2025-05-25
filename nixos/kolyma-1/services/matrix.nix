@@ -250,6 +250,27 @@ in {
       extraConfigFiles = [
         config.sops.templates."extra-mas-conf.yaml".path
       ];
+
+      settings = {
+        account = {
+          email_change_allowed = true;
+          displayname_change_allowed = true;
+          password_registration_enabled = true;
+          password_change_allowed = true;
+          password_recovery_enabled = true;
+        };
+
+        passwords = {
+          enabled = true;
+          minimum_complexity = 3;
+          schemes = [
+            {
+              version = 1;
+              algorithm = "argon2id";
+            }
+          ];
+        };
+      };
     };
 
     services.coturn = rec {
