@@ -15,5 +15,8 @@ $TTL 86400
 @      IN    AAAA  2a01:4f9:3071:31ce::
 www    IN    CNAME uzbek.net.uz.
 
+; Standards deployment
+std    IN    CNAME uzbek-net.github.io.
+
 ; GitHub Verifications
 _gh-uzbek-net-o     IN      TXT      1bbe703249
