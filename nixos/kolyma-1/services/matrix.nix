@@ -11,7 +11,7 @@
   authentication = "auth.${domain}";
 
   # Coturn configs
-  realm = "turn.efael.uz";
+  realm = "turn.efael.net";
   static-auth-secret = "the most niggerlicious thing is to use javascript and python :(";
 
   # Matrix Client Application
