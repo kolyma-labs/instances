@@ -179,10 +179,16 @@ in {
       ];
 
       extras = lib.mkForce [
-        "systemd"
-        "postgres"
-        "url-preview"
-        "user-search"
+        "cache-memory" # Provide statistics about caching memory consumption
+        "jwt" # JSON Web Token authentication
+        "oidc" # OpenID Connect authentication
+        "postgres" # PostgreSQL database backend
+        "redis" # Redis support for the replication stream between worker processes
+        "saml2" # SAML2 authentication
+        "sentry" # Error tracking and performance metrics
+        "systemd" # Provide the JournalHandler used in the default log_config
+        "url-preview" # Support for oEmbed URL previews
+        "user-search" # Support internationalized domain names in user-search
       ];
 
       log = {
