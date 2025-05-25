@@ -186,6 +186,7 @@ in {
 
     services.matrix-synapse = {
       enable = true;
+      package = lib.mkForce pkgs.unstable.matrix-synapse;
 
       extraConfigFiles = [
         config.sops.templates."extra-matrix-conf.yaml".path
@@ -376,7 +377,26 @@ in {
       "${client.address}" = {
         addSSL = true;
         enableACME = true;
-        root = client.pkg;
+
+        locations."= /.well-known/matrix/client" = {
+          extraConfig = ''
+            add_header Content-Type application/json;
+            add_header Access-Control-Allow-Origin *;
+            return 200 '{"m.homeserver": {"base_url": "https://${server}"}}';
+          '';
+        };
+
+        locations."= /.well-known/matrix/server" = {
+          extraConfig = ''
+            add_header Content-Type application/json;
+            add_header Access-Control-Allow-Origin *;
+            return 200 '{"m.server": "${server}:443"}';
+          '';
+        };
+
+        locations."/" = {
+          root = client.pkg;
+        };
       };
     };
   };
