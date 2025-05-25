@@ -296,29 +296,6 @@ in {
               The URL to which the homeserver is accessible from the service.
             '';
           };
-          upstream_oauth2.providers = mkOption {
-            default = null;
-            type = types.nullOr (
-              types.listOf (
-                types.submodule {
-                  freeformType = format.type;
-                  options = {
-                    id = mkOption {
-                      type = types.nullOr types.str;
-                      example = "01H8PKNWKKRPCBW4YGH1RWV279";
-                      default = null;
-                      description = ''
-                        Unique id for the provider, must be a ULID, and can be generated using online tools like https://www.ulidtools.com
-                      '';
-                    };
-                  };
-                }
-              )
-            );
-            description = ''
-              Configuration of upstream providers
-            '';
-          };
         };
       };
     };

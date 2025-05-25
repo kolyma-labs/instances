@@ -195,10 +195,6 @@ in {
       extraConfigFiles = [
         config.sops.templates."extra-mas-conf.yaml".path
       ];
-
-      settings = {
-        upstream_oauth2.providers = {};
-      };
     };
 
     services.coturn = rec {
