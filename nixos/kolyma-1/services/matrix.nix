@@ -206,9 +206,10 @@ in {
         turn_shared_secret = static-auth-secret;
         turn_user_lifetime = "1h";
 
+        suppress_key_server_warning = true;
         allow_guest_access = true;
-        enable_registration = true;
-        registration_shared_secret_path = config.sops.secrets."matrix/synapse/auth/secret".path;
+        # enable_registration = true;
+        # registration_shared_secret_path = config.sops.secrets."matrix/synapse/auth/secret".path;
         enable_set_displayname = true;
         enable_set_avatar_url = true;
 
