@@ -216,7 +216,7 @@ in {
         allow_guest_access = true;
         # enable_registration = true;
         registrations_require_3pid = ["email"];
-        enable_3pid_changes = true;
+        # enable_3pid_changes = true;
         enable_set_displayname = true;
         enable_set_avatar_url = true;
 
