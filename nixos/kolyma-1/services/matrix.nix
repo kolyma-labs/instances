@@ -112,7 +112,7 @@ in {
           kind: synapse
           homeserver: ${domain}
           secret: "samething"
-          endpoint: "https://matrix.efael.net"
+          endpoint: "http://localhost:8008"
         secrets:
           encryption: e724403e1380d06bfcec459d0fbd6469cd5c202dcb4b13f1756edf927990d07c
           keys:
