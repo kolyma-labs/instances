@@ -2,14 +2,16 @@
   lib,
   pkgs,
   config,
+  outputs,
   ...
 }: let
   # Matrix configs
-  domain = "floss.uz";
+  domain = "efael.net";
   server = "matrix.${domain}";
+  authentication = "auth.${domain}";
 
   # Coturn configs
-  realm = "turn.floss.uz";
+  realm = "turn.efael.uz";
   static-auth-secret = "the most niggerlicious thing is to use javascript and python :(";
 
   # Matrix Client Application
@@ -19,21 +21,11 @@
       conf = {
         show_labs_settings = true;
         default_theme = "dark";
-        brand = "Floss Chat";
+        brand = "Efael's Network";
 
         branding = {
           welcome_background_url = "https://cdn2.kolyma.uz/element/bg-floss-uz.png";
           auth_header_logo_url = "https://cdn2.kolyma.uz/element/floss-uz.svg";
-          auth_footer_links = [
-            {
-              text = "Mastodon";
-              url = "https://social.floss.uz";
-            }
-            {
-              text = "GitHub";
-              url = "https://github.com/floss-uz";
-            }
-          ];
         };
 
         permalink_prefix = "https://${client.address}";
@@ -49,6 +41,10 @@
 
   temp = "sniggers_and_maniggas";
 in {
+  imports = [
+    outputs.nixosModules.mas
+  ];
+
   config = {
     services.postgresql = {
       enable = lib.mkDefault true;
@@ -67,13 +63,21 @@ in {
         owner = config.systemd.services.matrix-synapse.serviceConfig.User;
         key = "mail/floss/support/raw";
       };
-      "matrix/oath/github/id" = {
+      "matrix/synapse/auth/id" = {
         owner = config.systemd.services.matrix-synapse.serviceConfig.User;
-        key = "oath/github/id";
+        key = "matrix/auth/id";
       };
-      "matrix/oath/github/secret" = {
+      "matrix/synapse/auth/secret" = {
         owner = config.systemd.services.matrix-synapse.serviceConfig.User;
-        key = "oath/github/secret";
+        key = "matrix/auth/secret";
+      };
+      "matrix/mas/auth/id" = {
+        owner = config.systemd.services.matrix-synapse.serviceConfig.User;
+        key = "matrix/auth/id";
+      };
+      "matrix/mas/auth/secret" = {
+        owner = config.systemd.services.matrix-synapse.serviceConfig.User;
+        key = "matrix/auth/secret";
       };
     };
 
@@ -95,23 +99,33 @@ in {
           validation_token_lifetime: "15m"
           invite_client_location: "https://chat.floss.uz"
           notif_from: "Floss Chat from <noreply@floss.uz>"
-        oidc_providers:
-          - idp_id: github
-            idp_name: Github
-            idp_brand: "github"
-            discover: false
-            issuer: "https://github.com/"
-            client_id: "${config.sops.placeholder."matrix/oath/github/id"}"
-            client_secret: "${config.sops.placeholder."matrix/oath/github/secret"}"
-            authorization_endpoint: "https://github.com/login/oauth/authorize"
-            token_endpoint: "https://github.com/login/oauth/access_token"
-            userinfo_endpoint: "https://api.github.com/user"
-            scopes: ["read:user"]
-            user_mapping_provider:
-              config:
-                subject_claim: "id"
-                localpart_template: "{{ user.login }}"
-                display_name_template: "{{ user.name }}"
+        experimental_features:
+          msc3861:
+            enabled: true
+            issuer: http://localhost:8080/
+            client_id: ${config.sops.placeholder."matrix/synapse/auth/id"}
+            client_auth_method: client_secret_basic
+            client_secret: "${config.sops.placeholder."matrix/synapse/auth/secret"}"
+      '';
+    };
+
+    sops.templates."extra-mas-conf.yaml" = {
+      owner = config.systemd.services.matrix-authentication-service.serviceConfig.User;
+      content = ''
+        email:
+          from: '"Efael" <noreply@floss.uz>'
+          reply_to: '"No reply" <noreply@floss.uz>'
+          transport: smtp
+          mode: tls # plain | tls | starttls
+          hostname: mail.floss.uz
+          port: 587
+          username: noreply@floss.uz
+          password: "${config.sops.placeholder."matrix/mail"}"
+        matrix:
+          kind: synapse
+          homeserver: ${domain}
+          secret: "${config.sops.placeholder."matrix/mas/auth/secret"}"
+          endpoint: "http://localhost:8008"
       '';
     };
 
@@ -153,21 +167,6 @@ in {
 
         admin_contact = "mailto:support@floss.uz";
 
-        auto_join_rooms = [
-          # Spaces
-          "#community:floss.uz"
-          "#xinux:floss.uz"
-          "#rust:floss.uz"
-
-          # Rooms
-          "#chat:floss.uz"
-          "#help:floss.uz"
-          "#mod:floss.uz"
-          "#infra:floss.uz"
-          "#awesome:floss.uz"
-          "#stds:floss.uz"
-        ];
-
         database.args = {
           password = "${temp}";
         };
@@ -187,6 +186,17 @@ in {
             ];
           }
         ];
+      };
+    };
+
+    services.matrix-authentication-service = {
+      enable = true;
+      createDatabase = true;
+      extraConfigFiles = [
+        config.sops.templates."extra-mas-conf.yaml".path
+      ];
+
+      settings = {
       };
     };
 
@@ -269,12 +279,24 @@ in {
           return 404;
         '';
 
-        locations."/_matrix/" = {
+        locations."~ ^(/_matrix|/_synapse/client)" = {
           proxyPass = "http://localhost:8008";
         };
 
-        locations."/_synapse/client/" = {
-          proxyPass = "http://localhost:8008";
+        locations."~ ^/_matrix/client/(.*)/(login|logout|refresh)" = {
+          proxyPass = "http://localhost:8080";
+        };
+      };
+
+      ${authentication} = {
+        addSSL = true;
+        enableACME = true;
+
+        locations."/" = {
+          proxyPass = "http://localhost:8080";
+          extraConfig = ''
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          '';
         };
       };
 

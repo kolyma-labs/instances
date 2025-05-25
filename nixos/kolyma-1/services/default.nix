@@ -19,5 +19,8 @@
 
     # Streaming service self hosted
     ./streaming.nix
+
+    # Matrix server hosting
+    ./matrix.nix
   ];
 }

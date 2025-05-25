@@ -19,6 +19,7 @@ www    IN    CNAME efael.net.
 chat   IN    CNAME ns1.kolyma.uz.
 auth   IN    CNAME ns1.kolyma.uz.
 matrix IN    CNAME ns1.kolyma.uz.
+turn   IN    CNAME ns1.kolyma.uz.
 
 ; GitHub verifications
 _gh-efael-o         IN      TXT      1ff82b0fad
