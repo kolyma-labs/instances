@@ -186,7 +186,6 @@ in {
 
     services.matrix-synapse = {
       enable = true;
-      package = lib.mkForce pkgs.unstable.matrix-synapse;
 
       extraConfigFiles = [
         config.sops.templates."extra-matrix-conf.yaml".path

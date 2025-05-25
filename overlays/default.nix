@@ -16,12 +16,17 @@
     # ...
     # });
 
+    # Patched mastodon with custom char limit
     # mastodon-custom = prev.mastodon.override {
     #   patches = [
     #     ./char-limit.patch
     #   ];
     # };
 
+    # Use latest unstable version of matrix
+    matrix-synapse = final.unstable.matrix-synapse;
+
+    # Auth service with latest patches
     matrix-authentication-server = prev.matrix-authentication-service.override {
       postPatch = ''
         substituteInPlace crates/config/src/sections/http.rs \
