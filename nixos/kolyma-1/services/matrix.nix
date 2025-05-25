@@ -112,7 +112,7 @@ in {
           kind: synapse
           homeserver: ${domain}
           secret: "${config.sops.placeholder."matrix/mas/auth/secret"}"
-          endpoint: "http://localhost:8008"
+          endpoint: "https://matrix.efael.net"
         secrets:
           encryption: e724403e1380d06bfcec459d0fbd6469cd5c202dcb4b13f1756edf927990d07c
           keys:
