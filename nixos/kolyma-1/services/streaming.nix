@@ -3,6 +3,7 @@ in {
   config = {
     services.owncast = {
       enable = true;
+      port = 8356;
     };
 
     services.www.hosts = {
