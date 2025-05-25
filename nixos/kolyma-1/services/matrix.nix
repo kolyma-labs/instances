@@ -84,14 +84,13 @@ in {
     sops.templates."extra-matrix-conf.yaml" = {
       owner = config.systemd.services.matrix-synapse.serviceConfig.User;
       content = ''
-
         experimental_features:
           msc3861:
             enabled: true
             issuer: https://auth.efael.net/
             client_id: 0000000000000000000SYNAPSE
             client_auth_method: client_secret_basic
-            client_secret: "${config.sops.placeholder."matrix/synapse/auth/secret"}"
+            client_secret: "samething"
           msc4108_enabled: true
           msc2965_enabled: true
       '';
@@ -112,7 +111,7 @@ in {
         matrix:
           kind: synapse
           homeserver: ${domain}
-          secret: "${config.sops.placeholder."matrix/mas/auth/secret"}"
+          secret: "samething"
           endpoint: "https://matrix.efael.net"
         secrets:
           encryption: e724403e1380d06bfcec459d0fbd6469cd5c202dcb4b13f1756edf927990d07c
@@ -209,7 +208,7 @@ in {
         suppress_key_server_warning = true;
         allow_guest_access = true;
         # enable_registration = true;
-        registration_shared_secret_path = config.sops.secrets."matrix/synapse/auth/secret".path;
+        registration_shared_secret = "samething";
         enable_set_displayname = true;
         enable_set_avatar_url = true;
 
