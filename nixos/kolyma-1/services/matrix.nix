@@ -16,7 +16,7 @@
 
   # Matrix Client Application
   client = {
-    address = "chat.${domain}";
+    address = "${domain}";
     pkg = pkgs.element-web.override {
       conf = {
         show_labs_settings = true;
