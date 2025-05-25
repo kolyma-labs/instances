@@ -84,6 +84,7 @@ in {
     sops.templates."extra-matrix-conf.yaml" = {
       owner = config.systemd.services.matrix-synapse.serviceConfig.User;
       content = ''
+
         experimental_features:
           msc3861:
             enabled: true
@@ -206,9 +207,8 @@ in {
         turn_user_lifetime = "1h";
 
         allow_guest_access = true;
-        # enable_registration = true;
-        registrations_require_3pid = ["email"];
-        # enable_3pid_changes = true;
+        enable_registration = true;
+        registration_shared_secret_path = config.sops.secrets."matrix/synapse/auth/secret".path;
         enable_set_displayname = true;
         enable_set_avatar_url = true;
 
@@ -221,7 +221,7 @@ in {
         listeners = [
           {
             port = 8008;
-            bind_addresses = ["127.0.0.1" "::1"];
+            bind_addresses = ["127.0.0.1" "::1" "localhost"];
             type = "http";
             tls = false;
             x_forwarded = true;
