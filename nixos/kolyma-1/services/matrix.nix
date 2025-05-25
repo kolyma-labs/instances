@@ -209,7 +209,7 @@ in {
         suppress_key_server_warning = true;
         allow_guest_access = true;
         # enable_registration = true;
-        # registration_shared_secret_path = config.sops.secrets."matrix/synapse/auth/secret".path;
+        registration_shared_secret_path = config.sops.secrets."matrix/synapse/auth/secret".path;
         enable_set_displayname = true;
         enable_set_avatar_url = true;
 
@@ -222,7 +222,7 @@ in {
         listeners = [
           {
             port = 8008;
-            bind_addresses = ["::1" "localhost"];
+            bind_addresses = ["127.0.0.1" "::1"];
             type = "http";
             tls = false;
             x_forwarded = true;
