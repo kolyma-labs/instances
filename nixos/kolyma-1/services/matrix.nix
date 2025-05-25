@@ -353,7 +353,7 @@ in {
           return 404;
         '';
 
-        locations."~ ^(/_matrix|/_synapse/client)" = {
+        locations."~ ^(/_matrix|/_synapse)" = {
           proxyPass = "http://localhost:8008";
         };
 
