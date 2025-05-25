@@ -102,10 +102,11 @@ in {
         experimental_features:
           msc3861:
             enabled: true
-            issuer: http://localhost:8080/
-            client_id: ${config.sops.placeholder."matrix/synapse/auth/id"}
+            issuer: https://auth.efael.net/
+            client_id: 0000000000000000000SYNAPSE
             client_auth_method: client_secret_basic
             client_secret: "${config.sops.placeholder."matrix/synapse/auth/secret"}"
+          msc4108_enabled: true
       '';
     };
 
@@ -252,6 +253,11 @@ in {
       ];
 
       settings = {
+        http = {
+          public_base = "https://auth.efael.net";
+          issuer = "https://auth.efael.net";
+        };
+
         account = {
           email_change_allowed = true;
           displayname_change_allowed = true;
@@ -267,6 +273,10 @@ in {
             {
               version = 1;
               algorithm = "argon2id";
+            }
+            {
+              version = 2;
+              algorithm = "bcrypt";
             }
           ];
         };
@@ -378,10 +388,19 @@ in {
         enableACME = true;
 
         locations."= /.well-known/matrix/client" = {
-          extraConfig = ''
+          extraConfig = let
+            data = {
+              "m.server".base_url = "https://${server}";
+              "m.homeserver".base_url = "https://${server}";
+              "org.matrix.msc2965.authentication" = {
+                "issuer" = "https://auth.efael.net/";
+                "account" = "https://auth.efael.net";
+              };
+            };
+          in ''
             add_header Content-Type application/json;
             add_header Access-Control-Allow-Origin *;
-            return 200 '{"m.homeserver": {"base_url": "https://${server}"}}';
+            return 200 '${builtins.toJSON data}';
           '';
         };
 
