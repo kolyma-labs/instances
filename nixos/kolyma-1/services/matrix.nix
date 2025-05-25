@@ -222,7 +222,7 @@ in {
         listeners = [
           {
             port = 8008;
-            bind_addresses = ["127.0.0.1" "::1" "localhost"];
+            bind_addresses = ["::1" "localhost"];
             type = "http";
             tls = false;
             x_forwarded = true;
