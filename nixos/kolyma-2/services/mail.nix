@@ -4,9 +4,6 @@
   pkgs,
   ...
 }: let
-  # secret-management = {
-  #   owner = config.users.users.stalwart-mail.name;
-  # };
 in {
   imports = [
     inputs.simple-nixos-mailserver.nixosModule

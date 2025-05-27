@@ -11,14 +11,16 @@ $TTL 86400
 @      IN    NS    ns2.kolyma.uz.
 
 ; Entry points
-@      IN    A     213.230.122.228
+@      IN    A     167.235.96.40
+@      IN    AAAA  2a01:4f8:2190:2914::
 www    IN    CNAME efael.uz.
 
 ; Matrix endpoints
-chat   IN    CNAME efael.uz.
-auth   IN    CNAME efael.uz.
-matrix IN    CNAME efael.uz.
-turn   IN    CNAME efael.uz.
+chat        IN    CNAME efael.uz.
+matrix      IN    CNAME efael.uz.
+auth        IN    CNAME efael.uz.
+turn        IN    CNAME efael.uz.
+mail        IN    CNAME efael.uz.
 
 ; GitHub verifications
 _gh-efael-o         IN      TXT      260d041b09
