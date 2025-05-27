@@ -26,19 +26,8 @@
     # Use latest unstable version of matrix
     matrix-synapse = final.unstable.matrix-synapse;
 
-    # Auth service with latest patches
-    matrix-authentication-server = prev.matrix-authentication-service.override {
-      postPatch = ''
-        substituteInPlace crates/config/src/sections/http.rs \
-          --replace ./frontend/dist/    "$out/share/$pname/assets/"
-        substituteInPlace crates/config/src/sections/templates.rs \
-          --replace ./share/templates/    "$out/share/$pname/templates/" \
-          --replace ./share/translations/    "$out/share/$pname/translations/" \
-          --replace ./share/manifest.json "$out/share/$pname/assets/manifest.json"
-        substituteInPlace crates/config/src/sections/policy.rs \
-          --replace ./share/policy.wasm "$out/share/$pname/policy.wasm"
-      '';
-    };
+    # Use latest version of mas
+    matrix-authentication-server = final.unstable.matrix-authentication-service.override;
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
