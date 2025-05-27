@@ -27,8 +27,8 @@ in {
 
     # Parts of this configuration
     (import ./proxy {inherit lib domains pkgs;})
-    (import ./mail {inherit inputs domains config;})
     (import ./auth.nix {inherit config domains;})
+    (import ./mail.nix {inherit inputs domains config;})
     (import ./turn.nix {inherit lib config domains keys;})
     (import ./server.nix {inherit lib config domains keys;})
   ];

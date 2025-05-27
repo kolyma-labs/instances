@@ -4,14 +4,21 @@
   domains,
 }: let
   domain = domains.main;
+  sopsFile = ../../../../secrets/matrix.yaml;
 in {
   imports = [
     inputs.simple-nixos-mailserver.nixosModule
   ];
 
   sops.secrets = {
-    "mail/efael/admin/hashed" = {};
-    "mail/efael/support/hashed" = {};
+    "matrix/mail/admin" = {
+      inherit sopsFile;
+      key = "mail/admin/hashed";
+    };
+    "matrix/mail/support" = {
+      inherit sopsFile;
+      key = "mail/support/hashed";
+    };
   };
 
   mailserver = {
@@ -33,15 +40,15 @@ in {
     # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
     loginAccounts = {
       "admin@${domain}" = {
-        hashedPasswordFile = config.sops.secrets."mail/efael/admin/hashed".path;
+        hashedPasswordFile = config.sops.secrets."matrix/mail/admin".path;
         aliases = ["postmaster@${domain}" "orzklv@${domain}"];
       };
       "support@${domain}" = {
-        hashedPasswordFile = config.sops.secrets."mail/efael/support/hashed".path;
+        hashedPasswordFile = config.sops.secrets."matrix/mail/support".path;
       };
       "noreply@${domain}" = {
         sendOnly = true;
-        hashedPasswordFile = config.sops.secrets."mail/efael/support/hashed".path;
+        hashedPasswordFile = config.sops.secrets."matrix/mail/support".path;
       };
     };
 

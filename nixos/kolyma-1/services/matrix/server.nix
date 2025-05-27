@@ -4,31 +4,53 @@
   domains,
   keys,
 }: let
+  sopsFile = ../../../../secrets/matrix.yaml;
+  owner = config.systemd.services.matrix-synapse.serviceConfig.User;
 in {
   sops.secrets = {
-    "matrix/synapse/auth/id" = {
-      owner = config.systemd.services.matrix-synapse.serviceConfig.User;
-      key = "matrix/auth/id";
+    "matrix/synapse/mail" = {
+      inherit owner sopsFile;
+      key = "mail/support/raw";
     };
-    "matrix/synapse/auth/secret" = {
-      owner = config.systemd.services.matrix-synapse.serviceConfig.User;
-      key = "matrix/auth/secret";
+    "matrix/synapse/client/id" = {
+      inherit owner sopsFile;
+      key = "client/id";
+    };
+    "matrix/synapse/client/secret" = {
+      inherit owner sopsFile;
+      key = "client/secret";
     };
   };
 
   sops.templates."extra-matrix-conf.yaml" = {
-    owner = config.systemd.services.matrix-synapse.serviceConfig.User;
+    inherit owner;
     content = ''
+      email:
+        smtp_host: "${domains.mail}"
+        smtp_port: 587
+        smtp_user: "support@${domains.main}"
+        smtp_pass: "${config.sops.placeholder."matrix/synapse/mail"}"
+        enable_tls: true
+        force_tls: false
+        require_transport_security: true
+        app_name: "Efael's Network"
+        enable_notifs: true
+        notif_for_new_users: true
+        client_base_url: "https://${domains.server}"
+        validation_token_lifetime: "15m"
+        invite_client_location: "https://${domains.client}"
+        notif_from: "Efael's Support from <noreply@${domains.main}>"
       experimental_features:
         msc3861:
           enabled: true
           issuer: https://${domains.auth}/
-          clients:
-          client_id: 0000000000000000000SYNAPSE
+          client_id: ${config.sops.placeholder."matrix/mas/client/id"}
           client_auth_method: client_secret_basic
-          client_secret: "samething"
+          client_secret: "${config.sops.placeholder."matrix/mas/client/secret"}"
         msc4108_enabled: true
         msc2965_enabled: true
+        msc3266_enabled: true
+        msc4222_enabled: true
     '';
   };
 
