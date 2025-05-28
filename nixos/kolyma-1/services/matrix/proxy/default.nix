@@ -121,39 +121,6 @@ in {
     };
 
     ${domains.server} = {
-      listen = [
-        {
-          port = 80;
-          addr = "0.0.0.0";
-          ssl = false;
-        }
-        {
-          port = 80;
-          addr = "[::]";
-          ssl = false;
-        }
-        {
-          port = 443;
-          addr = "0.0.0.0";
-          ssl = true;
-        }
-        {
-          port = 443;
-          addr = "[::]";
-          ssl = true;
-        }
-        {
-          port = 8448;
-          addr = "0.0.0.0";
-          ssl = true;
-        }
-        {
-          port = 8448;
-          addr = "[::]";
-          ssl = true;
-        }
-      ];
-
       root = "/dev/null";
 
       forceSSL = lib.mkDefault true;
