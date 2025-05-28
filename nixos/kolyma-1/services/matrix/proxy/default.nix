@@ -182,7 +182,7 @@ in {
             };
           }
         ]
-        ++ endpoints
+        # ++ endpoints
       );
     };
   };
