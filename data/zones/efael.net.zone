@@ -22,7 +22,8 @@ auth        IN    CNAME efael.net.
 turn        IN    CNAME efael.net.
 
 ; Mail configurations
-mail              IN  CNAME efael.net.
+mail              IN  A     167.235.96.40
+mail              IN  AAAA  2a01:4f8:2190:2914::
 @                 IN  MX    10 mail.efael.net.
 @                 IN  TXT   "v=spf1 a:mail.efael.net -all"
 _submission._tcp  IN  SRV   5 0 587 mail.efael.net.
