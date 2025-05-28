@@ -66,22 +66,23 @@
     "= /.well-known/matrix/server".extraConfig = mkWellKnown (wellKnownServer domain);
     "= /.well-known/matrix/client".extraConfig = mkWellKnown (wellKnownClient domain);
     "= /.well-known/matrix/support".extraConfig = mkWellKnown wellKnownSupport;
+  };
 
-    # Element X verification
+  wellKnownAppleLocations = domain: {
     "= /.well-known/apple-app-site-association". extraConfig = let
       data = {
-        webcredentials = {
-          apps = ["uz.uzinfocom.efael.app"];
-        };
         applinks = {
-          apps = ["uz.uzinfocom.efael.app"];
+          apps = ["86VMSY4FK5.uz.uzinfocom.efael.app"];
           details = [];
+        };
+        webcredentials = {
+          apps = [
+            "86VMSY4FK5.uz.uzinfocom.efael.app"
+          ];
         };
       };
     in ''
       default_type application/json;
-      types { application/json apple-app-site-association; }
-      add_header Content-Type application/json always;
       add_header Access-Control-Allow-Origin *;
       return 200 '${builtins.toJSON data}';
     '';
@@ -114,7 +115,9 @@ in {
       addSSL = true;
       enableACME = true;
 
-      locations = wellKnownLocations "${domains.main}";
+      locations =
+        wellKnownLocations "${domains.main}"
+        // wellKnownAppleLocations "${domains.main}";
     };
 
     ${domains.client} = {
@@ -132,11 +135,13 @@ in {
 
       extraConfig = commonHeaders;
 
-      locations = {
-        "/" = {
-          proxyPass = "http://127.0.0.1:8080";
-        };
-      };
+      locations =
+        {
+          "/" = {
+            proxyPass = "http://127.0.0.1:8080";
+          };
+        }
+        // wellKnownAppleLocations "${domains.main}";
     };
 
     ${domains.server} = {
@@ -145,31 +150,33 @@ in {
       forceSSL = lib.mkDefault true;
       enableACME = lib.mkDefault true;
 
-      locations = lib.foldl' lib.recursiveUpdate {} (
-        [
-          {
-            # Forward to the auth service
-            "~ ^/_matrix/client/(.*)/(login|logout|refresh)" = {
-              priority = 100;
-              proxyPass = "http://127.0.0.1:8080";
-              extraConfig = commonHeaders;
-            };
+      locations =
+        (lib.foldl' lib.recursiveUpdate {} (
+          [
+            {
+              # Forward to the auth service
+              "~ ^/_matrix/client/(.*)/(login|logout|refresh)" = {
+                priority = 100;
+                proxyPass = "http://127.0.0.1:8080";
+                extraConfig = commonHeaders;
+              };
 
-            # Forward to Synapse
-            # as per https://element-hq.github.io/synapse/latest/reverse_proxy.html#nginx
-            "~ ^(/_matrix|/_synapse)" = {
-              priority = 200;
-              proxyPass = "http://127.0.0.1:8008";
+              # Forward to Synapse
+              # as per https://element-hq.github.io/synapse/latest/reverse_proxy.html#nginx
+              "~ ^(/_matrix|/_synapse)" = {
+                priority = 200;
+                proxyPass = "http://127.0.0.1:8008";
 
-              extraConfig = ''
-                ${matrixHeaders}
-                add_header x-backend "synapse" always;
-              '';
-            };
-          }
-        ]
-        # ++ endpoints
-      );
+                extraConfig = ''
+                  ${matrixHeaders}
+                  add_header x-backend "synapse" always;
+                '';
+              };
+            }
+          ]
+          # ++ endpoints
+        ))
+        // wellKnownAppleLocations "${domains.main}";
     };
   };
 
