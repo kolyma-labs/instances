@@ -21,28 +21,6 @@ in {
       inherit owner sopsFile;
       key = "client/secret";
     };
-
-    # Keys
-    "matrix/mas/keys/encryption" = {
-      inherit owner sopsFile;
-      key = "client/secret";
-    };
-    "matrix/mas/keys/DQhwdhHMxc" = {
-      inherit owner sopsFile;
-      key = "keys/keys/DQhwdhHMxc";
-    };
-    "matrix/mas/keys/fK7g4m3Ozg" = {
-      inherit owner sopsFile;
-      key = "keys/keys/fK7g4m3Ozg";
-    };
-    "matrix/mas/keys/cePSmzchGk" = {
-      inherit owner sopsFile;
-      key = "keys/keys/cePSmzchGk";
-    };
-    "matrix/mas/keys/SxnO3hEMCg" = {
-      inherit owner sopsFile;
-      key = "keys/keys/SxnO3hEMCg";
-    };
   };
 
   sops.templates."extra-mas-conf.yaml" = {
@@ -151,7 +129,7 @@ in {
             binds = [
               {
                 host = "0.0.0.0";
-                port = 8090;
+                port = 8080;
               }
             ];
             proxy_protocol = false;

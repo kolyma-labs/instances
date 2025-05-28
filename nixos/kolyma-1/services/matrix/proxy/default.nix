@@ -165,7 +165,7 @@ in {
             # Forward to the auth service
             "~ ^/_matrix/client/(.*)/(login|logout|refresh)" = {
               priority = 100;
-              proxyPass = "http://127.0.0.1:8090";
+              proxyPass = "http://127.0.0.1:8080";
               extraConfig = commonHeaders;
             };
 
