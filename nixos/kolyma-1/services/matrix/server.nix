@@ -47,10 +47,14 @@ in {
           client_id: ${config.sops.placeholder."matrix/mas/client/id"}
           client_auth_method: client_secret_basic
           client_secret: "${config.sops.placeholder."matrix/mas/client/secret"}"
+          admin_token: "${config.sops.placeholder."matrix/mas/client/secret"}"
+          introspection_endpoint: "https://${domains.auth}/oauth2/introspect"
         msc4108_enabled: true
         msc2965_enabled: true
         msc3266_enabled: true
         msc4222_enabled: true
+        msc4190_enabled: true
+        msc3202_device_masquerading: true
     '';
   };
 
