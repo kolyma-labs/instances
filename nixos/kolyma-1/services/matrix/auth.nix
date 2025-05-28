@@ -71,7 +71,8 @@ in {
         keys:
           - kid: DQhwdhHMxc
             key: |
-              ${builtins.replaceStrings ["\n"] ["\n  "] config.sops.placeholder."matrix/mas/keys/DQhwdhHMxc"}          - kid: fK7g4m3Ozg
+              ${config.sops.placeholder."matrix/mas/keys/DQhwdhHMxc"}
+          - kid: fK7g4m3Ozg
             key: |
               ${config.sops.placeholder."matrix/mas/keys/fK7g4m3Ozg"}
           - kid: cePSmzchGk
