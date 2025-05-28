@@ -6,13 +6,10 @@
   owner = config.systemd.services.matrix-authentication-service.serviceConfig.User;
 in {
   sops.secrets = {
-    # Mail
     "matrix/mas/mail" = {
       inherit owner sopsFile;
       key = "mail/support/raw";
     };
-
-    # Client
     "matrix/mas/client/id" = {
       inherit owner sopsFile;
       key = "client/id";
@@ -30,7 +27,7 @@ in {
         from: '"Efael" <noreply@${domains.main}>'
         reply_to: '"No reply" <noreply@${domains.main}>'
         transport: smtp
-        mode: tls  # plain | tls | starttls
+        mode: plain  # plain | tls | starttls
         hostname: ${domains.mail}
         port: 587
         username: noreply@${domains.main}
