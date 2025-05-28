@@ -74,7 +74,7 @@
           apps = ["uz.uzinfocom.efael.app"];
         };
         applinks = {
-          apps = [];
+          apps = ["uz.uzinfocom.efael.app"];
           details = [];
         };
       };
