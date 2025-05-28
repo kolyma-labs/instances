@@ -68,7 +68,7 @@
     "= /.well-known/matrix/support".extraConfig = mkWellKnown wellKnownSupport;
 
     # Element X verification
-    "= /.well_known/apple-app-site-association". extraConfig = let
+    "= /.well-known/apple-app-site-association". extraConfig = let
       data = {
         webcredentials = {
           apps = ["uz.uzinfocom.efael.app"];
