@@ -143,7 +143,7 @@ in {
       disable_msisdn_registration = true;
       enable_media_repo = true;
 
-      enable_registration = false;
+      enable_registration = true;
       enable_registration_captcha = false;
       enable_registration_without_verification = false;
       enable_room_list_search = true;
