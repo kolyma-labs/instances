@@ -21,6 +21,6 @@
     ./streaming.nix
 
     # Matrix server hosting
-    # ./matrix
+    ./matrix
   ];
 }
