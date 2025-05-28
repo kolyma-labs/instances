@@ -84,8 +84,6 @@
     in ''
       default_type application/json;
       types { application/json apple-app-site-association; }
-      add_header Content-Type application/json always;
-      add_header Access-Control-Allow-Origin *;
       return 200 '${builtins.toJSON data}';
     '';
   };
