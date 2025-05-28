@@ -20,7 +20,18 @@ chat        IN    CNAME efael.net.
 matrix      IN    CNAME efael.net.
 auth        IN    CNAME efael.net.
 turn        IN    CNAME efael.net.
-mail        IN    CNAME efael.net.
+
+; Mail configurations
+mail              IN  CNAME efael.net.
+@                 IN  MX    10 mail.efael.net.
+@                 IN  TXT   "v=spf1 a:mail.efael.net -all"
+_submission._tcp  IN  SRV   5 0 587 mail.efael.net.
+_submissions._tcp IN  SRV   5 0 465 mail.efael.net.
+_imap._tcp        IN  SRV   5 0 143 mail.efael.net.
+_imaps._tcp       IN  SRV   5 0 993 mail.efael.net.
+_dmarc            IN  TXT   "v=DMARC1; p=none"
+;mail._domainkey   IN  TXT   ( "v=DKIM1; k=rsa; "
+;      "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCHR3DlCEG4En2904+17lCM/fITIr0cast/M5sUixYDLt8th/o4WCrBc+dBwaZNkprtl4CxB2WBI/P7rmGHyUzYqWIbQpxzvyhSLIRvqghBd8Cn44/xRyy/vHKsiiJ3bWn8ojEm2ccl4YwRT3ceDch36LkSruuyjUio3qGTm/OBwIDAQAB" )
 
 ; GitHub verifications
 _gh-efael-o         IN      TXT      1ff82b0fad
