@@ -52,7 +52,7 @@ in {
         from: '"Efael" <noreply@${domains.main}>'
         reply_to: '"No reply" <noreply@${domains.main}>'
         transport: smtp
-        mode: tls # plain | tls | starttls
+        mode: tls  # plain | tls | starttls
         hostname: ${domains.mail}
         port: 587
         username: noreply@${domains.main}
@@ -71,8 +71,7 @@ in {
         keys:
           - kid: DQhwdhHMxc
             key: |
-              ${config.sops.placeholder."matrix/mas/keys/DQhwdhHMxc"}
-          - kid: fK7g4m3Ozg
+              ${builtins.replaceStrings ["\n"] ["\n  "] config.sops.placeholder."matrix/mas/keys/DQhwdhHMxc"}          - kid: fK7g4m3Ozg
             key: |
               ${config.sops.placeholder."matrix/mas/keys/fK7g4m3Ozg"}
           - kid: cePSmzchGk
