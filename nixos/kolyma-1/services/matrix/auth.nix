@@ -27,7 +27,7 @@ in {
         from: '"Efael" <noreply@${domains.main}>'
         reply_to: '"No reply" <noreply@${domains.main}>'
         transport: smtp
-        mode: plain  # plain | tls | starttls
+        mode: starttls  # plain | tls | starttls
         hostname: ${domains.mail}
         port: 587
         username: noreply@${domains.main}
