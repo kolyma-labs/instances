@@ -66,6 +66,23 @@
     "= /.well-known/matrix/server".extraConfig = mkWellKnown (wellKnownServer domain);
     "= /.well-known/matrix/client".extraConfig = mkWellKnown (wellKnownClient domain);
     "= /.well-known/matrix/support".extraConfig = mkWellKnown wellKnownSupport;
+
+    # Element X verification
+    "= /.well_known/apple-app-site-association". extraConfig = let
+      data = {
+        webcredentials = {
+          apps = ["uz.uzinfocom.efael.app"];
+        };
+        applinks = {
+          apps = [];
+          details = [];
+        };
+      };
+    in ''
+      add_header Content-Type application/json;
+      add_header Access-Control-Allow-Origin *;
+      return 200 '${builtins.toJSON data}';
+    '';
   };
 
   mkLocation = type: endpoint: {
