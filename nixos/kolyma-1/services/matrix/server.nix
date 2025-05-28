@@ -54,7 +54,6 @@ in {
         msc3266_enabled: true
         msc4222_enabled: true
         msc4190_enabled: true
-        msc3202_device_masquerading: true
     '';
   };
 
