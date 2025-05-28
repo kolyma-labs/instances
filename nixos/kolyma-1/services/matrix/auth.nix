@@ -69,18 +69,18 @@ in {
       secrets:
         encryption: ${config.sops.placeholder."matrix/mas/keys/encryption"}
         keys:
-        - kid: DQhwdhHMxc
-          key: |
-            ${config.sops.placeholder."matrix/mas/keys/DQhwdhHMxc"}
-        - kid: fK7g4m3Ozg
-          key: |
-            ${config.sops.placeholder."matrix/mas/keys/fK7g4m3Ozg"}
-        - kid: cePSmzchGk
-          key: |
-            ${config.sops.placeholder."matrix/mas/keys/cePSmzchGk"}
-        - kid: SxnO3hEMCg
-          key: |
-            ${config.sops.placeholder."matrix/mas/keys/SxnO3hEMCg"}
+          - kid: DQhwdhHMxc
+            key: |
+              ${config.sops.placeholder."matrix/mas/keys/DQhwdhHMxc"}
+          - kid: fK7g4m3Ozg
+            key: |
+              ${config.sops.placeholder."matrix/mas/keys/fK7g4m3Ozg"}
+          - kid: cePSmzchGk
+            key: |
+              ${config.sops.placeholder."matrix/mas/keys/cePSmzchGk"}
+          - kid: SxnO3hEMCg
+            key: |
+              ${config.sops.placeholder."matrix/mas/keys/SxnO3hEMCg"}
     '';
   };
 
