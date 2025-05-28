@@ -72,12 +72,16 @@
     "= /.well-known/apple-app-site-association". extraConfig = let
       data = {
         applinks = {
-          apps = ["86VMSY4FK5.uz.uzinfocom.efael.app"];
+          apps = [
+            "86VMSY4FK5.uz.uzinfocom.efael.app"
+            "7J4U792NQT.io.element.elementx"
+          ];
           details = [];
         };
         webcredentials = {
           apps = [
             "86VMSY4FK5.uz.uzinfocom.efael.app"
+            "7J4U792NQT.io.element.elementx"
           ];
         };
       };
