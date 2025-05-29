@@ -3,4 +3,5 @@
   # List your users here
   kei = import ./kei.nix;
   sakhib = import ./sakhib.nix;
+  shakhzod = import ./shakhzod.nix;
 }
