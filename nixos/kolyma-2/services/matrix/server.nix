@@ -20,6 +20,14 @@ in {
       inherit owner sopsFile;
       key = "matrix/secret";
     };
+    "matrix/synapse/github/id" = {
+      inherit owner sopsFile;
+      key = "matrix/oath/github/id";
+    };
+    "matrix/synapse/github/secret" = {
+      inherit owner sopsFile;
+      key = "matrix/oath/github/secret";
+    };
   };
 
   sops.templates."extra-matrix-conf.yaml" = {
@@ -46,8 +54,8 @@ in {
           idp_brand: "github"
           discover: false
           issuer: "https://github.com/"
-          client_id: "${config.sops.placeholder."matrix/oath/github/id"}"
-          client_secret: "${config.sops.placeholder."matrix/oath/github/secret"}"
+          client_id: "${config.sops.placeholder."matrix/synapse/github/id"}"
+          client_secret: "${config.sops.placeholder."matrix/synapse/github/secret"}"
           authorization_endpoint: "https://github.com/login/oauth/authorize"
           token_endpoint: "https://github.com/login/oauth/access_token"
           userinfo_endpoint: "https://api.github.com/user"
