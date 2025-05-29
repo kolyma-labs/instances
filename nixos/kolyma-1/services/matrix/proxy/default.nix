@@ -43,7 +43,7 @@
     ];
   };
 
-  wellKnownServer = domain: {"m.server" = "${domains.server}:8448";};
+  wellKnownServer = domain: {"m.server" = "${domains.server}:443";};
 
   wellKnownSupport = {
     contacts = [
