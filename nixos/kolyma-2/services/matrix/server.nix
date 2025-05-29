@@ -4,7 +4,7 @@
   domains,
   keys,
 }: let
-  sopsFile = ../../../../secrets/efael.yaml;
+  sopsFile = ../../../../secrets/floss.yaml;
   owner = config.systemd.services.matrix-synapse.serviceConfig.User;
 in {
   sops.secrets = {
@@ -33,13 +33,13 @@ in {
         enable_tls: true
         force_tls: false
         require_transport_security: true
-        app_name: "Efael's Network"
+        app_name: "Floss Network"
         enable_notifs: true
         notif_for_new_users: true
         client_base_url: "https://${domains.server}"
         validation_token_lifetime: "15m"
         invite_client_location: "https://${domains.client}"
-        notif_from: "Efael's Support from <noreply@${domains.main}>"
+        notif_from: "Floss Support from <noreply@${domains.main}>"
       experimental_features:
         msc3861:
           enabled: true

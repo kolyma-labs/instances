@@ -3,32 +3,34 @@
   config,
   ...
 }: let
-  domain = "social.floss.uz";
+  domain = "floss.uz";
+  sopsFile = ../../../secrets/floss.yaml;
 in {
   config = {
     sops.secrets = {
       "mastodon/mail" = {
+        inherit sopsFile;
         owner = config.services.mastodon.user;
-        key = "mail/floss/support/raw";
+        key = "mail/support/raw";
       };
     };
 
     services.mastodon = {
       enable = true;
-      localDomain = domain;
+      localDomain = "social.${domain}";
       configureNginx = true;
 
       package = pkgs.mastodon;
 
       smtp = {
         port = 587;
-        host = "mail.floss.uz";
+        host = "mail.${domain}";
 
-        user = "noreply@floss.uz";
+        user = "noreply@${domain}";
         passwordFile = config.sops.secrets."mastodon/mail".path;
 
         authenticate = true;
-        fromAddress = "noreply@floss.uz";
+        fromAddress = "noreply@${domain}";
       };
 
       streamingProcesses = 30;

@@ -2,7 +2,7 @@
   config,
   domains,
 }: let
-  sopsFile = ../../../../secrets/efael.yaml;
+  sopsFile = ../../../../secrets/floss.yaml;
   owner = config.systemd.services.matrix-authentication-service.serviceConfig.User;
 in {
   sops.secrets = {
@@ -18,13 +18,21 @@ in {
       inherit owner sopsFile;
       key = "matrix/secret";
     };
+    "matrix/mas/github/id" = {
+      inherit owner sopsFile;
+      key = "matrix/oath/github/id";
+    };
+    "matrix/mas/github/secret" = {
+      inherit owner sopsFile;
+      key = "matrix/oath/github/secret";
+    };
   };
 
   sops.templates."extra-mas-conf.yaml" = {
     inherit owner;
     content = ''
       email:
-        from: '"Efael" <noreply@${domains.main}>'
+        from: '"Floss Network" <noreply@${domains.main}>'
         reply_to: '"No reply" <noreply@${domains.main}>'
         transport: smtp
         mode: starttls  # plain | tls | starttls
@@ -95,6 +103,33 @@ in {
               oUQDQgAEapEEm611BWngQBFa68+EDIa1UXqYTWVvqHGTvaKfHIROWrhoVejlTYAk
               PvEW3Xx2WGNvxuFNoGnsUrVgESpmgg==
               -----END EC PRIVATE KEY-----
+      upstream_oauth2:
+        providers:
+          - id: "01HFS67GJ145HCM9ZASYS9DC3J"
+            human_name: GitHub
+            brand_name: github
+            discovery_mode: disabled
+            fetch_userinfo: true
+            token_endpoint_auth_method: "client_secret_post"
+            client_id: "${config.sops.placeholder."matrix/mas/github/id"}"
+            client_secret: "${config.sops.placeholder."matrix/mas/github/secret"}"
+            authorization_endpoint: "https://github.com/login/oauth/authorize"
+            token_endpoint: "https://github.com/login/oauth/access_token"
+            userinfo_endpoint: "https://api.github.com/user"
+            scope: "read:user"
+            claims_imports:
+              subject:
+                template: "{{ userinfo_claims.id }}"
+              displayname:
+                action: suggest
+                template: "{{`{{ userinfo_claims.name }}"
+              localpart:
+                action: ignore
+              email:
+                action: suggest
+                template: "{{ userinfo_claims.email }}"
+              account_name:
+                template: "@{{ userinfo_claims.login }}"
     '';
   };
 
@@ -166,6 +201,7 @@ in {
           {
             version = 2;
             algorithm = "bcrypt";
+            secret = "";
           }
         ];
       };

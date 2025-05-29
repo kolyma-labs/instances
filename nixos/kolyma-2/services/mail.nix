@@ -4,21 +4,32 @@
   pkgs,
   ...
 }: let
+  domain = "floss.uz";
+  sopsFile = ../../../secrets/floss.yaml;
 in {
   imports = [
     inputs.simple-nixos-mailserver.nixosModule
   ];
 
   sops.secrets = {
-    "mail/floss/admin/hashed" = {};
-    "mail/floss/support/hashed" = {};
-    "mail/floss/raxmatov/hashed" = {};
+    "snm/mail/admin" = {
+      inherit sopsFile;
+      key = "mail/admin/hashed";
+    };
+    "snm/mail/support" = {
+      inherit sopsFile;
+      key = "mail/support/hashed";
+    };
+    "snm/mail/raxmatov" = {
+      inherit sopsFile;
+      key = "mail/support/hashed";
+    };
   };
 
   mailserver = {
     enable = true;
-    fqdn = "mail.floss.uz";
-    domains = ["floss.uz"];
+    fqdn = "mail.${domain}";
+    domains = [domain];
 
     localDnsResolver = false;
 
@@ -33,20 +44,20 @@ in {
     # Generating hashed passwords:
     # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
     loginAccounts = {
-      "admin@floss.uz" = {
-        hashedPasswordFile = config.sops.secrets."mail/floss/admin/hashed".path;
-        aliases = ["postmaster@floss.uz" "orzklv@floss.uz"];
+      "admin@${domain}" = {
+        hashedPasswordFile = config.sops.secrets."snm/mail/admin".path;
+        aliases = ["postmaster@${domain}" "orzklv@${domain}"];
       };
-      "support@floss.uz" = {
-        hashedPasswordFile = config.sops.secrets."mail/floss/support/hashed".path;
-        aliases = ["developers@floss.uz" "maintainers@floss.uz"];
+      "support@${domain}" = {
+        hashedPasswordFile = config.sops.secrets."snm/mail/support".path;
+        aliases = ["developers@${domain}" "maintainers@${domain}"];
       };
-      "noreply@floss.uz" = {
+      "noreply@${domain}" = {
         sendOnly = true;
-        hashedPasswordFile = config.sops.secrets."mail/floss/support/hashed".path;
+        hashedPasswordFile = config.sops.secrets."snm/mail/support".path;
       };
       "b.raxmatov@floss.uz" = {
-        hashedPasswordFile = config.sops.secrets."mail/floss/raxmatov/hashed".path;
+        hashedPasswordFile = config.sops.secrets."snm/mail/raxmatov".path;
       };
     };
 
