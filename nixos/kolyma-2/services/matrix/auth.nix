@@ -116,6 +116,7 @@ in {
           - id: "01HFS67GJ145HCM9ZASYS9DC3J"
             human_name: GitHub
             brand_name: github
+            synapse_idp_id: oidc-github
             issuer: https://github.com/
             discovery_mode: disabled
             fetch_userinfo: true
@@ -142,6 +143,7 @@ in {
           - id: "01HFS67GJ145HCM9ZASSSCDX32"
             human_name: Mastodon
             brand_name: mastodon
+            synapse_idp_id: oidc-mastodon
             issuer: https://social.floss.uz/@orzklv
             discovery_mode: disabled
             fetch_userinfo: true

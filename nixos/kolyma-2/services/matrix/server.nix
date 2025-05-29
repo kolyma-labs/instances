@@ -151,7 +151,7 @@ in {
       turn_user_lifetime = "1h";
 
       suppress_key_server_warning = true;
-      allow_guest_access = true;
+      allow_guest_access = false;
       enable_set_displayname = true;
       enable_set_avatar_url = true;
 
