@@ -26,6 +26,14 @@ in {
       inherit owner sopsFile;
       key = "matrix/oath/github/secret";
     };
+    "matrix/mas/mastodon/id" = {
+      inherit owner sopsFile;
+      key = "matrix/oath/mastodon/id";
+    };
+    "matrix/mas/mastodon/secret" = {
+      inherit owner sopsFile;
+      key = "matrix/oath/mastodon/secret";
+    };
   };
 
   sops.templates."extra-mas-conf.yaml" = {
@@ -108,6 +116,7 @@ in {
           - id: "01HFS67GJ145HCM9ZASYS9DC3J"
             human_name: GitHub
             brand_name: github
+            issuer: https://github.com/
             discovery_mode: disabled
             fetch_userinfo: true
             token_endpoint_auth_method: "client_secret_post"
@@ -130,6 +139,33 @@ in {
                 template: "{{ userinfo_claims.email }}"
               account_name:
                 template: "@{{ userinfo_claims.login }}"
+          - id: "01HFS67GJ145HCM9ZASSSCDX32"
+            human_name: Mastodon
+            brand_name: mastodon
+            issuer: https://social.floss.uz/@orzklv
+            discovery_mode: disabled
+            fetch_userinfo: true
+            token_endpoint_auth_method: "client_secret_post"
+            client_id: "${config.sops.placeholder."matrix/mas/github/id"}"
+            client_secret: "${config.sops.placeholder."matrix/mas/github/secret"}"
+            authorization_endpoint: "https://social.floss.uz/oauth/authorize"
+            token_endpoint: "https://social.floss.uz/oauth/token"
+            userinfo_endpoint: "https://social.floss.uz/api/v1/accounts/verify_credentials"
+            scope: "read"
+            claims_imports:
+              subject:
+                template: "{{ userinfo_claims.id }}"
+              displayname:
+                action: suggest
+                template: "{{`{{ userinfo_claims.name }}"
+              localpart:
+                action: ignore
+              email:
+                action: suggest
+                template: "{{ userinfo_claims.email }}"
+              account_name:
+                template: "@{{ userinfo_claims.login }}"
+
     '';
   };
 

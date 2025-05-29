@@ -28,6 +28,14 @@ in {
       inherit owner sopsFile;
       key = "matrix/oath/github/secret";
     };
+    "matrix/synapse/mastodon/id" = {
+      inherit owner sopsFile;
+      key = "matrix/oath/mastodon/id";
+    };
+    "matrix/synapse/mastodon/secret" = {
+      inherit owner sopsFile;
+      key = "matrix/oath/mastodon/secret";
+    };
   };
 
   sops.templates."extra-matrix-conf.yaml" = {
@@ -65,6 +73,23 @@ in {
               subject_claim: "id"
               localpart_template: "{{ user.login }}"
               display_name_template: "{{ user.name }}"
+        - idp_id: mastodon
+          idp_name: Mastodon
+          idp_brand: "mastodon"
+          discover: false
+          issuer: "https://social.floss.uz/@orzklv"
+          client_id: "${config.sops.placeholder."matrix/synapse/mastodon/id"}"
+          client_secret: "${config.sops.placeholder."matrix/synapse/mastodon/secret"}"
+          authorization_endpoint: "https://social.floss.uz/oauth/authorize"
+          token_endpoint: "https://social.floss.uz/oauth/token"
+          userinfo_endpoint: "https://social.floss.uz/api/v1/accounts/verify_credentials"
+          scopes: ["read"]
+          user_mapping_provider:
+            config:
+              subject_template: "{{ user.id }}"
+              localpart_template: "{{ user.username }}"
+              display_name_template: "{{ user.display_name }}"
+
       experimental_features:
         msc3861:
           enabled: true
