@@ -49,7 +49,7 @@
 
   temp = "sniggers_and_maniggas";
 
-  sopsFile = ../../../../secrets/floss.yaml;
+  sopsFile = ../../../secrets/floss.yaml;
   owner = config.systemd.services.matrix-synapse.serviceConfig.User;
 in {
   config = {
