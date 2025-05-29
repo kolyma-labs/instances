@@ -108,7 +108,7 @@ in {
           - id: "01HFS67GJ145HCM9ZASYS9DC3J"
             human_name: GitHub
             brand_name: github
-            discovery_mode: enabled
+            discovery_mode: disabled
             fetch_userinfo: true
             token_endpoint_auth_method: "client_secret_post"
             client_id: "${config.sops.placeholder."matrix/mas/github/id"}"
