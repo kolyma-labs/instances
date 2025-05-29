@@ -196,12 +196,12 @@ in {
         schemes = [
           {
             version = 1;
-            algorithm = "argon2id";
+            algorithm = "bcrypt";
+            secret = "";
           }
           {
             version = 2;
-            algorithm = "bcrypt";
-            secret = "";
+            algorithm = "argon2id";
           }
         ];
       };

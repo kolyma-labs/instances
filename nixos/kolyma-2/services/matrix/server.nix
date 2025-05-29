@@ -40,6 +40,23 @@ in {
         validation_token_lifetime: "15m"
         invite_client_location: "https://${domains.client}"
         notif_from: "Floss Support from <noreply@${domains.main}>"
+      oidc_providers:
+        - idp_id: github
+          idp_name: Github
+          idp_brand: "github"
+          discover: false
+          issuer: "https://github.com/"
+          client_id: "${config.sops.placeholder."matrix/oath/github/id"}"
+          client_secret: "${config.sops.placeholder."matrix/oath/github/secret"}"
+          authorization_endpoint: "https://github.com/login/oauth/authorize"
+          token_endpoint: "https://github.com/login/oauth/access_token"
+          userinfo_endpoint: "https://api.github.com/user"
+          scopes: ["read:user"]
+          user_mapping_provider:
+            config:
+              subject_claim: "id"
+              localpart_template: "{{ user.login }}"
+              display_name_template: "{{ user.name }}"
       experimental_features:
         msc3861:
           enabled: true
