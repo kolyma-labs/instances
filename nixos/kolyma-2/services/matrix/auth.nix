@@ -108,7 +108,7 @@ in {
           - id: "01HFS67GJ145HCM9ZASYS9DC3J"
             human_name: GitHub
             brand_name: github
-            discovery_mode: disabled
+            discovery_mode: enabled
             fetch_userinfo: true
             token_endpoint_auth_method: "client_secret_post"
             client_id: "${config.sops.placeholder."matrix/mas/github/id"}"
@@ -141,6 +141,8 @@ in {
     ];
 
     settings = {
+      database.url = "postgresql://localhost:5432/matrix-authentication-service?user=matrix-authentication-service&password=new_password";
+
       http = {
         public_base = "https://${domains.auth}";
         issuer = "https://${domains.auth}";
