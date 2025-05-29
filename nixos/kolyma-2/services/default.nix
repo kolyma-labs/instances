@@ -24,7 +24,7 @@
     ./minecraft
 
     # Matrix self-hosted server
-    ./matrix
+    ./matrix.nix
 
     # Local mastodon self-hosted server
     ./mastodon.nix

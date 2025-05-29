@@ -48,6 +48,9 @@
   };
 
   temp = "sniggers_and_maniggas";
+
+  sopsFile = ../../../../secrets/floss.yaml;
+  owner = config.systemd.services.matrix-synapse.serviceConfig.User;
 in {
   config = {
     services.postgresql = {
@@ -63,17 +66,25 @@ in {
     };
 
     sops.secrets = {
-      "matrix/mail" = {
-        owner = config.systemd.services.matrix-synapse.serviceConfig.User;
-        key = "mail/floss/support/raw";
+      "matrix/synapse/mail" = {
+        inherit owner sopsFile;
+        key = "mail/support/raw";
       };
-      "matrix/oath/github/id" = {
-        owner = config.systemd.services.matrix-synapse.serviceConfig.User;
-        key = "oath/github/id";
+      "matrix/synapse/github/id" = {
+        inherit owner sopsFile;
+        key = "matrix/oath/github/id";
       };
-      "matrix/oath/github/secret" = {
-        owner = config.systemd.services.matrix-synapse.serviceConfig.User;
-        key = "oath/github/secret";
+      "matrix/synapse/github/secret" = {
+        inherit owner sopsFile;
+        key = "matrix/oath/github/secret";
+      };
+      "matrix/synapse/mastodon/id" = {
+        inherit owner sopsFile;
+        key = "matrix/oath/mastodon/id";
+      };
+      "matrix/synapse/mastodon/secret" = {
+        inherit owner sopsFile;
+        key = "matrix/oath/mastodon/secret";
       };
     };
 
@@ -84,7 +95,7 @@ in {
           smtp_host: "mail.floss.uz"
           smtp_port: 587
           smtp_user: "noreply@floss.uz"
-          smtp_pass: "${config.sops.placeholder."matrix/mail"}"
+          smtp_pass: "${config.sops.placeholder."matrix/synapse/mail"}"
           enable_tls: true
           force_tls: false
           require_transport_security: true
@@ -101,8 +112,8 @@ in {
             idp_brand: "github"
             discover: false
             issuer: "https://github.com/"
-            client_id: "${config.sops.placeholder."matrix/oath/github/id"}"
-            client_secret: "${config.sops.placeholder."matrix/oath/github/secret"}"
+            client_id: "${config.sops.placeholder."matrix/synapse/github/id"}"
+            client_secret: "${config.sops.placeholder."matrix/synapse/github/secret"}"
             authorization_endpoint: "https://github.com/login/oauth/authorize"
             token_endpoint: "https://github.com/login/oauth/access_token"
             userinfo_endpoint: "https://api.github.com/user"
@@ -117,8 +128,8 @@ in {
             idp_brand: "mastodon"
             discover: false
             issuer: "https://social.floss.uz/@orzklv"
-            client_id: "${config.sops.placeholder."matrix/oath/mastodon/id"}"
-            client_secret: "${config.sops.placeholder."matrix/oath/mastodon/secret"}"
+            client_id: "${config.sops.placeholder."matrix/synapse/mastodon/id"}"
+            client_secret: "${config.sops.placeholder."matrix/synapse/mastodon/secret"}"
             authorization_endpoint: "https://social.floss.uz/oauth/authorize"
             token_endpoint: "https://social.floss.uz/oauth/token"
             userinfo_endpoint: "https://social.floss.uz/api/v1/accounts/verify_credentials"
