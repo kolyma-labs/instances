@@ -179,8 +179,6 @@ in {
     ];
 
     settings = {
-      database.url = "postgresql://localhost:5432/matrix-authentication-service?user=matrix-authentication-service&password=new_password";
-
       http = {
         public_base = "https://${domains.auth}";
         issuer = "https://${domains.auth}";

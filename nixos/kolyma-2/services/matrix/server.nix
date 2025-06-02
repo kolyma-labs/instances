@@ -252,14 +252,6 @@ in {
       user_ips_max_age = "28d";
 
       withJemalloc = true;
-
-      database.args = {
-        database = "matrix-synapse";
-        user = "matrix-synapse";
-        password = "new_password";
-        host = "localhost";
-        port = 5432;
-      };
     };
   };
 }
