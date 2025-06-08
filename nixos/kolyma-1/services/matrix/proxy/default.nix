@@ -38,7 +38,11 @@
     "org.matrix.msc4143.rtc_foci" = [
       {
         "type" = "livekit";
-        "livekit_service_url" = "https://livekit-jwt.call.matrix.org";
+        "livekit_service_url" = "https://call.efael.net/livekit/jwt";
+      }
+      {
+        "type" = "nextgen_new_foci_type";
+        "props_for_nextgen_foci" = "val";
       }
     ];
   };
@@ -181,6 +185,50 @@ in {
           # ++ endpoints
         ))
         // wellKnownAppleLocations "${domains.main}";
+    };
+
+    ${domains.call} = {
+      forceSSL = lib.mkDefault true;
+      enableACME = lib.mkDefault true;
+      root = pkgs.element-call;
+      extraConfig = commonHeaders;
+
+      locations = {
+        "/config.json" = let
+          data = {
+            default_server_config = {
+              "m.homeserver" = {
+                "base_url" = "https://${domains.server}";
+                "server_name" = domains.main;
+              };
+            };
+          };
+        in {
+          extraConfig = ''
+            default_type application/json;
+            return 200 '${builtins.toJSON data}';
+          '';
+        };
+
+        "^~ /livekit/jwt" = {
+          proxyPass = "127.0.0.1:8080";
+        };
+
+        "^~ /livekit/sfu" = {
+          proxyPass = "127.0.0.1:7880";
+          extraConfig = ''
+            proxy_send_timeout 120;
+            proxy_read_timeout 120;
+            proxy_buffering off;
+
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header Accept-Encoding gzip;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+          '';
+        };
+      };
     };
   };
 
