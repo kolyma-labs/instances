@@ -233,13 +233,6 @@ in {
             proxy_set_header X-Forwarded-Proto $scheme;
           '';
         };
-
-        "/" = {
-          root = pkgs.element-call;
-          extraConfig = ''
-            try_files /index.html =404;
-          '';
-        };
       };
     };
   };
