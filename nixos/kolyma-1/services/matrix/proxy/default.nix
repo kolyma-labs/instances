@@ -23,7 +23,7 @@
 
   clientConfig = import ./client.nix {inherit domains;};
 
-  wellKnownClient = domain: {
+  wellKnownClient = {
     "m.homeserver".base_url = "https://${domains.server}";
     "m.identity_server".base_url = "https://${domains.server}";
     "org.matrix.msc2965.authentication" = {
@@ -39,16 +39,12 @@
     "org.matrix.msc4143.rtc_foci" = [
       {
         "type" = "livekit";
-        "livekit_service_url" = "https://call.efael.net/livekit/jwt";
-      }
-      {
-        "type" = "nextgen_new_foci_type";
-        "props_for_nextgen_foci" = "val";
+        "livekit_service_url" = "https://${domains.call}/livekit/jwt";
       }
     ];
   };
 
-  wellKnownServer = domain: {"m.server" = "${domains.server}:443";};
+  wellKnownServer = {"m.server" = "${domains.server}:443";};
 
   wellKnownSupport = {
     contacts = [
@@ -61,8 +57,10 @@
     support_page = "https://${domains.main}/about";
   };
 
-  wellKnownCalls = domain: {
-    call = {widget_url = "https://call.efael.net/room";};
+  wellKnownCalls = {
+    call = {
+      widget_url = "https://${domains.server}/room";
+    };
   };
 
   mkWellKnown = data: ''
@@ -72,9 +70,10 @@
   '';
 
   wellKnownLocations = domain: {
-    "= /.well-known/matrix/server".extraConfig = mkWellKnown (wellKnownServer domain);
-    "= /.well-known/matrix/client".extraConfig = mkWellKnown (wellKnownClient domain);
+    "= /.well-known/matrix/server".extraConfig = mkWellKnown wellKnownServer;
+    "= /.well-known/matrix/client".extraConfig = mkWellKnown wellKnownClient;
     "= /.well-known/matrix/support".extraConfig = mkWellKnown wellKnownSupport;
+    "= /.well-known/element/element.json".extraConfig = mkWellKnown wellKnownCalls;
   };
 
   wellKnownAppleLocations = domain: {

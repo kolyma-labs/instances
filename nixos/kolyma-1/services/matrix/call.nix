@@ -21,6 +21,16 @@ in {
     enable = true;
     openFirewall = true;
     keyFile = config.sops.templates."element-call.key".path;
+
+    settings = {
+      rtc = {
+        tcp_port = 7881;
+        port_range_start = 50000;
+        port_range_end = 60000;
+        use_external_ip = true;
+        enable_loopback_candidate = false;
+      };
+    };
   };
 
   services.lk-jwt-service = {
@@ -28,5 +38,21 @@ in {
     port = 8192;
     livekitUrl = "wss://${domains.call}/livekit/sfu";
     keyFile = config.services.livekit.keyFile;
+  };
+
+  networking.firewall = {
+    interfaces.eth0 = let
+      range = with config.services.livekit.settings.rtc; [
+        {
+          from = port_range_start;
+          to = port_range_end;
+        }
+      ];
+    in {
+      allowedUDPPortRanges = range;
+      allowedUDPPorts = [7881];
+      allowedTCPPortRanges = range;
+      allowedTCPPorts = [7881];
+    };
   };
 }

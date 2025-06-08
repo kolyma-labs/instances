@@ -92,7 +92,7 @@ in {
       server_name = domains.main;
       public_baseurl = "https://${domains.server}";
 
-      turn_allow_guests = false;
+      turn_allow_guests = true;
       turn_uris = [
         "turn:${domains.realm}:3478?transport=udp"
         "turn:${domains.realm}:3478?transport=tcp"
