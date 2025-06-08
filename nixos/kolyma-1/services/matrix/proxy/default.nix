@@ -61,6 +61,10 @@
     support_page = "https://${domains.main}/about";
   };
 
+  wellKnownCalls = domain: {
+    call = {widget_url = "https://call.efael.net/room";};
+  };
+
   mkWellKnown = data: ''
     add_header Content-Type application/json;
     add_header Access-Control-Allow-Origin *;
