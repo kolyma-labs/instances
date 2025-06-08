@@ -236,12 +236,6 @@ in {
 
         "/" = {
           extraConfig = ''
-            try_files $uri @index;
-          '';
-        };
-
-        "@index" = {
-          extraConfig = ''
             add_header Cache-Control no-cache;
             expires 0;
             try_files /index.html =404;
