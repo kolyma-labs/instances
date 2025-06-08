@@ -21,6 +21,7 @@ matrix      IN    CNAME efael.uz.
 auth        IN    CNAME efael.uz.
 turn        IN    CNAME efael.uz.
 mail        IN    CNAME efael.uz.
+call        IN    CNAME efael.net.
 
 ; GitHub verifications
 _gh-efael-o         IN      TXT      260d041b09
