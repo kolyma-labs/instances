@@ -214,6 +214,12 @@ in {
           '';
         };
 
+        "/" = {
+          extraConfig = ''
+            try_files $uri /$uri /index.html;
+          '';
+        };
+
         "~ ^/livekit/jwt" = {
           proxyPass = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}";
         };
