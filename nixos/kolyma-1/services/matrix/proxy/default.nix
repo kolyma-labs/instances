@@ -39,7 +39,7 @@
     "org.matrix.msc4143.rtc_foci" = [
       {
         "type" = "livekit";
-        "livekit_service_url" = "https://${domains.call}/livekit/jwt";
+        "livekit_service_url" = "https://${domains.call}/livekit";
       }
     ];
   };
@@ -206,6 +206,7 @@ in {
                 "server_name" = domains.main;
               };
             };
+            livekit.livekit_service_url = "https://${domains.call}/livekit";
           };
         in {
           extraConfig = ''
@@ -224,7 +225,13 @@ in {
           proxyPass = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}";
         };
 
-        "~ ^/livekit/sfu" = {
+        "~ ^/livekit/sfu/get" = {
+          priority = 100;
+          proxyPass = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}";
+        };
+
+        "~ ^/livekit/sfu(.*)" = {
+          priority = 200;
           proxyPass = "http://127.0.0.1:${toString config.services.livekit.settings.port}";
           extraConfig = ''
             proxy_send_timeout 120;
