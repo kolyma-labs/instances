@@ -215,11 +215,11 @@ in {
           '';
         };
 
-        "/livekit/jwt" = {
+        "~ ^/livekit/jwt" = {
           proxyPass = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}";
         };
 
-        "/livekit/sfu" = {
+        "~ ^/livekit/sfu" = {
           proxyPass = "http://127.0.0.1:${toString config.services.livekit.settings.port}";
           extraConfig = ''
             proxy_send_timeout 120;
@@ -231,6 +231,20 @@ in {
             proxy_set_header Accept-Encoding gzip;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header X-Forwarded-Proto $scheme;
+          '';
+        };
+
+        "/" = {
+          extraConfig = ''
+            try_files $uri @index;
+          '';
+        };
+
+        "@index" = {
+          extraConfig = ''
+            add_header Cache-Control no-cache;
+            expires 0;
+            try_files /index.html =404;
           '';
         };
       };
