@@ -211,11 +211,11 @@ in {
           '';
         };
 
-        "^~ /livekit/jwt" = {
+        "/livekit/jwt" = {
           proxyPass = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}";
         };
 
-        "^~ /livekit/sfu" = {
+        "/livekit/sfu" = {
           proxyPass = "http://127.0.0.1:${toString config.services.livekit.settings.port}";
           extraConfig = ''
             proxy_send_timeout 120;
