@@ -235,6 +235,7 @@ in {
         };
 
         "/" = {
+          root = pkgs.element-call;
           extraConfig = ''
             try_files /index.html =404;
           '';
