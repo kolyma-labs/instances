@@ -25,6 +25,7 @@ in {
 
   services.lk-jwt-service = {
     enable = true;
+    port = 8192;
     livekitUrl = "wss://${domains.call}/livekit/sfu";
     keyFile = config.services.livekit.keyFile;
   };
