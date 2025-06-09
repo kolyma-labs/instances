@@ -116,7 +116,16 @@ in {
           x_forwarded = true;
           resources = [
             {
-              names = ["client" "federation"];
+              names = [
+                "client"
+                "consent"
+                "federation"
+                "keys"
+                "media"
+                "openid"
+                "replication"
+                "static"
+              ];
             }
           ];
         }
