@@ -225,28 +225,27 @@ in {
           '';
         };
 
-        "~ ^/livekit/jwt" = {
+        "/livekit/jwt" = {
           proxyPass = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}";
         };
 
-        "~ ^/livekit/sfu/get" = {
-          priority = 100;
-          proxyPass = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}";
+        "= /livekit/sfu/get" = {
+          proxyPass = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}/sfu/get";
+
+          extraConfig = ''
+            add_header Access-Control-Allow-Origin "*" always;
+            add_header Access-Control-Allow-Methods "POST" always;
+            add_header Access-Control-Allow-Headers "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token" always;
+          '';
         };
 
-        "~ ^/livekit/sfu(.*)" = {
-          priority = 200;
+        "/livekit/sfu" = {
+          proxyWebsockets = true;
           proxyPass = "http://127.0.0.1:${toString config.services.livekit.settings.port}";
           extraConfig = ''
             proxy_send_timeout 120;
             proxy_read_timeout 120;
             proxy_buffering off;
-
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header Accept-Encoding gzip;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Proto $scheme;
           '';
         };
       };
