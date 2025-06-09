@@ -19,7 +19,6 @@ in {
 
   services.livekit = {
     enable = true;
-    openFirewall = true;
     keyFile = config.sops.templates."element-call.key".path;
 
     settings = {
@@ -30,20 +29,13 @@ in {
         port_range_end = 60000;
         use_external_ip = false;
       };
-      turn = {
-        enabled = false;
-        domain = "call.efael.net";
-        tls_port = 5349;
-        udp_port = 443;
-        external_tls = true;
-      };
     };
   };
 
   services.lk-jwt-service = {
     enable = true;
     port = 8192;
-    livekitUrl = "wss://${domains.call}/livekit/sfu";
+    livekitUrl = "wss://${domains.livekit}";
     keyFile = config.services.livekit.keyFile;
   };
 

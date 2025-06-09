@@ -39,7 +39,7 @@
     "org.matrix.msc4143.rtc_foci" = [
       {
         "type" = "livekit";
-        "livekit_service_url" = "https://${domains.call}/livekit/jwt";
+        "livekit_service_url" = "https://${domains.livekit-jwt}";
       }
       {
         "type" = "nextgen_new_foci_type";
@@ -63,7 +63,7 @@
 
   wellKnownCalls = {
     call = {
-      widget_url = "https://${domains.server}/room";
+      widget_url = "https://${domains.call}";
     };
   };
 
@@ -77,7 +77,7 @@
     "= /.well-known/matrix/server".extraConfig = mkWellKnown wellKnownServer;
     "= /.well-known/matrix/client".extraConfig = mkWellKnown wellKnownClient;
     "= /.well-known/matrix/support".extraConfig = mkWellKnown wellKnownSupport;
-    # "= /.well-known/element/element.json".extraConfig = mkWellKnown wellKnownCalls;
+    "= /.well-known/element/element.json".extraConfig = mkWellKnown wellKnownCalls;
   };
 
   wellKnownAppleLocations = domain: {
@@ -195,6 +195,34 @@ in {
         // wellKnownAppleLocations "${domains.main}";
     };
 
+    ${domains.livekit} = {
+      forceSSL = lib.mkDefault true;
+      enableACME = lib.mkDefault true;
+
+      locations = {
+        "/" = {
+          proxyWebsockets = true;
+          proxyPass = "http://127.0.0.1:${toString config.services.livekit.settings.port}";
+          extraConfig = ''
+            proxy_send_timeout 120;
+            proxy_read_timeout 120;
+            proxy_buffering off;
+          '';
+        };
+      };
+    };
+
+    ${domains.livekit-jwt} = {
+      forceSSL = lib.mkDefault true;
+      enableACME = lib.mkDefault true;
+
+      locations = {
+        "/" = {
+          proxyPass = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}";
+        };
+      };
+    };
+
     ${domains.call} = {
       forceSSL = lib.mkDefault true;
       enableACME = lib.mkDefault true;
@@ -222,30 +250,6 @@ in {
         "/" = {
           extraConfig = ''
             try_files $uri /$uri /index.html;
-          '';
-        };
-
-        "^~ /livekit/jwt" = {
-          proxyPass = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}";
-        };
-
-        # "= /livekit/sfu/get" = {
-        #   proxyPass = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}/sfu/get";
-
-        #   extraConfig = ''
-        #     add_header Access-Control-Allow-Origin "*" always;
-        #     add_header Access-Control-Allow-Methods "POST" always;
-        #     add_header Access-Control-Allow-Headers "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token" always;
-        #   '';
-        # };
-
-        "^~ /livekit/sfu" = {
-          proxyWebsockets = true;
-          proxyPass = "http://127.0.0.1:${toString config.services.livekit.settings.port}";
-          extraConfig = ''
-            proxy_send_timeout 120;
-            proxy_read_timeout 120;
-            proxy_buffering off;
           '';
         };
       };

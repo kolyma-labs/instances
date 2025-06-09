@@ -15,6 +15,8 @@
     auth = "auth.${main}";
     realm = "turn.${main}";
     mail = "mail.${main}";
+    livekit = "livekit.${main}";
+    livekit-jwt = "livekit-jwt.${main}";
   };
 
   # Various temporary keys
