@@ -77,7 +77,7 @@
     "= /.well-known/matrix/server".extraConfig = mkWellKnown wellKnownServer;
     "= /.well-known/matrix/client".extraConfig = mkWellKnown wellKnownClient;
     "= /.well-known/matrix/support".extraConfig = mkWellKnown wellKnownSupport;
-    "= /.well-known/element/element.json".extraConfig = mkWellKnown wellKnownCalls;
+    # "= /.well-known/element/element.json".extraConfig = mkWellKnown wellKnownCalls;
   };
 
   wellKnownAppleLocations = domain: {
