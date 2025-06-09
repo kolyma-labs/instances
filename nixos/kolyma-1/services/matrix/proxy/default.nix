@@ -238,7 +238,7 @@ in {
                 "server_name" = domains.main;
               };
             };
-            livekit.livekit_service_url = "https://${domains.call}";
+            livekit.livekit_service_url = "https://${domains.livekit-jwt}";
           };
         in {
           extraConfig = ''
