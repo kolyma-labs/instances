@@ -118,7 +118,6 @@ in {
             {
               names = [
                 "client"
-                "consent"
                 "federation"
                 "keys"
                 "media"
