@@ -22,8 +22,9 @@ in {
     keyFile = config.sops.templates."element-call.key".path;
 
     settings = {
+      port = 7880;
+
       rtc = {
-        port = 7880;
         tcp_port = 7881;
         port_range_start = 50000;
         port_range_end = 60000;
