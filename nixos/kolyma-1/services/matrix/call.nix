@@ -24,11 +24,18 @@ in {
 
     settings = {
       rtc = {
+        port = 7880;
         tcp_port = 7881;
         port_range_start = 50000;
         port_range_end = 60000;
-        use_external_ip = true;
-        enable_loopback_candidate = false;
+        use_external_ip = false;
+      };
+      turn = {
+        enabled = false;
+        domain = "call.efael.net";
+        tls_port = 5349;
+        udp_port = 443;
+        external_tls = true;
       };
     };
   };

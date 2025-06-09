@@ -225,21 +225,21 @@ in {
           '';
         };
 
-        "/livekit/jwt" = {
+        "^~ /livekit/jwt" = {
           proxyPass = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}";
         };
 
-        "= /livekit/sfu/get" = {
-          proxyPass = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}/sfu/get";
+        # "= /livekit/sfu/get" = {
+        #   proxyPass = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}/sfu/get";
 
-          extraConfig = ''
-            add_header Access-Control-Allow-Origin "*" always;
-            add_header Access-Control-Allow-Methods "POST" always;
-            add_header Access-Control-Allow-Headers "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token" always;
-          '';
-        };
+        #   extraConfig = ''
+        #     add_header Access-Control-Allow-Origin "*" always;
+        #     add_header Access-Control-Allow-Methods "POST" always;
+        #     add_header Access-Control-Allow-Headers "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token" always;
+        #   '';
+        # };
 
-        "/livekit/sfu" = {
+        "^~ /livekit/sfu" = {
           proxyWebsockets = true;
           proxyPass = "http://127.0.0.1:${toString config.services.livekit.settings.port}";
           extraConfig = ''
