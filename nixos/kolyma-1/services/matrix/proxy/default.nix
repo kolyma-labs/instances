@@ -39,7 +39,11 @@
     "org.matrix.msc4143.rtc_foci" = [
       {
         "type" = "livekit";
-        "livekit_service_url" = "https://${domains.call}/livekit";
+        "livekit_service_url" = "https://${domains.call}/livekit/jwt";
+      }
+      {
+        "type" = "nextgen_new_foci_type";
+        "props_for_nextgen_foci" = "val";
       }
     ];
   };
@@ -206,7 +210,7 @@ in {
                 "server_name" = domains.main;
               };
             };
-            livekit.livekit_service_url = "https://${domains.call}/livekit";
+            livekit.livekit_service_url = "https://${domains.call}";
           };
         in {
           extraConfig = ''
