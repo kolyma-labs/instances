@@ -39,6 +39,7 @@ in {
           OwOssi = "14f4fba3-bd65-48d3-b212-2e77383c1b1d";
           Shakhz = "1c786ec6-0f65-4448-9ecf-ab53b75bf867";
           Nixxer = "8fdd80ef-c294-432d-b381-e43353a3db27";
+          Domirando = "5432bfe3-2685-4223-ba25-81600dd041bc";
         };
 
         symlinks = with pkgs; {
