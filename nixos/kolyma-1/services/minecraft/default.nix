@@ -41,6 +41,7 @@ in {
           Nixxer = "8fdd80ef-c294-432d-b381-e43353a3db27";
           Bahrom04 = "15f652bf-33f9-4a08-aaf1-acc6a019c504";
           Thelis = "2c3a8eb7-921b-4e4a-ba60-c5e3a83d941f";
+          Domirando = "5432bfe3-2685-4223-ba25-81600dd041bc";
         };
 
         symlinks = with pkgs; {
