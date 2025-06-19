@@ -24,6 +24,6 @@
     ./matrix
 
     # Uzinfocom related infra
-    # ./uzinfocom.nix
+    ./uzinfocom.nix
   ];
 }
