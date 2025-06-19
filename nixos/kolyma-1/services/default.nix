@@ -22,5 +22,8 @@
 
     # Matrix server hosting
     ./matrix
+
+    # Uzinfocom related infra
+    # ./uzinfocom.nix
   ];
 }
