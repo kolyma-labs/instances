@@ -9,9 +9,9 @@
     ./runner.nix
 
     # Tarmoqchi HTTP tunneling
-    ./tarmoqchi.nix
+    # ./tarmoqchi.nix
 
     # Uzinfocom related infra
-    ./uzinfocom.nix
+    # ./uzinfocom.nix
   ];
 }
