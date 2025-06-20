@@ -14,12 +14,12 @@ jobs:
       - name: Check up flake configuration
         run: nix flake check --all-systems --show-trace
 
-  build-instances:
+  build-instances-x86_64:
     name: "Build Configurations"
     strategy:
       fail-fast: false
       matrix:
-        instance: [1, 2, 3]
+        instance: [1, 2]
     runs-on: self-hosted
 
     steps:
