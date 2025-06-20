@@ -22,7 +22,7 @@
               };
             };
             SWAP = {
-              size = "260G";
+              size = "66G";
               content = {
                 type = "mdraid";
                 name = "swap";
@@ -57,7 +57,7 @@
               };
             };
             SWAP = {
-              size = "260G";
+              size = "66G";
               content = {
                 type = "mdraid";
                 name = "swap";

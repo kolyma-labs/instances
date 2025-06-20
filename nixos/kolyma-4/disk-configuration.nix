@@ -1,110 +1,43 @@
 {
   disko.devices = {
     disk = {
-      nvme0n1 = {
+      sda = {
         type = "disk";
-        device = "/dev/nvme0n1";
+        device = "/dev/sda";
         content = {
           type = "gpt";
           partitions = {
             BOOT = {
-              size = "1M";
-              type = "EF02";
               priority = 1;
-            };
-            ESP = {
-              size = "2G";
-              type = "EF00";
-              priority = 2;
-              content = {
-                type = "mdraid";
-                name = "boot";
-              };
-            };
-            SWAP = {
-              size = "66G";
-              content = {
-                type = "mdraid";
-                name = "swap";
-              };
-            };
-            ROOT = {
-              size = "100%";
-              content = {
-                type = "mdraid";
-                name = "root";
-              };
-            };
-          };
-        };
-      };
-      nvme1n1 = {
-        type = "disk";
-        device = "/dev/nvme1n1";
-        content = {
-          type = "gpt";
-          partitions = {
-            BOOT = {
               size = "1M";
               type = "EF02";
             };
             ESP = {
-              size = "2G";
+              size = "512M";
               type = "EF00";
               content = {
-                type = "mdraid";
-                name = "boot";
+                type = "filesystem";
+                format = "vfat";
+                mountpoint = "/boot";
+                mountOptions = ["umask=0077"];
               };
             };
+
             SWAP = {
-              size = "66G";
+              size = "34G";
               content = {
-                type = "mdraid";
-                name = "swap";
+                type = "swap";
               };
             };
             ROOT = {
               size = "100%";
               content = {
-                type = "mdraid";
-                name = "root";
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/";
               };
             };
           };
-        };
-      };
-    };
-    mdadm = {
-      root = {
-        type = "mdadm";
-        level = 1;
-        content = {
-          type = "gpt";
-          partitions.primary = {
-            size = "100%";
-            content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/";
-            };
-          };
-        };
-      };
-      boot = {
-        type = "mdadm";
-        level = 1;
-        metadata = "1.0";
-        content = {
-          type = "filesystem";
-          format = "vfat";
-          mountpoint = "/boot";
-        };
-      };
-      swap = {
-        type = "mdadm";
-        level = 1;
-        content = {
-          type = "swap";
         };
       };
     };

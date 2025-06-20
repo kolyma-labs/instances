@@ -1,4 +1,5 @@
 {
+  lib,
   inputs,
   outputs,
   ...
@@ -42,6 +43,8 @@
 
   # Don't ask for password
   security.sudo.wheelNeedsPassword = false;
+
+  nix.gc.options = lib.mkDefault "--delete-older-than 90d";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

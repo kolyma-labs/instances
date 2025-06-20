@@ -1,5 +1,4 @@
 {
-  lib,
   inputs,
   outputs,
   ...
@@ -19,6 +18,7 @@
 
     # User configs
     outputs.nixosModules.users.sakhib
+    outputs.nixosModules.users.shakhzod
 
     # Import your deployed service list
     ./services
@@ -43,8 +43,6 @@
 
   # Don't ask for password
   security.sudo.wheelNeedsPassword = false;
-
-  nix.gc.options = lib.mkDefault "--delete-older-than 90d";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

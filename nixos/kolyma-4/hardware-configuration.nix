@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   lib,
   modulesPath,
@@ -13,44 +14,36 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  # Bootloader shits
   boot = {
-    kernelModules = [];
+    kernelModules = ["kvm-intel"];
     extraModulePackages = [];
 
     initrd = {
-      kernelModules = ["nvme"];
+      kernelModules = [];
       availableKernelModules = [
-        "xhci_pci"
-        "ahci"
-        "nvme"
-        "usbhid"
+        "uhci_hcd"
+        "ehci_pci"
+        "ata_piix"
+        "hpsa"
+        "hpilo"
+        "usb_storage"
+        "sd_mod"
+        "sr_mod"
       ];
     };
 
     bios = {
       enable = true;
-      uefi = true;
-      raided = true;
-      mirrors = [
-        "/dev/nvme0n1"
-        "/dev/nvme1n1"
-      ];
+      # Use if you're going with msdos table
+      # devices = ["/dev/sda"];
     };
   };
 
-  network = {
-    enable = true;
+  # Use DHCP (router will handle static behaviour)
+  networking.useDHCP = lib.mkDefault true;
 
-    ipv4 = {
-      enable = true;
-      address = "37.27.66.50";
-    };
-
-    ipv6 = {
-      enable = true;
-      address = "2a01:4f9:3081:33a6::";
-    };
-  };
-
+  # Platform specific configurations
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
