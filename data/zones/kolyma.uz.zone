@@ -42,7 +42,7 @@ sig1._domainkey    IN CNAME sig1.dkim.kolyma.uz.at.icloudmailadmin.com.
 cdn1    IN    CNAME ns1.kolyma.uz.
 cdn2    IN    CNAME ns2.kolyma.uz.
 cdn3    IN    CNAME ns3.kolyma.uz.
-cdn5    IN    CNAME uz1.kolyma.uz.
+cdn4    IN    CNAME uz1.kolyma.uz.
 
 ; GitHub verification
 _gh-kolyma-labs-o    IN    TXT     cc851471b9
