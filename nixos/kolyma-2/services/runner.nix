@@ -8,7 +8,6 @@
   };
 in {
   sops.secrets = {
-    "github/runners/xinux" = secret-management;
     "github/runners/floss" = secret-management;
   };
 
@@ -27,7 +26,7 @@ in {
     "${name}-Floss" = {
       inherit user;
       enable = true;
-      url = "https://github.com/xinux-org";
+      url = "https://github.com/floss-uz";
       tokenFile = config.sops.secrets."github/runners/floss".path;
       replace = true;
       extraLabels = [name];
