@@ -37,5 +37,8 @@
 
     # Tarmoqchi HTTP tunneling
     ./tarmoqchi.nix
+
+    # GitHub runners
+    ./runner.nix
   ];
 }
