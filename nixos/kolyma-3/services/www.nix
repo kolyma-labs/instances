@@ -4,10 +4,10 @@
   # Enable web server & proxy
   services.www = {
     enable = true;
-    alias = ["ns4.kolyma.uz"];
+    alias = ["ns3.kolyma.uz"];
     no-default = true;
     hosts = {
-      "cdn4.kolyma.uz" = {
+      "cdn3.kolyma.uz" = {
         addSSL = true;
         enableACME = true;
         root = "/srv/cdn";
