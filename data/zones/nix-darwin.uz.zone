@@ -21,4 +21,4 @@ www    IN    CNAME nix-darwin.uz.
 options IN   CNAME xinux-org.github.io.
 
 ; GitHub Verifications
-_gh-xinux-org-o     IN      TXT      28f436364c
+_gh-xinux-org-o     IN      TXT      dd68727d92
