@@ -41,6 +41,9 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v4
 
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
       - name: Build NixOS configuration
         run: nix build .#nixosConfigurations.Kolyma-${{ matrix.instance }}.config.system.build.toplevel --show-trace
 
