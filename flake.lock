@@ -1286,11 +1286,11 @@
         "nixpkgs": "nixpkgs_11"
       },
       "locked": {
-        "lastModified": 1748123736,
-        "narHash": "sha256-H3m709PcmQbDP/m1nwAVatvh1MdcD7IAMqcBXSjuF3U=",
+        "lastModified": 1750771077,
+        "narHash": "sha256-FSNtzBp5tL+EOeHWoeoVKpNDrFSqT8r0mgbn5nXJDk0=",
         "owner": "uzinfocom-org",
         "repo": "website",
-        "rev": "de2b54d577735e735eaff39ceeaf2b0b5ea51d2d",
+        "rev": "2856045ccd1894576ba7e09190a09bc3fc92f355",
         "type": "github"
       },
       "original": {
