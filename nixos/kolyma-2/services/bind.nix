@@ -19,6 +19,7 @@
       "slave.uz"
       "xinux.uz"
       "floss.uz"
+      "bleur.net"
       "gopher.uz"
       "sabine.uz"
       "haskell.uz"
