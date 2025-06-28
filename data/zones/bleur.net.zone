@@ -16,4 +16,4 @@ $TTL 86400
 www    IN    CNAME bleur.net.
 
 ; GitHub Verifications
-_gh-bleur-org-o      IN      TXT      2de9f2e3ed
+_gh-bleur-org-o          IN TXT      d906757c96
