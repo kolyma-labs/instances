@@ -861,11 +861,11 @@
         "sops-nix": "sops-nix"
       },
       "locked": {
-        "lastModified": 1751612705,
-        "narHash": "sha256-4moCDROiFBZhcvHqX7MSsUNgD8cZq4BlOSWcsiKlzyM=",
+        "lastModified": 1751654034,
+        "narHash": "sha256-1B1Hgm+G288+XhNZadeXB+HlAO7iQJ4DrU8Y80lT+mg=",
         "owner": "orzklv",
         "repo": "nix",
-        "rev": "73b312d9e71a642a9713cbfc567ef473cfd4b788",
+        "rev": "b19cbdbd55524b58cb2b61aa5b4d57c3ec51a309",
         "type": "github"
       },
       "original": {
