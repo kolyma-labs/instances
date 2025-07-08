@@ -37,6 +37,10 @@ in {
       sopsFile = uzinocomSops;
       key = "mail/support/hashed";
     };
+    "matrix/uzinfocom/mail/bahrom04" = {
+      sopsFile = uzinocomSops;
+      key = "mail/bahrom04/hashed";
+    };
   };
 
   mailserver = {
@@ -84,6 +88,9 @@ in {
       };
       "support@${domains.uzinfocom.main}" = {
         hashedPasswordFile = config.sops.secrets."matrix/uzinfocom/mail/support".path;
+      };
+      "bahrom04@${domains.uzinfocom.main}" = {
+        hashedPasswordFile = config.sops.secrets."matrix/uzinfocom/mail/bahrom04".path;
       };
     };
 

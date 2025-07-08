@@ -34,7 +34,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        instance: [3, 4]
+        instance: [3]
     runs-on: ubuntu-latest
 
     steps:
