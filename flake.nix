@@ -85,6 +85,9 @@
 
     # Social website of uzinfocom
     uzinfocom-taggis.url = "github:uzinfocom-org/taggis";
+
+    # Efael website
+    efael-website.url = "github:efael/website";
   };
 
   # In this context, outputs are mostly about getting home-manager what it
@@ -140,7 +143,6 @@
           "Kolyma-1"
           "Kolyma-2"
           "Kolyma-3"
-          "Kolyma-4"
         ];
       };
     };

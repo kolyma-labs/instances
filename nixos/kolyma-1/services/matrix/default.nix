@@ -29,6 +29,7 @@ in {
     outputs.nixosModules.mas
 
     # Parts of this configuration
+    (import ./www.nix {inherit inputs;})
     (import ./call.nix {inherit config domains;})
     (import ./auth.nix {inherit config domains;})
     (import ./proxy {inherit lib domains pkgs config;})

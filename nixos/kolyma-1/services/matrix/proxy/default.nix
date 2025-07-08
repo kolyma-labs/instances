@@ -132,7 +132,10 @@ in {
       enableACME = true;
 
       locations =
-        wellKnownLocations "${domains.main}"
+        {
+          "/".proxyPass = "http://${config.services.efael.website.host}:${toString config.services.efael.website.port}";
+        }
+        // wellKnownLocations "${domains.main}"
         // wellKnownAppleLocations "${domains.main}";
     };
 
@@ -153,9 +156,7 @@ in {
 
       locations =
         {
-          "/" = {
-            proxyPass = "http://127.0.0.1:8080";
-          };
+          "/".proxyPass = "http://127.0.0.1:8080";
         }
         // wellKnownAppleLocations "${domains.main}";
     };
@@ -167,7 +168,8 @@ in {
       enableACME = lib.mkDefault true;
 
       locations =
-        (lib.foldl' lib.recursiveUpdate {} (
+        (
+          lib.foldl' lib.recursiveUpdate {}
           [
             {
               # Forward to the auth service
@@ -191,7 +193,7 @@ in {
             }
           ]
           # ++ endpoints
-        ))
+        )
         // wellKnownAppleLocations "${domains.main}";
     };
 
@@ -217,9 +219,7 @@ in {
       enableACME = lib.mkDefault true;
 
       locations = {
-        "/" = {
-          proxyPass = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}";
-        };
+        "/".proxyPass = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}";
       };
     };
 
