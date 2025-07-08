@@ -25,5 +25,8 @@
 
     # Uzinfocom related infra
     ./uzinfocom.nix
+
+    # Mail server for the team
+    ./mail.nix
   ];
 }
