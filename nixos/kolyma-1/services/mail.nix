@@ -41,6 +41,10 @@ in {
       sopsFile = uzinocomSops;
       key = "mail/bahrom04/hashed";
     };
+    "matrix/uzinfocom/mail/domirando" = {
+        sopsFile = uzinocomSops;
+        key = "mail/domirando/hashed";
+      };
   };
 
   mailserver = {
@@ -92,6 +96,10 @@ in {
       "bahrom04@${domains.uzinfocom.main}" = {
         hashedPasswordFile = config.sops.secrets."matrix/uzinfocom/mail/bahrom04".path;
       };
+      "domirando@${domains.uzinfocom.main}" = {
+            hashedPasswordFile = config.sops.secrets."matrix/uzinfocom/mail/domirando".path;
+      };
+      
     };
 
     # Use Let's Encrypt certificates. Note that this needs to set up a stripped
