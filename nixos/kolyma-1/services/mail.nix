@@ -97,7 +97,7 @@ in {
         hashedPasswordFile = config.sops.secrets."matrix/uzinfocom/mail/bahrom04".path;
       };
       "domirando@${domains.uzinfocom.main}" = {
-            hashedPasswordFile = config.sops.secrets."matrix/uzinfocom/mail/domirando".path;
+          hashedPasswordFile = config.sops.secrets."matrix/uzinfocom/mail/domirando".path;
       };
       
     };
