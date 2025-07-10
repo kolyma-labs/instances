@@ -49,6 +49,10 @@ in {
       sopsFile = uzinocomSops;
       key = "mail/bemeritus/hashed";
     };
+    "matrix/uzinfocom/mail/letrec" = {
+      sopsFile = uzinocomSops;
+      key = "mail/letrec/hashed";
+    };
   };
 
   mailserver = {
@@ -105,6 +109,9 @@ in {
       };
       "bemeritus@${domains.uzinfocom.main}" = {
         hashedPasswordFile = config.sops.secrets."matrix/uzinfocom/mail/bemeritus".path;
+      };
+      "letrec@${domains.uzinfocom.main}" = {
+        hashedPasswordFile = config.sops.secrets."matrix/uzinfocom/mail/letrec".path;
       };
     };
 
