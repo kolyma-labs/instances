@@ -34,5 +34,11 @@
 
     # DevOps Jorney's website
     ./devops-journey.nix
+
+    # Tarmoqchi HTTP tunneling
+    ./tarmoqchi.nix
+
+    # GitHub runners
+    ./runner.nix
   ];
 }

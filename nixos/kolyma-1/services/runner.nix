@@ -9,13 +9,13 @@
 in {
   sops.secrets = {
     "github/runners/kolyma" = secret-management;
+    "github/runners/uzinfocom" = secret-management;
     "github/runners/orzklv/nix" = secret-management;
     "github/runners/orzklv/pkgs" = secret-management;
   };
 
   users.users.${user} = {
     description = "GitHub Runner user";
-    # isSystemUser = true;
     isNormalUser = true;
     createHome = false;
     extraGroups = ["admins"];
@@ -25,7 +25,7 @@ in {
   users.groups.${user} = {};
 
   services.github-runners = {
-    # Orkzlv -> Nix runner
+    # Orkzlv -> Nix
     "${name}-Orzklv-Nix" = {
       inherit user;
       enable = true;
@@ -42,7 +42,7 @@ in {
       };
     };
 
-    # Orkzlv -> Pkgs runner
+    # Orkzlv -> Pkgs
     "${name}-Orzklv-Pkgs" = {
       inherit user;
       enable = true;
@@ -59,12 +59,29 @@ in {
       };
     };
 
-    # Kolyma Labs runner
+    # Kolyma Labs
     "${name}-Kolyma" = {
       inherit user;
       enable = true;
       url = "https://github.com/kolyma-labs";
       tokenFile = config.sops.secrets."github/runners/kolyma".path;
+      replace = true;
+      extraLabels = [name];
+      group = user;
+      serviceOverrides = {
+        ProtectSystem = "full";
+        ReadWritePaths = "/srv";
+        PrivateMounts = false;
+        UMask = 22;
+      };
+    };
+
+    # Uzinfocom Labs
+    "${name}-Uzinfocom" = {
+      inherit user;
+      enable = true;
+      url = "https://github.com/uzinfocom-org";
+      tokenFile = config.sops.secrets."github/runners/uzinfocom".path;
       replace = true;
       extraLabels = [name];
       group = user;

@@ -45,7 +45,7 @@
   };
 
   element_call = {
-    url = "https://call.element.io";
+    url = "https://call.efael.net";
     participant_limit = 50;
     brand = "Efael Call";
   };

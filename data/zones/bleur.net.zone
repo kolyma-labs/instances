@@ -11,14 +11,9 @@ $TTL 86400
 @      IN    NS    ns2.kolyma.uz.
 
 ; Entry points
-@      IN    A     185.199.108.153
-@      IN    A     185.199.109.153
-@      IN    A     185.199.110.153
-@      IN    A     185.199.111.153
-www    IN    CNAME nix-darwin.uz.
-
-; Options website
-options IN   CNAME xinux-org.github.io.
+@      IN    A     167.235.96.40
+@      IN    AAAA  2a01:4f8:2190:2914::
+www    IN    CNAME bleur.net.
 
 ; GitHub Verifications
-_gh-xinux-org-o     IN      TXT      dd68727d92
+_gh-bleur-org-o          IN TXT      d906757c96

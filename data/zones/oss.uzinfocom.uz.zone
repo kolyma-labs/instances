@@ -11,5 +11,18 @@ $TTL 86400
 @      IN    NS    ns2.kolyma.uz.
 
 ; Entry points
-@      IN    A     116.202.247.9
-@      IN    AAAA  2a01:4f8:241:44a8::
+@      IN    A     167.235.96.40
+@      IN    AAAA  2a01:4f8:2190:2914::
+
+; Mail configurations
+mail              IN  A     167.235.96.40
+mail              IN  AAAA  2a01:4f8:2190:2914::
+@                 IN  MX    10 mail.oss.uzinfocom.uz.
+@                 IN  TXT   "v=spf1 a:mail.oss.uzinfocom.uz -all"
+_submission._tcp  IN  SRV   5 0 587 mail.oss.uzinfocom.uz.
+_submissions._tcp IN  SRV   5 0 465 mail.oss.uzinfocom.uz.
+_imap._tcp        IN  SRV   5 0 143 mail.oss.uzinfocom.uz.
+_imaps._tcp       IN  SRV   5 0 993 mail.oss.uzinfocom.uz.
+_dmarc            IN  TXT   "v=DMARC1; p=none"
+mail._domainkey   IN  TXT   ( "v=DKIM1; k=rsa; "
+      "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDVKIwma/MstsiZ+Hw3GCenojDfytgCXom63qswCduaUtPt7QS+01tKlaPqytyAQNAoaClsHZjF64Hyize0ixd5Jw5ON56qYDm3HaCO2Z8WJYPLV+g2wsDukKOwxyLxUmo2R8arLI0ZjJ2wBEYwu+B0XGaQ7N8mp+InW70KporkYQIDAQAB" )

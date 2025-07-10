@@ -43,14 +43,14 @@
 
     ipv4 = {
       enable = true;
-      address = "116.202.247.9";
+      address = "37.27.66.50";
     };
 
     ipv6 = {
       enable = true;
-      address = "2a01:4f8:241:44a8::";
+      address = "2a01:4f9:3081:33a6::";
     };
   };
 
-  nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

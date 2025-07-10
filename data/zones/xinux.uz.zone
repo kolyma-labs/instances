@@ -27,7 +27,7 @@ _github-challenge-xinux-org-org      IN      TXT      1a06c6d74b
 graph  IN    CNAME xinux-org.github.io.
 
 ; Binary cache server
-cache  IN    CNAME ns4.kolyma.uz.
+cache  IN    CNAME ns3.kolyma.uz.
 
 ; CDN after runners server
-cdn    IN    CNAME ns4.kolyma.uz.
+cdn    IN    CNAME ns3.kolyma.uz.

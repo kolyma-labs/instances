@@ -8,12 +8,11 @@
   };
 in {
   sops.secrets = {
-    "github/runners/xinux" = secret-management;
+    "github/runners/floss" = secret-management;
   };
 
   users.users.${user} = {
     description = "GitHub Runner user";
-    # isSystemUser = true;
     isNormalUser = true;
     createHome = false;
     extraGroups = ["admins"];
@@ -23,12 +22,12 @@ in {
   users.groups.${user} = {};
 
   services.github-runners = {
-    # Xinux runner
-    "${name}-Xinux" = {
+    # Floss Uzbekistan
+    "${name}-Floss" = {
       inherit user;
       enable = true;
-      url = "https://github.com/xinux-org";
-      tokenFile = config.sops.secrets."github/runners/xinux".path;
+      url = "https://github.com/floss-uz";
+      tokenFile = config.sops.secrets."github/runners/floss".path;
       replace = true;
       extraLabels = [name];
       group = user;
@@ -38,17 +37,6 @@ in {
         PrivateMounts = false;
         UMask = 22;
       };
-    };
-  };
-
-  services.www.hosts = {
-    "cdn.xinux.uz" = {
-      addSSL = true;
-      enableACME = true;
-      root = "/srv/xinux";
-      extraConfig = ''
-        autoindex on;
-      '';
     };
   };
 }

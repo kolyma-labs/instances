@@ -7,20 +7,36 @@ $TTL 86400
              86400 )    ; Minimum TTL
 
 ; Nameservers
-@      IN    NS    ns1.kolyma.uz.
-@      IN    NS    ns2.kolyma.uz.
+@           IN    NS    ns1.kolyma.uz.
+@           IN    NS    ns2.kolyma.uz.
+
+; Nameserver Pointers
+ns1         IN    A     93.188.85.94
 
 ; Entry points
-@      IN    A     167.235.96.40
-@      IN    AAAA  2a01:4f8:2190:2914::
-www    IN    CNAME efael.uz.
+@           IN    A     93.188.85.94
+www         IN    CNAME efael.uz.
 
 ; Matrix endpoints
 chat        IN    CNAME efael.uz.
 matrix      IN    CNAME efael.uz.
 auth        IN    CNAME efael.uz.
 turn        IN    CNAME efael.uz.
-mail        IN    CNAME efael.uz.
+call        IN    CNAME efael.uz.
+livekit     IN    CNAME efael.uz.
+livekit-jwt IN    CNAME efael.uz.
+
+; Mail configurations
+mail              IN  CNAME efael.uz.
+@                 IN  MX    10 mail.efael.uz.
+@                 IN  TXT   "v=spf1 a:mail.efael.uz -all"
+_submission._tcp  IN  SRV   5 0 587 mail.efael.uz.
+_submissions._tcp IN  SRV   5 0 465 mail.efael.uz.
+_imap._tcp        IN  SRV   5 0 143 mail.efael.uz.
+_imaps._tcp       IN  SRV   5 0 993 mail.efael.uz.
+_dmarc            IN  TXT   "v=DMARC1; p=none"
+mail._domainkey   IN  TXT   ( "v=DKIM1; k=rsa; "
+      "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQClt52wtVKFISTvMAgGFEcrW+5SyBiNixUwWrUiu9Uo5tt1qI4Q5+5HcnV02uPLjSugc/a2x2TSPIHjG5EKgafx4EeNtCGjEUCtaZXRVGVoE0ygtJOShlQ7DZRITFBymjgmbILwGCDVrGu01oSWJ81VKHr7XlX35a4A8yiB04sHsQIDAQAB" )
 
 ; GitHub verifications
-_gh-efael-o         IN      TXT      260d041b09
+_gh-efael-o IN      TXT      260d041b09

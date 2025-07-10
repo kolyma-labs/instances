@@ -92,7 +92,7 @@ in {
       server_name = domains.main;
       public_baseurl = "https://${domains.server}";
 
-      turn_allow_guests = false;
+      turn_allow_guests = true;
       turn_uris = [
         "turn:${domains.realm}:3478?transport=udp"
         "turn:${domains.realm}:3478?transport=tcp"
@@ -116,7 +116,15 @@ in {
           x_forwarded = true;
           resources = [
             {
-              names = ["client" "federation"];
+              names = [
+                "client"
+                "federation"
+                "keys"
+                "media"
+                "openid"
+                "replication"
+                "static"
+              ];
             }
           ];
         }
@@ -201,6 +209,19 @@ in {
         search_all_users = false;
       };
       user_ips_max_age = "28d";
+
+      rc_message = {
+        # This needs to match at least e2ee key sharing frequency plus a bit of headroom
+        # Note key sharing events are bursty
+        per_second = 0.5;
+        burst_count = 30;
+      };
+      rc_delayed_event_mgmt = {
+        # This needs to match at least the heart-beat frequency plus a bit of headroom
+        # Currently the heart-beat is every 5 seconds which translates into a rate of 0.2s
+        per_second = 1;
+        burst_count = 20;
+      };
 
       withJemalloc = true;
     };

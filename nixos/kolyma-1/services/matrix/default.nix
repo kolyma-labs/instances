@@ -10,10 +10,13 @@
   domains = rec {
     main = "efael.net";
     client = "chat.${main}";
+    call = "call.${main}";
     server = "matrix.${main}";
     auth = "auth.${main}";
     realm = "turn.${main}";
     mail = "mail.${main}";
+    livekit = "livekit.${main}";
+    livekit-jwt = "livekit-jwt.${main}";
   };
 
   # Various temporary keys
@@ -26,9 +29,10 @@ in {
     outputs.nixosModules.mas
 
     # Parts of this configuration
-    (import ./proxy {inherit lib domains pkgs;})
+    (import ./www.nix {inherit inputs;})
+    (import ./call.nix {inherit config domains;})
     (import ./auth.nix {inherit config domains;})
-    (import ./mail.nix {inherit inputs domains config;})
+    (import ./proxy {inherit lib domains pkgs config;})
     (import ./turn.nix {inherit lib config domains keys;})
     (import ./server.nix {inherit lib config domains keys;})
   ];

@@ -20,14 +20,14 @@ in {
         enable = true;
         openFirewall = true;
         package = pkgs.paperServers.${server};
-        jvmOpts = "-Xms12288M -Xmx12288M -XX:+UseG1GC -XX:ParallelGCThreads=4 -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10";
+        jvmOpts = "-Xms24576M -Xmx24576M -XX:+UseG1GC -XX:ParallelGCThreads=4 -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10";
 
         serverProperties = {
           server-port = 25565;
           difficulty = 3;
           gamemode = 0;
           max-players = 50;
-          motd = "\\u00A7f\\u00A7lWelcome to Orzklv's Server\\u00A7r\\n\\u00A7lMore at\:\\u00A7r \\u00A7nhttps\://niggerlicious.uz";
+          motd = "\\u00A7f\\u00A7lWelcome to Uzinfocom Open Source's Server\\u00A7r\\n\\u00A7lMore at\:\\u00A7r \\u00A7nhttps\://niggerlicious.uz";
           white-list = true;
           enable-rcon = false;
           "rcon.port" = 25575;
@@ -36,15 +36,12 @@ in {
 
         whitelist = {
           Orzklv = "3e220001-9544-48bb-8fd0-ca7139727207";
-          Vodiyl = "ff179f82-7960-4f63-8137-8251fbd13e59";
-          AniSar = "48ed1b8a-ed65-4321-aae7-76734fe8cc27";
           OwOssi = "14f4fba3-bd65-48d3-b212-2e77383c1b1d";
-          Thelis = "2c3a8eb7-921b-4e4a-ba60-c5e3a83d941f";
-          Overlo = "d2976424-f364-4343-85ab-819a54058d2f";
-          Bronnz = "ee0babea-2c7e-4184-9546-4aa0f62db2ef";
           Shakhz = "1c786ec6-0f65-4448-9ecf-ab53b75bf867";
           Nixxer = "8fdd80ef-c294-432d-b381-e43353a3db27";
-          NurMuh = "13831a9f-9d7c-47b7-8865-d089ac7d6e1f";
+          Bahrom04 = "15f652bf-33f9-4a08-aaf1-acc6a019c504";
+          Thelis = "2c3a8eb7-921b-4e4a-ba60-c5e3a83d941f";
+          Domirando = "5432bfe3-2685-4223-ba25-81600dd041bc";
         };
 
         symlinks = with pkgs; {

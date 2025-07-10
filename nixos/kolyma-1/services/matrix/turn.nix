@@ -10,8 +10,8 @@ in {
     enable = true;
     no-cli = true;
     no-tcp-relay = true;
-    min-port = 49000;
-    max-port = 50000;
+    min-port = 48000;
+    max-port = 49000;
     use-auth-secret = true;
     static-auth-secret = keys.realmkey;
     cert = "${config.security.acme.certs.${realm}.directory}/full.pem";

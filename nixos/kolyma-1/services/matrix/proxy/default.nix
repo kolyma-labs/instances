@@ -1,5 +1,6 @@
 {
   lib,
+  config,
   domains,
   pkgs,
 }: let
@@ -22,7 +23,7 @@
 
   clientConfig = import ./client.nix {inherit domains;};
 
-  wellKnownClient = domain: {
+  wellKnownClient = {
     "m.homeserver".base_url = "https://${domains.server}";
     "m.identity_server".base_url = "https://${domains.server}";
     "org.matrix.msc2965.authentication" = {
@@ -38,12 +39,16 @@
     "org.matrix.msc4143.rtc_foci" = [
       {
         "type" = "livekit";
-        "livekit_service_url" = "https://livekit-jwt.call.matrix.org";
+        "livekit_service_url" = "https://${domains.livekit-jwt}";
+      }
+      {
+        "type" = "nextgen_new_foci_type";
+        "props_for_nextgen_foci" = "val";
       }
     ];
   };
 
-  wellKnownServer = domain: {"m.server" = "${domains.server}:443";};
+  wellKnownServer = {"m.server" = "${domains.server}:443";};
 
   wellKnownSupport = {
     contacts = [
@@ -56,6 +61,12 @@
     support_page = "https://${domains.main}/about";
   };
 
+  wellKnownCalls = {
+    call = {
+      widget_url = "https://${domains.call}";
+    };
+  };
+
   mkWellKnown = data: ''
     add_header Content-Type application/json;
     add_header Access-Control-Allow-Origin *;
@@ -63,9 +74,10 @@
   '';
 
   wellKnownLocations = domain: {
-    "= /.well-known/matrix/server".extraConfig = mkWellKnown (wellKnownServer domain);
-    "= /.well-known/matrix/client".extraConfig = mkWellKnown (wellKnownClient domain);
+    "= /.well-known/matrix/server".extraConfig = mkWellKnown wellKnownServer;
+    "= /.well-known/matrix/client".extraConfig = mkWellKnown wellKnownClient;
     "= /.well-known/matrix/support".extraConfig = mkWellKnown wellKnownSupport;
+    "= /.well-known/element/element.json".extraConfig = mkWellKnown wellKnownCalls;
   };
 
   wellKnownAppleLocations = domain: {
@@ -120,7 +132,10 @@ in {
       enableACME = true;
 
       locations =
-        wellKnownLocations "${domains.main}"
+        {
+          "/".proxyPass = "http://${config.services.efael.website.host}:${toString config.services.efael.website.port}";
+        }
+        // wellKnownLocations "${domains.main}"
         // wellKnownAppleLocations "${domains.main}";
     };
 
@@ -141,9 +156,7 @@ in {
 
       locations =
         {
-          "/" = {
-            proxyPass = "http://127.0.0.1:8080";
-          };
+          "/".proxyPass = "http://127.0.0.1:8080";
         }
         // wellKnownAppleLocations "${domains.main}";
     };
@@ -155,7 +168,8 @@ in {
       enableACME = lib.mkDefault true;
 
       locations =
-        (lib.foldl' lib.recursiveUpdate {} (
+        (
+          lib.foldl' lib.recursiveUpdate {}
           [
             {
               # Forward to the auth service
@@ -179,8 +193,66 @@ in {
             }
           ]
           # ++ endpoints
-        ))
+        )
         // wellKnownAppleLocations "${domains.main}";
+    };
+
+    ${domains.livekit} = {
+      forceSSL = lib.mkDefault true;
+      enableACME = lib.mkDefault true;
+
+      locations = {
+        "/" = {
+          proxyWebsockets = true;
+          proxyPass = "http://127.0.0.1:${toString config.services.livekit.settings.port}";
+          extraConfig = ''
+            proxy_send_timeout 120;
+            proxy_read_timeout 120;
+            proxy_buffering off;
+          '';
+        };
+      };
+    };
+
+    ${domains.livekit-jwt} = {
+      forceSSL = lib.mkDefault true;
+      enableACME = lib.mkDefault true;
+
+      locations = {
+        "/".proxyPass = "http://127.0.0.1:${toString config.services.lk-jwt-service.port}";
+      };
+    };
+
+    ${domains.call} = {
+      forceSSL = lib.mkDefault true;
+      enableACME = lib.mkDefault true;
+      root = pkgs.element-call;
+      extraConfig = commonHeaders;
+
+      locations = {
+        "/config.json" = let
+          data = {
+            default_server_config = {
+              "m.homeserver" = {
+                "base_url" = "https://${domains.server}";
+                "server_name" = domains.main;
+              };
+            };
+            livekit.livekit_service_url = "https://${domains.livekit-jwt}";
+          };
+        in {
+          extraConfig = ''
+            default_type application/json;
+            return 200 '${builtins.toJSON data}';
+          '';
+        };
+
+        "/" = {
+          extraConfig = ''
+            try_files $uri /$uri /index.html;
+          '';
+        };
+      };
     };
   };
 

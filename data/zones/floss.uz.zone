@@ -26,10 +26,13 @@ trash  IN    CNAME floss-uz.github.io.
 awesome IN   CNAME floss-uz.github.io.
 
 ; Matrix & Coturn server
-chat   IN    CNAME ns2.kolyma.uz.
-matrix IN    CNAME ns2.kolyma.uz.
-turn   IN    CNAME ns2.kolyma.uz.
-auth   IN    CNAME ns2.kolyma.uz.
+chat        IN    CNAME ns2.kolyma.uz.
+matrix      IN    CNAME ns2.kolyma.uz.
+turn        IN    CNAME ns2.kolyma.uz.
+auth        IN    CNAME ns2.kolyma.uz.
+call        IN    CNAME ns2.kolyma.uz.
+livekit     IN    CNAME ns2.kolyma.uz.
+livekit-jwt IN    CNAME ns2.kolyma.uz.
 
 ; Game servers
 mc     IN    CNAME ns2.kolyma.uz.
@@ -60,3 +63,4 @@ _gh-uzbek-net-o          IN TXT      90ad1099a8
 _gh-goferuz-o            IN TXT      603e69e757
 _gh-phpuzb-o             IN TXT      2a09b1fd06
 _gh-efael-o              IN TXT      84aa325bd6
+_gh-bleur-org-o          IN TXT      64266abb58

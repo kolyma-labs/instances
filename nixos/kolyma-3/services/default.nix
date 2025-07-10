@@ -5,13 +5,10 @@
     # Web server & proxy virtual hosts via caddy
     ./www.nix
 
-    # GitHub Runner configurations
+    # GitHub self-hosted runners
     ./runner.nix
 
-    # Tarmoqchi HTTP tunneling
-    ./tarmoqchi.nix
-
-    # Uzinfocom related infra
-    ./uzinfocom.nix
+    # Binary cache server
+    ./cache.nix
   ];
 }

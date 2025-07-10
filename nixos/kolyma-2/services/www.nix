@@ -5,6 +5,7 @@
   services.www = {
     enable = true;
     alias = ["ns2.kolyma.uz"];
+    no-default = true;
     hosts = {
       "cdn2.kolyma.uz" = {
         addSSL = true;
