@@ -28,7 +28,7 @@ in {
         reply_to: '"No reply" <noreply@${domains.main}>'
         transport: smtp
         mode: starttls  # plain | tls | starttls
-        hostname: ${domains.mail}
+        hostname: mail.oss.uzinfocom.uz
         port: 587
         username: noreply@${domains.main}
         password: "${config.sops.placeholder."matrix/mas/mail"}"

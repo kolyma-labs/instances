@@ -26,7 +26,7 @@ in {
     inherit owner;
     content = ''
       email:
-        smtp_host: "${domains.mail}"
+        smtp_host: "mail.oss.uzinfocom.uz"
         smtp_port: 587
         smtp_user: "support@${domains.main}"
         smtp_pass: "${config.sops.placeholder."matrix/synapse/mail"}"
