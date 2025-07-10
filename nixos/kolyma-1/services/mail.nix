@@ -41,6 +41,18 @@ in {
       sopsFile = uzinocomSops;
       key = "mail/bahrom04/hashed";
     };
+    "matrix/uzinfocom/mail/domirando" = {
+      sopsFile = uzinocomSops;
+      key = "mail/domirando/hashed";
+    };
+    "matrix/uzinfocom/mail/bemeritus" = {
+      sopsFile = uzinocomSops;
+      key = "mail/bemeritus/hashed";
+    };
+    "matrix/uzinfocom/mail/letrec" = {
+      sopsFile = uzinocomSops;
+      key = "mail/letrec/hashed";
+    };
   };
 
   mailserver = {
@@ -91,6 +103,15 @@ in {
       };
       "bahrom04@${domains.uzinfocom.main}" = {
         hashedPasswordFile = config.sops.secrets."matrix/uzinfocom/mail/bahrom04".path;
+      };
+      "domirando@${domains.uzinfocom.main}" = {
+        hashedPasswordFile = config.sops.secrets."matrix/uzinfocom/mail/domirando".path;
+      };
+      "bemeritus@${domains.uzinfocom.main}" = {
+        hashedPasswordFile = config.sops.secrets."matrix/uzinfocom/mail/bemeritus".path;
+      };
+      "letrec@${domains.uzinfocom.main}" = {
+        hashedPasswordFile = config.sops.secrets."matrix/uzinfocom/mail/letrec".path;
       };
     };
 
