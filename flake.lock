@@ -105,11 +105,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1751961793,
-        "narHash": "sha256-/4Go3HOYsY/KvxGyihzE5bLMbsP9sGIaysJOG09F5XA=",
+        "lastModified": 1752478012,
+        "narHash": "sha256-uu34TjKQQgx1HXClIfUqkKKC9SObPY6MacFGnERKfpE=",
         "owner": "efael",
         "repo": "website",
-        "rev": "039beeb3102b05711a24b67c678f978c7ff3b8c1",
+        "rev": "891302f777627dd5dbf5605b608461ae8876aade",
         "type": "github"
       },
       "original": {
