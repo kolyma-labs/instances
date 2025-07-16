@@ -914,11 +914,11 @@
         "sops-nix": "sops-nix"
       },
       "locked": {
-        "lastModified": 1752657705,
-        "narHash": "sha256-jFJywszT44F4Q5gcckjzqB+r2dBLz3YI/szBOe2WAUw=",
+        "lastModified": 1752666621,
+        "narHash": "sha256-SD1ONgT9LoN5F3eoWbfoUEKGfP30tuGOAaG2A4gFhOw=",
         "owner": "orzklv",
         "repo": "nix",
-        "rev": "1bdb083f5a7dbce497a15192562665b16d16742a",
+        "rev": "621b2412e481558b7602dd56c8b10dc40317014a",
         "type": "github"
       },
       "original": {
