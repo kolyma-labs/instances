@@ -20,6 +20,8 @@ in {
       "${username}" = {
         inherit hashedPassword;
         isNormalUser = true;
+        # isAutist = true;
+        # isKonchenniy = "definitely";
         description = "Sokhibjon Orzikulov";
 
         extraGroups = [
