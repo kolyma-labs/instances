@@ -5,6 +5,9 @@
     # Bind nameserver service for hosting personal domains
     ./bind.nix
 
+    # List of docker instances hosted in this machine
+    ./container.nix
+
     # Minecraft server configurations
     ./minecraft
 
