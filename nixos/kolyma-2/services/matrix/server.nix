@@ -85,7 +85,6 @@ in {
       "redis" # Redis support for the replication stream between worker processes
       "systemd" # Provide the JournalHandler used in the default log_config
       "url-preview" # Support for oEmbed URL previews
-      "user-search" # Support internationalized domain names in user-search
     ];
 
     settings = {
