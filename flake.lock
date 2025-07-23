@@ -937,11 +937,11 @@
         "zen-browser": "zen-browser"
       },
       "locked": {
-        "lastModified": 1753312266,
-        "narHash": "sha256-0geNMTwk4WHXTnKFp+Ou2riRrRV+IFAxfF+qSe+xUDE=",
+        "lastModified": 1753312486,
+        "narHash": "sha256-NKV4oYD9tJMn+ZsAtoM012RiHDmGZt71GP+b7wuXuIE=",
         "owner": "orzklv",
         "repo": "nix",
-        "rev": "d29c256b0a9ad61a01b5e26649cfe16ed52e8df8",
+        "rev": "b41d416816ae31cdf40a7b583e21bd9154075746",
         "type": "github"
       },
       "original": {
