@@ -7,8 +7,5 @@
 
     # GitHub self-hosted runners
     ./runner.nix
-
-    # Binary cache server
-    ./cache.nix
   ];
 }
