@@ -54,7 +54,7 @@
     security.acme = {
       acceptTerms = true;
       defaults = {
-        email = "admin@oss.uzinfocom.uz";
+        email = "admin@kolyma.uz";
       };
     };
 
