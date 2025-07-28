@@ -9,7 +9,7 @@
     ./container.nix
 
     # Minecraft server configurations
-    ./minecraft
+    # ./minecraft
 
     # GitHub Runner configurations
     ./runner.nix
