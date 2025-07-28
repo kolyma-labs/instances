@@ -42,19 +42,6 @@
           rewrite ^/(.*)\\.html$ /$1 permanent;
         '';
       };
-
-      "niggerlicious.uz" = {
-        addSSL = true;
-        enableACME = true;
-        serverAliases = ["www.niggerlicious.uz"];
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:8100";
-          proxyWebsockets = true;
-          extraConfig =
-            "proxy_ssl_server_name on;"
-            + "proxy_pass_header Authorization;";
-        };
-      };
     };
   };
 }
