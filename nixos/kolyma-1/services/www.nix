@@ -19,6 +19,15 @@
         '';
       };
 
+      "cdn.xinux.uz" = {
+        addSSL = true;
+        enableACME = true;
+        root = "/srv/xinux";
+        extraConfig = ''
+          autoindex on;
+        '';
+      };
+
       "khakimovs.uz" = {
         addSSL = true;
         enableACME = true;
