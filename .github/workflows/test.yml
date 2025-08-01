@@ -29,27 +29,27 @@ jobs:
       - name: Build NixOS configuration
         run: nix build .#nixosConfigurations.Kolyma-${{ matrix.instance }}.config.system.build.toplevel --show-trace
 
-  build-instances-x86_64:
-    name: "Build Configurations for AMD64"
-    strategy:
-      fail-fast: false
-      matrix:
-        instance: [3]
-    runs-on: ubuntu-latest
+  # build-instances-x86_64:
+  #   name: "Build Configurations for AMD64"
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       instance: [3]
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Check out the repository
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Check out the repository
+  #       uses: actions/checkout@v4
 
-      - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@main
+  #     - name: Install Nix
+  #       uses: DeterminateSystems/nix-installer-action@main
 
-      - name: Build NixOS configuration
-        run: nix build .#nixosConfigurations.Kolyma-${{ matrix.instance }}.config.system.build.toplevel --show-trace
+  #     - name: Build NixOS configuration
+  #       run: nix build .#nixosConfigurations.Kolyma-${{ matrix.instance }}.config.system.build.toplevel --show-trace
 
   update-merge:
     name: "Merge Update PRs"
-    needs: [test-flake, build-instances-x86_64, build-instances-arm64]
+    needs: [test-flake, build-instances-arm64] # build-instances-x86_64
     runs-on: ubuntu-latest
     if: ${{ github.event.pull_request.user.login == 'orzklv' && github.event_name == 'pull_request'}}
 
