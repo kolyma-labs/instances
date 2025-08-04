@@ -101,7 +101,8 @@ in {
     services.openvpn.servers.kolyma.config = ''
       dev ${internal-interface}
       proto udp
-      ifconfig-push 10.8.0.1 10.8.0.2
+      server 10.8.0.0 255.255.0.0
+      push "route 10.0.0.0 255.255.0.0"
       port ${toString cfg.port}
       tls-server
 
@@ -113,6 +114,8 @@ in {
       ping-timer-rem
       persist-tun
       persist-key
+
+      management localhost 5001
 
       key ${cfg.secrets.server.key}
       cert ${cfg.secrets.server.cert}
