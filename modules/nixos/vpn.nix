@@ -103,6 +103,7 @@ in {
       proto udp
       server 10.8.0.0 255.255.0.0
       push "route 10.0.0.0 255.255.0.0"
+      push "redirect-gateway def1"
       port ${toString cfg.port}
       tls-server
 
