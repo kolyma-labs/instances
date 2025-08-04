@@ -110,7 +110,6 @@ in {
       cipher AES-256-CBC
       auth-nocache
 
-      comp-lzo
       keepalive 10 60
       ping-timer-rem
       persist-tun
