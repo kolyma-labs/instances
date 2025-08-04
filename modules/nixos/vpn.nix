@@ -110,7 +110,7 @@ in {
       cipher AES-256-CBC
       auth-nocache
 
-      compress lzo
+      comp-lzo
       keepalive 10 60
       ping-timer-rem
       persist-tun
@@ -133,7 +133,7 @@ in {
         port ${toString cfg.port}
         nobind
         cipher AES-256-CBC
-        compress lzo
+        comp-lzo adaptive
         resolv-retry infinite
         persist-key
         persist-tun
