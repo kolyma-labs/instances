@@ -130,17 +130,11 @@ in {
         client
         dev tun
         remote "${cfg.domain}"
-        ifconfig 10.8.0.2 10.8.0.1
         port ${toString cfg.port}
-        redirect-gateway def1
-
-        cipher AES-256-CBC
-        auth-nocache
-
-        comp-lzo
-        keepalive 10 60
-        resolv-retry infinite
         nobind
+        cipher AES-256-CBC
+        comp-lzo adaptive
+        resolv-retry infinite
         persist-key
         persist-tun
         tls-client
