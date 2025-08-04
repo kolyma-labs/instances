@@ -26,12 +26,60 @@ in {
         description = "The default domain of instance.";
       };
 
-      secret = lib.mkOption {
-        type = with lib.types; nullOr path;
-        default = null;
-        description = lib.mdDoc ''
-          Path to generated key for OpenVPN. Generate via `openvpn --genkey secret output.key`.
-        '';
+      secrets = {
+        server = {
+          ca = lib.mkOption {
+            type = with lib.types; nullOr path;
+            default = null;
+            description = lib.mdDoc ''
+              Path to generated key for OpenVPN. https://forums.opto22.com/t/recommended-openvpn-server-setup-tutorial/5383/4.
+            '';
+          };
+          key = lib.mkOption {
+            type = with lib.types; nullOr path;
+            default = null;
+            description = lib.mdDoc ''
+              Path to generated key for OpenVPN. https://forums.opto22.com/t/recommended-openvpn-server-setup-tutorial/5383/4.
+            '';
+          };
+          cert = lib.mkOption {
+            type = with lib.types; nullOr path;
+            default = null;
+            description = lib.mdDoc ''
+              Path to generated key for OpenVPN. https://forums.opto22.com/t/recommended-openvpn-server-setup-tutorial/5383/4.
+            '';
+          };
+          dh = lib.mkOption {
+            type = with lib.types; nullOr path;
+            default = null;
+            description = lib.mdDoc ''
+              Path to generated key for OpenVPN. Generate via `openssl dhparam -out dh.pem 2048`.
+            '';
+          };
+          tls = lib.mkOption {
+            type = with lib.types; nullOr path;
+            default = null;
+            description = lib.mdDoc ''
+              Path to generated key for OpenVPN. Generate via `openvpn --genkey secret tls.auth`.
+            '';
+          };
+        };
+        client = {
+          key = lib.mkOption {
+            type = with lib.types; nullOr path;
+            default = null;
+            description = lib.mdDoc ''
+              Path to generated key for OpenVPN. https://forums.opto22.com/t/recommended-openvpn-server-setup-tutorial/5383/4.
+            '';
+          };
+          cert = lib.mkOption {
+            type = with lib.types; nullOr path;
+            default = null;
+            description = lib.mdDoc ''
+              Path to generated key for OpenVPN. https://forums.opto22.com/t/recommended-openvpn-server-setup-tutorial/5383/4.
+            '';
+          };
+        };
       };
     };
   };
@@ -54,8 +102,8 @@ in {
       dev ${internal-interface}
       proto udp
       ifconfig 10.8.0.1 10.8.0.2
-      secret ${cfg.secret}
       port ${toString cfg.port}
+      tls-server
 
       cipher AES-256-CBC
       auth-nocache
@@ -65,10 +113,17 @@ in {
       ping-timer-rem
       persist-tun
       persist-key
+
+      key ${cfg.secrets.server.key}
+      cert ${cfg.secrets.server.cert}
+      ca ${cfg.secrets.server.ca}
+      dh ${cfg.secrets.server.dh}
+      tls-auth ${cfg.secrets.server.tls} 0
     '';
 
     environment.etc."openvpn/output.ovpn" = {
       text = ''
+        client
         dev tun
         remote "${cfg.domain}"
         ifconfig 10.8.0.2 10.8.0.1
@@ -84,7 +139,8 @@ in {
         nobind
         persist-key
         persist-tun
-        secret [inline]
+        tls-client
+        key-direction 1
 
       '';
       mode = "600";
@@ -92,12 +148,35 @@ in {
 
     system.activationScripts.openvpn-addkey = ''
       f="/etc/openvpn/output.ovpn"
-      if ! grep -q '<secret>' $f; then
+
+      if ! grep -q '<ca>' $f; then
         echo "appending secret key"
-        echo "<secret>" >> $f
-        cat ${cfg.secret} >> $f
-        echo "</secret>" >> $f
+        echo "<ca>" >> $f
+        cat ${cfg.secrets.server.ca} >> $f
+        echo "</ca>" >> $f
       fi
+
+      if ! grep -q '<key>' $f; then
+        echo "appending secret key"
+        echo "<key>" >> $f
+        cat ${cfg.secrets.client.key} >> $f
+        echo "</key>" >> $f
+      fi
+
+      if ! grep -q '<cert>' $f; then
+        echo "appending secret key"
+        echo "<cert>" >> $f
+        cat ${cfg.secrets.client.cert} >> $f
+        echo "</cert>" >> $f
+      fi
+
+      if ! grep -q '<tls-auth>' $f; then
+        echo "appending secret key"
+        echo "<tls-auth>" >> $f
+        cat ${cfg.secrets.server.tls} >> $f
+        echo "</tls-auth>" >> $f
+      fi
+
     '';
   };
 }

@@ -31,5 +31,6 @@ nohup.out
 .direnv
 
 # keys
-secrets/*.key
-secrets/*.retard
+*.key
+*.retard
+secrets/network/initial
