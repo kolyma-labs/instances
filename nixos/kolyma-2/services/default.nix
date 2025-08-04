@@ -40,5 +40,8 @@
 
     # GitHub runners
     ./runner.nix
+
+    # VPN server
+    ./vpn.nix
   ];
 }

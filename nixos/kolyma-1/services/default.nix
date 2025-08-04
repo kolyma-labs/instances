@@ -31,5 +31,8 @@
 
     # Mail server for the team
     ./mail.nix
+
+    # VPN server
+    ./vpn.nix
   ];
 }

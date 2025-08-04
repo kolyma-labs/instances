@@ -5,6 +5,7 @@
   ssh = import ./ssh.nix;
   zsh = import ./zsh.nix;
   mas = import ./mas.nix;
+  vpn = import ./vpn.nix;
   users = import ./users;
   bind = import ./bind.nix;
   root = import ./root.nix;

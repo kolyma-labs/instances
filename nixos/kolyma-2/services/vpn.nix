@@ -12,7 +12,7 @@
 
   services.vpn = {
     enable = true;
-    domain = "ns1.kolyma.uz";
+    domain = "ns2.kolyma.uz";
     secret = config.sops.secrets.vpn.path;
   };
 }

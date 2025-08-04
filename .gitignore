@@ -29,3 +29,7 @@ nohup.out
 
 # direnv
 .direnv
+
+# keys
+secrets/*.key
+secrets/*.retard
