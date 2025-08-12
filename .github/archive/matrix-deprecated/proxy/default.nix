@@ -127,6 +127,76 @@
     ++ (mkEndpoints "federation" ./endpoints/federation.txt);
 in {
   services.www.hosts = {
+    ${domains.main} = {
+      addSSL = true;
+      enableACME = true;
+
+      locations =
+        {
+          "/".proxyPass = "http://${config.services.efael.website.host}:${toString config.services.efael.website.port}";
+        }
+        // wellKnownLocations "${domains.main}"
+        // wellKnownAppleLocations "${domains.main}";
+    };
+
+    ${domains.client} = {
+      forceSSL = true;
+      enableACME = true;
+      root = pkgs.element-web.override {conf = clientConfig;};
+      extraConfig = commonHeaders;
+    };
+
+    ${domains.auth} = {
+      root = "/dev/null";
+
+      forceSSL = lib.mkDefault true;
+      enableACME = lib.mkDefault true;
+
+      extraConfig = commonHeaders;
+
+      locations =
+        {
+          "/".proxyPass = "http://127.0.0.1:8080";
+        }
+        // wellKnownAppleLocations "${domains.main}";
+    };
+
+    ${domains.server} = {
+      root = "/dev/null";
+
+      forceSSL = lib.mkDefault true;
+      enableACME = lib.mkDefault true;
+
+      locations =
+        (
+          lib.foldl' lib.recursiveUpdate {}
+          [
+            {
+              # Forward to the auth service
+              "~ ^/_matrix/client/(.*)/(login|logout|refresh)" = {
+                priority = 100;
+                proxyPass = "http://127.0.0.1:8080";
+                extraConfig = commonHeaders;
+              };
+
+              # Forward to Synapse
+              # as per https://element-hq.github.io/synapse/latest/reverse_proxy.html#nginx
+              "~ ^(/_matrix|/_synapse)" = {
+                priority = 200;
+                proxyPass = "http://127.0.0.1:8008";
+
+                extraConfig = ''
+                  ${matrixHeaders}
+                  add_header x-backend "synapse" always;
+                '';
+              };
+            }
+          ]
+          # ++ endpoints
+        )
+        // wellKnownAppleLocations "${domains.main}";
+    };
+
     ${domains.livekit} = {
       forceSSL = lib.mkDefault true;
       enableACME = lib.mkDefault true;

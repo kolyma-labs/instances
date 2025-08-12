@@ -15,27 +15,5 @@ $TTL 86400
 @      IN    AAAA  2a01:4f8:2190:2914::
 www    IN    CNAME efael.net.
 
-; Matrix endpoints
-chat        IN    CNAME efael.net.
-matrix      IN    CNAME efael.net.
-auth        IN    CNAME efael.net.
-turn        IN    CNAME efael.net.
-call        IN    CNAME efael.net.
-livekit     IN    CNAME efael.net.
-livekit-jwt IN    CNAME efael.net.
-
-; Mail configurations
-mail              IN  A     167.235.96.40
-mail              IN  AAAA  2a01:4f8:2190:2914::
-@                 IN  MX    10 mail.efael.net.
-@                 IN  TXT   "v=spf1 a:mail.efael.net -all"
-_submission._tcp  IN  SRV   5 0 587 mail.efael.net.
-_submissions._tcp IN  SRV   5 0 465 mail.efael.net.
-_imap._tcp        IN  SRV   5 0 143 mail.efael.net.
-_imaps._tcp       IN  SRV   5 0 993 mail.efael.net.
-_dmarc            IN  TXT   "v=DMARC1; p=none"
-mail._domainkey   IN  TXT   ( "v=DKIM1; k=rsa; "
-      "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDHNvq0GGbxmtyEL/4knl76AznJ0W+/uQZf+3BxSRntVsDehCSFIw8vWS/O69iSvUp4S0F2UFEW0CDJwt7tqJjnO7xIrBFYwFlDz5qgy4N9+2LseGFadF+VLhpmtQE/bOpkD3UKmfLmwiOwvp+g6MF/voMklSXx8rO9SXfmRDn0QIDAQAB" )
-
 ; GitHub verifications
 _gh-efael-o         IN      TXT      1ff82b0fad

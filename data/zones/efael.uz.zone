@@ -22,9 +22,9 @@ chat        IN    CNAME efael.uz.
 matrix      IN    CNAME efael.uz.
 auth        IN    CNAME efael.uz.
 turn        IN    CNAME efael.uz.
-call        IN    CNAME efael.uz.
-livekit     IN    CNAME efael.uz.
-livekit-jwt IN    CNAME efael.uz.
+call        IN    CNAME efael.net.
+livekit     IN    CNAME efael.net.
+livekit-jwt IN    CNAME efael.net.
 
 ; Mail configurations
 mail              IN  CNAME efael.uz.

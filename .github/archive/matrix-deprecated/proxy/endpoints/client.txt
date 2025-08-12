@@ -1,0 +1,70 @@
+# See https://matrix-org.github.io/synapse/latest/workers.html
+
+# Sync requests
+^/_matrix/client/(r0|v3)/sync$
+^/_matrix/client/(api/v1|r0|v3)/events$
+^/_matrix/client/(api/v1|r0|v3)/initialSync$
+^/_matrix/client/(api/v1|r0|v3)/rooms/[^/]+/initialSync$
+
+# Client API requests
+^/_matrix/client/(api/v1|r0|v3|unstable)/createRoom$
+^/_matrix/client/(api/v1|r0|v3|unstable)/publicRooms$
+^/_matrix/client/(api/v1|r0|v3|unstable)/rooms/.*/joined_members$
+^/_matrix/client/(api/v1|r0|v3|unstable)/rooms/.*/context/.*$
+^/_matrix/client/(api/v1|r0|v3|unstable)/rooms/.*/members$
+^/_matrix/client/(api/v1|r0|v3|unstable)/rooms/.*/state$
+^/_matrix/client/v1/rooms/.*/hierarchy$
+^/_matrix/client/(v1|unstable)/rooms/.*/relations/
+^/_matrix/client/v1/rooms/.*/threads$
+^/_matrix/client/unstable/org.matrix.msc2716/rooms/.*/batch_send$
+^/_matrix/client/unstable/im.nheko.summary/rooms/.*/summary$
+^/_matrix/client/(r0|v3|unstable)/account/3pid$
+^/_matrix/client/(r0|v3|unstable)/account/whoami$
+^/_matrix/client/(r0|v3|unstable)/devices$
+^/_matrix/client/versions$
+^/_matrix/client/(api/v1|r0|v3|unstable)/voip/turnServer$
+^/_matrix/client/(api/v1|r0|v3|unstable)/rooms/.*/event/
+^/_matrix/client/(api/v1|r0|v3|unstable)/joined_rooms$
+^/_matrix/client/v1/rooms/.*/timestamp_to_event$
+^/_matrix/client/(api/v1|r0|v3|unstable/.*)/rooms/.*/aliases
+^/_matrix/client/(api/v1|r0|v3|unstable)/search$
+^/_matrix/client/(r0|v3|unstable)/user/.*/filter(/|$)
+^/_matrix/client/(api/v1|r0|v3|unstable)/directory/room/.*$
+^/_matrix/client/(r0|v3|unstable)/capabilities$
+
+# Encryption requests
+^/_matrix/client/(r0|v3|unstable)/keys/query$
+^/_matrix/client/(r0|v3|unstable)/keys/changes$
+^/_matrix/client/(r0|v3|unstable)/keys/claim$
+^/_matrix/client/(r0|v3|unstable)/room_keys/
+^/_matrix/client/(r0|v3|unstable)/keys/upload/
+
+# Registration/login requests
+^/_matrix/client/(api/v1|r0|v3|unstable)/login$
+^/_matrix/client/(r0|v3|unstable)/register$
+^/_matrix/client/(r0|v3|unstable)/register/available$
+^/_matrix/client/v1/register/m.login.registration_token/validity$
+^/_matrix/client/(r0|v3|unstable)/password_policy$
+
+# Event sending requests
+^/_matrix/client/(api/v1|r0|v3|unstable)/rooms/.*/redact
+^/_matrix/client/(api/v1|r0|v3|unstable)/rooms/.*/send
+^/_matrix/client/(api/v1|r0|v3|unstable)/rooms/.*/state/
+^/_matrix/client/(api/v1|r0|v3|unstable)/rooms/.*/(join|invite|leave|ban|unban|kick)$
+^/_matrix/client/(api/v1|r0|v3|unstable)/join/
+^/_matrix/client/(api/v1|r0|v3|unstable)/knock/
+^/_matrix/client/(api/v1|r0|v3|unstable)/profile/
+
+# Account data requests (requires stream writer for account_data)
+#^/_matrix/client/(r0|v3|unstable)/.*/tags
+#^/_matrix/client/(r0|v3|unstable)/.*/account_data
+
+# Receipts requests (requires stream writer for receipts)
+#^/_matrix/client/(r0|v3|unstable)/rooms/.*/receipt
+#^/_matrix/client/(r0|v3|unstable)/rooms/.*/read_markers
+
+# Presence requests (requires stream writer for presence)
+#^/_matrix/client/(api/v1|r0|v3|unstable)/presence/
+
+# User directory search requests
+^/_matrix/client/(r0|v3|unstable)/user_directory/search$

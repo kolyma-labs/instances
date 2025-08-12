@@ -8,9 +8,6 @@
     # List of docker instances hosted in this machine
     ./container.nix
 
-    # Minecraft server configurations
-    # ./minecraft
-
     # GitHub Runner configurations
     ./runner.nix
 

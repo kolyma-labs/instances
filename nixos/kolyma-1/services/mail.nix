@@ -8,12 +8,7 @@
       main = "oss.uzinfocom.uz";
       mail = "mail.${main}";
     };
-    efael = rec {
-      main = "efael.net";
-      mail = "mail.${main}";
-    };
   };
-  efaelSops = ../../../secrets/efael.yaml;
   uzinocomSops = ../../../secrets/uzinfocom.yaml;
 in {
   imports = [
@@ -21,14 +16,6 @@ in {
   ];
 
   sops.secrets = {
-    "matrix/efael/mail/admin" = {
-      sopsFile = efaelSops;
-      key = "mail/admin/hashed";
-    };
-    "matrix/efael/mail/support" = {
-      sopsFile = efaelSops;
-      key = "mail/support/hashed";
-    };
     "matrix/uzinfocom/mail/admin" = {
       sopsFile = uzinocomSops;
       key = "mail/admin/hashed";
@@ -59,7 +46,6 @@ in {
     enable = true;
     fqdn = domains.uzinfocom.mail;
     domains = with domains; [
-      efael.main
       uzinfocom.main
     ];
 
@@ -76,21 +62,6 @@ in {
     # Generating hashed passwords:
     # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
     loginAccounts = {
-      # ================================= #
-      #               Efael               #
-      # ================================= #
-      "admin@${domains.efael.main}" = {
-        hashedPasswordFile = config.sops.secrets."matrix/efael/mail/admin".path;
-        aliases = ["postmaster@${domains.efael.main}" "orzklv@${domains.efael.main}"];
-      };
-      "support@${domains.efael.main}" = {
-        hashedPasswordFile = config.sops.secrets."matrix/efael/mail/support".path;
-      };
-      "noreply@${domains.efael.main}" = {
-        sendOnly = true;
-        hashedPasswordFile = config.sops.secrets."matrix/efael/mail/support".path;
-      };
-
       # ================================= #
       #              Uzinfocom            #
       # ================================= #
