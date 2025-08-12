@@ -954,11 +954,11 @@
         "zen-browser": "zen-browser"
       },
       "locked": {
-        "lastModified": 1754991323,
-        "narHash": "sha256-TnfvkFYpZS5C/Fqs7bcPYb023W6mj4FftF2oq4JD3os=",
+        "lastModified": 1755010519,
+        "narHash": "sha256-0a2PjL9zI2S9sJen54VmdVCnXh6FE6ARGvOoZqv5nw4=",
         "owner": "orzklv",
         "repo": "nix",
-        "rev": "355765e3f4a11d555330d81b15c3cb0fff9ee9ee",
+        "rev": "ff9135e42dee6759b62856ac70e62bf8d2144c1d",
         "type": "github"
       },
       "original": {
