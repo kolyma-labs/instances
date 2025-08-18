@@ -13,6 +13,7 @@ $TTL 86400
 ; Nameserver Pointers
 ns1         IN    A     93.188.85.94
 ns2         IN    A     195.158.10.37
+ns3         IN    A     45.150.26.120
 
 ; Entry points
 @           IN    A     93.188.85.94

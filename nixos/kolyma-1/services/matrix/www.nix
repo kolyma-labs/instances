@@ -4,7 +4,12 @@
   # Enable xinux bots
   services.efael.website = {
     enable = true;
-    proxy.enable = false;
     port = 8442;
+
+    proxy = {
+      enable = true;
+      domain = "efael.net";
+      proxy = "nginx";
+    };
   };
 }
