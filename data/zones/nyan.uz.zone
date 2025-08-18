@@ -14,8 +14,3 @@ $TTL 86400
 @      IN    A     65.109.74.214
 @      IN    AAAA  2a01:4f9:3071:31ce::
 www    IN    CNAME nyan.uz.
-
-; Modded minecraft server
-call          IN    CNAME ns3.efael.uz.
-livekit       IN    CNAME ns3.efael.uz.
-livekit-jwt   IN    CNAME ns3.efael.uz.

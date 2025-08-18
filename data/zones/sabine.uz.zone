@@ -17,3 +17,7 @@ www    IN    CNAME sabine.uz.
 ; Modded minecraft server
 mod    IN    A     65.109.74.214
 mod    IN    AAAA  2a01:4f9:3071:31ce::
+
+call          IN    CNAME ns3.efael.uz.
+livekit       IN    CNAME ns3.efael.uz.
+livekit-jwt   IN    CNAME ns3.efael.uz.
