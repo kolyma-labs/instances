@@ -16,6 +16,6 @@ $TTL 86400
 www    IN    CNAME nyan.uz.
 
 ; Modded minecraft server
-call          IN    CNAME ns3.efael.uz
-livekit       IN    CNAME ns3.efael.uz
-livekit-jwt   IN    CNAME ns3.efael.uz
+call          IN    CNAME ns3.efael.uz.
+livekit       IN    CNAME ns3.efael.uz.
+livekit-jwt   IN    CNAME ns3.efael.uz.
