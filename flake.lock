@@ -10,11 +10,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1754711696,
-        "narHash": "sha256-/f9qBY5+d/mFvnb4BVHGvsJzdY+zkTmhwyVOAvu9pNc=",
+        "lastModified": 1755609751,
+        "narHash": "sha256-4ubz6HcK7TBo+He8DVoXSwzSPs5rXN3AsdHmFgEOfcU=",
         "owner": "ezKEa",
         "repo": "aagl-gtk-on-nix",
-        "rev": "516c80c8744a8c4e3e6bd15bc19633cc991233a4",
+        "rev": "2bb9e308f1317ed9b302712d943a557d99f0790e",
         "type": "github"
       },
       "original": {
@@ -683,11 +683,11 @@
     },
     "nixpkgs-darwin": {
       "locked": {
-        "lastModified": 1755457263,
-        "narHash": "sha256-R//8BJCL7LcjZbe2u2PD//Uipa+SEQoJY9OJHVQmWvA=",
+        "lastModified": 1755565981,
+        "narHash": "sha256-xBm8SyrND85Gz4iSgup+3051fgcJ0Mr25qsbEUkYD2U=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "762eec09c0e9efc19f456a1970e11a5b229ac9ce",
+        "rev": "b6830a2741e01938561f5fc547e26d924cd6aae2",
         "type": "github"
       },
       "original": {
@@ -954,11 +954,11 @@
         "zen-browser": "zen-browser"
       },
       "locked": {
-        "lastModified": 1755582504,
-        "narHash": "sha256-xl7o+LJ4pZarODdAnp/Z8FzDmA0O9GchfO6NlYizrNk=",
+        "lastModified": 1755610697,
+        "narHash": "sha256-3x0KCt5eNZKIp8husVRAtuvCZ/zKChCaVOVm33rvkRM=",
         "owner": "orzklv",
         "repo": "nix",
-        "rev": "359d6afc8f25402fa69e5a49a53c5f30124b7c8a",
+        "rev": "0946c07102c2155d345f5a77342cb9c084999763",
         "type": "github"
       },
       "original": {
