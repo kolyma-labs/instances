@@ -20,6 +20,7 @@
       "xinux.uz"
       "floss.uz"
       "bleur.net"
+      "uzberk.uz"
       "gopher.uz"
       "sabine.uz"
       "haskell.uz"
