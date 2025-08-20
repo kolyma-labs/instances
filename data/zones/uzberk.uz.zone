@@ -11,11 +11,11 @@ $TTL 86400
 @      IN    NS    ns2.kolyma.uz.
 
 ; Server Points
-ns1    IN    A     45.150.26.18
+ns1    IN    A     45.150.26.27
 ns2    IN    A     45.150.26.120
 
 ; Entry points
-@      IN    A     45.150.26.18
+@      IN    A     45.150.26.27
 www    IN    CNAME uzberk.uz.
 
 ; Main Endpoints
