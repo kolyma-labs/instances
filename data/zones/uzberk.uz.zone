@@ -28,3 +28,15 @@ turn          IN    CNAME ns1.uzberk.uz.
 call          IN    CNAME ns2.uzberk.uz.
 livekit       IN    CNAME ns2.uzberk.uz.
 livekit-jwt   IN    CNAME ns2.uzberk.uz.
+
+; Mail configurations
+mail              IN  CNAME ns1.uzberk.uz.
+@                 IN  MX    10 mail.uzberk.uz.
+@                 IN  TXT   "v=spf1 a:mail.uzberk.uz -all"
+_submission._tcp  IN  SRV   5 0 587 mail.uzberk.uz.
+_submissions._tcp IN  SRV   5 0 465 mail.uzberk.uz.
+_imap._tcp        IN  SRV   5 0 143 mail.uzberk.uz.
+_imaps._tcp       IN  SRV   5 0 993 mail.uzberk.uz.
+_dmarc            IN  TXT   "v=DMARC1; p=none"
+mail._domainkey IN TXT ( "v=DKIM1; k=rsa;"
+	"p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCj6WZi6FalCbJbbO/brb+7FuhGrPnZnQBHPE4UcjmK2z2uHr2q0XozyF9gJNV7j8wO35Cf86e7MC8OC0KVJCE+RaJ6pfNg5MGjh+QXBlHSvc2wc9dJs1fBxQfI+yCMNeKwroxug5haOTG4PdqcuUy7vDhstfkGJC/AA+ziM5rApwIDAQAB" )
