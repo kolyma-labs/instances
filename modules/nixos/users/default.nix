@@ -5,4 +5,5 @@
   sakhib = import ./sakhib.nix;
   crypton = import ./crypton.nix;
   shakhzod = import ./shakhzod.nix;
+  aekinskjaldi = import ./aekinskjaldi.nix;
 }
