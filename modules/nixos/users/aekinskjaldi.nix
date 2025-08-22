@@ -30,7 +30,7 @@ in {
           builtins.readFile (
             builtins.fetchurl {
               url = "https://github.com/aekinskjaldi.keys";
-              sha256 = "05rvkkk382jh84prwp4hafnr3bnawxpkb3w6pgqda2igia2a4865";
+              sha256 = "10pryv8xzyb3vv12wk23xlr8c0k70ygrdjf5vw08xyzwkbrbd3vd";
             }
           )
         );
