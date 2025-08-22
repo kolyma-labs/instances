@@ -13,6 +13,7 @@ $TTL 86400
 ; Server Points
 ns1    IN    A     45.150.26.27
 ns2    IN    A     45.150.26.120
+ns3    IN    A     45.150.26.30
 
 ; Entry points
 @      IN    A     45.150.26.27
@@ -25,9 +26,12 @@ auth          IN    CNAME ns1.uzberk.uz.
 turn          IN    CNAME ns1.uzberk.uz.
 
 ; Livemedia Endpoints
-call          IN    CNAME ns2.uzberk.uz.
-livekit       IN    CNAME ns2.uzberk.uz.
-livekit-jwt   IN    CNAME ns2.uzberk.uz.
+;call          IN    CNAME ns2.uzberk.uz.
+;livekit       IN    CNAME ns2.uzberk.uz.
+;livekit-jwt   IN    CNAME ns2.uzberk.uz.
+call          IN    CNAME ns3.uzberk.uz.
+livekit       IN    CNAME ns3.uzberk.uz.
+livekit-jwt   IN    CNAME ns3.uzberk.uz.
 
 ; Mail configurations
 mail              IN  CNAME ns1.uzberk.uz.
