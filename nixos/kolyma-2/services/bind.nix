@@ -33,6 +33,7 @@
       "nix-darwin.uz"
       "niggerlicious.uz"
       "devops-journey.uz"
+      "uchar.uz"
     ];
   };
 }

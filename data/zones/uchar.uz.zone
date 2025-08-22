@@ -1,0 +1,20 @@
+$TTL 86400
+@      IN    SOA    ns1.kolyma.uz. admin.kolyma.uz. (
+             2025082201 ; Serial YYYYMMDDNN (NN is the revision number)
+             3600       ; Refresh
+             1800       ; Retry
+             604800     ; Expire
+             86400 )    ; Minimum TTL
+
+; Nameservers
+@      IN    NS    ns1.kolyma.uz.
+@      IN    NS    ns2.kolyma.uz.
+
+; Server Points
+;ns1    IN    A     45.150.26.27
+;ns2    IN    A     45.150.26.120
+
+; Entry points
+@      IN    A     167.235.96.40
+www    IN    CNAME uchar.uz.
+

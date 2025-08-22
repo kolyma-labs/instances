@@ -37,6 +37,7 @@
       # Goofy Ahh Zone
       "efael.uz"
       "efael.net"
+      "uchar.uz"
 
       # Dangarus Zone
       "oss.uzinfocom.uz"
