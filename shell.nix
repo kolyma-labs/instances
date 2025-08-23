@@ -7,13 +7,13 @@
     };
   in
     import nixpkgs {overlays = [];},
-  # pre-commit-hooks,
   pre-commit-check,
   ...
 }:
 pkgs.stdenv.mkDerivation {
   name = "instances";
 
+  # Initial dependencies
   nativeBuildInputs = with pkgs; [
     git
     nixd
@@ -23,11 +23,14 @@ pkgs.stdenv.mkDerivation {
     alejandra
   ];
 
+  # Runtime dependencies
   buildInputs = pre-commit-check.enabledPackages;
 
-  NIX_CONFIG = "extra-experimental-features = nix-command flakes";
-
+  # Bootstrapping commands
   shellHook = ''
     ${pre-commit-check.shellHook}
   '';
+
+  # Nix related configurations
+  NIX_CONFIG = "extra-experimental-features = nix-command flakes";
 }

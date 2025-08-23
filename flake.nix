@@ -135,7 +135,7 @@
           };
 
           # Development shells
-          devShells.default = import ./shell.nix {inherit pkgs pre-commit-hooks pre-commit-check;};
+          devShells.default = import ./shell.nix {inherit pkgs pre-commit-check;};
         }
     )
     # and ...
