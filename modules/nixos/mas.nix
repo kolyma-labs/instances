@@ -44,257 +44,264 @@ in {
         freeformType = format.type;
 
         options = {
-          http.public_base = mkOption {
-            type = types.str;
-            default = "http://[::]:8080/";
-            description = ''
-              Public URL base used when building absolute public URLs.
-            '';
-          };
-          http.issuer = mkOption {
-            type = types.str;
-            default = "http://[::]:8080/";
-            description = ''
-              OIDC issuer advertised by the service.
-            '';
-          };
-          http.trusted_proxies = mkOption {
-            type = types.listOf (types.str);
-            default = [
-              "127.0.0.1/8"
-              "::1/128"
-            ];
-            description = ''
-              MAS can infer the client IP address from the X-Forwarded-For header. It will trust the value for this header only if the request comes from a trusted reverse proxy listed here.
-            '';
-          };
-          http.listeners = mkOption {
-            type = types.listOf (
-              types.submodule {
-                freeformType = format.type;
-                options = {
-                  name = mkOption {
-                    type = types.str;
-                    example = "web";
-                    description = ''
-                      The name of the listener, used in logs and metrics.
-                    '';
-                  };
-                  proxy_protocol = mkOption {
-                    type = types.bool;
-                    description = ''
-                      Whether to enable the PROXY protocol on the listener.
-                    '';
-                  };
-                  resources = mkOption {
-                    type = types.listOf (
-                      types.submodule {
-                        freeformType = format.type;
-                        options = {
-                          name = mkOption {
-                            type = types.str;
-                            description = ''
-                              Serve the given folder.
-                            '';
+          http = {
+            public_base = mkOption {
+              type = types.str;
+              default = "http://[::]:8080/";
+              description = ''
+                Public URL base used when building absolute public URLs.
+              '';
+            };
+            issuer = mkOption {
+              type = types.str;
+              default = "http://[::]:8080/";
+              description = ''
+                OIDC issuer advertised by the service.
+              '';
+            };
+            trusted_proxies = mkOption {
+              type = types.listOf types.str;
+              default = [
+                "127.0.0.1/8"
+                "::1/128"
+              ];
+              description = ''
+                MAS can infer the client IP address from the X-Forwarded-For header. It will trust the value for this header only if the request comes from a trusted reverse proxy listed here.
+              '';
+            };
+            listeners = mkOption {
+              type = types.listOf (
+                types.submodule {
+                  freeformType = format.type;
+                  options = {
+                    name = mkOption {
+                      type = types.str;
+                      example = "web";
+                      description = ''
+                        The name of the listener, used in logs and metrics.
+                      '';
+                    };
+                    proxy_protocol = mkOption {
+                      type = types.bool;
+                      description = ''
+                        Whether to enable the PROXY protocol on the listener.
+                      '';
+                    };
+                    resources = mkOption {
+                      type = types.listOf (
+                        types.submodule {
+                          freeformType = format.type;
+                          options = {
+                            name = mkOption {
+                              type = types.str;
+                              description = ''
+                                Serve the given folder.
+                              '';
+                            };
+                            path = mkOption {
+                              type = types.str;
+                              default = "";
+                              description = ''
+                                Serve the folder on the given path.
+                              '';
+                            };
                           };
-                          path = mkOption {
-                            type = types.str;
-                            default = "";
-                            description = ''
-                              Serve the folder on the given path.
-                            '';
+                        }
+                      );
+                      description = ''
+                        List of resources to serve.
+                      '';
+                    };
+                    binds = mkOption {
+                      type = types.listOf (
+                        types.submodule {
+                          freeformType = format.type;
+                          options = {
+                            host = mkOption {
+                              type = types.str;
+                              description = ''
+                                Listen on the given host.
+                              '';
+                            };
+                            port = mkOption {
+                              type = types.ints.unsigned;
+                              description = ''
+                                Listen on the given port.
+                              '';
+                            };
                           };
-                        };
-                      }
-                    );
-                    description = ''
-                      List of resources to serve.
-                    '';
+                        }
+                      );
+                      description = ''
+                        List of addresses and ports to listen to.
+                      '';
+                    };
                   };
-                  binds = mkOption {
-                    type = types.listOf (
-                      types.submodule {
-                        freeformType = format.type;
-                        options = {
-                          host = mkOption {
-                            type = types.str;
-                            description = ''
-                              Listen on the given host.
-                            '';
-                          };
-                          port = mkOption {
-                            type = types.ints.unsigned;
-                            description = ''
-                              Listen on the given port.
-                            '';
-                          };
-                        };
-                      }
-                    );
-                    description = ''
-                      List of addresses and ports to listen to.
-                    '';
+                }
+              );
+              defaultText = ''
+                {
+                  name = "web";
+                  resources = [
+                    { name = "discovery"; }
+                    { name = "human"; }
+                    { name = "oauth"; }
+                    { name = "compat"; }
+                    { name = "graphql"; }
+                    {
+                      name = "assets";
+                      path = "''${cfg.package}/share/matrix-authentication-service/assets";
+                    }
+                  ];
+                  binds = [
+                    {
+                      host = "0.0.0.0";
+                      port = 8080;
+                    }
+                  ];
+                  proxy_protocol = false;
+                }
+                {
+                  name = "internal";
+                  resources = [
+                    { name = "health"; }
+                  ];
+                  binds = [
+                    {
+                      host = "0.0.0.0";
+                      port = 8081;
+                    }
+                  ];
+                  proxy_protocol = false;
+                }
+              '';
+              description = ''
+                Each listener can serve multiple resources, and listen on multiple TCP ports or UNIX sockets.
+              '';
+            };
+          };
+
+          database = {
+            uri = mkOption {
+              type = types.str;
+              default = "postgresql:///matrix-authentication-service?host=/run/postgresql";
+              description = ''
+                The postgres connection string.
+                Refer to <https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING>.
+              '';
+            };
+
+            max_connections = mkOption {
+              type = types.ints.unsigned;
+              default = 10;
+              description = ''
+                Maximum number of connections for the connection pool.
+              '';
+            };
+
+            min_connections = mkOption {
+              type = types.ints.unsigned;
+              default = 0;
+              description = ''
+                Minimum number of connections for the connection pool.
+              '';
+            };
+
+            connect_timeout = mkOption {
+              type = types.ints.unsigned;
+              default = 30;
+              description = ''
+                Connection timeout for the connection pool.
+              '';
+            };
+
+            idle_timeout = mkOption {
+              type = types.ints.unsigned;
+              default = 600;
+              description = ''
+                Idle timeout for the connection pool.
+              '';
+            };
+
+            max_lifetime = mkOption {
+              type = types.ints.unsigned;
+              default = 1800;
+              description = ''
+                Maximum lifetime for the connection pool.
+              '';
+            };
+          };
+
+          passwords = {
+            enabled = mkOption {
+              type = types.bool;
+              default = true;
+              description = ''
+                Whether to enable the password database. If disabled, users will only be able to log in using upstream OIDC providers.
+              '';
+            };
+
+            schemes = mkOption {
+              type = types.listOf (
+                types.submodule {
+                  freeformType = format.type;
+                  options = {
+                    version = mkOption {
+                      type = types.ints.unsigned;
+                      description = ''
+                        Password scheme version.
+                      '';
+                    };
+                    algorithm = mkOption {
+                      type = types.str;
+                      description = ''
+                        Password scheme algorithm.
+                      '';
+                    };
                   };
-                };
-              }
-            );
-            defaultText = ''
-              {
-                name = "web";
-                resources = [
-                  { name = "discovery"; }
-                  { name = "human"; }
-                  { name = "oauth"; }
-                  { name = "compat"; }
-                  { name = "graphql"; }
-                  {
-                    name = "assets";
-                    path = "''${cfg.package}/share/matrix-authentication-service/assets";
-                  }
-                ];
-                binds = [
-                  {
-                    host = "0.0.0.0";
-                    port = 8080;
-                  }
-                ];
-                proxy_protocol = false;
-              }
-              {
-                name = "internal";
-                resources = [
-                  { name = "health"; }
-                ];
-                binds = [
-                  {
-                    host = "0.0.0.0";
-                    port = 8081;
-                  }
-                ];
-                proxy_protocol = false;
-              }
-            '';
-            description = ''
-              Each listener can serve multiple resources, and listen on multiple TCP ports or UNIX sockets.
-            '';
-          };
+                }
+              );
+              default = [
+                {
+                  version = 1;
+                  algorithm = "argon2id";
+                }
+              ];
+              description = ''
+                List of password hashing schemes being used. Only change this if you know what you're doing.
+              '';
+            };
 
-          database.uri = mkOption {
-            type = types.str;
-            default = "postgresql:///matrix-authentication-service?host=/run/postgresql";
-            description = ''
-              The postgres connection string.
-              Refer to <https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING>.
-            '';
+            minimum_complexity = mkOption {
+              type = types.ints.unsigned;
+              default = 3;
+              description = ''
+                Minimum complexity required for passwords, estimated by the zxcvbn algorithm. Must be between 0 and 4, default is 3. See https://github.com/dropbox/zxcvbn#usage for more information.
+              '';
+            };
           };
-
-          database.max_connections = mkOption {
-            type = types.ints.unsigned;
-            default = 10;
-            description = ''
-              Maximum number of connections for the connection pool.
-            '';
-          };
-
-          database.min_connections = mkOption {
-            type = types.ints.unsigned;
-            default = 0;
-            description = ''
-              Minimum number of connections for the connection pool.
-            '';
-          };
-
-          database.connect_timeout = mkOption {
-            type = types.ints.unsigned;
-            default = 30;
-            description = ''
-              Connection timeout for the connection pool.
-            '';
-          };
-
-          database.idle_timeout = mkOption {
-            type = types.ints.unsigned;
-            default = 600;
-            description = ''
-              Idle timeout for the connection pool.
-            '';
-          };
-
-          database.max_lifetime = mkOption {
-            type = types.ints.unsigned;
-            default = 1800;
-            description = ''
-              Maximum lifetime for the connection pool.
-            '';
-          };
-
-          passwords.enabled = mkOption {
-            type = types.bool;
-            default = true;
-            description = ''
-              Whether to enable the password database. If disabled, users will only be able to log in using upstream OIDC providers.
-            '';
-          };
-
-          passwords.schemes = mkOption {
-            type = types.listOf (
-              types.submodule {
-                freeformType = format.type;
-                options = {
-                  version = mkOption {
-                    type = types.ints.unsigned;
-                    description = ''
-                      Password scheme version.
-                    '';
-                  };
-                  algorithm = mkOption {
-                    type = types.str;
-                    description = ''
-                      Password scheme algorithm.
-                    '';
-                  };
-                };
-              }
-            );
-            default = [
-              {
-                version = 1;
-                algorithm = "argon2id";
-              }
-            ];
-            description = ''
-              List of password hashing schemes being used. Only change this if you know what you're doing.
-            '';
-          };
-
-          passwords.minimum_complexity = mkOption {
-            type = types.ints.unsigned;
-            default = 3;
-            description = ''
-              Minimum complexity required for passwords, estimated by the zxcvbn algorithm. Must be between 0 and 4, default is 3. See https://github.com/dropbox/zxcvbn#usage for more information.
-            '';
-          };
-
-          matrix.homeserver = mkOption {
-            type = types.str;
-            default = "";
-            description = ''
-              Corresponds to the server_name in the Synapse configuration file.
-            '';
-          };
-          matrix.secret = mkOption {
-            type = types.str;
-            default = "";
-            description = ''
-              A shared secret the service will use to call the homeserver admin API.
-            '';
-          };
-          matrix.endpoint = mkOption {
-            type = types.str;
-            default = "";
-            description = ''
-              The URL to which the homeserver is accessible from the service.
-            '';
+          matrix = {
+            homeserver = mkOption {
+              type = types.str;
+              default = "";
+              description = ''
+                Corresponds to the server_name in the Synapse configuration file.
+              '';
+            };
+            secret = mkOption {
+              type = types.str;
+              default = "";
+              description = ''
+                A shared secret the service will use to call the homeserver admin API.
+              '';
+            };
+            endpoint = mkOption {
+              type = types.str;
+              default = "";
+              description = ''
+                The URL to which the homeserver is accessible from the service.
+              '';
+            };
           };
         };
       };

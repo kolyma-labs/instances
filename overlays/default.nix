@@ -24,7 +24,7 @@
     # };
 
     # Use latest unstable version of matrix
-    matrix-synapse = final.unstable.matrix-synapse;
+    inherit (final.unstable) matrix-synapse;
 
     # Use latest version of mas
     matrix-authentication-server = final.unstable.matrix-authentication-service.override;

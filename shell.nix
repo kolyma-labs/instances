@@ -7,6 +7,8 @@
     };
   in
     import nixpkgs {overlays = [];},
+  # pre-commit-hooks,
+  pre-commit-check,
   ...
 }:
 pkgs.stdenv.mkDerivation {
@@ -21,5 +23,11 @@ pkgs.stdenv.mkDerivation {
     alejandra
   ];
 
+  buildInputs = pre-commit-check.enabledPackages;
+
   NIX_CONFIG = "extra-experimental-features = nix-command flakes";
+
+  shellHook = ''
+    ${pre-commit-check.shellHook}
+  '';
 }

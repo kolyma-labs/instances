@@ -1,5 +1,4 @@
-{config, ...}: let
-in {
+{config, ...}: {
   config = {
     services.owncast = {
       enable = true;

@@ -164,7 +164,8 @@ in {
       enableACME = lib.mkDefault true;
 
       locations =
-        (lib.foldl' lib.recursiveUpdate {} (
+        (
+          lib.foldl' lib.recursiveUpdate {}
           [
             {
               # Forward to the auth service
@@ -188,7 +189,7 @@ in {
             }
           ]
           # ++ endpoints
-        ))
+        )
         // wellKnownAppleLocations "${domains.main}";
     };
 

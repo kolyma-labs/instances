@@ -38,6 +38,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Pre commit hooks for git
+    pre-commit-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Mail Server
     simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.05";
 
@@ -99,6 +105,7 @@
     flake-utils,
     orzklv,
     orzklv-pkgs,
+    pre-commit-hooks,
     ...
   } @ inputs: let
     # Self instance pointer
@@ -109,11 +116,26 @@
       system: let
         # Packages for the current <arch>
         pkgs = nixpkgs.legacyPackages.${system};
+
+        # Checks hook for passing to devShell
+        inherit (self.checks.${system}) pre-commit-check;
       in
         # Nixpkgs packages for the current system
         {
+          # Checks for hooks
+          checks = {
+            pre-commit-check = pre-commit-hooks.lib.${system}.run {
+              src = ./.;
+              hooks = {
+                statix.enable = true;
+                #flake-checker.enable = true;
+                alejandra.enable = true;
+              };
+            };
+          };
+
           # Development shells
-          devShells.default = import ./shell.nix {inherit pkgs;};
+          devShells.default = import ./shell.nix {inherit pkgs pre-commit-hooks pre-commit-check;};
         }
     )
     # and ...

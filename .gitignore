@@ -34,3 +34,6 @@ nohup.out
 *.key
 *.retard
 secrets/network/initial
+
+# git hooks
+.pre-commit-config.yaml

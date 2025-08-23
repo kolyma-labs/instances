@@ -3,10 +3,9 @@
   config,
   domains,
   keys,
-}: let
-in {
+}: {
   services.coturn = rec {
-    realm = domains.realm;
+    inherit (domains) realm;
     enable = true;
     no-cli = true;
     no-tcp-relay = true;
