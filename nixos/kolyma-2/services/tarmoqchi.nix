@@ -22,7 +22,7 @@ in {
       RFC2136_TSIG_KEY=
       RFC2136_TSIG_SECRET=
       RFC2136_TSIG_ALGO=hmac-sha512.
-      RFC2136_NAMESERVER=ns2.kolyma.uz
+      RFC2136_NAMESERVER=ns1.kolyma.uz
     '';
   };
 
