@@ -26,12 +26,12 @@ auth          IN    CNAME ns1.uzberk.uz.
 turn          IN    CNAME ns1.uzberk.uz.
 
 ; Livemedia Endpoints
-;call          IN    CNAME ns2.uzberk.uz.
-;livekit       IN    CNAME ns2.uzberk.uz.
-;livekit-jwt   IN    CNAME ns2.uzberk.uz.
-call          IN    CNAME ns3.uzberk.uz.
-livekit       IN    CNAME ns3.uzberk.uz.
-livekit-jwt   IN    CNAME ns3.uzberk.uz.
+call          IN    CNAME ns2.uzberk.uz.
+livekit       IN    CNAME ns2.uzberk.uz.
+livekit-jwt   IN    CNAME ns2.uzberk.uz.
+;call          IN    CNAME ns3.uzberk.uz.
+;livekit       IN    CNAME ns3.uzberk.uz.
+;livekit-jwt   IN    CNAME ns3.uzberk.uz.
 
 ; Mail configurations
 mail              IN  CNAME ns1.uzberk.uz.
