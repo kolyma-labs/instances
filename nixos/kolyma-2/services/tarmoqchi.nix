@@ -22,7 +22,7 @@ in {
       RFC2136_TSIG_KEY=
       RFC2136_TSIG_SECRET=
       RFC2136_TSIG_ALGO=hmac-sha512.
-      RFC2136_NAMESERVER=ns1.kolyma.uz
+      RFC2136_NAMESERVER=ns2.kolyma.uz
     '';
   };
 
@@ -30,12 +30,7 @@ in {
   services.tarmoqchi = {
     enable = true;
     port = 9876;
-
-    proxy-reverse = {
-      enable = false;
-      domain = "tarmoqchi.uz";
-      proxy = "nginx";
-    };
+    proxy-reverse.enable = false;
 
     github = {
       id = config.sops.secrets."tarmoqchi/github/id".path;
@@ -58,7 +53,7 @@ in {
 
   services.www.hosts = {
     "${cfg.proxy-reverse.domain}" = {
-      addSSL = true;
+      forceSSL = true;
       enableACME = true;
       acmeRoot = null;
       locations."/" = {
@@ -67,7 +62,7 @@ in {
       };
     };
     "*.${cfg.proxy-reverse.domain}" = {
-      addSSL = true;
+      forceSSL = true;
       useACMEHost = "tarmoqchi.uz";
       acmeRoot = null;
       locations."/" = {
