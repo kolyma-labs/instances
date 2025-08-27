@@ -19,7 +19,6 @@
         notify yes;
         ${lib.optionalString (config.services.nameserver.slaves != []) ''
           also-notify { ${lib.concatStringsSep "; " config.services.nameserver.slaves}; };
-          allow-transfer { ${lib.concatStringsSep "; " config.services.nameserver.slaves}; };
         ''}
       '';
     }
