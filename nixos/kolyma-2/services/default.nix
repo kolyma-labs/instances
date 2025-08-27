@@ -33,7 +33,7 @@
     ./devops-journey.nix
 
     # Tarmoqchi HTTP tunneling
-    ./tarmoqchi.nix
+    # ./tarmoqchi.nix
 
     # GitHub runners
     ./runner.nix
