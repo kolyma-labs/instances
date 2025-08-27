@@ -2,7 +2,6 @@
   lib,
   config,
   domains,
-  keys,
 }: let
   sopsFile = ../../../../secrets/floss.yaml;
   owner = config.systemd.services.matrix-synapse.serviceConfig.User;
@@ -91,13 +90,13 @@ in {
       server_name = domains.main;
       public_baseurl = "https://${domains.server}";
 
-      turn_allow_guests = false;
-      turn_uris = [
-        "turn:${domains.realm}:3478?transport=udp"
-        "turn:${domains.realm}:3478?transport=tcp"
-      ];
-      turn_shared_secret = keys.realmkey;
-      turn_user_lifetime = "1h";
+      # turn_allow_guests = false;
+      # turn_uris = [
+      #   "turn:${domains.realm}:3478?transport=udp"
+      #   "turn:${domains.realm}:3478?transport=tcp"
+      # ];
+      # turn_shared_secret = keys.realmkey;
+      # turn_user_lifetime = "1h";
 
       suppress_key_server_warning = true;
       allow_guest_access = false;

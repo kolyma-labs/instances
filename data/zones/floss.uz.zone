@@ -28,7 +28,6 @@ awesome IN   CNAME floss-uz.github.io.
 ; Matrix & Coturn server
 chat        IN    CNAME ns2.kolyma.uz.
 matrix      IN    CNAME ns2.kolyma.uz.
-turn        IN    CNAME ns2.kolyma.uz.
 auth        IN    CNAME ns2.kolyma.uz.
 call        IN    CNAME ns2.kolyma.uz.
 livekit     IN    CNAME ns2.kolyma.uz.

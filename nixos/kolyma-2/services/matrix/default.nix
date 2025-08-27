@@ -18,11 +18,6 @@
     livekit = "livekit.${main}";
     livekit-jwt = "livekit-jwt.${main}";
   };
-
-  # Various temporary keys
-  keys = {
-    realmkey = "the most niggerlicious thing is to use javascript and python :(";
-  };
 in {
   imports = [
     # Module by @teutat3s
@@ -32,7 +27,6 @@ in {
     (import ./call.nix {inherit config domains;})
     (import ./proxy {inherit lib domains pkgs config;})
     (import ./auth.nix {inherit config domains;})
-    (import ./turn.nix {inherit lib config domains keys;})
-    (import ./server.nix {inherit lib config domains keys;})
+    (import ./server.nix {inherit lib config domains;})
   ];
 }
