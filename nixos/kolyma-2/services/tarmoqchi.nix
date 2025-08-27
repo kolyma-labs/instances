@@ -30,7 +30,7 @@ in {
   services.tarmoqchi = {
     enable = true;
     port = 9876;
-    proxy-reverse.enable = false;
+    proxy-reverse.domain = "tarmoqchi.uz";
 
     github = {
       id = config.sops.secrets."tarmoqchi/github/id".path;
