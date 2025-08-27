@@ -5,6 +5,11 @@
   services.nameserver = {
     enable = true;
     type = "master";
+
+    slaves = [
+      "65.109.74.214"
+    ];
+
     zones = [
       # Personal Space
       "orzklv.uz"

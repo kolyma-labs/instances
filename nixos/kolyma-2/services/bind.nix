@@ -4,7 +4,12 @@
   # Enable Nameserver hosting
   services.nameserver = {
     enable = true;
-    type = "master";
+    type = "slave";
+
+    masters = [
+      "167.235.96.40"
+    ];
+
     zones = [
       # Personal Space
       "orzklv.uz"
