@@ -21,6 +21,9 @@ pkgs.stdenv.mkDerivation {
     statix
     deadnix
     alejandra
+
+    easyrsa
+    openssl
   ];
 
   # Runtime dependencies
