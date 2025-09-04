@@ -73,19 +73,19 @@ in {
     };
   };
 
-  users.groups.gitlab.members = ["nginx"];
+  users.users.nginx.extraGroups = [config.users.groups.anubis.name];
 
   services.anubis = {
     instances.gitlab = {
       settings = {
-        TARGET = "unix:/run/gitlab/gitlab-workhorse.socket";
-        BIND = "/run/anubis/gitlab.sock";
-        BIND_NETWORK = "unix";
+        TARGET = "unix:///run/gitlab/gitlab-workhorse.socket";
         DIFFICULTY = 4;
         WEBMASTER_EMAIL = "admin@kolyma.uz";
       };
     };
   };
+
+  users.groups.gitlab.members = ["nginx"];
 
   # Enable web server & proxy
   services.www.hosts = {
