@@ -73,21 +73,33 @@ in {
     };
   };
 
-  # users.groups.gitlab.members = ["nginx"];
+  users.groups.gitlab.members = ["nginx"];
+
+  services.anubis = {
+    instances.gitlab = {
+      settings = {
+        TARGET = "unix:/run/gitlab/gitlab-workhorse.socket";
+        BIND = "/run/anubis/gitlab.sock";
+        BIND_NETWORK = "unix";
+        DIFFICULTY = 4;
+        WEBMASTER_EMAIL = "admin@kolyma.uz";
+      };
+    };
+  };
 
   # Enable web server & proxy
   services.www.hosts = {
     "gulag.uz" = {
       addSSL = true;
       enableACME = true;
-
-      locations."/".proxyPass = "http://unix:/run/gitlab/gitlab-workhorse.socket";
+      locations = {
+        "/".proxyPass = "http://unix:${config.services.anubis.instances.gitlab.settings.BIND}";
+      };
     };
 
     "git.kolyma.uz" = {
       addSSL = true;
       enableACME = true;
-
       extraConfig = ''
         return 301 https://gulag.uz$request_uri;
       '';
