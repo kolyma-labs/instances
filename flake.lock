@@ -991,11 +991,11 @@
         "zen-browser": "zen-browser"
       },
       "locked": {
-        "lastModified": 1757400110,
-        "narHash": "sha256-F8pQIhLXlb9RcAJ3EYMYR7oIGHNE7Q4B/JMs4uaWKXo=",
+        "lastModified": 1757426046,
+        "narHash": "sha256-u6acEfYaW8IbdVmkmdqFYdT9QmK82ambRjOJmAABIrM=",
         "owner": "orzklv",
         "repo": "nix",
-        "rev": "13c0675cb6166426cc677492e02513508c2d5a97",
+        "rev": "208e5f6c21fa86008a30cdd633505f6774e0dbb4",
         "type": "github"
       },
       "original": {
