@@ -167,7 +167,7 @@ in {
       limit_profile_requests_to_users_who_share_rooms = false;
 
       max_spider_size = "10M";
-      max_upload_size = "50M";
+      max_upload_size = "1024M";
       media_storage_providers = [];
 
       password_config = {
