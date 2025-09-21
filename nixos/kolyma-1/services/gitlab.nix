@@ -73,8 +73,6 @@ in {
     };
   };
 
-  users.users.nginx.extraGroups = [config.users.groups.anubis.name];
-
   services.anubis = {
     instances.gitlab = {
       settings = {

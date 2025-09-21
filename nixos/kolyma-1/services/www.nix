@@ -1,9 +1,12 @@
 {
   outputs,
   pkgs,
+  config,
   ...
 }: {
   imports = [outputs.nixosModules.nginx];
+
+  users.users.nginx.extraGroups = [config.users.groups.anubis.name];
 
   # Enable web server & proxy
   services.www = {
