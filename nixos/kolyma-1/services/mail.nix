@@ -90,4 +90,11 @@ in {
     # down nginx and opens port 80.
     certificateScheme = "acme-nginx";
   };
+
+  security.acme.certs = {
+    "mail.oss.uzinfocom.uz" = {
+      email = "admin@oss.uzinfocom.uz";
+      webroot = "/var/lib/acme/acme-challenge";
+    };
+  };
 }
