@@ -16,7 +16,7 @@
       inherit (config.services.nameserver) slaves;
       extraConfig = ''
         allow-update { 65.109.74.214; 2a01:4f9:3071:31ce::; localhost; };
-        ${lib.optionalString (config.services.nameserver.slaves != []) ''
+        ${lib.optionalString ((config.services.nameserver.type == "master") && (config.services.nameserver.slaves != [])) ''
           also-notify { ${lib.concatStringsSep "; " config.services.nameserver.slaves}; };
         ''}
       '';
