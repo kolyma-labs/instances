@@ -19,8 +19,8 @@ in {
 
   environment.etc = {
     "acme/rfc2136.env".text = ''
-      RFC2136_TSIG_KEY=acme-key
-      RFC2136_TSIG_SECRET=Q06/9d+NXw6eE5Z0S4Envkh4RKZZb96aM7V8M0SEqppguaeVNmO85qcCG80MGGWiqGO+qsy2bL9LkMNUpKGVgw==
+      RFC2136_TSIG_KEY=
+      RFC2136_TSIG_SECRET=
       RFC2136_TSIG_ALGO=hmac-sha512.
       RFC2136_NAMESERVER=ns1.kolyma.uz
     '';
