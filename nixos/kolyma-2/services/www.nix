@@ -7,6 +7,16 @@
 
   users.users.nginx.extraGroups = [config.users.groups.anubis.name];
 
+  services.anubis = {
+    instances.haskell = {
+      settings = {
+        TARGET = "http://127.0.0.1:8450";
+        DIFFICULTY = 6;
+        WEBMASTER_EMAIL = "admin@kolyma.uz";
+      };
+    };
+  };
+
   # Enable web server & proxy
   services.www = {
     enable = true;
@@ -30,7 +40,7 @@
         ];
 
         locations."/" = {
-          proxyPass = "http://127.0.0.1:8450";
+          proxyPass = "http://unix:${config.services.anubis.instances.haskell.settings.BIND}";
           extraConfig = "";
         };
       };
