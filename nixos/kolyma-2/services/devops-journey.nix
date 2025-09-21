@@ -25,7 +25,7 @@ in {
     instances.devops = {
       settings = {
         TARGET = "http://127.0.0.1:${toString config.services.devops-journey.port}";
-        DIFFICULTY = 6;
+        DIFFICULTY = 12;
         WEBMASTER_EMAIL = "admin@kolyma.uz";
       };
     };

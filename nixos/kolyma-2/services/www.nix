@@ -11,7 +11,7 @@
     instances.haskell = {
       settings = {
         TARGET = "http://127.0.0.1:8450";
-        DIFFICULTY = 6;
+        DIFFICULTY = 12;
         WEBMASTER_EMAIL = "admin@kolyma.uz";
       };
     };

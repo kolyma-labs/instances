@@ -77,7 +77,7 @@ in {
     instances.gitlab = {
       settings = {
         TARGET = "unix:///run/gitlab/gitlab-workhorse.socket";
-        DIFFICULTY = 6;
+        DIFFICULTY = 12;
         WEBMASTER_EMAIL = "admin@kolyma.uz";
       };
     };
