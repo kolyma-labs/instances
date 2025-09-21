@@ -48,5 +48,12 @@
       "oss.uzinfocom.uz"
       "link.uzinfocom.uz"
     ];
+
+    extra = ''
+      key "acme-key" {
+        algorithm hmac-sha512;
+        secret "Q06/9d+NXw6eE5Z0S4Envkh4RKZZb96aM7V8M0SEqppguaeVNmO85qcCG80MGGWiqGO+qsy2bL9LkMNUpKGVgw==";
+      };
+    '';
   };
 }

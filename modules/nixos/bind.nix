@@ -14,7 +14,7 @@
     then {
       inherit master file;
       inherit (config.services.nameserver) slaves;
-      extraConfig = lib.optionalString (zone == "tarmoqchi.uz") ''
+      extraConfig = ''
         allow-update { 65.109.74.214; 2a01:4f9:3071:31ce::; localhost; };
         notify yes;
         ${lib.optionalString (config.services.nameserver.slaves != []) ''
