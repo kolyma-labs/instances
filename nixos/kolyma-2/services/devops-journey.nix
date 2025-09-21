@@ -1,4 +1,8 @@
-{inputs, ...}: let
+{
+  inputs,
+  config,
+  ...
+}: let
   domain = "devops-journey.uz";
 in {
   imports = [inputs.devops-journey.nixosModules.server];
@@ -11,9 +15,31 @@ in {
 
     proxy = {
       inherit domain;
-      enable = true;
+      enable = false;
       proxy = "nginx";
       aliases = ["www.${domain}"];
+    };
+  };
+
+  services.anubis = {
+    instances.devops = {
+      settings = {
+        TARGET = "http://127.0.0.1:${toString config.services.devops-journey.port}";
+        DIFFICULTY = 6;
+        WEBMASTER_EMAIL = "admin@kolyma.uz";
+      };
+    };
+  };
+
+  services.www.hosts = {
+    "${domain}" = {
+      addSSL = true;
+      enableACME = true;
+      serverAliases = ["www.${domain}"];
+      locations."/" = {
+        proxyPass = "http://unix:${config.services.anubis.instances.devops.settings.BIND}";
+        proxyWebsockets = true;
+      };
     };
   };
 }

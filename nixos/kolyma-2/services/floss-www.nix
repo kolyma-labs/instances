@@ -19,6 +19,16 @@ in {
     };
   };
 
+  services.anubis = {
+    instances.floss = {
+      settings = {
+        TARGET = "http://${config.services.floss-website.host}:${toString config.services.floss-website.port}";
+        DIFFICULTY = 6;
+        WEBMASTER_EMAIL = "admin@kolyma.uz";
+      };
+    };
+  };
+
   services.www.hosts = {
     "${domain}" = {
       addSSL = true;
@@ -31,7 +41,7 @@ in {
       ];
 
       locations."/" = {
-        proxyPass = "http://${config.services.floss-website.host}:${toString config.services.floss-website.port}";
+        proxyPass = "http://unix:${config.services.anubis.instances.floss.settings.BIND}";
         extraConfig = ''
           proxy_http_version 1.1;
           proxy_set_header Host $host;

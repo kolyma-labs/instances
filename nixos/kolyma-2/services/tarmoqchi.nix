@@ -61,6 +61,7 @@ in {
         proxyWebsockets = true;
       };
     };
+
     "*.${cfg.proxy-reverse.domain}" = {
       forceSSL = true;
       useACMEHost = "tarmoqchi.uz";
