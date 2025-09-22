@@ -1,4 +1,8 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   # Name for GitHub runner
   name = "${config.networking.hostName}-default";
   user = "gitlab-runner";
@@ -31,6 +35,7 @@ in {
       replace = true;
       extraLabels = [name];
       group = user;
+      package = pkgs.unstable.github-runner;
       serviceOverrides = {
         ProtectSystem = "full";
         ReadWritePaths = "/srv";
