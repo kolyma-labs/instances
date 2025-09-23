@@ -23,7 +23,7 @@ in {
     instances.floss = {
       settings = {
         TARGET = "http://${config.services.floss-website.host}:${toString config.services.floss-website.port}";
-        DIFFICULTY = 12;
+        DIFFICULTY = 100;
         WEBMASTER_EMAIL = "admin@kolyma.uz";
       };
     };
