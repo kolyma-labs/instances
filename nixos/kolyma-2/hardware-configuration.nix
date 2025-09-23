@@ -20,10 +20,10 @@
     initrd = {
       kernelModules = ["nvme"];
       availableKernelModules = [
-        "xhci_pci"
         "ahci"
         "nvme"
         "usbhid"
+        "xhci_pci_renesas"
       ];
     };
 
@@ -48,7 +48,7 @@
 
     ipv6 = {
       enable = true;
-      address = "2a01:4f9:3071:31ce::";
+      address = "2a01:4f9:3071:31ce::2";
     };
   };
 
