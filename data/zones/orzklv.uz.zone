@@ -36,11 +36,6 @@ _discord                                IN    TXT    "dh=40507df5bf75296fe7e4752
 license IN   CNAME orzklv.github.io.
 stream  IN   CNAME orzklv.github.io.
 
-; FLACs
-flac   IN    CNAME ns1.kolyma.uz.
-
-; Nostalgi
-tiesto IN    CNAME ns1.kolyma.uz.
-
 ; Livstreaming
-live   IN    CNAME ns1.kolyma.uz.
+live   IN    A     167.235.96.40
+live   IN    AAAA  2a01:4f8:2190:2914::

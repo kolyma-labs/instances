@@ -26,19 +26,22 @@ trash  IN    CNAME floss-uz.github.io.
 awesome IN   CNAME floss-uz.github.io.
 
 ; Matrix & Coturn server
-chat        IN    CNAME ns2.kolyma.uz.
-matrix      IN    CNAME ns2.kolyma.uz.
-auth        IN    CNAME ns2.kolyma.uz.
-call        IN    CNAME ns2.kolyma.uz.
-livekit     IN    CNAME ns2.kolyma.uz.
-livekit-jwt IN    CNAME ns2.kolyma.uz.
-
-; Game servers
-mc     IN    CNAME ns2.kolyma.uz.
-cs2    IN    CNAME uz1.kolyma.uz.
+chat        IN    A    65.109.74.214
+chat        IN    AAAA 2a01:4f9:3071:31ce::
+matrix      IN    A    65.109.74.214
+matrix      IN    AAAA 2a01:4f9:3071:31ce::
+auth        IN    A    65.109.74.214
+auth        IN    AAAA 2a01:4f9:3071:31ce::
+call        IN    A    65.109.74.214
+call        IN    AAAA 2a01:4f9:3071:31ce::
+livekit     IN    A    65.109.74.214
+livekit     IN    AAAA 2a01:4f9:3071:31ce::
+livekit-jwt IN    A    65.109.74.214
+livekit-jwt IN    AAAA 2a01:4f9:3071:31ce::
 
 ; Mastodon server
-social IN    CNAME ns2.kolyma.uz.
+social IN    A    65.109.74.214
+social IN    AAAA 2a01:4f9:3071:31ce::
 
 ; Mail server
 mail              IN  A     65.109.74.214
