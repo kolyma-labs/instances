@@ -34,6 +34,7 @@
         if cfg.no-default
         then {
           ${builtins.elemAt cfg.alias 0} = {
+            default = true;
             forceSSL = true;
             enableACME = true;
             serverAliases = rest cfg;
@@ -42,6 +43,7 @@
         }
         else {
           ${cfg.domain} = {
+            default = true;
             forceSSL = true;
             enableACME = true;
             serverAliases = fallbacks cfg;
