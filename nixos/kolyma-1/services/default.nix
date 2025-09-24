@@ -8,9 +8,6 @@
     # List of docker instances hosted in this machine
     ./container.nix
 
-    # GitHub Runner configurations
-    ./runner.nix
-
     # Git server for storing personal git projects
     ./gitlab.nix
 
