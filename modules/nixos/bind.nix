@@ -15,15 +15,19 @@
       inherit master file;
       inherit (config.services.nameserver) slaves;
       extraConfig = ''
-        allow-update { 65.109.74.214; 2a01:4f9:3071:31ce::; localhost; };
-        ${lib.optionalString ((config.services.nameserver.type == "master") && (config.services.nameserver.slaves != [])) ''
+        ${lib.optionalString (config.services.nameserver.slaves != []) ''
+          notify yes;
           also-notify { ${lib.concatStringsSep "; " config.services.nameserver.slaves}; };
+          allow-update { ${lib.concatStringsSep "; " config.services.nameserver.slaves}; localhost; };
         ''}
       '';
     }
     else {
       inherit master file;
       inherit (config.services.nameserver) masters;
+      extraConfig = ''
+        masterfile-format text;
+      '';
     };
 
   # Map through given array of zones and generate zone object list
@@ -38,14 +42,19 @@
 
   # If type is master, activate system.activationScripts.copyZones
   zoneFiles =
-    lib.mkIf (config.services.nameserver.enable && config.services.nameserver.type == "master")
+    lib.mkIf (config.services.nameserver.enable && (config.services.nameserver.type == "master"))
     {
       system.activationScripts.copyZones = lib.mkForce {
         text = ''
+          # Create /var/dns
           mkdir -p /var/dns
+
+          # Copy all zone files to /var/dns
           for zoneFile in ${../../data/zones}/*.zone; do
             cp -f "$zoneFile" /var/dns/
           done
+
+          # Give perms over everything for named
           chown -R named:named /var/dns
           chmod 750 /var/dns
           find /var/dns -type f -exec chown named:named {} \;

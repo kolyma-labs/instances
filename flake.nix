@@ -127,8 +127,8 @@
             pre-commit-check = pre-commit-hooks.lib.${system}.run {
               src = ./.;
               hooks = {
-                # statix.enable = true;
                 #flake-checker.enable = true;
+                statix.enable = true;
                 alejandra.enable = true;
               };
             };
