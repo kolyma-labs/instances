@@ -31,7 +31,11 @@ pkgs.stdenv.mkDerivation {
 
   # Bootstrapping commands
   shellHook = ''
+    # Initiate git hooks
     ${pre-commit-check.shellHook}
+
+    # Fetch latest changes
+    git pull
   '';
 
   # Nix related configurations
