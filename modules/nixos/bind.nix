@@ -3,9 +3,6 @@
   lib,
   ...
 }: let
-  # Statically defined list of zones
-  zones = ["kolyma.uz"];
-
   generateZone = zone: type: let
     master = type == "master";
     file = "/var/dns/${zone}.zone";
@@ -113,7 +110,11 @@ in {
 
       zones = lib.mkOption {
         type = lib.types.listOf lib.types.str;
-        default = zones;
+        default =
+          builtins.readDir ../../data/zones
+          |> lib.attrsets.filterAttrs (n: v: v == "regular")
+          |> lib.attrsets.mapAttrsToList (n: _: n)
+          |> builtins.map (f: lib.strings.removeSuffix ".zone" f);
         description = "List of zones to be served.";
       };
 

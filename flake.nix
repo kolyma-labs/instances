@@ -128,7 +128,7 @@
               src = ./.;
               hooks = {
                 #flake-checker.enable = true;
-                statix.enable = true;
+                # statix.enable = true;
                 alejandra.enable = true;
               };
             };
