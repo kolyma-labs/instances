@@ -51,7 +51,7 @@
 
     ipv6 = {
       enable = true;
-      address = "2a01:4f9:3081:2e04::2";
+      address = "2a01:4f9:3081:2e04::1";
     };
   };
 
