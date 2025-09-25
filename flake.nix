@@ -162,10 +162,10 @@
         inherit inputs outputs;
         opath = ./.;
         list = [
+          "Kolyma-1"
+          "Kolyma-2"
           "Kolyma-5"
           "Kolyma-6"
-          "Kolyma-3"
-          "Kolyma-4"
         ];
       };
     };
