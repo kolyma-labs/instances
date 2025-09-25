@@ -17,8 +17,8 @@
     outputs.nixosModules.nixpkgs
 
     # User configs
-    outputs.nixosModules.users.kei
     outputs.nixosModules.users.sakhib
+    outputs.nixosModules.users.crypton
     outputs.nixosModules.users.shakhzod
     outputs.nixosModules.users.bahrom04
     outputs.nixosModules.users.aekinskjaldi
@@ -34,7 +34,7 @@
   ];
 
   # Hostname of the system
-  networking.hostName = "Kolyma-2";
+  networking.hostName = "Kolyma-5";
 
   # Entirely disable hibernation
   systemd.sleep.extraConfig = ''
