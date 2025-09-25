@@ -27,6 +27,8 @@ ns2    IN    A     65.109.74.214
 ns2    IN    AAAA  2a01:4f9:3071:31ce::
 ns3    IN    A     37.27.67.190
 ns3    IN    AAAA  2a01:4f9:3081:3518::
+ns4    IN    A     37.27.60.37
+ns4    IN    AAAA  2a01:4f9:3081:2e04::
 
 ; A & AAAA records for local exposed servers
 uz1    IN    A     213.230.122.228
