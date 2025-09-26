@@ -6,19 +6,6 @@
 }: let
   cfg = config.services.www;
 
-  fallbacks = cfg:
-    [
-      "www.${cfg.domain}"
-    ]
-    ++ cfg.alias;
-
-  rest = cfg:
-    lib.filter (
-      e:
-        (builtins.elemAt cfg.alias 0) != e
-    )
-    cfg.alias;
-
   default = {
     # Configure Nginx
     services.nginx = {
@@ -31,13 +18,10 @@
 
       # Default virtual host
       virtualHosts =
-        if cfg.no-default
+        if (cfg.domain == "")
         then {
-          ${builtins.elemAt cfg.alias 0} = {
+          "default_server" = {
             default = true;
-            forceSSL = true;
-            enableACME = true;
-            serverAliases = rest cfg;
             root = "${pkgs.personal.gate}/www";
           };
         }
@@ -46,7 +30,7 @@
             default = true;
             forceSSL = true;
             enableACME = true;
-            serverAliases = fallbacks cfg;
+            serverAliases = cfg.alias;
             root = "${pkgs.personal.gate}/www";
           };
         };
@@ -79,9 +63,19 @@
     };
   };
 
+  asserts = {
+    assertions = [
+      {
+        assertion = !((builtins.length cfg.alias) != 0 && cfg.domain == "");
+        message = "don't set aliases if there's no primary domain yet";
+      }
+    ];
+  };
+
   merge = lib.mkMerge [
-    default
     extra
+    asserts
+    default
   ];
 in {
   options = {
@@ -92,15 +86,9 @@ in {
         description = "Enable the web server/proxy";
       };
 
-      no-default = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Disabling default domains as FQDN.";
-      };
-
       domain = lib.mkOption {
         type = lib.types.str;
-        default = "kolyma.uz";
+        default = "";
         description = "The default domain of instance.";
       };
 

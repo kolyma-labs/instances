@@ -20,8 +20,8 @@
   # Enable web server & proxy
   services.www = {
     enable = true;
-    alias = ["ns2.kolyma.uz"];
-    no-default = true;
+    domain = "ns2.kolyma.uz";
+
     hosts = {
       "cdn2.kolyma.uz" = {
         addSSL = true;
