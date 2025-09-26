@@ -39,7 +39,7 @@
 
   # If type is master, activate system.activationScripts.copyZones
   zoneFiles =
-    lib.mkIf (config.services.nameserver.enable && (config.services.nameserver.type == "master"))
+    lib.mkIf (config.services.nameserver.type == "master")
     {
       system.activationScripts.copyZones = lib.mkForce {
         text = ''
@@ -60,7 +60,7 @@
       };
     };
 
-  cfg = lib.mkIf config.services.nameserver.enable {
+  cfg = {
     services.bind = {
       inherit (config.services.nameserver) enable;
       directory = "/var/bind";
@@ -126,8 +126,7 @@ in {
     };
   };
 
-  config = lib.mkMerge [
-    cfg
-    zoneFiles
-  ];
+  config =
+    lib.mkMerge [cfg zoneFiles]
+    |> lib.mkIf config.services.nameserver.enable;
 }

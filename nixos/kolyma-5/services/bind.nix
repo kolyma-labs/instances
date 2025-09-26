@@ -4,11 +4,12 @@
   # Enable Nameserver hosting
   services.nameserver = {
     enable = true;
-    type = "master";
+    type = "slave";
 
-    slaves = [
-      "65.109.74.214"
-      "2a01:4f9:3071:31ce::"
+    masters = [
+      # Kolyma GK-1
+      "37.27.67.190"
+      "2a01:4f9:3081:3518::2"
     ];
   };
 }
