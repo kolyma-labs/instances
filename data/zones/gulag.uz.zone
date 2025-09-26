@@ -14,3 +14,7 @@ $TTL 86400
 @      IN    A     167.235.96.40
 @      IN    AAAA  2a01:4f8:2190:2914::
 www    IN    CNAME gulag.uz.
+
+; Temporary points
+old    IN    A     167.235.96.40
+old    IN    AAAA  2a01:4f8:2190:2914::

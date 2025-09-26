@@ -14,9 +14,6 @@
     # Web server & proxy virtual hosts via caddy
     ./www.nix
 
-    # Streaming service self hosted
-    ./streaming.nix
-
     # Matrix server hosting
     ./matrix
 

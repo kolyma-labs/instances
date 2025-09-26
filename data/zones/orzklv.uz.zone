@@ -28,14 +28,3 @@ sig1._domainkey    IN CNAME sig1.dkim.orzklv.uz.at.icloudmailadmin.com
 _github-pages-challenge-orzklv          IN    TXT    "3d5ce2b8dae82ac62af937b9a90bb2"
 _github-pages-challenge-orzklv.pages    IN    TXT    "307a41f23aa243d950ca496eb30a5d"
 _github-challenge-dark-voyage-org       IN    TXT    "8193f09f31"
-
-; Discord Verifications
-_discord                                IN    TXT    "dh=40507df5bf75296fe7e475228a89bc3b5b0c8a86"
-
-; GitHub Pages
-license IN   CNAME orzklv.github.io.
-stream  IN   CNAME orzklv.github.io.
-
-; Livstreaming
-live   IN    A     167.235.96.40
-live   IN    AAAA  2a01:4f8:2190:2914::
