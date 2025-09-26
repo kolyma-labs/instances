@@ -63,6 +63,10 @@
     };
   };
 
+  anubis = lib.mkIf config.services.www.anubis {
+    users.users.nginx.extraGroups = [config.users.groups.anubis.name];
+  };
+
   asserts = {
     assertions = [
       {
@@ -74,6 +78,7 @@
 
   merge = lib.mkMerge [
     extra
+    anubis
     asserts
     default
   ];
@@ -96,6 +101,12 @@ in {
         type = lib.types.listOf lib.types.str;
         default = [];
         description = "List of extra aliases to host.";
+      };
+
+      anubis = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Add nginx user to anubis group for unix socket access";
       };
 
       hosts = lib.mkOption {

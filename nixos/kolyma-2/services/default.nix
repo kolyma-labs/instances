@@ -4,5 +4,8 @@
   imports = [
     # Bind nameserver service for hosting personal domains
     ./bind.nix
+
+    # Web server & proxy virtual hosts via caddy
+    ./www.nix
   ];
 }
