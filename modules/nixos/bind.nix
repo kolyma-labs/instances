@@ -55,9 +55,6 @@
           chown -R named:named /var/dns
           chmod 750 /var/dns
           find /var/dns -type f -exec chown named:named {} \;
-
-          # Restart bind service afterwards
-          sudo systemctl restart bind
         '';
         deps = [];
       };
