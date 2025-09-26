@@ -86,20 +86,12 @@ in {
 
     # Enable web server & proxy
     www.hosts = {
-      "gulag.uz" = {
+      "old.gulag.uz" = {
         addSSL = true;
         enableACME = true;
         locations = {
           "/".proxyPass = "http://unix:${config.services.anubis.instances.gitlab.settings.BIND}";
         };
-      };
-
-      "git.kolyma.uz" = {
-        addSSL = true;
-        enableACME = true;
-        extraConfig = ''
-          return 301 https://gulag.uz$request_uri;
-        '';
       };
     };
   };

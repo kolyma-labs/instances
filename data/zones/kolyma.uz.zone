@@ -25,6 +25,8 @@ ns1    IN    A     37.27.67.190
 ns1    IN    AAAA  2a01:4f9:3081:3518::2
 ns2    IN    A     37.27.60.37
 ns2    IN    AAAA  2a01:4f9:3081:2e04::2
+
+; TODO: To be removed
 ns5    IN    A     167.235.96.40
 ns5    IN    AAAA  2a01:4f8:2190:2914::2
 ns6    IN    A     65.109.74.214
@@ -44,11 +46,8 @@ sig1._domainkey    IN CNAME sig1.dkim.kolyma.uz.at.icloudmailadmin.com.
 cdn1    IN    CNAME ns1.kolyma.uz.
 cdn2    IN    CNAME ns2.kolyma.uz.
 cdn3    IN    CNAME ns3.kolyma.uz.
-cdn4    IN    CNAME uz1.kolyma.uz.
-
-; Git Server (Old)
-git    IN    A     167.235.96.40
-git    IN    AAAA  2a01:4f8:2190:2914::2
+cdn4    IN    CNAME ns4.kolyma.uz.
+udn1    IN    CNAME uz1.kolyma.uz.
 
 ; GitHub verification
 _gh-kolyma-labs-o    IN    TXT     cc851471b9
