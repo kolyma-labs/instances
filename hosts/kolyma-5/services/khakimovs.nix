@@ -1,9 +1,4 @@
-{
-  outputs,
-  pkgs,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   # Enable web server & proxy
   kolyma.www.hosts = {
     # "cdn.xinux.uz" = {

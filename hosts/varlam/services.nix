@@ -1,8 +1,4 @@
-{
-  lib,
-  outputs,
-  ...
-}: {
+{outputs, ...}: {
   imports = [
     outputs.nixosModules.web
     outputs.nixosModules.bind
