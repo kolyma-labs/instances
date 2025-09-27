@@ -5,11 +5,17 @@ on: [push, pull_request]
 jobs:
   test-flake:
     name: "Test flake options"
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          extra-conf: |
+            extra-experimental-features = nix-command flakes pipe-operators
 
       - name: Check up flake configuration
         run: nix flake check --all-systems --show-trace
