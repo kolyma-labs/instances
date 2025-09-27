@@ -4,17 +4,9 @@
   ...
 }: {
   imports = [
-    # If you want to use modules your own flake exports (from modules/nixos):
-    outputs.nixosModules.ssh
-    outputs.nixosModules.zsh
-    outputs.nixosModules.boot
-    outputs.nixosModules.data
-    outputs.nixosModules.maid
-    outputs.nixosModules.motd
-    outputs.nixosModules.root
-    outputs.nixosModules.secret
-    outputs.nixosModules.network
-    outputs.nixosModules.nixpkgs
+    # System related configs
+    outputs.nixosModules.base
+    outputs.nixosModules.extra
 
     # User configs
     outputs.nixosModules.users.kei
@@ -52,6 +44,20 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+  kolyma = {
+    # Nameserver
+    nameserver = {
+      enable = true;
+      type = "slave";
+
+      masters = [
+        # Kolyma GK-1
+        "37.27.67.190"
+        "2a01:4f9:3081:3518::2"
+      ];
+    };
+  };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.11";

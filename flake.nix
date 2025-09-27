@@ -17,12 +17,6 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # Also see the 'unstable-packages' overlay at 'overlays/home.nix'.
 
-    # Home manager
-    home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Disko
     disko = {
       url = "github:nix-community/disko";
@@ -46,12 +40,6 @@
 
     # Mail Server
     simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.05";
-
-    # Orzklv's Nix configuration
-    orzklv = {
-      url = "github:orzklv/nix/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # Orzklv's packages repository
     orzklv-pkgs = {
@@ -96,15 +84,12 @@
     efael-website.url = "github:efael/website";
   };
 
-  # In this context, outputs are mostly about getting home-manager what it
+  # In this context, outputs are mostly about getting nixpkgs what it
   # needs since it will be the one using the flake
   outputs = {
     self,
     nixpkgs,
-    home-manager,
     flake-utils,
-    orzklv,
-    orzklv-pkgs,
     pre-commit-hooks,
     ...
   } @ inputs: let
@@ -134,6 +119,10 @@
             };
           };
 
+          # Formatter for your nix files, available through 'nix fmt'
+          # Other options beside 'alejandra' include 'nixpkgs-fmt'
+          formatter = pkgs.alejandra;
+
           # Development shells
           devShells.default = import ./shell.nix {inherit pkgs pre-commit-check;};
         }
@@ -142,30 +131,40 @@
     //
     # Attribute from static evaluation
     {
-      # Nixpkgs and Home-Manager helpful functions
-      lib = nixpkgs.lib // home-manager.lib // orzklv-pkgs.lib;
-
-      # Formatter for your nix files, available through 'nix fmt'
-      # Other options beside 'alejandra' include 'nixpkgs-fmt'
-      inherit (orzklv) formatter;
+      # Nixpkgs and internal helpful functions
+      lib = nixpkgs.lib // import ./lib {inherit (nixpkgs) lib;};
 
       # Your custom packages and modifications, exported as overlays
       overlays = import ./overlays {inherit inputs;};
 
       # Reusable nixos modules you might want to export
       # These are usually stuff you would upstream into nixpkgs
-      nixosModules = import ./modules/nixos;
+      nixosModules = import ./modules;
 
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
-      nixosConfigurations = self.lib.config.mapSystem {
+      nixosConfigurations = self.lib.instances.mapSystem {
         inherit inputs outputs;
-        opath = ./.;
         list = [
-          "Kolyma-1"
-          "Kolyma-2"
-          "Kolyma-5"
-          "Kolyma-6"
+          # The main authority
+          # https://en.wikipedia.org/wiki/Varlam_Shalamov
+          "Varlam"
+
+          # Public figure authority
+          # https://en.wikipedia.org/wiki/Aleksandr_Solzhenitsyn
+          "Solzhenitsyn"
+
+          # Workload Manager
+          # https://en.wikipedia.org/wiki/Hava_Volovich
+          # "Volovich"
+
+          # Personal Jail
+          # https://en.wikipedia.org/wiki/Naftaly_Frenkel
+          # "Naftaly"
+
+          # To be freed
+          # "Kolyma-5"
+          # "Kolyma-6"
         ];
       };
     };

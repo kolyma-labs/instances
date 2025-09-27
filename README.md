@@ -43,7 +43,6 @@ sudo nixos-rebuild switch --flake github:kolyma-labs/instances#Kolyma-X --upgrad
 
 - [Template](https://github.com/Misterio77/nix-starter-configs) - Started with this template
 - [Example](https://github.com/Misterio77/nix-config) - Learned from his configurations
-- [Home Manager](https://github.com/nix-community/home-manager) - Simplyifying my life and avoid frustrations
 - [Nix](https://nixos.org/) - Masterpiece of package management
 
 ## License

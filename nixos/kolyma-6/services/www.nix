@@ -3,7 +3,7 @@
   config,
   ...
 }: {
-  imports = [outputs.nixosModules.nginx];
+  imports = [outputs.nixosModules.web];
 
   users.users.nginx.extraGroups = [config.users.groups.anubis.name];
 
@@ -18,20 +18,11 @@
   };
 
   # Enable web server & proxy
-  services.www = {
+  kolyma.www = {
     enable = true;
-    domain = "ns2.kolyma.uz";
+    domain = "ns6.kolyma.uz";
 
     hosts = {
-      "cdn2.kolyma.uz" = {
-        addSSL = true;
-        enableACME = true;
-        root = "/srv/cdn";
-        extraConfig = ''
-          autoindex on;
-        '';
-      };
-
       "haskell.uz" = {
         addSSL = true;
         enableACME = true;
