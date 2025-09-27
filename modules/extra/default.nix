@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}: {
+{lib, ...}: {
   imports = [
     # Auto Cleaner
     ./maid
@@ -12,6 +8,9 @@
 
     # Message of the day
     ./motd
+
+    # Documentation settings
+    ./docs
   ];
 
   options = {

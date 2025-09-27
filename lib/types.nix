@@ -42,7 +42,6 @@
     options = {
       members = lib.options.mkOption {
         default = [];
-        example = [lib.labors.orzklv];
         description = "Members of the team";
         type = with lib.types; listOf (submodule users);
       };

@@ -31,35 +31,35 @@ in {
           ca = lib.mkOption {
             type = with lib.types; nullOr path;
             default = null;
-            description = lib.mdDoc ''
+            description = ''
               Path to generated key for OpenVPN. https://forums.opto22.com/t/recommended-openvpn-server-setup-tutorial/5383/4.
             '';
           };
           key = lib.mkOption {
             type = with lib.types; nullOr path;
             default = null;
-            description = lib.mdDoc ''
+            description = ''
               Path to generated key for OpenVPN. https://forums.opto22.com/t/recommended-openvpn-server-setup-tutorial/5383/4.
             '';
           };
           cert = lib.mkOption {
             type = with lib.types; nullOr path;
             default = null;
-            description = lib.mdDoc ''
+            description = ''
               Path to generated key for OpenVPN. https://forums.opto22.com/t/recommended-openvpn-server-setup-tutorial/5383/4.
             '';
           };
           dh = lib.mkOption {
             type = with lib.types; nullOr path;
             default = null;
-            description = lib.mdDoc ''
+            description = ''
               Path to generated key for OpenVPN. Generate via `openssl dhparam -out dh.pem 2048`.
             '';
           };
           tls = lib.mkOption {
             type = with lib.types; nullOr path;
             default = null;
-            description = lib.mdDoc ''
+            description = ''
               Path to generated key for OpenVPN. Generate via `openvpn --genkey secret tls.auth`.
             '';
           };
@@ -68,14 +68,14 @@ in {
           key = lib.mkOption {
             type = with lib.types; nullOr path;
             default = null;
-            description = lib.mdDoc ''
+            description = ''
               Path to generated key for OpenVPN. https://forums.opto22.com/t/recommended-openvpn-server-setup-tutorial/5383/4.
             '';
           };
           cert = lib.mkOption {
             type = with lib.types; nullOr path;
             default = null;
-            description = lib.mdDoc ''
+            description = ''
               Path to generated key for OpenVPN. https://forums.opto22.com/t/recommended-openvpn-server-setup-tutorial/5383/4.
             '';
           };
@@ -164,7 +164,7 @@ in {
 
       if ! grep -q '<cert>' $f; then
         echo "appending secret key"
-        echo "<cert>" >> $f
+        echo "<cert>" >> $flib.mdDoc
         cat ${cfg.secrets.client.cert} >> $f
         echo "</cert>" >> $f
       fi
