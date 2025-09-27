@@ -8,7 +8,7 @@
     opath ? ../.,
   }: let
     # Generate absolute path to the configuration
-    path = alias: opath + "/nixos/${alias}/configuration.nix";
+    path = alias: opath + "/hosts/${alias}/configuration.nix";
 
     #   Name  =                Value
     # "Lorem" = orzklv.lib.config.makeSystem "station";
@@ -36,7 +36,7 @@
     opath ? ../.,
   }: let
     # Generate absolute path to the configuration
-    path = name: opath + "/nixos/${lib.toLower name}/configuration.nix";
+    path = name: opath + "/hosts/${lib.toLower name}/configuration.nix";
 
     #   Name  =                Value
     # "Lorem" = orzklv.lib.config.makeSystem "station";
