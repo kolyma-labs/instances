@@ -8,7 +8,7 @@
 
     system.autoUpgrade = {
       enable = true;
-      dates = "hourly";
+      dates = "daily";
       flags = [
         "-L" # print build logs
       ];
