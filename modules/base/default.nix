@@ -51,7 +51,7 @@ in {
       nixpkgs.enable = true;
 
       # Secret Management
-      secret.enable = true;
+      secrets.enable = true;
 
       # Remote shell
       remote.enable = true;

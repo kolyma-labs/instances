@@ -4,7 +4,7 @@
   inputs,
   ...
 }: let
-  cfg = config.koylma.secrets;
+  cfg = config.kolyma.secrets;
 in {
   imports = [
     inputs.sops-nix.nixosModules.sops

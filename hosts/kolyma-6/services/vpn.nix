@@ -37,24 +37,24 @@
     };
   };
 
-  kolyma.vpn.openvpn = {
+  kolyma.vpn = {
     enable = true;
-    domain = "ns2.kolyma.uz";
-    secrets = {
-      client = {
-      };
+    software = "openvpn";
+    settings = {
+      domain = "ns2.kolyma.uz";
+      secrets = {
+        client = {
+          key = config.sops.secrets.client-key.path;
+          cert = config.sops.secrets.client-cert.path;
+        };
 
-      server = {
-        ca = config.sops.secrets.server-ca.path;
-        key = config.sops.secrets.server-key.path;
-        cert = config.sops.secrets.server-cert.path;
-        dh = config.sops.secrets.server-dh.path;
-        tls = config.sops.secrets.server-tls.path;
-      };
-
-      client = {
-        key = config.sops.secrets.client-key.path;
-        cert = config.sops.secrets.client-cert.path;
+        server = {
+          ca = config.sops.secrets.server-ca.path;
+          key = config.sops.secrets.server-key.path;
+          cert = config.sops.secrets.server-cert.path;
+          dh = config.sops.secrets.server-dh.path;
+          tls = config.sops.secrets.server-tls.path;
+        };
       };
     };
   };

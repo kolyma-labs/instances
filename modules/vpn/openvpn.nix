@@ -3,15 +3,15 @@
   config,
   ...
 }: let
-  cfg = config.kolyma.vpn;
+  cfg = config.kolyma.vpn-option.openvpn;
   internal-interface = "tun0";
 in {
   options = {
-    kolyma.vpn.openvpn = {
+    kolyma.vpn-option.openvpn = {
       enable = lib.mkOption {
         type = lib.types.bool;
         default = false;
-        description = "Enable the containers service.";
+        description = "Enable the open vpn service.";
       };
 
       port = lib.mkOption {
@@ -98,7 +98,7 @@ in {
       };
     };
 
-    services.openvpn.servers.kolyma.config = ''
+    services.openvpn.servers.kolyma.pnconfig = ''
       dev ${internal-interface}
       proto udp
       server 10.8.0.0 255.255.0.0
