@@ -23,77 +23,79 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    # Installing zsh for system
-    programs.zsh = {
-      # Install zsh
-      enable = true;
+    programs = {
+      # Installing zsh for system
+      zsh = {
+        # Install zsh
+        enable = true;
 
-      # ZSH Completions
-      enableCompletion = true;
+        # ZSH Completions
+        enableCompletion = true;
 
-      # ZSH Autosuggestions
-      autosuggestions.enable = true;
+        # ZSH Autosuggestions
+        autosuggestions.enable = true;
 
-      # Bash Completions
-      enableBashCompletion = true;
+        # Bash Completions
+        enableBashCompletion = true;
 
-      # ZSH Syntax Highlighting
-      syntaxHighlighting.enable = true;
+        # ZSH Syntax Highlighting
+        syntaxHighlighting.enable = true;
 
-      # Extra manually typed configs
-      promptInit = extra;
+        # Extra manually typed configs
+        promptInit = extra;
 
-      shellAliases = with pkgs; {
-        # General aliases
-        ".." = "cd ..";
-        "...." = "cd ../..";
-        "celar" = "clear";
-        ":q" = "exit";
-        neofetch = exec fastfetch;
+        shellAliases = with pkgs; {
+          # General aliases
+          ".." = "cd ..";
+          "...." = "cd ../..";
+          "celar" = "clear";
+          ":q" = "exit";
+          neofetch = exec fastfetch;
 
-        # Made with Rust
-        top = exec btop;
-        cat = exec bat;
-        ls = exec eza;
-        sl = exec eza;
-        ps = exec procs;
-        grep = exec ripgrep;
-        search = exec ripgrep;
-        look = exec fd;
-        find = exec fd;
-        ping = exec gping;
-        time = exec hyperfine;
+          # Made with Rust
+          top = exec btop;
+          cat = exec bat;
+          ls = exec eza;
+          sl = exec eza;
+          ps = exec procs;
+          grep = exec ripgrep;
+          search = exec ripgrep;
+          look = exec fd;
+          find = exec fd;
+          ping = exec gping;
+          time = exec hyperfine;
 
-        # Development
-        vi = exec helix;
-        vim = exec helix;
+          # Development
+          vi = exec helix;
+          vim = exec helix;
 
-        # Others (Developer)
-        ports = "ss -lntu";
-        speedtest = "${exec curl} -o /dev/null cachefly.cachefly.net/100mb.test";
+          # Others (Developer)
+          ports = "ss -lntu";
+          speedtest = "${exec curl} -o /dev/null cachefly.cachefly.net/100mb.test";
 
-        # Updating system
-        update = "sudo nixos-rebuild switch --flake github:kolyma-labs/instances --option tarball-ttl 0 --show-trace";
+          # Updating system
+          update = "sudo nixos-rebuild switch --flake github:kolyma-labs/instances --option tarball-ttl 0 --show-trace";
+        };
       };
-    };
 
-    # Zoxide path integration
-    programs.zoxide = {
-      enable = true;
-      enableZshIntegration = true;
-    };
+      # Zoxide path integration
+      zoxide = {
+        enable = true;
+        enableZshIntegration = true;
+      };
 
-    # Prettier terminal prompt
-    programs.starship = {
-      enable = true;
-    };
+      # Prettier terminal prompt
+      starship = {
+        enable = true;
+      };
 
-    programs.direnv = {
-      enable = true;
-      silent = true;
-      loadInNixShell = false;
-      nix-direnv.enable = true;
-      enableZshIntegration = true;
+      direnv = {
+        enable = true;
+        silent = true;
+        loadInNixShell = false;
+        nix-direnv.enable = true;
+        enableZshIntegration = true;
+      };
     };
 
     # All users default shell must be zsh

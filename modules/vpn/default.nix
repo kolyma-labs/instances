@@ -37,9 +37,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    kolyma.vpn-option."${cfg.software}" = (
-      {enable = true;} // cfg.settings
-    );
+    kolyma.vpn-option."${cfg.software}" =
+      {enable = true;} // cfg.settings;
   };
 
   meta = {

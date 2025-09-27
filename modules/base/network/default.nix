@@ -11,7 +11,7 @@
   in
     lib.concatStringsSep "." (lib.take 3 parts ++ ["1"]);
 
-  ipv4 = lib.mkIf ((cfg.ipv4) != null) {
+  ipv4 = lib.mkIf (cfg.ipv4 != null) {
     networking = {
       interfaces = {
         "${cfg.interface}" = {
@@ -32,7 +32,7 @@
     };
   };
 
-  ipv6 = lib.mkIf ((cfg.ipv6) != null) {
+  ipv6 = lib.mkIf (cfg.ipv6 != null) {
     networking = {
       interfaces = {
         "${cfg.interface}" = {
@@ -81,17 +81,17 @@
 
   warnings =
     lib.mkIf
-    ((cfg.ipv4) == null && (cfg.ipv6) == null)
+    (cfg.ipv4 == null && cfg.ipv6 == null)
     (mkWarning "are you SURE that you want to go without any public ip address?");
 
   asserts = {
     assertions = [
       {
-        assertion = !((cfg.ipv4) == null);
+        assertion = cfg.ipv4 != null;
         message = "you see to forgot to appoint an address for ipv4";
       }
       {
-        assertion = !((cfg.ipv6) == null);
+        assertion = cfg.ipv6 != null;
         message = "you see to forgot to appoint an address for ipv6";
       }
     ];

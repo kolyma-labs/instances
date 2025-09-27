@@ -3,9 +3,10 @@
 {lib}: let
   mkUser = i: {
     name =
-      if i ? username
-      then i.username
-      else builtins.throw "oh-ow, somebody didn't define their username";
+      # if i ? username
+      # then i.username
+      # else builtins.throw "oh-ow, somebody didn't define their username";
+      i.username or (builtins.throw "oh-ow, somebody didn't define their username");
 
     value = {
       isNormalUser = true;
