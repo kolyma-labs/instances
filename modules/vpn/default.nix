@@ -105,7 +105,7 @@ in {
       push "route 10.0.0.0 255.255.0.0"
       push "redirect-gateway def1"
       push "dhcp-option DNS 8.8.8.8"
-      push "route ${config.network.ipv4.address} 255.255.255.255 net_gateway"
+      push "route ${config.network.ipv4} 255.255.255.255 net_gateway"
       port ${toString cfg.port}
       tls-server
 

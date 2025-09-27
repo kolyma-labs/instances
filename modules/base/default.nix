@@ -2,7 +2,9 @@
   lib,
   config,
   ...
-}: {
+}: let
+  cfg = config.kolyma.base;
+in {
   imports = [
     # Bootloader
     ./boot
@@ -35,6 +37,14 @@
         type = lib.types.bool;
       };
     };
+  };
+
+  config = lib.mkIf cfg.enable {
+    # Networking module
+    network.enable = true;
+
+    # Bootloader module
+    boot.bios.enable = true;
   };
 
   meta = {

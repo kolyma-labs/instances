@@ -17,8 +17,8 @@
   options = {
     kolyma.extra = {
       enable = lib.options.mkOption {
-        default = false;
-        example = true;
+        default = true;
+        example = false;
         description = "Whether to add some extra configurations to the system.";
         type = lib.types.bool;
       };

@@ -41,15 +41,6 @@
     # Mail Server
     simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.05";
 
-    # Orzklv's packages repository
-    orzklv-pkgs = {
-      url = "github:orzklv/pkgs/master";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        nixpkgs-unstable.follows = "nixpkgs-unstable";
-      };
-    };
-
     # Main homepage website
     gate.url = "github:kolyma-labs/gate";
 

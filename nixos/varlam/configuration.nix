@@ -27,9 +27,9 @@
     AllowSuspendThenHibernate=no
   '';
 
-  # Users of system
-  kolyma.accounts = {
-    teams = [
+  kolyma = {
+    # Users of system
+    accounts.teams = [
       lib.camps.uzinfocom
     ];
   };

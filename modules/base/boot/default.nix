@@ -4,6 +4,8 @@
   config,
   ...
 }: let
+  cfg = config.boot.bios;
+
   raid = lib.mkIf config.boot.bios.raided {
     boot.swraid = {
       enable = true;
@@ -33,7 +35,11 @@
     boot.loader.grub.devices = config.boot.bios.devices;
   };
 
-  cfg = lib.mkIf config.boot.bios.enable {boot.loader.grub.enable = true;};
+  enable = {
+    boot.loader.grub.enable = true;
+  };
+
+  merge = lib.mkMerge [raid mirrors devices uefi enable];
 in {
   options = {
     boot.bios = {
@@ -69,11 +75,5 @@ in {
     };
   };
 
-  config = lib.mkMerge [
-    raid
-    mirrors
-    devices
-    uefi
-    cfg
-  ];
+  config = lib.mkIf cfg.enable merge;
 }

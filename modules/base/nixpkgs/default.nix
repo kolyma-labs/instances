@@ -14,9 +14,6 @@
         outputs.overlays.unstable-packages
         outputs.overlays.personal-packages
 
-        # Personal repo of packages
-        inputs.orzklv-pkgs.overlays.additions
-
         # Repo overlays
         inputs.minecraft.overlay
 

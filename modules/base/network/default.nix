@@ -11,13 +11,13 @@
   in
     lib.concatStringsSep "." (lib.take 3 parts ++ ["1"]);
 
-  ipv4 = lib.mkIf cfg.ipv4.enable {
+  ipv4 = lib.mkIf ((cfg.ipv4) != null) {
     networking = {
       interfaces = {
         "${cfg.interface}" = {
           ipv4.addresses = [
             {
-              inherit (cfg.ipv4) address;
+              address = cfg.ipv4;
               prefixLength = 24;
             }
           ];
@@ -26,19 +26,19 @@
 
       # If you want to configure the default gateway
       defaultGateway = {
-        address = gateway cfg.ipv4.address;
+        address = gateway cfg.ipv4;
         interface = "${cfg.interface}";
       };
     };
   };
 
-  ipv6 = lib.mkIf cfg.ipv6.enable {
+  ipv6 = lib.mkIf ((cfg.ipv6) != null) {
     networking = {
       interfaces = {
         "${cfg.interface}" = {
           ipv6.addresses = [
             {
-              inherit (cfg.ipv6) address;
+              address = cfg.ipv6;
               prefixLength = 64;
             }
           ];
@@ -75,18 +75,29 @@
     };
   };
 
+  mkWarning = msg: {
+    warnings = [msg];
+  };
+
+  warnings =
+    lib.mkIf
+    ((cfg.ipv4) == null && (cfg.ipv6) == null)
+    (mkWarning "are you SURE that you want to go without any public ip address?");
+
   asserts = {
     assertions = [
       {
-        assertion = !(cfg.ipv4.enable && cfg.ipv4.address == "");
+        assertion = !((cfg.ipv4) == null);
         message = "you see to forgot to appoint an address for ipv4";
       }
       {
-        assertion = !(cfg.ipv6.enable && cfg.ipv6.address == "");
+        assertion = !((cfg.ipv6) == null);
         message = "you see to forgot to appoint an address for ipv6";
       }
     ];
   };
+
+  merge = lib.mkMerge [main ipv4 ipv6 packs asserts warnings];
 in {
   options = {
     network = {
@@ -102,25 +113,13 @@ in {
         description = "Network interface.";
       };
 
-      ipv4.enable = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Enable IPv4 networking.";
-      };
-
-      ipv4.address = lib.mkOption {
+      ipv4 = lib.mkOption {
         type = with lib.types; nullOr str;
         default = null;
         description = "IPv4 address.";
       };
 
-      ipv6.enable = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Enable IPv6 networking.";
-      };
-
-      ipv6.address = lib.mkOption {
+      ipv6 = lib.mkOption {
         type = with lib.types; nullOr str;
         default = null;
         description = "IPv6 address.";
@@ -141,11 +140,5 @@ in {
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  config = lib.mkIf cfg.enable (lib.mkMerge [
-    main
-    ipv4
-    ipv6
-    packs
-    asserts
-  ]);
+  config = lib.mkIf cfg.enable merge;
 }

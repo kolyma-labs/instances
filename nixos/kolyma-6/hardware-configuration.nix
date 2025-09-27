@@ -14,9 +14,6 @@
   ];
 
   boot = {
-    kernelModules = [];
-    extraModulePackages = [];
-
     initrd = {
       kernelModules = ["nvme"];
       availableKernelModules = [
@@ -28,7 +25,6 @@
     };
 
     bios = {
-      enable = true;
       uefi = true;
       raided = true;
       mirrors = [
@@ -39,17 +35,8 @@
   };
 
   network = {
-    enable = true;
-
-    ipv4 = {
-      enable = true;
-      address = "65.109.74.214";
-    };
-
-    ipv6 = {
-      enable = true;
-      address = "2a01:4f9:3071:31ce::2";
-    };
+    ipv4 = "65.109.74.214";
+    ipv6 = "2a01:4f9:3071:31ce::2";
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
