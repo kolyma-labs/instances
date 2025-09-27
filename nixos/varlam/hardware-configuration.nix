@@ -19,6 +19,7 @@
         "nvme"
         "kvm-intel"
       ];
+
       availableKernelModules = [
         "xhci_pci"
         "ahci"
@@ -29,7 +30,7 @@
   };
 
   kolyma = {
-    bios = {
+    boot = {
       uefi = true;
       raided = true;
       mirrors = [

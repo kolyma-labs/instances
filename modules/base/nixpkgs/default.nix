@@ -3,16 +3,10 @@
   lib,
   config,
   inputs,
+  options,
   ...
 }: let
   cfg = config.kolyma.nixpkgs;
-
-  overlayType = lib.mkOptionType {
-    name = "nixpkgs-overlay";
-    description = "nixpkgs overlay";
-    check = lib.isFunction;
-    merge = lib.mergeOneOption;
-  };
 in {
   options = {
     kolyma.nixpkgs = {
@@ -22,17 +16,7 @@ in {
         description = "Enable kolyma nixpkgs configurations.";
       };
 
-      overlays = lib.mkOption {
-        type = with lib.types; listOf overlayType;
-        default = [];
-        description = "List of overlays to apply to Nixpkgs.";
-      };
-
-      extra = lib.mkOption {
-        type = with lib.types; listOf overlayType;
-        default = [];
-        description = "List of overlays to apply to Nixpkgs.";
-      };
+      overlays = options.nixpkgs.overlays;
     };
   };
 
@@ -81,7 +65,7 @@ in {
         # Deduplicate and optimize nix store
         auto-optimise-store = true;
         # Trusted users for secret-key
-        trusted-users = builtins.map (o: o.username) lib.camps.owners; # [ "${lib.labors.orzklv.username}"];
+        trusted-users = builtins.map (o: o.username) lib.camps.owners.members;
       };
     };
   };

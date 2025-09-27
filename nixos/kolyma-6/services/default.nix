@@ -38,4 +38,27 @@
     # VPN server
     ./vpn.nix
   ];
+
+  config = {
+    kolyma = {
+      # Web Server & Proxy
+      www = {
+        enable = true;
+        domain = "ns6.kolyma.uz";
+        anubis = true;
+      };
+
+      # Nameserver
+      nameserver = {
+        enable = true;
+        type = "slave";
+
+        masters = [
+          # Kolyma GK-1
+          "37.27.67.190"
+          "2a01:4f9:3081:3518::2"
+        ];
+      };
+    };
+  };
 }

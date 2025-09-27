@@ -135,20 +135,26 @@
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = self.lib.instances.mapSystem {
+        # Interesting fact: It was actually Sharlamov's "Kolyma Tales"
+        # that motivated the whole naming and storytelling of this repo.
         list = [
           # The main authority
+          # Location: Finland
           # https://en.wikipedia.org/wiki/Varlam_Shalamov
           "Varlam"
 
           # Public figure authority
+          # Location: Finland
           # https://en.wikipedia.org/wiki/Aleksandr_Solzhenitsyn
           "Solzhenitsyn"
 
           # Workload Manager
+          # Location: Germany
           # https://en.wikipedia.org/wiki/Hava_Volovich
           # "Volovich"
 
           # Personal Jail
+          # Location: Germany
           # https://en.wikipedia.org/wiki/Naftaly_Frenkel
           # "Naftaly"
 

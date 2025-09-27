@@ -15,11 +15,11 @@ in {
     # System Nixpkgs
     ./nixpkgs
 
-    # Root user
-    ./root
-
     # Sops Nix
     ./secret
+
+    # No Sleep
+    ./power
 
     # Secure Shell
     ./ssh
@@ -49,6 +49,18 @@ in {
 
       # Preconfigured Nixpkgs
       nixpkgs.enable = true;
+
+      # Secret Management
+      secret.enable = true;
+
+      # Remote shell
+      remote.enable = true;
+
+      # Power Management
+      power.enable = true;
+
+      # Custom ZSH
+      shell.enable = true;
     };
   };
 

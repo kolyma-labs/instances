@@ -15,7 +15,10 @@
 
   boot = {
     initrd = {
-      kernelModules = ["nvme"];
+      kernelModules = [
+        "nvme"
+      ];
+
       availableKernelModules = [
         "ahci"
         "nvme"
@@ -26,7 +29,7 @@
   };
 
   kolyma = {
-    bios = {
+    boot = {
       uefi = true;
       raided = true;
       mirrors = [

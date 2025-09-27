@@ -1,5 +1,6 @@
 {
   config,
+  options,
   lib,
   ...
 }: let
@@ -26,9 +27,9 @@
     networking.firewall.allowedUDPPorts = config.kolyma.containers.ports;
   };
 
-  cfg = lib.mkMerge [
-    general
+  main = lib.mkMerge [
     ports
+    general
   ];
 in {
   options = {
@@ -39,11 +40,7 @@ in {
         description = "Enable the containers service. For the love of god, don't do this unless it is that necessary.";
       };
 
-      instances = lib.mkOption {
-        type = lib.types.attrsOf lib.types.anything;
-        default = {};
-        description = "List of declaratively defined container instances.";
-      };
+      instances = options.virtualisation.oci-containers.containers;
 
       ports = lib.mkOption {
         type = lib.types.listOf lib.types.port;
@@ -53,5 +50,11 @@ in {
     };
   };
 
-  config = lib.mkIf config.kolyma.containers.enable cfg;
+  config = lib.mkIf config.kolyma.containers.enable main;
+
+  meta = {
+    doc = ./readme.md;
+    buildDocsInSandbox = true;
+    maintainers = with lib.maintainers; [orzklv];
+  };
 }

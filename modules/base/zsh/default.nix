@@ -1,16 +1,28 @@
 {
   lib,
   pkgs,
-  inputs,
+  config,
   ...
 }: let
+  cfg = config.kolyma.shell;
+
   # Manually types some extra spicy zsh config
   extra = builtins.readFile ./extra.zsh;
 
   # Find and set path to executables
   exec = pkg: lib.getExe pkg;
 in {
-  config = {
+  options = {
+    kolyma.shell = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Customize and default system shell to zsh.";
+      };
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
     # Installing zsh for system
     programs.zsh = {
       # Install zsh
@@ -37,7 +49,7 @@ in {
         "...." = "cd ../..";
         "celar" = "clear";
         ":q" = "exit";
-        neofetch = "fastfetch";
+        neofetch = exec fastfetch;
 
         # Made with Rust
         top = exec btop;
@@ -58,7 +70,7 @@ in {
 
         # Others (Developer)
         ports = "ss -lntu";
-        speedtest = "curl -o /dev/null cachefly.cachefly.net/100mb.test";
+        speedtest = "${exec curl} -o /dev/null cachefly.cachefly.net/100mb.test";
 
         # Updating system
         update = "sudo nixos-rebuild switch --flake github:kolyma-labs/instances --option tarball-ttl 0 --show-trace";
