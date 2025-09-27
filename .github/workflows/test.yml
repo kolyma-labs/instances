@@ -14,22 +14,7 @@ jobs:
       - name: Check up flake configuration
         run: nix flake check --all-systems --show-trace
 
-  # build-instances-arm64:
-  #   name: "Build Configurations for ARM64"
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       instance: [1, 2]
-  #   runs-on: self-hosted
-
-  #   steps:
-  #     - name: Check out the repository
-  #       uses: actions/checkout@v4
-
-  #     - name: Build NixOS configuration
-  #       run: nix build .#nixosConfigurations.Kolyma-${{ matrix.instance }}.config.system.build.toplevel --show-trace
-
-  build-instances-x86_64:
+  build-instances:
     name: "Build Configurations for AMD64"
     strategy:
       fail-fast: false
@@ -49,7 +34,7 @@ jobs:
 
   update-merge:
     name: "Merge Update PRs"
-    needs: [test-flake, build-instances-arm64] # build-instances-x86_64
+    needs: [test-flake, build-instances]
     runs-on: ubuntu-latest
     if: ${{ github.event.pull_request.user.login == 'orzklv' && github.event_name == 'pull_request'}}
 
