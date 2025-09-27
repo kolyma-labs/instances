@@ -16,7 +16,7 @@ in {
         description = "Enable kolyma nixpkgs configurations.";
       };
 
-      overlays = options.nixpkgs.overlays;
+      inherit (options.nixpkgs) overlays;
     };
   };
 
