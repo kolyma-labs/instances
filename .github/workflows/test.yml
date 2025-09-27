@@ -30,7 +30,7 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
 
       - name: Build NixOS configuration
-        run: nix build .#nixosConfigurations.Kolyma-${{ matrix.instance }}.config.system.build.toplevel --show-trace
+        run: nix build .#nixosConfigurations.${{ matrix.instance }}.config.system.build.toplevel --show-trace
 
   update-merge:
     name: "Merge Update PRs"
