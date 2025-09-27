@@ -28,6 +28,9 @@ jobs:
 
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
+        with:
+          extra-conf: |
+            extra-experimental-features = nix-command flakes pipe-operators
 
       - name: Build NixOS configuration
         run: nix build .#nixosConfigurations.${{ matrix.instance }}.config.system.build.toplevel --show-trace
