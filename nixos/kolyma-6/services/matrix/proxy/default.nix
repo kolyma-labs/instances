@@ -125,7 +125,7 @@
     (mkEndpoints "client" ./endpoints/client.txt)
     ++ (mkEndpoints "federation" ./endpoints/federation.txt);
 in {
-  services.www.hosts = {
+  kolyma.www.hosts = {
     ${domains.main} = {
       locations =
         {}

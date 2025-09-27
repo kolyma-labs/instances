@@ -1,4 +1,5 @@
 {
+  lib,
   inputs,
   outputs,
   ...
@@ -7,22 +8,16 @@
     # System related configs
     outputs.nixosModules.base
     outputs.nixosModules.extra
+    outputs.nixosModules.users
 
-    # User configs
-    outputs.nixosModules.users.kei
-    outputs.nixosModules.users.sakhib
-    outputs.nixosModules.users.shakhzod
-    outputs.nixosModules.users.bahrom04
-    outputs.nixosModules.users.aekinskjaldi
+    # Service oriented configs
+    outputs.nixosModules.bind
 
     # Import your deployed service list
     ./services
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
-
-    # Home Manager NixOS Module
-    inputs.home-manager.nixosModules.home-manager
   ];
 
   # Hostname of the system
@@ -46,6 +41,11 @@
   # networking.firewall.enable = false;
 
   kolyma = {
+    # Users of system
+    users.teams = [
+      lib.camps.uzinfocom
+    ];
+
     # Nameserver
     nameserver = {
       enable = true;

@@ -54,22 +54,22 @@ in {
         };
       };
     };
+  };
 
-    www.hosts = {
-      "oss.${base}" = {
-        addSSL = true;
-        enableACME = true;
-        locations = {
-          "/".proxyPass = "http://unix:${config.services.anubis.instances.uzinfocom-website.settings.BIND}";
-        };
+  kolyma.www.hosts = {
+    "oss.${base}" = {
+      addSSL = true;
+      enableACME = true;
+      locations = {
+        "/".proxyPass = "http://unix:${config.services.anubis.instances.uzinfocom-website.settings.BIND}";
       };
+    };
 
-      "link.${base}" = {
-        addSSL = true;
-        enableACME = true;
-        locations = {
-          "/".proxyPass = "http://unix:${config.services.anubis.instances.uzinfocom-taggis.settings.BIND}";
-        };
+    "link.${base}" = {
+      addSSL = true;
+      enableACME = true;
+      locations = {
+        "/".proxyPass = "http://unix:${config.services.anubis.instances.uzinfocom-taggis.settings.BIND}";
       };
     };
   };

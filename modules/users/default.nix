@@ -22,10 +22,10 @@
       };
 
       keys = lib.options.mkOption {
-        default = null;
+        default = [];
         example = [];
         description = "More detailed name or username for finding.";
-        type = with lib.types; nullOr listOf singleLineStr;
+        type = with lib.types; listOf singleLineStr;
       };
 
       keysUrl = lib.options.mkOption {
@@ -72,8 +72,8 @@ in {
       };
 
       users = lib.options.mkOption {
-        default = [];
-        example = [lib.labors.orzklv];
+        default = [lib.labors.orzklv];
+        example = [lib.labors.shakhzod];
         description = "Users to be added to the system.";
         type = with lib.types; listOf (submodule users);
       };
@@ -88,9 +88,9 @@ in {
       cfg.users ++ teams;
 
     merge =
-      lib.uniqueBy (u: u.username) all;
+      lib.unique all;
   in
-    lib.kolyma.users.mkUsers merge;
+    lib.users.mkUsers merge;
 
   meta = {
     doc = ./readme.md;

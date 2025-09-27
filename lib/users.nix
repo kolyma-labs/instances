@@ -3,8 +3,9 @@
 {lib}: let
   mkUser = i: {
     name =
-      i.username or
-      builtins.throw "oh-ow, somebody didn't define their username";
+      if i ? username
+      then i.username
+      else builtins.throw "oh-ow, somebody didn't define their username";
 
     value = {
       isNormalUser = true;
@@ -21,10 +22,13 @@
 
         byUrl =
           lib.optionals
-          ((builtins.hasAttr i.keysUrl) && (builtins.hasAttr i.sha256))
-          (lib.strings.splitString
-            "\n" (builtins.readFile (builtins.fetchurl {
-              url = "${i.githubKeysUrl}";
+          (i ? keysUrl
+            && i ? sha256
+            && i.keysUrl != null
+            && i.sha256 != null)
+          (lib.strings.splitString "\n"
+            (builtins.readFile (builtins.fetchurl {
+              url = "${i.keysUrl}";
               sha256 = "${i.sha256}";
             })));
       in

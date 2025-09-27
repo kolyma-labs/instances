@@ -12,7 +12,7 @@ in {
   imports = [outputs.nixosModules.container];
 
   # Enable containerization
-  services.containers = {
+  kolyma.containers = {
     enable = true;
     ports = [];
 

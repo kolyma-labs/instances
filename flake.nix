@@ -144,7 +144,6 @@
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = self.lib.instances.mapSystem {
-        inherit inputs outputs;
         list = [
           # The main authority
           # https://en.wikipedia.org/wiki/Varlam_Shalamov
@@ -163,9 +162,10 @@
           # "Naftaly"
 
           # To be freed
-          # "Kolyma-5"
-          # "Kolyma-6"
+          "Kolyma-5"
+          "Kolyma-6"
         ];
+        inherit inputs outputs;
       };
     };
 }

@@ -21,7 +21,7 @@
 in {
   imports = [
     # Module by @teutat3s
-    outputs.nixosModules.mas
+    outputs.nixosModules.matrix.mas
 
     # Parts of this configuration
     (import ./call.nix {inherit config domains;})

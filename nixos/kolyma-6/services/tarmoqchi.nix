@@ -52,7 +52,7 @@ in {
     };
   };
 
-  services.www.hosts = {
+  kolyma.www.hosts = {
     "${cfg.proxy-reverse.domain}" = {
       forceSSL = true;
       enableACME = true;

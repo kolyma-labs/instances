@@ -31,16 +31,16 @@ in {
         };
       };
     };
+  };
 
-    www.hosts = {
-      "${domain}" = {
-        addSSL = true;
-        enableACME = true;
-        serverAliases = ["www.${domain}"];
-        locations."/" = {
-          proxyPass = "http://unix:${config.services.anubis.instances.devops.settings.BIND}";
-          proxyWebsockets = true;
-        };
+  kolyma.www.hosts = {
+    "${domain}" = {
+      addSSL = true;
+      enableACME = true;
+      serverAliases = ["www.${domain}"];
+      locations."/" = {
+        proxyPass = "http://unix:${config.services.anubis.instances.devops.settings.BIND}";
+        proxyWebsockets = true;
       };
     };
   };

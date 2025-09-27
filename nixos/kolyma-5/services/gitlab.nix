@@ -83,15 +83,15 @@ in {
         };
       };
     };
+  };
 
-    # Enable web server & proxy
-    www.hosts = {
-      "old.gulag.uz" = {
-        addSSL = true;
-        enableACME = true;
-        locations = {
-          "/".proxyPass = "http://unix:${config.services.anubis.instances.gitlab.settings.BIND}";
-        };
+  # Enable web server & proxy
+  kolyma.www.hosts = {
+    "old.gulag.uz" = {
+      addSSL = true;
+      enableACME = true;
+      locations = {
+        "/".proxyPass = "http://unix:${config.services.anubis.instances.gitlab.settings.BIND}";
       };
     };
   };

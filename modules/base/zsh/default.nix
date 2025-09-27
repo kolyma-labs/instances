@@ -91,7 +91,6 @@ in {
     environment = {
       shells = with pkgs; [zsh];
       pathsToLink = ["/share/zsh"];
-      systemPackages = with pkgs; [inputs.home-manager.packages.${pkgs.system}.default];
     };
   };
 

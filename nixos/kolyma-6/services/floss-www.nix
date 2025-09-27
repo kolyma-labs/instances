@@ -29,21 +29,21 @@ in {
         };
       };
     };
+  };
 
-    www.hosts = {
-      "${domain}" = {
-        addSSL = true;
-        enableACME = true;
+  kolyma.www.hosts = {
+    "${domain}" = {
+      addSSL = true;
+      enableACME = true;
 
-        serverAliases = [
-          "www.${domain}"
-          "${alt-domain}"
-          "www.${alt-domain}"
-        ];
+      serverAliases = [
+        "www.${domain}"
+        "${alt-domain}"
+        "www.${alt-domain}"
+      ];
 
-        locations."/" = {
-          proxyPass = "http://unix:${config.services.anubis.instances.floss.settings.BIND}";
-        };
+      locations."/" = {
+        proxyPass = "http://unix:${config.services.anubis.instances.floss.settings.BIND}";
       };
     };
   };

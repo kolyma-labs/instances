@@ -1,4 +1,5 @@
 {
+  lib,
   inputs,
   outputs,
   ...
@@ -7,15 +8,11 @@
     # System related configs
     outputs.nixosModules.base
     outputs.nixosModules.extra
+    outputs.nixosModules.users
 
     # Service oriented configs
     outputs.nixosModules.web
     outputs.nixosModules.bind
-
-    # User configs
-    outputs.nixosModules.users.sakhib
-    outputs.nixosModules.users.shakhzod
-    outputs.nixosModules.users.bahrom04
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
@@ -26,7 +23,7 @@
   # =============================== #
 
   # Hostname of the system
-  networking.hostName = "Kolyma-1";
+  networking.hostName = "Varlam";
 
   # Entirely disable hibernation
   systemd.sleep.extraConfig = ''
@@ -41,6 +38,11 @@
 
   # Kolyma services
   kolyma = {
+    # Users of system
+    users.teams = [
+      lib.camps.uzinfocom
+    ];
+
     # Web Server & Proxy
     www = {
       enable = true;

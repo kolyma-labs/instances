@@ -1,14 +1,15 @@
-{lib}:
-with lib.kolyma.labors; {
+{lib}: let
+  labors = import ./labors.nix {inherit lib;};
+in {
   owners = {
-    members = [
+    members = with labors; [
       orzklv
     ];
     scope = "Owners of this gulag system.";
   };
 
   uzinfocom = {
-    members = [
+    members = with labors; [
       aekinskjaldi
       bahrom04
       lambdajon
@@ -19,7 +20,7 @@ with lib.kolyma.labors; {
   };
 
   prisioners = {
-    members = [
+    members = with labors; [
       kei
       crypton
       shakhzod

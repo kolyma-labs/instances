@@ -37,7 +37,7 @@
     };
   };
 
-  services.vpn = {
+  kolyma.vpn = {
     enable = true;
     domain = "ns2.kolyma.uz";
     secrets = {
