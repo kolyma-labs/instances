@@ -14,38 +14,38 @@ jobs:
       - name: Check up flake configuration
         run: nix flake check --all-systems --show-trace
 
-  build-instances-arm64:
-    name: "Build Configurations for ARM64"
-    strategy:
-      fail-fast: false
-      matrix:
-        instance: [1, 2]
-    runs-on: self-hosted
-
-    steps:
-      - name: Check out the repository
-        uses: actions/checkout@v4
-
-      - name: Build NixOS configuration
-        run: nix build .#nixosConfigurations.Kolyma-${{ matrix.instance }}.config.system.build.toplevel --show-trace
-
-  # build-instances-x86_64:
-  #   name: "Build Configurations for AMD64"
+  # build-instances-arm64:
+  #   name: "Build Configurations for ARM64"
   #   strategy:
   #     fail-fast: false
   #     matrix:
-  #       instance: [3]
-  #   runs-on: ubuntu-latest
+  #       instance: [1, 2]
+  #   runs-on: self-hosted
 
   #   steps:
   #     - name: Check out the repository
   #       uses: actions/checkout@v4
 
-  #     - name: Install Nix
-  #       uses: DeterminateSystems/nix-installer-action@main
-
   #     - name: Build NixOS configuration
   #       run: nix build .#nixosConfigurations.Kolyma-${{ matrix.instance }}.config.system.build.toplevel --show-trace
+
+  build-instances-x86_64:
+    name: "Build Configurations for AMD64"
+    strategy:
+      fail-fast: false
+      matrix:
+        instance: ["Varlam", "Solzhenitsyn"]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Build NixOS configuration
+        run: nix build .#nixosConfigurations.Kolyma-${{ matrix.instance }}.config.system.build.toplevel --show-trace
 
   update-merge:
     name: "Merge Update PRs"

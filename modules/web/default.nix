@@ -118,4 +118,10 @@ in {
   };
 
   config = lib.mkIf config.kolyma.www.enable merge;
+
+  meta = {
+    doc = ./readme.md;
+    buildDocsInSandbox = true;
+    maintainers = with lib.maintainers; [orzklv];
+  };
 }

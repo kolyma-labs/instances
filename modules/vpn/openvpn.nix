@@ -179,7 +179,7 @@ in {
   };
 
   meta = {
-    doc = ./readme.md;
+    doc = ./openvpn.md;
     buildDocsInSandbox = true;
     maintainers = with lib.maintainers; [orzklv];
   };
