@@ -1,1 +1,1 @@
-# Nameserver
+# Nameserver {#kolyma-nameserver}

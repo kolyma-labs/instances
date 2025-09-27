@@ -1,1 +1,1 @@
-# Nixpkgs Configurations
+# Nixpkgs Configurations {#kolyma-nixpkgs}

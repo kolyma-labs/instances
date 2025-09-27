@@ -1,1 +1,1 @@
-# Bootloader Configurations
+# Bootloader Configurations {#kolyma-boot}

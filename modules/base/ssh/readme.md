@@ -1,1 +1,1 @@
-# Secure Shell (Remote Control)
+# Secure Shell (Remote Control) {#kolyma-remote}

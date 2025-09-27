@@ -1,1 +1,1 @@
-# Power Management
+# Power Management {#kolyma-power}
