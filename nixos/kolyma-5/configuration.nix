@@ -11,6 +11,7 @@
     outputs.nixosModules.users
 
     # Service oriented configs
+    outputs.nixosModules.web
     outputs.nixosModules.bind
 
     # Import your deployed service list
@@ -37,9 +38,16 @@
   # Kolyma services
   kolyma = {
     # Users of system
-    users.teams = [
+    accounts.teams = [
       lib.camps.uzinfocom
     ];
+
+    # Web Server & Proxy
+    www = {
+      enable = true;
+      domain = "ns5.kolyma.uz";
+      anubis = true;
+    };
 
     # Nameserver
     nameserver = {

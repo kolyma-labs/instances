@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  cfg = config.kolyma.users;
+  cfg = config.kolyma.accounts;
 
   users = {
     options = {
@@ -63,7 +63,7 @@
   };
 in {
   options = {
-    kolyma.users = {
+    kolyma.accounts = {
       teams = lib.options.mkOption {
         default = [lib.camps.owners];
         example = [lib.camps.prisioners];

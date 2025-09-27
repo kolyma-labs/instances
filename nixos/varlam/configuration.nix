@@ -1,6 +1,5 @@
 {
   lib,
-  inputs,
   outputs,
   ...
 }: {
@@ -11,16 +10,11 @@
     outputs.nixosModules.users
 
     # Service oriented configs
-    outputs.nixosModules.web
-    outputs.nixosModules.bind
+    ./services.nix
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
   ];
-
-  # =============================== #
-  #  System related configurations  #
-  # =============================== #
 
   # Hostname of the system
   networking.hostName = "Varlam";
@@ -33,41 +27,15 @@
     AllowSuspendThenHibernate=no
   '';
 
-  # Don't ask for password
-  security.sudo.wheelNeedsPassword = false;
-
-  # Kolyma services
-  kolyma = {
-    # Users of system
-    users.teams = [
+  # Users of system
+  kolyma.accounts = {
+    teams = [
       lib.camps.uzinfocom
     ];
-
-    # Web Server & Proxy
-    www = {
-      enable = true;
-    };
-
-    # Nameserver
-    nameserver = {
-      enable = true;
-      type = "master";
-
-      slaves = [
-        # Kolyma GK-2
-        "37.27.60.37"
-        "2a01:4f9:3081:2e04::2"
-
-        # Kolyma GK-5
-        "167.235.96.40"
-        "2a01:4f8:2190:2914::2"
-
-        # Kolyma GK-6
-        "65.109.74.214"
-        "2a01:4f9:3071:31ce::2"
-      ];
-    };
   };
+
+  # Don't ask for password
+  security.sudo.wheelNeedsPassword = false;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "25.05";

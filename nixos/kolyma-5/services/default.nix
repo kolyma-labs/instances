@@ -8,8 +8,8 @@
     # Git server for storing personal git projects
     ./gitlab.nix
 
-    # Web server & proxy virtual hosts via caddy
-    ./www.nix
+    # Khakimov's website
+    ./khakimovs.nix
 
     # Matrix server hosting
     ./matrix
