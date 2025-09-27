@@ -23,7 +23,9 @@
         "xhci_pci_renesas"
       ];
     };
+  };
 
+  kolyma = {
     bios = {
       uefi = true;
       raided = true;
@@ -32,11 +34,11 @@
         "/dev/nvme1n1"
       ];
     };
-  };
 
-  network = {
-    ipv4 = "65.109.74.214";
-    ipv6 = "2a01:4f9:3071:31ce::2";
+    network = {
+      ipv4 = "65.109.74.214";
+      ipv6 = "2a01:4f9:3071:31ce::2";
+    };
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";

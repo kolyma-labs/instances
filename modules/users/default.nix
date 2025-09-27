@@ -61,6 +61,23 @@
       };
     };
   };
+
+  sudoless = {
+    # Don't ask for password
+    security.sudo.wheelNeedsPassword = false;
+  };
+
+  generic = let
+    teams =
+      lib.flatten (map (team: team.members) cfg.teams);
+
+    all =
+      cfg.users ++ teams;
+
+    merge =
+      lib.unique all;
+  in
+    lib.users.mkUsers merge;
 in {
   options = {
     kolyma.accounts = {
@@ -80,17 +97,7 @@ in {
     };
   };
 
-  config = let
-    teams =
-      lib.flatten (map (team: team.members) cfg.teams);
-
-    all =
-      cfg.users ++ teams;
-
-    merge =
-      lib.unique all;
-  in
-    lib.users.mkUsers merge;
+  config = lib.mkMerge [generic sudoless];
 
   meta = {
     doc = ./readme.md;

@@ -40,11 +40,16 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    # Networking module
-    network.enable = true;
+    kolyma = {
+      # Networking Module
+      network.enable = true;
 
-    # Bootloader module
-    boot.bios.enable = true;
+      # Bootloader Module
+      boot.enable = true;
+
+      # Preconfigured Nixpkgs
+      nixpkgs.enable = true;
+    };
   };
 
   meta = {

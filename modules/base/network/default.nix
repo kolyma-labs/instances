@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  cfg = config.network;
+  cfg = config.kolyma.network;
 
   gateway = ip: let
     parts = lib.splitString "." ip;
@@ -100,7 +100,7 @@
   merge = lib.mkMerge [main ipv4 ipv6 packs asserts warnings];
 in {
   options = {
-    network = {
+    kolyma.network = {
       enable = lib.mkOption {
         type = lib.types.bool;
         default = false;
@@ -110,19 +110,19 @@ in {
       interface = lib.mkOption {
         type = lib.types.str;
         default = "eth0";
-        description = "Network interface.";
+        description = "Target network interface.";
       };
 
       ipv4 = lib.mkOption {
         type = with lib.types; nullOr str;
         default = null;
-        description = "IPv4 address.";
+        description = "IPv4 address for target.";
       };
 
       ipv6 = lib.mkOption {
         type = with lib.types; nullOr str;
         default = null;
-        description = "IPv6 address.";
+        description = "IPv6 address for target.";
       };
 
       nameserver = lib.mkOption {
@@ -131,14 +131,16 @@ in {
           "1.1.1.1"
           "1.0.0.1"
         ];
-        description = "DNS nameserver.";
+        description = "DNS nameserver for targets.";
       };
     };
   };
 
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   config = lib.mkIf cfg.enable merge;
+
+  meta = {
+    doc = ./readme.md;
+    buildDocsInSandbox = true;
+    maintainers = with lib.maintainers; [orzklv];
+  };
 }

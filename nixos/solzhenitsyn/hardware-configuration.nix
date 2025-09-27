@@ -26,7 +26,9 @@
         "usbhid"
       ];
     };
+  };
 
+  kolyma = {
     bios = {
       uefi = true;
       raided = true;
@@ -35,11 +37,11 @@
         "/dev/nvme1n1"
       ];
     };
-  };
 
-  network = {
-    ipv4 = "37.27.60.37";
-    ipv6 = "2a01:4f9:3081:2e04::2";
+    network = {
+      ipv4 = "37.27.60.37";
+      ipv6 = "2a01:4f9:3081:2e04::2";
+    };
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

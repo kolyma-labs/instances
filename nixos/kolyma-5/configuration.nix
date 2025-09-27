@@ -32,9 +32,6 @@
     AllowSuspendThenHibernate=no
   '';
 
-  # Don't ask for password
-  security.sudo.wheelNeedsPassword = false;
-
   # Kolyma services
   kolyma = {
     # Users of system

@@ -4,9 +4,9 @@
   config,
   ...
 }: let
-  cfg = config.boot.bios;
+  cfg = config.kolyma.boot;
 
-  raid = lib.mkIf config.boot.bios.raided {
+  raid = lib.mkIf cfg.raided {
     boot.swraid = {
       enable = true;
       mdadmConf = ''
@@ -15,24 +15,24 @@
     };
   };
 
-  uefi = lib.mkIf config.boot.bios.uefi {
+  uefi = lib.mkIf cfg.uefi {
     boot.loader.grub = {
       efiSupport = true;
       efiInstallAsRemovable = true;
     };
   };
 
-  mirrors = lib.mkIf (config.boot.bios.mirrors != []) {
+  mirrors = lib.mkIf (cfg.mirrors != []) {
     boot.loader.grub.mirroredBoots = [
       {
-        devices = config.boot.bios.mirrors;
+        devices = cfg.mirrors;
         path = "/boot";
       }
     ];
   };
 
-  devices = lib.mkIf (config.boot.bios.devices != []) {
-    boot.loader.grub.devices = config.boot.bios.devices;
+  devices = lib.mkIf (cfg.devices != []) {
+    boot.loader.grub.devices = cfg.devices;
   };
 
   enable = {
@@ -42,7 +42,7 @@
   merge = lib.mkMerge [raid mirrors devices uefi enable];
 in {
   options = {
-    boot.bios = {
+    kolyma.boot = {
       enable = lib.mkOption {
         type = lib.types.bool;
         default = false;
@@ -76,4 +76,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable merge;
+
+  meta = {
+    doc = ./readme.md;
+    buildDocsInSandbox = true;
+    maintainers = with lib.maintainers; [orzklv];
+  };
 }
