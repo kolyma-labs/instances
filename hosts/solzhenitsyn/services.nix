@@ -9,6 +9,15 @@
     # Enable web server & proxy
     www = {
       enable = true;
+
+      apps = [
+        {
+          inputs = "uzinfocom-website";
+          module = "server";
+          option = "uzinfocom.website";
+          domain = "oss.uzinfocom.uz";
+        }
+      ];
     };
 
     # Nameserver

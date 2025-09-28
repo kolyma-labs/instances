@@ -54,4 +54,41 @@
       };
     };
   };
-in {inherit users groups;}
+
+  apps = {
+    options = {
+      inputs = lib.options.mkOption {
+        description = "Name of input reference to import module from.";
+        example = "example";
+        type = lib.types.str;
+      };
+
+      module = lib.options.mkOption {
+        description = "Modules name to be imported to expose deployment modules.";
+        example = "example";
+        type = lib.types.str;
+      };
+
+      option = lib.options.mkOption {
+        description = "Option endpoint to set configurations.";
+        example = "services.example";
+        type = lib.types.str;
+      };
+
+      domain = lib.options.mkOption {
+        description = "Domain to proxy the app behind.";
+        example = "example.com";
+        type = lib.types.str;
+      };
+
+      secrets = lib.options.mkOption {
+        description = "Secrets to pass to the app.";
+        example = {
+          some = "/run/secrets/some";
+          thing = "/run/secrets/thing";
+        };
+        type = lib.typeOf.attrs;
+      };
+    };
+  };
+in {inherit users groups apps;}

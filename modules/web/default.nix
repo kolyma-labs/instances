@@ -83,6 +83,11 @@
     default
   ];
 in {
+  imports = [
+    # Extensions for web apps
+    ./apps.nix
+  ];
+
   options = {
     kolyma.www = {
       enable = lib.mkOption {
