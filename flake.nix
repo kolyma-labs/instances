@@ -7,9 +7,9 @@
   description = "Kolyma's server configs";
 
   # Extra nix configurations to inject to flake scheme
-  nixConfig = {
-    experimental-features = ["nix-command" "flakes" "pipe-operators"];
-  };
+  # nixConfig = {
+  #   experimental-features = ["nix-command" "flakes" "pipe-operators"];
+  # };
 
   # inputs are other flakes you use within your own flake, dependencies
   # for your flake, etc.
