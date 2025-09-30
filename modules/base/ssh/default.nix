@@ -31,7 +31,7 @@ in {
 
       settings = {
         # Enforce latest ssh protocol
-        Protocol = 2;
+        # Protocol = 2;
         # Forbid root login through SSH.
         PermitRootLogin = "no";
         # Use keys only. Remove if you want to SSH using password (not recommended)
@@ -41,9 +41,7 @@ in {
         # Unecessary hole in my ass
         UsePAM = false;
         # Fuck anyone else out there
-        MaxSessions = 2;
-        # Get more GPUs, brokey!
-        # Ciphers = ["aes256-ctr" "aes192-ctr" "aes128-ctr"];
+        # MaxSessions = 2;
       };
     };
 
