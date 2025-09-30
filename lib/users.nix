@@ -15,7 +15,7 @@
         "docker"
       ];
 
-      password =
+      hashedPassword =
         i.password or "";
 
       openssh.authorizedKeys.keys = let
