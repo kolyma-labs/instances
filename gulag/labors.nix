@@ -2,9 +2,7 @@
   orzklv = {
     username = "sakhib";
     description = "Sokhibjon Orzikulov";
-    keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDfHY4rNOm6DHH8XcmtU6CegX0/d99agN/x7MuPD5WJR sakhib@orzklv.uz"
-    ];
+    keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDfHY4rNOm6DHH8XcmtU6CegX0/d99agN/x7MuPD5WJR sakhib@orzklv.uz"];
   };
 
   aekinskjaldi = {
@@ -17,25 +15,19 @@
   bahrom04 = {
     username = "bahrom04";
     description = "Bakhrom Magdiyev";
-    keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGq3w7lLgdOzCVXp2Y/bec3ZPcdKvq4f7AE6qVyiH9Cm magdiyevbahrom@gmail.com"
-    ];
+    keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGq3w7lLgdOzCVXp2Y/bec3ZPcdKvq4f7AE6qVyiH9Cm magdiyevbahrom@gmail.com"];
   };
 
   crypton = {
     username = "crypton";
     description = "Crypton32";
-    keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID7gYfQFvXCw1cS5+18mDFeZnsvSlrGP/LZhBCZ6iix3 Crypton415"
-    ];
+    keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID7gYfQFvXCw1cS5+18mDFeZnsvSlrGP/LZhBCZ6iix3 Crypton415"];
   };
 
   kei = {
     username = "kei";
     description = "Kei Thelissimus";
-    keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGfrN6xvFmo+S59KksbxSpFxOVDBzGrkPfuFK4qDPmk2 thelissimus@tuta.io"
-    ];
+    keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGfrN6xvFmo+S59KksbxSpFxOVDBzGrkPfuFK4qDPmk2 thelissimus@tuta.io"];
   };
 
   lambdajon = {
