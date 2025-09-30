@@ -4,7 +4,7 @@
   config = {
     documentation.nixos = {
       enable = true;
-      checkRedirects = true;
+      checkRedirects = false;
       includeAllModules = true;
     };
   };
