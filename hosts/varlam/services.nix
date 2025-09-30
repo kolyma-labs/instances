@@ -10,7 +10,7 @@
     www = {
       enable = true;
       domain = "ns1.kolyma.uz";
-      # alias = ["kolyma.uz"];
+      alias = ["kolyma.uz"];
     };
 
     # Nameserver
