@@ -46,6 +46,8 @@ in {
         MaxSessions = 2;
         # Get more GPUs, brokey!
         Ciphers = ["aes256-ctr" "aes192-ctr" "aes128-ctr"];
+        # Pre-defined list of acceptable keys
+        programs.ssh.pubkeyAcceptedKeyTypes = ["ssh-ed25519" "ssh-rsa"];
       };
     };
 
