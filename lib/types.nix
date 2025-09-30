@@ -15,6 +15,13 @@
         type = lib.types.str;
       };
 
+      password = lib.options.mkOption {
+        default = null;
+        example = "someRandomInitialPassword";
+        description = "An initial password to set for KVM uses.";
+        type = with lib.types; nullOr str;
+      };
+
       keys = lib.options.mkOption {
         default = [];
         example = [];

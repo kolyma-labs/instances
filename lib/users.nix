@@ -3,9 +3,6 @@
 {lib}: let
   mkUser = i: {
     name =
-      # if i ? username
-      # then i.username
-      # else builtins.throw "oh-ow, somebody didn't define their username";
       i.username or (builtins.throw "oh-ow, somebody didn't define their username");
 
     value = {
@@ -17,6 +14,8 @@
         "admins"
         "docker"
       ];
+
+      password = i.password or null;
 
       openssh.authorizedKeys.keys = let
         byKeys = i.keys or [];
