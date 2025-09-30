@@ -3,7 +3,8 @@
 
   config = {
     documentation.nixos = {
-      checkRedirects = false;
+      enable = true;
+      checkRedirects = true;
       includeAllModules = true;
     };
   };

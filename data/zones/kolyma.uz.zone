@@ -25,8 +25,12 @@ ns1    IN    A     37.27.67.190
 ns1    IN    AAAA  2a01:4f9:3081:3518::2
 ns2    IN    A     37.27.60.37
 ns2    IN    AAAA  2a01:4f9:3081:2e04::2
+ns3    IN    A     65.21.83.85
+ns3    IN    AAAA  2a01:4f9:3080:2c81::2
+ns4    IN    A     65.109.103.11
+ns4    IN    AAAA  2a01:4f9:3080:2829::2
 
-; TODO: To be removed
+; TODO: These need to go ASAP!!!
 ns5    IN    A     167.235.96.40
 ns5    IN    AAAA  2a01:4f8:2190:2914::2
 ns6    IN    A     65.109.74.214

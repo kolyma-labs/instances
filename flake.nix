@@ -145,25 +145,29 @@
         list = [
           # The main authority
           # Location: Finland
+          # Alias: Kolyma-1
           # https://en.wikipedia.org/wiki/Varlam_Shalamov
           "Varlam"
 
           # Public figure authority
           # Location: Finland
+          # Alias: Kolyma-2
           # https://en.wikipedia.org/wiki/Aleksandr_Solzhenitsyn
           "Solzhenitsyn"
 
           # Workload Manager
           # Location: Germany
+          # Alias: Kolyma-3
           # https://en.wikipedia.org/wiki/Hava_Volovich
-          # "Volovich"
+          "Volovich"
 
           # Personal Jail
           # Location: Germany
+          # Alias: Kolyma-4
           # https://en.wikipedia.org/wiki/Naftaly_Frenkel
-          # "Naftaly"
+          "Naftaly"
 
-          # To be freed
+          # Those need to go ASAP!!!
           "Kolyma-5"
           "Kolyma-6"
         ];
