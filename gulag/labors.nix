@@ -2,7 +2,7 @@
   orzklv = {
     username = "sakhib";
     description = "Sokhibjon Orzikulov";
-    # password = "ddYp818lg2uTAKOdnNdIulT6N";
+    password = "$y$j9T$fgJmtVVcWuqEInu0/i49x.$26EaHHIDtPsHi41kDfwpuQAosaze4UkL4sbzgQyKbi8";
     keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDfHY4rNOm6DHH8XcmtU6CegX0/d99agN/x7MuPD5WJR sakhib@orzklv.uz"];
   };
 
