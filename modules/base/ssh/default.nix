@@ -29,6 +29,9 @@ in {
     services.openssh = {
       inherit (cfg) enable ports;
 
+      # Use only declarative keys
+      authorizedKeysInHomedir = false;
+
       settings = {
         # Enforce latest ssh protocol
         # Protocol = 2;
