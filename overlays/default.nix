@@ -16,13 +16,6 @@
     # ...
     # });
 
-    # Patched mastodon with custom char limit
-    # mastodon-custom = prev.mastodon.override {
-    #   patches = [
-    #     ./char-limit.patch
-    #   ];
-    # };
-
     # Use latest unstable version of matrix
     inherit (final.unstable) matrix-synapse;
 

@@ -9,6 +9,7 @@
     # Enable web server & proxy
     www = {
       enable = true;
+      domain = "ns2.kolyma.uz";
     };
 
     # Nameserver

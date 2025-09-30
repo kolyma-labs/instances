@@ -11,14 +11,10 @@ $TTL 86400
 @      IN    NS    ns2.kolyma.uz.
 
 ; Entry points
-@      IN    A     167.235.96.40
-@      IN    AAAA  2a01:4f8:2190:2914::2
-@      IN    A     65.109.74.214
-@      IN    AAAA  2a01:4f9:3071:31ce::2
-www    IN    A     167.235.96.40
-www    IN    AAAA  2a01:4f8:2190:2914::2
-www    IN    A     65.109.74.214
-www    IN    AAAA  2a01:4f9:3071:31ce::2
+@      IN    A     37.27.67.190
+@      IN    AAAA  2a01:4f9:3081:3518::2
+www    IN    A     37.27.67.190
+www    IN    AAAA  2a01:4f9:3081:3518::2
 
 ; A & AAAA records for global servers
 ns1    IN    A     37.27.67.190
