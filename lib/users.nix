@@ -15,7 +15,8 @@
         "docker"
       ];
 
-      password = i.password or null;
+      password =
+        i.password or "";
 
       openssh.authorizedKeys.keys = let
         byKeys = i.keys or [];
