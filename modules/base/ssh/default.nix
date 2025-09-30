@@ -13,6 +13,12 @@ in {
         description = "Enable remote connection.";
       };
 
+      motd = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+        description = "Show welcoming motd on login.";
+      };
+
       ports = lib.mkOption {
         type = lib.types.listOf lib.types.port;
         default = [22];
@@ -34,7 +40,7 @@ in {
 
       settings = {
         # Enforce latest ssh protocol
-        # Protocol = 2;
+        Protocol = 2;
         # Forbid root login through SSH.
         PermitRootLogin = "no";
         # Use keys only. Remove if you want to SSH using password (not recommended)
@@ -44,9 +50,13 @@ in {
         # Unecessary hole in my ass
         UsePAM = false;
         # Fuck anyone else out there
-        # MaxSessions = 2;
+        MaxSessions = 2;
+        # Show welcoming motd on login
+        PrintMotd = true;
       };
     };
+
+    users.motd = builtins.readFile ./motd.txt;
 
     # Ensure the firewall allows SSH traffic
     networking.firewall = {

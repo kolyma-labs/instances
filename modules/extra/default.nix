@@ -6,9 +6,6 @@
     # /srv path maintainance
     ./data
 
-    # Message of the day
-    ./motd
-
     # Documentation settings
     ./docs
   ];
