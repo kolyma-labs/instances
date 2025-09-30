@@ -43,7 +43,7 @@ in {
         # Fuck anyone else out there
         MaxSessions = 2;
         # Get more GPUs, brokey!
-        Ciphers = ["aes256-ctr" "aes192-ctr" "aes128-ctr"];
+        # Ciphers = ["aes256-ctr" "aes192-ctr" "aes128-ctr"];
       };
     };
 
