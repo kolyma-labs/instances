@@ -30,7 +30,7 @@ in {
   config = lib.mkIf cfg.enable {
     kolyma = {
       # Documentations
-      docs.enable = false;
+      docs.enable = true;
 
       # Data Maintainance
       data.enable = true;
