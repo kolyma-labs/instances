@@ -22,11 +22,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1758977683,
-        "narHash": "sha256-icDlFtNdqDHZmcka6SYWfxTeXxXsFBUg0ZMQhTmGODM=",
+        "lastModified": 1759243286,
+        "narHash": "sha256-LE1N7NZAF46Iaf4xYyt+p9EPvUaR3tpTe6GtLNIJajI=",
         "owner": "devops-journey-uz",
         "repo": "devops-journey",
-        "rev": "877f2501aca0a3f2f7129a62430d23d48bc94503",
+        "rev": "f590825f2c814ef4ec779265901f1f412984c6da",
         "type": "github"
       },
       "original": {
@@ -678,11 +678,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1758791193,
-        "narHash": "sha256-F8WmEwFoHsnix7rt290R0rFXNJiMbClMZyIC/e+HYf0=",
+        "lastModified": 1759143472,
+        "narHash": "sha256-TvODmeR2W7yX/JmOCmP+lAFNkTT7hAxYcF3Kz8SZV3w=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "25e53aa156d47bad5082ff7618f5feb1f5e02d01",
+        "rev": "5ed4e25ab58fd4c028b59d5611e14ea64de51d23",
         "type": "github"
       },
       "original": {
