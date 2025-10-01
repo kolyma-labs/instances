@@ -31,12 +31,6 @@
 
     # Tarmoqchi HTTP tunneling
     ./tarmoqchi.nix
-
-    # GitHub runners
-    ./runner.nix
-
-    # VPN server
-    ./vpn.nix
   ];
 
   config = {
@@ -52,12 +46,6 @@
       nameserver = {
         enable = true;
         type = "slave";
-
-        masters = [
-          # Kolyma GK-1
-          "37.27.67.190"
-          "2a01:4f9:3081:3518::2"
-        ];
       };
     };
   };
