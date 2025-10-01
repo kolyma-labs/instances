@@ -17,7 +17,9 @@
         package = pkgs.unstable.github-runner;
         serviceOverrides = {
           ProtectSystem = "full";
-          ReadWritePaths = "/srv";
+          ReadWritePaths = "${
+            config.kolyma.data.path or "/srv"
+          }";
           PrivateMounts = false;
           UMask = 22;
         };
@@ -54,6 +56,7 @@ in {
 
       instances = lib.mkOption {
         type = with lib.types; listOf (submodule lib.kotypes.runner);
+        description = "List of runner instances to be hosted.";
         default = [];
       };
 

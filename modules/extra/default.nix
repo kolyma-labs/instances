@@ -1,9 +1,15 @@
-{lib, ...}: {
+{
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.kolyma.extra;
+in {
   imports = [
-    # Auto Cleaner
-    ./maid
+    # Update Manager
+    ./update
 
-    # /srv path maintainance
+    # Data Maintainance
     ./data
 
     # Documentation settings
@@ -18,6 +24,19 @@
         description = "Whether to add some extra configurations to the system.";
         type = lib.types.bool;
       };
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
+    kolyma = {
+      # Documentations
+      docs.enable = true;
+
+      # Data Maintainance
+      data.enable = true;
+
+      # Update Management
+      update.enable = true;
     };
   };
 

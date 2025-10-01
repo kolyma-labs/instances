@@ -1,15 +1,6 @@
 {pkgs, ...}: {
   # Enable web server & proxy
   kolyma.www.hosts = {
-    # "cdn.xinux.uz" = {
-    #   addSSL = true;
-    #   enableACME = true;
-    #   root = "/srv/xinux";
-    #   extraConfig = ''
-    #     autoindex on;
-    #   '';
-    # };
-
     "khakimovs.uz" = {
       addSSL = true;
       enableACME = true;
