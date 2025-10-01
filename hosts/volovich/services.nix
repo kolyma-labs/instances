@@ -16,6 +16,7 @@ in {
 
   sops.secrets = {
     "github/xinux" = secret-management;
+    "github/uzinfocom" = secret-management;
   };
 
   # Kolyma services
@@ -39,6 +40,12 @@ in {
           name = "Xinux";
           url = "https://github.com/xinux-org";
           token = config.sops.secrets."github/xinux".path;
+          type = "github";
+        }
+        {
+          name = "Uzinfocom";
+          url = "https://github.com/uzinfocom-org";
+          token = config.sops.secrets."github/uzinfocom".path;
           type = "github";
         }
       ];
