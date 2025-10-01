@@ -92,4 +92,25 @@
       };
     };
   };
-in {inherit users groups runner;}
+
+  cdn = {
+    options = {
+      path = lib.mkOption {
+        type = lib.types.str;
+        description = "Which path should be served publicly";
+      };
+
+      mode = lib.mkOption {
+        type = lib.types.enum ["static" "browse"];
+        default = "static";
+        description = "Should nginx show file listing";
+      };
+
+      alias = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [];
+        description = "List of extra aliases to associate.";
+      };
+    };
+  };
+in {inherit users groups runner cdn;}

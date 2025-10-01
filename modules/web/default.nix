@@ -1,12 +1,107 @@
 {
-  config,
   lib,
   pkgs,
+  config,
   ...
 }: let
   cfg = config.kolyma.www;
 
-  default = {
+  default =
+    if (cfg.domain == "")
+    then {
+      "default_server" = {
+        default = true;
+        root = "${pkgs.personal.gate}/www";
+      };
+    }
+    else {
+      ${cfg.domain} = {
+        default = true;
+        forceSSL = true;
+        enableACME = true;
+        serverAliases = cfg.alias;
+        root = "${pkgs.personal.gate}/www";
+      };
+    };
+
+  mkCDN = builtins.mapAttrs (name: value: {
+    addSSL = true;
+    enableACME = true;
+    root = value.path;
+    serverAliases = value.alias;
+    locations = lib.mkIf (value.mode == "static") {
+      "/".extraConfig = ''
+        try_files $uri $uri/ $uri.html =404;
+      '';
+
+      "~ ^/(.*)\\.html$".extraConfig = ''
+        rewrite ^/(.*)\\.html$ /$1 permanent;
+      '';
+    };
+
+    extraConfig = ''
+      ${lib.optionalString (value.mode == "browse") "autoindex on;"}
+    '';
+  });
+in {
+  imports = [];
+
+  options = {
+    kolyma.www = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Enable the web server/proxy";
+      };
+
+      instance = lib.mkOption {
+        type = lib.types.number;
+        example = 1;
+        description = "Identifier signature of the current instance.";
+      };
+
+      domain = lib.mkOption {
+        type = lib.types.str;
+        default = "ns${toString cfg.instance}.kolyma.uz";
+        description = "The default signature domain of instance.";
+      };
+
+      alias = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [];
+        description = "List of extra aliases to host.";
+      };
+
+      anubis = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Add nginx user to anubis group for unix socket access";
+      };
+
+      hosts = lib.mkOption {
+        type = with lib.types; attrsOf (submodule anything);
+        default = {};
+        description = "List of hosted service instances.";
+      };
+
+      cdn = lib.mkOption {
+        type = with lib.types; attrsOf (submodule lib.kotypes.cdn);
+        default = {};
+        description = "List of cdn services hosted in this instance.";
+      };
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = !((builtins.length cfg.alias) != 0 && cfg.domain == "");
+        message = "don't set aliases if there's no primary domain yet";
+      }
+    ];
+
+    users.users.nginx.extraGroups = lib.optionals (config.kolyma.www.anubis) [config.users.groups.anubis.name];
+
     # Configure Nginx
     services.nginx = {
       # Enable the Nginx web server
@@ -17,23 +112,18 @@
       recommendedGzipSettings = true;
 
       # Default virtual host
-      virtualHosts =
-        if (cfg.domain == "")
-        then {
-          "default_server" = {
-            default = true;
-            root = "${pkgs.personal.gate}/www";
+      virtualHosts = lib.mkMerge [
+        default
+        cfg.hosts
+        (mkCDN cfg.cdn)
+        (mkCDN {
+          "cdn${toString cfg.instance}.kolyma.uz" = {
+            path = "/srv";
+            mode = "browse";
+            alias = [];
           };
-        }
-        else {
-          ${cfg.domain} = {
-            default = true;
-            forceSSL = true;
-            enableACME = true;
-            serverAliases = cfg.alias;
-            root = "${pkgs.personal.gate}/www";
-          };
-        };
+        })
+      ];
     };
 
     # Accepting ACME Terms
@@ -54,70 +144,6 @@
       443
     ];
   };
-
-  extra = {
-    # Extra configurations for Nginx
-    services.nginx = {
-      # User provided hosts
-      virtualHosts = cfg.hosts;
-    };
-  };
-
-  anubis = lib.mkIf config.kolyma.www.anubis {
-    users.users.nginx.extraGroups = [config.users.groups.anubis.name];
-  };
-
-  asserts = {
-    assertions = [
-      {
-        assertion = !((builtins.length cfg.alias) != 0 && cfg.domain == "");
-        message = "don't set aliases if there's no primary domain yet";
-      }
-    ];
-  };
-
-  merge = lib.mkMerge [
-    extra
-    anubis
-    asserts
-    default
-  ];
-in {
-  options = {
-    kolyma.www = {
-      enable = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Enable the web server/proxy";
-      };
-
-      domain = lib.mkOption {
-        type = lib.types.str;
-        default = "";
-        description = "The default domain of instance.";
-      };
-
-      alias = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
-        default = [];
-        description = "List of extra aliases to host.";
-      };
-
-      anubis = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Add nginx user to anubis group for unix socket access";
-      };
-
-      hosts = lib.mkOption {
-        type = lib.types.attrsOf lib.types.anything;
-        default = {};
-        description = "List of hosted services instances.";
-      };
-    };
-  };
-
-  config = lib.mkIf config.kolyma.www.enable merge;
 
   meta = {
     doc = ./readme.md;

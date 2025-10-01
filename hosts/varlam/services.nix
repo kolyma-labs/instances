@@ -9,7 +9,7 @@
     # Web Server & Proxy
     www = {
       enable = true;
-      domain = "ns1.kolyma.uz";
+      instance = 1;
       alias = ["kolyma.uz"];
     };
 

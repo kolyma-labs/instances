@@ -168,8 +168,8 @@
           "Naftaly"
 
           # Those need to go ASAP!!!
-          "Kolyma-5"
-          "Kolyma-6"
+          # "Kolyma-5"
+          # "Kolyma-6"
         ];
         inherit inputs outputs;
       };

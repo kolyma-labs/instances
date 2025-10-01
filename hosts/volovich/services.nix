@@ -31,7 +31,7 @@ in {
     # Web Server & Proxy
     www = {
       enable = true;
-      domain = "ns3.kolyma.uz";
+      instance = 3;
     };
 
     # Nameserver
