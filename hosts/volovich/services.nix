@@ -15,8 +15,14 @@ in {
   ];
 
   sops.secrets = {
-    "github/xinux" = secret-management;
+    "github/kolyma" = secret-management;
     "github/uzinfocom" = secret-management;
+    "github/floss" = secret-management;
+    "github/floss-community" = secret-management;
+    "github/xinux" = secret-management;
+    "github/rust-lang" = secret-management;
+    "github/efael" = secret-management;
+    "github/bleur" = secret-management;
   };
 
   # Kolyma services
