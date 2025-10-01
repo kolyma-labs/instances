@@ -23,6 +23,7 @@ in {
     "github/rust-lang" = secret-management;
     "github/efael" = secret-management;
     "github/bleur" = secret-management;
+    "github/uzbek" = secret-management;
   };
 
   # Kolyma services
@@ -88,6 +89,12 @@ in {
           name = "Bleur";
           url = "https://github.com/bleur-org";
           token = config.sops.secrets."github/bleur".path;
+          type = "github";
+        }
+        {
+          name = "Uzbek-Net";
+          url = "https://github.com/uzbek-net";
+          token = config.sops.secrets."github/uzbek".path;
           type = "github";
         }
       ];
