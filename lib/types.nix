@@ -61,4 +61,35 @@
       };
     };
   };
-in {inherit users groups;}
+
+  runner = {
+    options = {
+      name = lib.mkOption {
+        type = lib.types.str;
+        example = "Important-Runner";
+        description = "Name for the runnner used in service and registration.";
+      };
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+        example = false;
+        description = "Whether to enable THIS runnner service.";
+      };
+      url = lib.mkOption {
+        type = lib.types.str;
+        example = "https://git.example.com/some-org";
+        description = "Registration url given by git provider.";
+      };
+      token = lib.mkOption {
+        type = lib.types.path;
+        example = "/run/secrets/...";
+        description = "Path to a secret file containing registration token.";
+      };
+      type = lib.mkOption {
+        type = lib.types.enum ["forgejo" "github"];
+        example = "forgejo";
+        description = "Type of git provider runner is going to serve for.";
+      };
+    };
+  };
+in {inherit users groups runner;}

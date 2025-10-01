@@ -9,4 +9,5 @@
   # Helpful functions & generators
   users = import ./users.nix {inherit lib;};
   instances = import ./instances.nix {inherit lib;};
+  rmatch = import ./rmatch.nix {inherit lib;};
 }
