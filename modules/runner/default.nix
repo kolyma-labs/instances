@@ -28,11 +28,19 @@
   mkForgejo = param: {
     gitea-actions-runner = {
       package = lib.mkDefault pkgs.unstable.forgejo-actions-runner;
-      instances.default = {
+      instances."Kolyma-${param.name}" = {
         inherit (param) enable name url;
         tokenFile = param.token;
         labels = ["native:host"];
       };
+    };
+  };
+
+  patchForgejo = param: {
+    "gitea-runner-Kolyma-${param.name}".serviceConfig = {
+      DynamicUser = lib.mkForce false;
+      User = lib.mkForce cfg.user;
+      Group = lib.mkForce cfg.group;
     };
   };
 in {
@@ -66,6 +74,14 @@ in {
   };
 
   config = let
+    extra = [
+      {
+        gitea-actions-runner = {
+          package = pkgs.unstable.forgejo-runner;
+        };
+      }
+    ];
+
     result = lib.lists.forEach cfg.instances (
       param: (lib.rmatch.match param [
         [{type = "github";} (mkGitHub param)]
@@ -84,7 +100,14 @@ in {
 
       users.groups.${cfg.group} = {};
 
-      services = lib.mkMerge result;
+      services =
+        lib.mkMerge (result ++ extra);
+
+      systemd.services =
+        cfg.instances
+        |> builtins.filter (i: i.type == "forgejo")
+        |> map patchForgejo
+        |> lib.mkMerge;
     };
 
   meta = {
