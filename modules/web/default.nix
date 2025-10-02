@@ -125,18 +125,18 @@ in {
             path = "/srv";
             mode = "browse";
             alias = [];
-            extra = ''
+            extra = "
               add_before_body /.html/top.html;
               add_after_body /.html/bot.html;
               autoindex_localtime on;
               autoindex_exact_size on;
-              sub_filter '<html>' '\';
-              sub_filter '<head><title>Index of $uri</title></head>' '\';
-              sub_filter '<body bgcolor="white">' '\';
-              sub_filter '</body>' '\';
-              sub_filter '</html>' '\';
+              sub_filter '<html>' '';
+              sub_filter '<head><title>Index of $uri</title></head>' '';
+              sub_filter '<body bgcolor=\"white\">' '';
+              sub_filter '</body>' '';
+              sub_filter '</html>' '';
               sub_filter_once on;
-            '';
+            ";
           };
         })
       ];
