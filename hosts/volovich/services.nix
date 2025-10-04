@@ -32,6 +32,12 @@ in {
     www = {
       enable = true;
       instance = 3;
+      cdn = {
+        "cdn.xinux.uz" = {
+          path = "/srv/xinux";
+          mode = "browse";
+        };
+      };
     };
 
     # Nameserver
