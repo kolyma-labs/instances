@@ -62,6 +62,7 @@ in {
 
     services.keycloak = {
       inherit (cfg) enable;
+      initialAdminPassword = "some";
       database = {
         type = "postgresql";
         passwordFile = cfg.password;
