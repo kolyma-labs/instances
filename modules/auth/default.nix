@@ -8,7 +8,7 @@
   # Shortcut domains
   base = "floss.uz";
   domain = "auth.${base}";
-  temple = "slave.${base}";
+  temple = "slave.${domain}";
 in {
   options = {
     kolyma.auth = {
@@ -32,51 +32,31 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.nginx.virtualHosts = {
-      ${domain} = {
-        enableACME = true;
-        forceSSL = true;
+    services.nginx.virtualHosts.${domain} = {
+      enableACME = true;
+      forceSSL = true;
 
-        extraConfig = ''
-          access_log /var/log/nginx/${domain}-access.log;
-          error_log /var/log/nginx/${domain}-error.log;
-        '';
+      extraConfig = ''
+        access_log /var/log/nginx/${domain}-access.log;
+        error_log /var/log/nginx/${domain}-error.log;
+      '';
 
-        locations = {
-          "= /" = {
-            extraConfig = ''
-              return 302 /realms/${cfg.realm}/account;
-            '';
-          };
-
-          "/" = {
-            extraConfig = ''
-              proxy_pass http://${
-                config.services.keycloak.settings.http-host
-              }:${
-                toString config.services.keycloak.settings.http-port
-              };
-              proxy_buffer_size 8k;
-            '';
-          };
+      locations = {
+        "= /" = {
+          extraConfig = ''
+            return 302 /realms/${cfg.realm}/account;
+          '';
         };
-      };
 
-      ${temple} = {
-        enableACME = true;
-        forceSSL = true;
-
-        locations = {
-          "/" = {
-            extraConfig = ''
-              proxy_pass http://${
-                config.services.keycloak.settings.http-host
-              }:${
-                toString config.services.keycloak.settings.http-port
-              };
-              proxy_buffer_size 8k;
-            '';
-          };
+        "/" = {
+          extraConfig = ''
+            proxy_pass http://${
+              config.services.keycloak.settings.http-host
+            }:${
+              toString config.services.keycloak.settings.http-port
+            };
+            proxy_buffer_size 8k;
+          '';
         };
       };
     };
