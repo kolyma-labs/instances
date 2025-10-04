@@ -55,6 +55,10 @@ in {
         enforced = "body";
       };
 
+      dmarcReporting = {
+        enable = true;
+      };
+
       # Generating hashed passwords:
       # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
       loginAccounts = {
