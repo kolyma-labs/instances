@@ -7,6 +7,8 @@
   bind = import ./bind;
   container = import ./container;
   extra = import ./extra;
+  gate = import ./gate;
+  mail = import ./mail;
   matrix = import ./matrix;
   runner = import ./runner;
   users = import ./users;

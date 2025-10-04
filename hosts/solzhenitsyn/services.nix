@@ -2,6 +2,7 @@
   imports = [
     outputs.nixosModules.web
     outputs.nixosModules.bind
+    outputs.nixosModules.gate
   ];
 
   # Kolyma services
@@ -16,6 +17,10 @@
     nameserver = {
       enable = true;
       type = "slave";
+    };
+
+    gate = {
+      enable = false;
     };
   };
 }

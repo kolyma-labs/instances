@@ -7,6 +7,7 @@
     outputs.nixosModules.web
     outputs.nixosModules.auth
     outputs.nixosModules.bind
+    outputs.nixosModules.mail
   ];
 
   sops.secrets = {
@@ -34,6 +35,11 @@
     auth = {
       enable = true;
       password = config.sops.secrets."auth/database".path;
+    };
+
+    mail = {
+      enable = false;
+      domain = "floss.uz";
     };
   };
 }
