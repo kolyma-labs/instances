@@ -5,7 +5,7 @@
   inputs,
   ...
 }: let
-  cfg = config.services.tarmoqchi;
+  cfg = config.kolyma.gate;
 
   management = {
     sopsFile = ../../secrets/gateway.yaml;
@@ -29,6 +29,12 @@ in {
         default = 9876;
         description = "Port to assign gateway to.";
       };
+
+      domain = lib.mkOption {
+        type = lib.types.str;
+        default = "tarmoqchi.uz";
+        description = "The domain to be hosted with.";
+      };
     };
   };
 
@@ -44,24 +50,22 @@ in {
 
     services.tarmoqchi = {
       enable = true;
-      port = config.kolyma.gate.port;
-      proxy-reverse.domain = "tarmoqchi.uz";
-
+      port = cfg.port;
+      proxy-reverse.domain = cfg.domain;
       github = {
         id = config.sops.secrets."tarmoqchi/github/id".path;
         secret = config.sops.secrets."tarmoqchi/github/secret".path;
       };
-
       database = {
         passwordFile = config.sops.secrets."tarmoqchi/database".path;
       };
     };
 
     security.acme = {
-      certs."tarmoqchi.uz" = {
+      certs."${cfg.domain}" = {
         dnsProvider = "rfc2136";
         dnsPropagationCheck = false;
-        extraDomainNames = ["*.tarmoqchi.uz"];
+        extraDomainNames = ["*.${cfg.domain}"];
 
         environmentFile = pkgs.writeTextFile {
           name = "rfc2136.env";
@@ -76,7 +80,7 @@ in {
     };
 
     services.nginx.virtualHosts = {
-      "${cfg.proxy-reverse.domain}" = {
+      "${cfg.domain}" = {
         forceSSL = true;
         enableACME = true;
         acmeRoot = null;
@@ -86,9 +90,9 @@ in {
         };
       };
 
-      "*.${cfg.proxy-reverse.domain}" = {
+      "*.${cfg.domain}" = {
         forceSSL = true;
-        useACMEHost = "tarmoqchi.uz";
+        useACMEHost = cfg.domain;
         acmeRoot = null;
         locations."/" = {
           proxyPass = "http://127.0.0.1:${toString cfg.port}";
