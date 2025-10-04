@@ -14,6 +14,7 @@
         tokenFile = param.token;
         replace = true;
         extraLabels = [param.name];
+        extraPackages = [pkgs.nodejs_24];
         package = pkgs.unstable.github-runner;
         serviceOverrides = {
           ProtectSystem = "full";
