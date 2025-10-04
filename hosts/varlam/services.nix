@@ -1,8 +1,19 @@
-{outputs, ...}: {
+{
+  outputs,
+  config,
+  ...
+}: {
   imports = [
     outputs.nixosModules.web
+    outputs.nixosModules.auth
     outputs.nixosModules.bind
   ];
+
+  sops.secrets = {
+    "auth/database" = {
+      sopsFile = ../../secrets/floss.yaml;
+    };
+  };
 
   # Kolyma services
   kolyma = {
@@ -17,6 +28,12 @@
     nameserver = {
       enable = true;
       type = "master";
+    };
+
+    # Keycloak Management
+    auth = {
+      enable = true;
+      password = config.sops.secrets."auth/database".path;
     };
   };
 }
