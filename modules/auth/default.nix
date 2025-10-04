@@ -8,7 +8,6 @@
   # Shortcut domains
   base = "floss.uz";
   domain = "auth.${base}";
-  temple = "slave.${domain}";
 in {
   options = {
     kolyma.auth = {
@@ -63,14 +62,12 @@ in {
 
     services.keycloak = {
       inherit (cfg) enable;
-      initialAdminPassword = "some";
       database = {
         type = "postgresql";
         passwordFile = cfg.password;
       };
       settings = {
         hostname = domain;
-        hostname-admin = temple;
         http-host = "127.0.0.1";
         http-port = 8080;
         proxy-headers = "xforwarded";
