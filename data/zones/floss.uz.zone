@@ -19,14 +19,11 @@ www    IN    CNAME floss.uz.
 auth        IN    CNAME ns1.kolyma.uz.
 
 ; Standartizations
-std    IN    CNAME floss-uz.github.io.
-draft  IN    CNAME floss-uz.github.io.
-
-; Trash contents
-trash  IN    CNAME floss-uz.github.io.
+std         IN    CNAME floss-uz.github.io.
+draft       IN    CNAME floss-uz.github.io.
 
 ; Awesome contents
-awesome IN   CNAME floss-uz.github.io.
+awesome     IN   CNAME floss-uz.github.io.
 
 ; Matrix & Coturn server
 chat        IN    A    65.109.74.214
