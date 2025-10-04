@@ -14,10 +14,13 @@ $TTL 86400
 @      IN    A     65.109.74.214
 @      IN    AAAA  2a01:4f9:3071:31ce::
 www    IN    CNAME floss.uz.
-draft  IN    CNAME floss-uz.github.io.
+
+; Authentication IDM
+auth        IN    CNAME ns1.kolyma.uz.
 
 ; Standartizations
 std    IN    CNAME floss-uz.github.io.
+draft  IN    CNAME floss-uz.github.io.
 
 ; Trash contents
 trash  IN    CNAME floss-uz.github.io.
@@ -30,8 +33,6 @@ chat        IN    A    65.109.74.214
 chat        IN    AAAA 2a01:4f9:3071:31ce::
 matrix      IN    A    65.109.74.214
 matrix      IN    AAAA 2a01:4f9:3071:31ce::
-auth        IN    A    65.109.74.214
-auth        IN    AAAA 2a01:4f9:3071:31ce::
 call        IN    A    65.109.74.214
 call        IN    AAAA 2a01:4f9:3071:31ce::
 livekit     IN    A    65.109.74.214
