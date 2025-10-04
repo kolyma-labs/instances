@@ -52,7 +52,7 @@ _imap._tcp        IN  SRV   5 0 143 mail.floss.uz.
 _imaps._tcp       IN  SRV   5 0 993 mail.floss.uz.
 _dmarc            IN  TXT   "v=DMARC1; p=none"
 mail._domainkey   IN  TXT   ( "v=DKIM1; k=rsa; "
-      "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCHR3DlCEG4En2904+17lCM/fITIr0cast/M5sUixYDLt8th/o4WCrBc+dBwaZNkprtl4CxB2WBI/P7rmGHyUzYqWIbQpxzvyhSLIRvqghBd8Cn44/xRyy/vHKsiiJ3bWn8ojEm2ccl4YwRT3ceDch36LkSruuyjUio3qGTm/OBwIDAQAB" )
+      "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCqUZfhFXEDmTd8hC8pwLNYASUPbFIfIvr01mpztaZGg/++PoDxMus2esO7uk1reACNkyNgT7gFo4RHYCXJvTUIqDIR8a8PpLyp1yW/d3YRuHpbomoLYRTVbDeks4h0xfy7abib3lOEuddUonfwfFM85rjjYshShRHG9ZUNcdU+VwIDAQAB" )
 
 ; GitHub Verifications
 _gh-floss-uz-o           IN TXT      33adfc2641
