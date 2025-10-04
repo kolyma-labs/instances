@@ -126,24 +126,33 @@ in {
       tls-auth ${cfg.secrets.server.tls} 0
     '';
 
-    environment.etc."openvpn/output.ovpn" = {
-      text = ''
-        client
-        dev tun
-        remote "${cfg.domain}"
-        port ${toString cfg.port}
-        nobind
-        cipher AES-256-CBC
-        comp-lzo adaptive
-        resolv-retry infinite
-        persist-key
-        persist-tun
-        tls-client
-        key-direction 1
+    environment.etc =
+      lib.mkIf
+      (
+        cfg.client.secrets.key
+        != null
+        && cfg.client.secrets.cert
+        != null
+      ) {
+        "openvpn/output.ovpn" = {
+          text = ''
+            client
+            dev tun
+            remote "${cfg.domain}"
+            port ${toString cfg.port}
+            nobind
+            cipher AES-256-CBC
+            comp-lzo adaptive
+            resolv-retry infinite
+            persist-key
+            persist-tun
+            tls-client
+            key-direction 1
 
-      '';
-      mode = "600";
-    };
+          '';
+          mode = "600";
+        };
+      };
 
     system.activationScripts.openvpn-addkey = ''
       f="/etc/openvpn/output.ovpn"
