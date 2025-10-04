@@ -8,7 +8,7 @@
   # Shortcut domains
   base = "floss.uz";
   domain = "auth.${base}";
-  temple = "slave.${domain}";
+  temple = "slave.${base}";
 in {
   options = {
     kolyma.auth = {
