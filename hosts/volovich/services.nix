@@ -36,6 +36,9 @@ in {
         "cdn.xinux.uz" = {
           path = "/srv/xinux";
           mode = "browse";
+          extra = ''
+            autoindex_format json;
+          '';
         };
       };
     };
