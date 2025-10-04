@@ -32,7 +32,7 @@
 
     # Keycloak Management
     auth = {
-      enable = false;
+      enable = true;
       password = config.sops.secrets."auth/database".path;
     };
   };
