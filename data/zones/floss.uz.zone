@@ -17,7 +17,7 @@ www    IN    CNAME floss.uz.
 
 ; Authentication IDM
 auth        IN    CNAME ns1.kolyma.uz.
-slave.auth        IN    CNAME ns1.kolyma.uz.
+slave        IN    CNAME ns1.kolyma.uz.
 
 ; Standartizations
 std         IN    CNAME floss-uz.github.io.
