@@ -95,7 +95,6 @@ in {
         http-port = 8080;
         proxy-headers = "xforwarded";
         http-enabled = true;
-        features = ["hostname:v2"];
       };
     };
   };
