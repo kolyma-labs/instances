@@ -44,7 +44,7 @@ in {
 
     services.tarmoqchi = {
       enable = true;
-      port = 9876;
+      port = config.kolyma.gate.port;
       proxy-reverse.domain = "tarmoqchi.uz";
 
       github = {
