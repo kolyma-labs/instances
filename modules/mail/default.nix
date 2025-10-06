@@ -37,7 +37,6 @@ in {
     sops.secrets = {
       "mail/hashed" = {
         key = "mail/hashed";
-        owner = "stalwart-mail";
         sopsFile = ../../secrets/mail.yaml;
       };
     };
