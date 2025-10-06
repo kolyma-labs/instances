@@ -68,12 +68,12 @@ in {
               protocol = "imap";
             };
             jmap = {
-              bind = "[::]:8080";
+              bind = "[::]:8081";
               url = "https://mail.${cfg.domain}";
               protocol = "jmap";
             };
             management = {
-              bind = ["127.0.0.1:8080"];
+              bind = ["127.0.0.1:8081"];
               protocol = "http";
             };
           };
@@ -146,7 +146,7 @@ in {
         forceSSL = true;
         enableACME = true;
         locations."/" = {
-          proxyPass = "http://127.0.0.1:8080";
+          proxyPass = "http://127.0.0.1:8081";
         };
         serverAliases = [
           "mta-sts.${cfg.domain}"
