@@ -16,6 +16,7 @@
           notify yes;
           also-notify { ${lib.concatStringsSep "; " config.kolyma.nameserver.slaves}; };
           allow-update { ${lib.concatStringsSep "; " config.kolyma.nameserver.slaves}; localhost; };
+          allow-transfer { key mail; };
         ''}
       '';
     }
@@ -65,7 +66,14 @@
       inherit (config.kolyma.nameserver) enable;
       directory = "/var/bind";
       zones = zonesMap config.kolyma.nameserver.zones config.kolyma.nameserver.type;
-      extraConfig = config.kolyma.nameserver.extra;
+      extraConfig = ''
+        ${config.kolyma.nameserver.extra}
+
+        key "mail" {
+          algorithm hmac-sha256;
+          secret "Or6lPEdZUKLL1DejEr0/4TsP+5RnOvqOyE5RGmYLJH0=";
+        };
+      '';
     };
 
     networking = {
