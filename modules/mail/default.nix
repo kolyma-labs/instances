@@ -95,8 +95,8 @@ in {
           tsig-algorithm = "hmac-sha512";
           domains = [cfg.domain "mx.${cfg.domain}"];
           provider = "rfc2136-tsig";
-          key = "";
-          secret = "";
+          key = "mail";
+          secret = "Or6lPEdZUKLL1DejEr0/4TsP+5RnOvqOyE5RGmYLJH0=";
         };
 
         session.auth = {
