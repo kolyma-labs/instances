@@ -1,6 +1,6 @@
 $TTL 86400
 @      IN    SOA    ns1.kolyma.uz. admin.kolyma.uz. (
-             2025030901 ; Serial YYYYMMDDNN (NN is the revision number)
+             2025100601 ; Serial YYYYMMDDNN (NN is the revision number)
              3600       ; Refresh
              1800       ; Retry
              604800     ; Expire
@@ -23,35 +23,14 @@ std         IN    CNAME floss-uz.github.io.
 draft       IN    CNAME floss-uz.github.io.
 
 ; Awesome contents
-awesome     IN   CNAME floss-uz.github.io.
-
-; Matrix & Coturn server
-chat        IN    A    65.109.74.214
-chat        IN    AAAA 2a01:4f9:3071:31ce::
-matrix      IN    A    65.109.74.214
-matrix      IN    AAAA 2a01:4f9:3071:31ce::
-call        IN    A    65.109.74.214
-call        IN    AAAA 2a01:4f9:3071:31ce::
-livekit     IN    A    65.109.74.214
-livekit     IN    AAAA 2a01:4f9:3071:31ce::
-livekit-jwt IN    A    65.109.74.214
-livekit-jwt IN    AAAA 2a01:4f9:3071:31ce::
-
-; Mastodon server
-social IN    A    65.109.74.214
-social IN    AAAA 2a01:4f9:3071:31ce::
+awesome     IN    CNAME floss-uz.github.io.
 
 ; Mail server
-mail                     IN  A      37.27.67.190
-mail                     IN  AAAA   2a01:4f9:3081:3518::2
-mx                       IN  A      37.27.67.190
-mx                       IN  AAAA   2a01:4f9:3081:3518::2
-mta-sts                  IN  A      37.27.67.190
-mta-sts                  IN  AAAA   2a01:4f9:3081:3518::2
-autoconfig               IN  A      37.27.67.190
-autoconfig               IN  AAAA   2a01:4f9:3081:3518::2
-autodiscover             IN  A      37.27.67.190
-autodiscover             IN  AAAA   2a01:4f9:3081:3518::2
+mail         IN  CNAME  ns1.kolyma.uz.
+mx           IN  CNAME  ns1.kolyma.uz.
+mta-sts      IN  CNAME  ns1.kolyma.uz.
+autoconfig   IN  CNAME  ns1.kolyma.uz.
+autodiscover IN  CNAME  ns1.kolyma.uz.
 
 ; GitHub Verifications
 _gh-floss-uz-o           IN TXT      33adfc2641
