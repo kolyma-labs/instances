@@ -47,6 +47,10 @@ in {
       package = pkgs.unstable.stalwart-mail;
       openFirewall = true;
 
+      credentials = {
+        "password" = cfg.service;
+      };
+
       settings = {
         server = {
           hostname = "mx.${cfg.domain}";
@@ -113,7 +117,7 @@ in {
               {
                 class = "individual";
                 name = "postmaster";
-                secret = "%{file:${cfg.service}}%";
+                secret = "%{file:/run/credentials/stalwart-mail.service/password}%";
                 email = [
                   "abuse@${cfg.domain}"
                   "security@${cfg.domain}"
@@ -136,7 +140,7 @@ in {
         };
         authentication.fallback-admin = {
           user = "orzklv";
-          secret = "%{file:${cfg.service}}%";
+          secret = "%{file:/run/credentials/stalwart-mail.service/password}%";
         };
       };
     };
