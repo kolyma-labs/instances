@@ -41,8 +41,8 @@ _imap._tcp         IN SRV   0 1 993 mx.floss.uz.
 _submission._tcp   IN SRV   0 1 465 mx.floss.uz.
 _dmarc             IN TXT   "v=DMARC1; p=reject; rua=mailto:postmaster@floss.uz; ruf=mailto:postmaster@floss.uz"
 _smtp._tls         IN TXT   "v=TLSRPTv1; rua=mailto:postmaster@floss.uz"
-202510e._domainkey IN TXT   "v=DKIM1; k=ed25519; h=sha256; p=IAtDDu7Rvl+3tbhMky3fbBoc9gmq46YB/AiYiDI0WnY="
-202510r._domainkey IN TXT   "v=DKIM1; k=rsa; h=sha256; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvJJd5EkYZ2i93nxXPYjFcm0p4vhrY0YafBBLfPCI/DU2gVpGWieGEBCx4nWI89/3I1w6GhDNNK+BdNTWEe3u1Dj0GSe0S8RrNy+wRH6c5KndDre86T/siwKCjEp2vdDTnmq01Rx3vtouJm5UMpopN9h8rleAlJJB5H/wqlnWC5jcObKmttnGAIn" "sRZkUy1TyE3yLv/733Rn/+SyG42Vx2Et02rO40EYI8Q7RWBLKRxHgLjXDrfd8upEoxjlzg123oQDEtdzoW8rTDU33rlxUHN0DxwN4IewOo1VlCU+3XK6rWrM5KH0HVqnH9DtabsiDSKhOXQ/74SUTudCtkxj3dwIDAQAB"
+202510e._domainkey IN TXT   "v=DKIM1; k=ed25519; h=sha256; p=myPNGQEWTzNZwRpHbEDZ0uF0bNNZBrv2oR2KqecYink="
+202510r._domainkey IN TXT   "v=DKIM1; k=rsa; h=sha256; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAroSkJTfohoxrTQSyqpaVDrD7n9XMcXuBLVeapK/fw/FWu79wPA/JrOdxu7VXLn69/ZSZqeFm6BXU9ihoH8ilBOn8L4Ya0s07f7hRvPY75TPjM+yrnYy3N9BC0B2lG0Mud+C+Yj5BN/C4wN1L2Bg3y4q2HyTM8VNSw37izPkdjStfzbUXgDhZht2" "1loa5yySDLBVy5ShzY67Ouu87qigVpvMcCBL+kuoMZ4dRmidGinOQVnhraft+KzZrRILuua1EfEtVlQgY0hBIYC13IKqJifpbU5AvUCOKnLgY8dTcPcfCWAg4khr80jDyVb96LQDMp48YeNZnrLnosxXGsfdkfQIDAQAB"
 
 ; GitHub Verifications
 _gh-floss-uz-o           IN TXT      33adfc2641
