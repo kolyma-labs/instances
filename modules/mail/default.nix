@@ -70,11 +70,6 @@ in {
               bind = "[::]:993";
               protocol = "imap";
             };
-            jmap = {
-              bind = "[::]:8081";
-              url = "https://mail.${cfg.domain}";
-              protocol = "jmap";
-            };
             management = {
               bind = ["127.0.0.1:8081"];
               protocol = "http";
