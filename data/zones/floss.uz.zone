@@ -26,16 +26,23 @@ draft       IN    CNAME floss-uz.github.io.
 awesome     IN    CNAME floss-uz.github.io.
 
 ; Mail server
-mail         IN  A      37.27.67.190
-mail         IN  AAAA   2a01:4f9:3081:3518::2
-mx           IN  A      37.27.67.190
-mx           IN  AAAA   2a01:4f9:3081:3518::2
-mta-sts      IN  A      37.27.67.190
-mta-sts      IN  AAAA   2a01:4f9:3081:3518::2
-autoconfig   IN  A      37.27.67.190
-autoconfig   IN  AAAA   2a01:4f9:3081:3518::2
-autodiscover IN  A      37.27.67.190
-autodiscover IN  AAAA   2a01:4f9:3081:3518::2
+mx                 IN A     37.27.67.190
+mx                 IN AAAA  2a01:4f9:3081:3518::2
+@                  IN MX    10 mx.floss.uz.
+@                  IN TXT   "v=spf1 mx ra=postmaster -all"
+mx                 IN TXT   "v=spf1 a ra=postmaster -all"
+mail               IN CNAME mx.floss.uz.
+mta-sts            IN CNAME mx.floss.uz.
+mta-sts            IN CNAME mx.floss.uz.
+autoconfig         IN CNAME mx.floss.uz.
+autoconfig         IN CNAME mx.floss.uz.
+autodiscover       IN CNAME mx.floss.uz.
+_imap._tcp         IN SRV   0 1 993 mx.floss.uz.
+_submission._tcp   IN SRV   0 1 465 mx.floss.uz.
+_dmarc             IN TXT   "v=DMARC1; p=reject; rua=mailto:postmaster@floss.uz; ruf=mailto:postmaster@floss.uz"
+_smtp._tls         IN TXT   "v=TLSRPTv1; rua=mailto:postmaster@floss.uz"
+202510e._domainkey IN TXT   "v=DKIM1; k=ed25519; h=sha256; p=IAtDDu7Rvl+3tbhMky3fbBoc9gmq46YB/AiYiDI0WnY="
+202510r._domainkey IN TXT   "v=DKIM1; k=rsa; h=sha256; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvJJd5EkYZ2i93nxXPYjFcm0p4vhrY0YafBBLfPCI/DU2gVpGWieGEBCx4nWI89/3I1w6GhDNNK+BdNTWEe3u1Dj0GSe0S8RrNy+wRH6c5KndDre86T/siwKCjEp2vdDTnmq01Rx3vtouJm5UMpopN9h8rleAlJJB5H/wqlnWC5jcObKmttnGAIn" "sRZkUy1TyE3yLv/733Rn/+SyG42Vx2Et02rO40EYI8Q7RWBLKRxHgLjXDrfd8upEoxjlzg123oQDEtdzoW8rTDU33rlxUHN0DxwN4IewOo1VlCU+3XK6rWrM5KH0HVqnH9DtabsiDSKhOXQ/74SUTudCtkxj3dwIDAQAB"
 
 ; GitHub Verifications
 _gh-floss-uz-o           IN TXT      33adfc2641
