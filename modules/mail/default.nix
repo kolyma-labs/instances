@@ -43,7 +43,7 @@ in {
 
     services.stalwart-mail = {
       enable = true;
-      package = pkgs.unstable.stalwart-mail;
+      package = pkgs.stalwart-mail;
       openFirewall = true;
 
       credentials = {
