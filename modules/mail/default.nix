@@ -91,12 +91,12 @@ in {
           directory = "https://acme-v02.api.letsencrypt.org/directory";
           challenge = "dns-01";
           contact = "admin@kolyma.uz";
-          host = "127.0.0.1";
-          tsig-algorithm = "hmac-sha512";
+          host = "37.27.67.190";
+          tsig-algorithm = "hmac-sha256";
           domains = [cfg.domain "mx.${cfg.domain}"];
           provider = "rfc2136-tsig";
-          key = "mail";
-          secret = "Or6lPEdZUKLL1DejEr0/4TsP+5RnOvqOyE5RGmYLJH0=";
+          key = "retard.";
+          secret = "2hTccy12ZpUfr3bJfqdjwe0AiMLvCOOT3jHJR6OmI94=";
         };
 
         session.auth = {

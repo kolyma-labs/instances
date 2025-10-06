@@ -16,7 +16,9 @@
           notify yes;
           also-notify { ${lib.concatStringsSep "; " config.kolyma.nameserver.slaves}; };
           allow-update { ${lib.concatStringsSep "; " config.kolyma.nameserver.slaves}; localhost; };
-          allow-transfer { key mail; };
+          update-policy {
+            grant retard. name _acme-challenge.${zone}. txt;
+          };
         ''}
       '';
     }
@@ -69,9 +71,9 @@
       extraConfig = ''
         ${config.kolyma.nameserver.extra}
 
-        key "mail" {
+        key "retard." {
           algorithm hmac-sha256;
-          secret "Or6lPEdZUKLL1DejEr0/4TsP+5RnOvqOyE5RGmYLJH0=";
+          secret "2hTccy12ZpUfr3bJfqdjwe0AiMLvCOOT3jHJR6OmI94=";
         };
       '';
     };

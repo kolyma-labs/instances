@@ -70,10 +70,10 @@ in {
         environmentFile = pkgs.writeTextFile {
           name = "rfc2136.env";
           text = ''
-            RFC2136_TSIG_KEY=
-            RFC2136_TSIG_SECRET=
-            RFC2136_TSIG_ALGO=hmac-sha512.
-            RFC2136_NAMESERVER=ns1.kolyma.uz
+            RFC2136_TSIG_KEY=retard.
+            RFC2136_TSIG_SECRET=2hTccy12ZpUfr3bJfqdjwe0AiMLvCOOT3jHJR6OmI94=
+            RFC2136_TSIG_ALGO=hmac-sha256.
+            RFC2136_NAMESERVER=37.27.67.190
           '';
         };
       };
