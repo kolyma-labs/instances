@@ -11,11 +11,13 @@
     then {
       inherit master file;
       inherit (config.kolyma.nameserver) slaves;
+
+      # This is something I used to do before update-policy
+      # allow-update { ${lib.concatStringsSep "; " config.kolyma.nameserver.slaves}; localhost; };
       extraConfig = ''
         ${lib.optionalString (config.kolyma.nameserver.slaves != []) ''
           notify yes;
           also-notify { ${lib.concatStringsSep "; " config.kolyma.nameserver.slaves}; };
-          allow-update { ${lib.concatStringsSep "; " config.kolyma.nameserver.slaves}; localhost; };
           update-policy {
             grant retard. name _acme-challenge.${zone}. txt;
           };
