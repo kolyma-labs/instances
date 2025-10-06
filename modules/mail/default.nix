@@ -142,71 +142,18 @@ in {
     };
 
     services.nginx.virtualHosts = {
-      "mail.floss.uz" = {
+      "mail.${cfg.domain}" = {
         forceSSL = true;
         enableACME = true;
         locations."/" = {
           proxyPass = "http://127.0.0.1:8080";
         };
         serverAliases = [
-          "mta-sts.floss.uz"
-          "autoconfig.floss.uz"
-          "autodiscover.floss.uz"
+          "mta-sts.${cfg.domain}"
+          "autoconfig.${cfg.domain}"
+          "autodiscover.${cfg.domain}"
         ];
       };
     };
-
-    # mailserver = {
-    #   enable = true;
-    #   fqdn = "mail.${cfg.domain}";
-    #   domains = [cfg.domain];
-
-    #   localDnsResolver = false;
-    #   indexDir = "/var/lib/dovecot/indices";
-    #   fullTextSearch = {
-    #     enable = true;
-    #     # index new email as they arrive
-    #     autoIndex = true;
-    #     # forcing users to write body
-    #     enforced = "body";
-    #   };
-
-    #   # Generating hashed passwords:
-    #   # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
-    #   loginAccounts = {
-    #     "admin@${cfg.domain}" = {
-    #       quota = "2G";
-    #       hashedPasswordFile = cfg.service;
-    #       aliases = [
-    #         "abuse@${cfg.domain}"
-    #         "security@${cfg.domain}"
-    #         "alerts@${cfg.domain}"
-    #         "postmaster@${cfg.domain}"
-    #       ];
-    #     };
-
-    #     "support@${cfg.domain}" = {
-    #       quota = "2G";
-    #       hashedPasswordFile = cfg.service;
-    #       aliases = ["developers@${cfg.domain}" "maintainers@${cfg.domain}"];
-    #     };
-
-    #     "noreply@${cfg.domain}" = {
-    #       quota = "2G";
-    #       sendOnly = true;
-    #       hashedPasswordFile = cfg.service;
-    #     };
-
-    #     "orzklv@${cfg.domain}" = {
-    #       quota = "2G";
-    #       hashedPasswordFile = cfg.service;
-    #       aliases = ["sakhib@${cfg.domain}"];
-    #     };
-    #   };
-
-    #   # Use Let's Encrypt certificates. Note that this needs to set up a stripped
-    #   # down nginx and opens port 80.
-    #   certificateScheme = "acme-nginx";
-    # };
   };
 }
