@@ -7,8 +7,13 @@
 }: let
   cfg = config.kolyma.mail;
 in {
+  disabledModules = [
+    "services/mail/stalwart-mail.nix"
+  ];
+
   imports = [
-    inputs.simple-nixos-mailserver.nixosModule
+    # inputs.simple-nixos-mailserver.nixosModule
+    "${inputs.nixpkgs-unstable}/nixos/modules/services/mail/stalwart-mail.nix"
   ];
 
   options = {
@@ -43,7 +48,7 @@ in {
 
     services.stalwart-mail = {
       enable = true;
-      package = pkgs.stalwart-mail;
+      package = pkgs.unstable.stalwart-mail;
       openFirewall = true;
 
       credentials = {
@@ -101,7 +106,6 @@ in {
 
         storage.directory = "in-memory";
         session.rcpt.directory = "'in-memory'";
-        queue.outbound.next-hop = "'local'";
 
         directory = {
           "imap".lookup.domains = [cfg.domain];
