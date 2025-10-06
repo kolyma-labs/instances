@@ -26,11 +26,16 @@ draft       IN    CNAME floss-uz.github.io.
 awesome     IN    CNAME floss-uz.github.io.
 
 ; Mail server
-mail         IN  CNAME  ns1.kolyma.uz.
-mx           IN  CNAME  ns1.kolyma.uz.
-mta-sts      IN  CNAME  ns1.kolyma.uz.
-autoconfig   IN  CNAME  ns1.kolyma.uz.
-autodiscover IN  CNAME  ns1.kolyma.uz.
+mail         IN  A      37.27.67.190
+mail         IN  AAAA   2a01:4f9:3081:3518::2
+mx           IN  A      37.27.67.190
+mx           IN  AAAA   2a01:4f9:3081:3518::2
+mta-sts      IN  A      37.27.67.190
+mta-sts      IN  AAAA   2a01:4f9:3081:3518::2
+autoconfig   IN  A      37.27.67.190
+autoconfig   IN  AAAA   2a01:4f9:3081:3518::2
+autodiscover IN  A      37.27.67.190
+autodiscover IN  AAAA   2a01:4f9:3081:3518::2
 
 ; GitHub Verifications
 _gh-floss-uz-o           IN TXT      33adfc2641
