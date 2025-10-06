@@ -38,7 +38,7 @@
     };
 
     mail = {
-      enable = true;
+      enable = false;
       domain = "floss.uz";
     };
   };
