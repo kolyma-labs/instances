@@ -141,6 +141,21 @@ in {
       };
     };
 
+    services.nginx.virtualHosts = {
+      "mail.floss.uz" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:8080";
+        };
+        serverAliases = [
+          "mta-sts.floss.uz"
+          "autoconfig.floss.uz"
+          "autodiscover.floss.uz"
+        ];
+      };
+    };
+
     # mailserver = {
     #   enable = true;
     #   fqdn = "mail.${cfg.domain}";
