@@ -65,7 +65,6 @@
       inherit (config.kolyma.nameserver) enable;
       directory = "/var/bind";
       zones = zonesMap config.kolyma.nameserver.zones config.kolyma.nameserver.type;
-      extraConfig = config.kolyma.nameserver.extra;
       extraConfig = ''
         recursion yes;
         allow-recursion { ${lib.concatStringsSep "; " (with config.kolyma.nameserver; masters ++ slaves)}; localhost; };
