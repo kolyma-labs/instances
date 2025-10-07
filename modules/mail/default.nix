@@ -100,6 +100,9 @@ in {
           key = "retard.";
           secret = "2hTccy12ZpUfr3bJfqdjwe0AiMLvCOOT3jHJR6OmI94=";
           # domains = [cfg.domain "mx.${cfg.domain}"];
+          ttl = "5m";
+          polling-interval = "15s";
+          propagation-timeout = "1m";
         };
 
         session.auth = {
