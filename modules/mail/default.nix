@@ -91,7 +91,6 @@ in {
           directory = "https://acme-v02.api.letsencrypt.org/directory";
           challenge = "dns-01";
           contact = ["admin@kolyma.uz"];
-          # domains = [cfg.domain "mx.${cfg.domain}"];
           provider = "rfc2136-tsig";
           protocol = "udp";
           default = true;
@@ -100,9 +99,10 @@ in {
           tsig-algorithm = "hmac-sha256";
           key = "retard.";
           secret = "2hTccy12ZpUfr3bJfqdjwe0AiMLvCOOT3jHJR6OmI94=";
-
+          # domains = [cfg.domain "mx.${cfg.domain}"];
           ttl = "60m";
-          propagation-timeout = "5m";
+          polling-interval = "5s";
+          propagation-timeout = "30m";
         };
 
         session.auth = {
