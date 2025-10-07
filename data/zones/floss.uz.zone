@@ -2,7 +2,7 @@ $TTL 86400
 @      IN    SOA    ns1.kolyma.uz. admin.kolyma.uz. (
              2025100701 ; Serial YYYYMMDDNN (NN is the revision number)
              60         ; Refresh
-             60         ; Retry
+             1800       ; Retry
              604800     ; Expire
              86400 )    ; Minimum TTL
 
