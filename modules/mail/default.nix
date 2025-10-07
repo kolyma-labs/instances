@@ -93,6 +93,7 @@ in {
           contact = ["admin@kolyma.uz"];
           # domains = [cfg.domain "mx.${cfg.domain}"];
           provider = "rfc2136-tsig";
+          propagation-timeout = "5m";
           protocol = "udp";
           default = true;
           host = "37.27.67.190";
