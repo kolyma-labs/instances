@@ -22,6 +22,10 @@ pkgs.stdenv.mkDerivation {
     deadnix
     alejandra
 
+    # DNS Management
+    dig.dev
+
+    # Certificate Generation
     easyrsa
     openssl
   ];
