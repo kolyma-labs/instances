@@ -93,7 +93,6 @@ in {
           contact = ["admin@kolyma.uz"];
           # domains = [cfg.domain "mx.${cfg.domain}"];
           provider = "rfc2136-tsig";
-          propagation-timeout = "5m";
           protocol = "udp";
           default = true;
           host = "37.27.67.190";
@@ -101,6 +100,9 @@ in {
           tsig-algorithm = "hmac-sha256";
           key = "retard.";
           secret = "2hTccy12ZpUfr3bJfqdjwe0AiMLvCOOT3jHJR6OmI94=";
+
+          ttl = "60m";
+          propagation-timeout = "5m";
         };
 
         session.auth = {
