@@ -2,18 +2,12 @@
   lib,
   inputs,
   config,
-  pkgs,
   ...
 }: let
   cfg = config.kolyma.mail;
 in {
-  disabledModules = [
-    "services/mail/stalwart-mail.nix"
-  ];
-
   imports = [
-    # inputs.simple-nixos-mailserver.nixosModule
-    "${inputs.nixpkgs-unstable}/nixos/modules/services/mail/stalwart-mail.nix"
+    inputs.simple-nixos-mailserver.nixosModule
   ];
 
   options = {
@@ -46,122 +40,57 @@ in {
       };
     };
 
-    services.stalwart-mail = {
+    mailserver = {
       enable = true;
-      package = pkgs.unstable.stalwart-mail;
-      openFirewall = true;
+      fqdn = "mail.${cfg.domain}";
+      domains = [cfg.domain];
 
-      credentials = {
-        "password" = cfg.service;
+      localDnsResolver = false;
+      indexDir = "/var/lib/dovecot/indices";
+      fullTextSearch = {
+        enable = true;
+        # index new email as they arrive
+        autoIndex = true;
+        # forcing users to write body
+        enforced = "body";
       };
 
-      settings = {
-        server = {
-          hostname = "mx.${cfg.domain}";
-          tls = {
-            enable = true;
-            implicit = true;
-          };
-          listener = {
-            smtp = {
-              protocol = "smtp";
-              bind = "[::]:25";
-            };
-            submissions = {
-              bind = "[::]:465";
-              protocol = "smtp";
-            };
-            imaps = {
-              bind = "[::]:993";
-              protocol = "imap";
-            };
-            management = {
-              bind = ["127.0.0.1:8081"];
-              protocol = "http";
-            };
-          };
+      # Generating hashed passwords:
+      # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
+      loginAccounts = {
+        "admin@${cfg.domain}" = {
+          quota = "2G";
+          hashedPasswordFile = cfg.service;
+          aliases = [
+            "abuse@${cfg.domain}"
+            "security@${cfg.domain}"
+            "alerts@${cfg.domain}"
+            "postmaster@${cfg.domain}"
+          ];
         };
 
-        lookup.default = {
-          inherit (cfg) domain;
-          hostname = "mx.${cfg.domain}";
+        "support@${cfg.domain}" = {
+          quota = "2G";
+          hashedPasswordFile = cfg.service;
+          aliases = ["developers@${cfg.domain}" "maintainers@${cfg.domain}"];
         };
 
-        acme."letsencrypt" = {
-          directory = "https://acme-v02.api.letsencrypt.org/directory";
-          challenge = "dns-01";
-          contact = ["admin@kolyma.uz"];
-          provider = "rfc2136-tsig";
-          protocol = "udp";
-          default = true;
-          host = "37.27.67.190";
-          port = 53;
-          tsig-algorithm = "hmac-sha256";
-          key = "retard.";
-          secret = "2hTccy12ZpUfr3bJfqdjwe0AiMLvCOOT3jHJR6OmI94=";
-          # domains = [cfg.domain "mx.${cfg.domain}"];
-          ttl = "5m";
-          polling-interval = "15s";
-          propagation-timeout = "1m";
+        "noreply@${cfg.domain}" = {
+          quota = "2G";
+          sendOnly = true;
+          hashedPasswordFile = cfg.service;
         };
 
-        session.auth = {
-          mechanisms = "[plain]";
-          directory = "'in-memory'";
-        };
-
-        storage.directory = "in-memory";
-        session.rcpt.directory = "'in-memory'";
-
-        directory = {
-          "imap".lookup.domains = [cfg.domain];
-          "in-memory" = {
-            type = "memory";
-            principals = [
-              {
-                class = "individual";
-                name = "postmaster";
-                secret = "%{file:/run/credentials/stalwart-mail.service/password}%";
-                email = [
-                  "abuse@${cfg.domain}"
-                  "security@${cfg.domain}"
-                  "alerts@${cfg.domain}"
-                  "postmaster@${cfg.domain}"
-                  "admin@${cfg.domain}"
-                ];
-              }
-            ];
-          };
-          "keycloak" = {
-            type = "oidc";
-            timeout = "15s";
-            endpoint.url = "https://auth.floss.uz/realms/floss.uz/protocol/openid-connect/userinfo";
-            endpoint.method = "userinfo";
-            fields.email = "email";
-            fields.username = "preferred_username";
-            fields.full-name = "name";
-          };
-        };
-        authentication.fallback-admin = {
-          user = "orzklv";
-          secret = "%{file:/run/credentials/stalwart-mail.service/password}%";
+        "orzklv@${cfg.domain}" = {
+          quota = "2G";
+          hashedPasswordFile = cfg.service;
+          aliases = ["sakhib@${cfg.domain}"];
         };
       };
-    };
 
-    services.nginx.virtualHosts = {
-      "mail.${cfg.domain}" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:8081";
-        };
-        serverAliases = [
-          "mta-sts.${cfg.domain}"
-          "autoconfig.${cfg.domain}"
-          "autodiscover.${cfg.domain}"
-        ];
-      };
+      # Use Let's Encrypt certificates. Note that this needs to set up a stripped
+      # down nginx and opens port 80.
+      certificateScheme = "acme-nginx";
     };
   };
 }

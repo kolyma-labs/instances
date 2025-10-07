@@ -11,16 +11,11 @@
     then {
       inherit master file;
       inherit (config.kolyma.nameserver) slaves;
-
-      # This is something I used to do before update-policy
-      # allow-update { ${lib.concatStringsSep "; " config.kolyma.nameserver.slaves}; localhost; };
       extraConfig = ''
         ${lib.optionalString (config.kolyma.nameserver.slaves != []) ''
           notify yes;
           also-notify { ${lib.concatStringsSep "; " config.kolyma.nameserver.slaves}; };
-          update-policy {
-            grant retard. name _acme-challenge.${zone}. txt;
-          };
+          allow-update { ${lib.concatStringsSep "; " config.kolyma.nameserver.slaves}; localhost; };
         ''}
       '';
     }
@@ -70,14 +65,7 @@
       inherit (config.kolyma.nameserver) enable;
       directory = "/var/bind";
       zones = zonesMap config.kolyma.nameserver.zones config.kolyma.nameserver.type;
-      extraConfig = ''
-        ${config.kolyma.nameserver.extra}
-
-        key "retard." {
-          algorithm hmac-sha256;
-          secret "2hTccy12ZpUfr3bJfqdjwe0AiMLvCOOT3jHJR6OmI94=";
-        };
-      '';
+      extraConfig = config.kolyma.nameserver.extra;
     };
 
     networking = {
