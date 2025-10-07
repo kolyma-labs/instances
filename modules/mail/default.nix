@@ -91,7 +91,7 @@ in {
           directory = "https://acme-v02.api.letsencrypt.org/directory";
           challenge = "dns-01";
           contact = ["admin@kolyma.uz"];
-          domains = [cfg.domain "mx.${cfg.domain}"];
+          # domains = [cfg.domain "mx.${cfg.domain}"];
           provider = "rfc2136-tsig";
           protocol = "udp";
           default = true;
