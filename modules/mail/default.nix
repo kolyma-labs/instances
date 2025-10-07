@@ -90,11 +90,14 @@ in {
         acme."letsencrypt" = {
           directory = "https://acme-v02.api.letsencrypt.org/directory";
           challenge = "dns-01";
-          contact = "admin@kolyma.uz";
-          host = "37.27.67.190";
-          tsig-algorithm = "hmac-sha256";
+          contact = ["admin@kolyma.uz"];
           domains = [cfg.domain "mx.${cfg.domain}"];
           provider = "rfc2136-tsig";
+          protocol = "udp";
+          default = true;
+          host = "37.27.67.190";
+          port = 53;
+          tsig-algorithm = "hmac-sha256";
           key = "retard.";
           secret = "2hTccy12ZpUfr3bJfqdjwe0AiMLvCOOT3jHJR6OmI94=";
         };
