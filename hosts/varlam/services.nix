@@ -8,11 +8,21 @@
     outputs.nixosModules.auth
     outputs.nixosModules.bind
     outputs.nixosModules.mail
+    outputs.nixosModules.matrix
   ];
 
   sops.secrets = {
     "auth/database" = {
+      format = "binary";
       sopsFile = ../../secrets/floss.yaml;
+    };
+
+    # Matrix oriented secrets
+    "matrix/server" = {
+      sopsFile = ../../secrets/matrix/server.hell;
+    };
+    "matrix/authentication" = {
+      sopsFile = ../../secrets/matrix/authentication.hell;
     };
   };
 
@@ -40,6 +50,19 @@
     mail = {
       enable = true;
       domain = "floss.uz";
+    };
+
+    matrix = {
+      enable = true;
+      domain = "floss.uz";
+
+      synapse.extra-config-files = [
+        config.sops.secrets."matrix/server".path
+      ];
+
+      matrix-authentication-service.extra-config-files = [
+        config.sops.secrets."matrix/authentication".path
+      ];
     };
   };
 }

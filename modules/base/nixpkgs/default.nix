@@ -28,7 +28,7 @@ in {
           # Add overlays your own flake exports (from overlays and pkgs dir):
           outputs.overlays.modifications
           outputs.overlays.unstable-packages
-          outputs.overlays.personal-packages
+          outputs.overlays.additional-packages
 
           # Repo overlays
           # TODO: move to mc module

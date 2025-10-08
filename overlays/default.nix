@@ -1,10 +1,17 @@
 # This file defines overlays
 {inputs, ...}: {
   # Make input added packages accesible via pkgs
-  personal-packages = final: _prev: rec {
+  additional-packages = final: prev: rec {
+    # By flake
     personal = {
       gate = inputs.gate.packages."${final.system}".default;
       khakimovs = inputs.khakimovs.packages."${final.system}".default;
+    };
+
+    # By directory
+    element-themes = prev.callPackage ./pkgs/element-themes {inherit (inputs) element-themes;};
+    element-stickerpicker = prev.callPackage ./pkgs/element-stickerpicker {
+      inherit (inputs) element-stickers maunium-stickerpicker;
     };
   };
 

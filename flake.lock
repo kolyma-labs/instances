@@ -74,6 +74,47 @@
         "type": "github"
       }
     },
+    "element-stickers": {
+      "inputs": {
+        "maunium-stickerpicker": [
+          "maunium-stickerpicker"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1747481732,
+        "narHash": "sha256-rpiClWWUN0XU9GsuClTJJ6Rpzji1uxoKSIsfHBwLPTw=",
+        "ref": "main",
+        "rev": "15a02d29fe2f1d17e7ca3fd975313f01d1d80d1c",
+        "revCount": 10,
+        "type": "git",
+        "url": "https://git.pub.solar/pub-solar/maunium-stickerpicker-nix"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "https://git.pub.solar/pub-solar/maunium-stickerpicker-nix"
+      }
+    },
+    "element-themes": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1759871300,
+        "narHash": "sha256-2WNWiq5yqb/ApwI7cQxvsr9gAckWgR1bl+oQIbKbHS0=",
+        "owner": "aaronraimist",
+        "repo": "element-themes",
+        "rev": "7ee106115de0b46699f0e57fc6071bb728471cc5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aaronraimist",
+        "ref": "master",
+        "repo": "element-themes",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -464,6 +505,23 @@
         "type": "github"
       }
     },
+    "maunium-stickerpicker": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1751213916,
+        "narHash": "sha256-P6MI+3SfQKpXyqGzZgsLBoZ2aOUbFxHbDhHbr6xJpXc=",
+        "owner": "maunium",
+        "repo": "stickerpicker",
+        "rev": "3366dbc5002046be058a71e7ed310811a122c081",
+        "type": "github"
+      },
+      "original": {
+        "owner": "maunium",
+        "ref": "master",
+        "repo": "stickerpicker",
+        "type": "github"
+      }
+    },
     "minecraft": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -751,10 +809,13 @@
         "devops-journey": "devops-journey",
         "disko": "disko",
         "efael-website": "efael-website",
+        "element-stickers": "element-stickers",
+        "element-themes": "element-themes",
         "flake-utils": "flake-utils_3",
         "floss-website": "floss-website",
         "gate": "gate",
         "khakimovs": "khakimovs",
+        "maunium-stickerpicker": "maunium-stickerpicker",
         "minecraft": "minecraft",
         "nixpkgs": "nixpkgs_7",
         "nixpkgs-unstable": "nixpkgs-unstable",
