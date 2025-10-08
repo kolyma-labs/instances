@@ -57,7 +57,7 @@
 
     # Element stickers using Maunium
     element-stickers = {
-      url = "git+https://git.pub.solar/pub-solar/maunium-stickerpicker-nix?ref=main";
+      url = "git+https://git.pub.solar/pub-solar/maunium-stickerpicker-nix";
       inputs = {
         maunium-stickerpicker.follows = "maunium-stickerpicker";
         nixpkgs.follows = "nixpkgs";
