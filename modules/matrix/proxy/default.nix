@@ -113,7 +113,7 @@ in {
         '';
       };
 
-      "stickers.chat.${cfg.domain}" = {
+      "stickers.${cfg.domain}" = {
         forceSSL = true;
         enableACME = true;
         root = pkgs.element-stickerpicker;

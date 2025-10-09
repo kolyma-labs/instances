@@ -28,13 +28,13 @@ draft       IN    CNAME floss-uz.github.io.
 awesome     IN   CNAME floss-uz.github.io.
 
 ; Matrix & Coturn server
-matrix        IN    CNAME ns1.kolyma.uz.
-mas           IN    CNAME ns1.kolyma.uz.
-chat          IN    CNAME ns1.kolyma.uz.
-call          IN    CNAME ns1.kolyma.uz.
-livekit       IN    CNAME ns1.kolyma.uz.
-livekit-jwt   IN    CNAME ns1.kolyma.uz.
-stickers.chat IN    CNAME ns1.kolyma.uz.
+matrix      IN    CNAME ns1.kolyma.uz.
+mas         IN    CNAME ns1.kolyma.uz.
+chat        IN    CNAME ns1.kolyma.uz.
+call        IN    CNAME ns1.kolyma.uz.
+livekit     IN    CNAME ns1.kolyma.uz.
+livekit-jwt IN    CNAME ns1.kolyma.uz.
+stickers    IN    CNAME ns1.kolyma.uz.
 
 ; Mastodon server
 social IN    CNAME ns1.kolyma.uz.
