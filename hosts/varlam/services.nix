@@ -13,15 +13,16 @@
 
   sops.secrets = {
     "auth/database" = {
-      format = "binary";
       sopsFile = ../../secrets/floss.yaml;
     };
 
     # Matrix oriented secrets
     "matrix/server" = {
+      format = "binary";
       sopsFile = ../../secrets/matrix/server.hell;
     };
     "matrix/authentication" = {
+      format = "binary";
       sopsFile = ../../secrets/matrix/authentication.hell;
     };
   };
