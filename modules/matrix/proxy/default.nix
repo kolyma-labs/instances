@@ -108,7 +108,7 @@ in {
         extraConfig = ''
           ${commonHeaders}
 
-          access_log /var/log/nginx/chat.${cfg.domain}-access.log combined_host;
+          access_log /var/log/nginx/chat.${cfg.domain}-access.log;
           error_log /var/log/nginx/chat.${cfg.domain}-error.log;
         '';
       };
@@ -120,7 +120,7 @@ in {
         extraConfig = ''
           ${commonHeaders}
 
-          access_log /var/log/nginx/stickers.chat.${cfg.domain}-access.log combined_host;
+          access_log /var/log/nginx/stickers.chat.${cfg.domain}-access.log;
           error_log /var/log/nginx/stickers.chat.${cfg.domain}-error.log;
         '';
       };
@@ -134,7 +134,7 @@ in {
         extraConfig = ''
           ${commonHeaders}
 
-          access_log /var/log/nginx/mas.${cfg.domain}-access.log combined_host;
+          access_log /var/log/nginx/mas.${cfg.domain}-access.log;
           error_log /var/log/nginx/mas.${cfg.domain}-error.log;
         '';
 
@@ -186,7 +186,7 @@ in {
         enableACME = lib.mkDefault true;
 
         extraConfig = ''
-          access_log /var/log/nginx/matrix.${cfg.domain}-access.log combined_host;
+          access_log /var/log/nginx/matrix.${cfg.domain}-access.log;
           error_log /var/log/nginx/matrix.${cfg.domain}-error.log;
         '';
 
