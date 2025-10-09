@@ -19,10 +19,12 @@
     # Matrix oriented secrets
     "matrix/server" = {
       format = "binary";
+      owner = "matrix-synapse";
       sopsFile = ../../secrets/matrix/server.hell;
     };
     "matrix/authentication" = {
       format = "binary";
+      owner = "matrix-authentication-service";
       sopsFile = ../../secrets/matrix/authentication.hell;
     };
   };
