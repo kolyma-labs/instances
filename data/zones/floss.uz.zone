@@ -26,20 +26,16 @@ draft       IN    CNAME floss-uz.github.io.
 awesome     IN   CNAME floss-uz.github.io.
 
 ; Matrix & Coturn server
-chat        IN    A    65.109.74.214
-chat        IN    AAAA 2a01:4f9:3071:31ce::
-matrix      IN    A    65.109.74.214
-matrix      IN    AAAA 2a01:4f9:3071:31ce::
-call        IN    A    65.109.74.214
-call        IN    AAAA 2a01:4f9:3071:31ce::
-livekit     IN    A    65.109.74.214
-livekit     IN    AAAA 2a01:4f9:3071:31ce::
-livekit-jwt IN    A    65.109.74.214
-livekit-jwt IN    AAAA 2a01:4f9:3071:31ce::
+matrix      IN    CNAME ns1.kolyma.uz.
+mas         IN    CNAME ns1.kolyma.uz.
+chat        IN    CNAME ns1.kolyma.uz.
+call        IN    CNAME ns1.kolyma.uz.
+livekit     IN    CNAME ns1.kolyma.uz.
+livekit-jwt IN    CNAME ns1.kolyma.uz.
+stickers    IN    CNAME ns1.kolyma.uz.
 
 ; Mastodon server
-social IN    A    65.109.74.214
-social IN    AAAA 2a01:4f9:3071:31ce::
+social IN    CNAME ns1.kolyma.uz.
 
 ; Mail server
 mail              IN  A     37.27.67.190
