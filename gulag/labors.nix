@@ -9,8 +9,8 @@
   aekinskjaldi = {
     username = "aekinskjaldi";
     description = "aekinskjaldi";
-    keysUrl = "https:// github.com/aekinskjaldi.keys";
-    sha256 = "10pryv8xzyb3vv12wk23xlr8c0k70ygrdjf5vw08xyzwkbrbd3vd";
+    password = "$y$j9T$VIu7tUhSD.zJlTG9D49rK/$biwcrfsI/RAZBKxpa4qOTI/777TNv0IwPYWOeJN.J8B";
+    keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL6spmrUncC7zasDdxXghuviK6LXNZ8hrTztFDA6TnRN"];
   };
 
   bahrom04 = {
