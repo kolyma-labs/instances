@@ -86,14 +86,13 @@
       "locked": {
         "lastModified": 1747481732,
         "narHash": "sha256-rpiClWWUN0XU9GsuClTJJ6Rpzji1uxoKSIsfHBwLPTw=",
-        "ref": "main",
+        "ref": "refs/heads/main",
         "rev": "15a02d29fe2f1d17e7ca3fd975313f01d1d80d1c",
         "revCount": 10,
         "type": "git",
         "url": "https://git.pub.solar/pub-solar/maunium-stickerpicker-nix"
       },
       "original": {
-        "ref": "main",
         "type": "git",
         "url": "https://git.pub.solar/pub-solar/maunium-stickerpicker-nix"
       }
@@ -576,11 +575,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1759381078,
-        "narHash": "sha256-gTrEEp5gEspIcCOx9PD8kMaF1iEmfBcTbO0Jag2QhQs=",
+        "lastModified": 1759831965,
+        "narHash": "sha256-vgPm2xjOmKdZ0xKA6yLXPJpjOtQPHfaZDRtH+47XEBo=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "7df7ff7d8e00218376575f0acdcc5d66741351ee",
+        "rev": "c9b6fb798541223bbb396d287d16f43520250518",
         "type": "github"
       },
       "original": {
@@ -1077,11 +1076,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1759759399,
-        "narHash": "sha256-hEZ6D1ysH4t2pnkuzeWGqSpCi2G/zSuMKljPiLgFkhs=",
+        "lastModified": 1759988946,
+        "narHash": "sha256-ESC9EqLzqSHvvco/qUQhIbI28ZU1g6K1B9VNuIeXid4=",
         "owner": "floss-uz-community",
         "repo": "tarmoqchi",
-        "rev": "1059e19d06d599f5f8968be0f079394801905183",
+        "rev": "4174730692cf623d57da5b5b365c8143b4c9bfb8",
         "type": "github"
       },
       "original": {
