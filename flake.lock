@@ -384,11 +384,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1760011163,
-        "narHash": "sha256-+DZ9WX9/4/F67qXSLk0vR+wDtsV/3DXlT0Q7idk+2vM=",
+        "lastModified": 1760011427,
+        "narHash": "sha256-YjkybJkhlrwObO+Zpdj+cIOPBt34PmarL1CpZcT0dwE=",
         "owner": "floss-uz",
         "repo": "website",
-        "rev": "f85a61476aa85784fef3f6b2740188d686a7e392",
+        "rev": "03248a7e4e3ef35ef5f699e6213935502b4ced65",
         "type": "github"
       },
       "original": {
