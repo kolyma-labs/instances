@@ -21,9 +21,7 @@
 
   kolyma = {
     # Users of system
-    accounts.teams = [
-      lib.camps.uzinfocom
-    ];
+    accounts.teams = with lib.camps; [uzinfocom];
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

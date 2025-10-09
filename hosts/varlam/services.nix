@@ -1,4 +1,5 @@
 {
+  inputs,
   outputs,
   config,
   ...
@@ -9,6 +10,7 @@
     outputs.nixosModules.bind
     outputs.nixosModules.mail
     outputs.nixosModules.matrix
+    inputs.floss-website.nixosModules.kolyma
   ];
 
   sops.secrets = {
@@ -67,5 +69,9 @@
         config.sops.secrets."matrix/authentication".path
       ];
     };
+  };
+
+  floss = {
+    website.enable = true;
   };
 }
