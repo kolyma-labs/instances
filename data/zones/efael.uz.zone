@@ -7,8 +7,10 @@ $TTL 86400
              86400 )    ; Minimum TTL
 
 ; Nameservers
-@           IN    NS    ns1.kolyma.uz.
-@           IN    NS    ns2.kolyma.uz.
+@      IN    NS    ns1.kolyma.uz.
+@      IN    NS    ns2.kolyma.uz.
+@      IN    NS    ns3.kolyma.uz.
+@      IN    NS    ns4.kolyma.uz.
 
 ; Nameserver Pointers
 ns1         IN    A     93.188.85.94

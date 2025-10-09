@@ -9,6 +9,8 @@ $TTL 86400
 ; Nameservers
 @      IN    NS    ns1.kolyma.uz.
 @      IN    NS    ns2.kolyma.uz.
+@      IN    NS    ns3.kolyma.uz.
+@      IN    NS    ns4.kolyma.uz.
 
 ; Entry points
 @      IN    A     37.27.60.37
