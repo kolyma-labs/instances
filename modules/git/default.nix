@@ -161,7 +161,7 @@ in {
         service = {
           # uncomment after initial deployment, first user is admin user
           # required to setup SSO (oauth openid-connect, keycloak auth provider)
-          # ALLOW_ONLY_EXTERNAL_REGISTRATION = true;
+          ALLOW_ONLY_EXTERNAL_REGISTRATION = true;
           ENABLE_NOTIFY_MAIL = true;
           DEFAULT_KEEP_EMAIL_PRIVATE = true;
         };
