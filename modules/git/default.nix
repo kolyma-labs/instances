@@ -68,7 +68,7 @@ in {
     };
 
     # anubis to defend against LLM scrapers
-    services.anubis.instances.git.settings.TARGET = "http://${config.services.forgejo.settings.server.HTTP_ADDR}:${config.services.forgejo.settings.server.HTTP_PORT}";
+    services.anubis.instances.git.settings.TARGET = with config.services.forgejo.settings.server; "http://${HTTP_ADDR}:${toString HTTP_PORT}";
 
     services.nginx.virtualHosts.${cfg.domain} = {
       enableACME = true;
