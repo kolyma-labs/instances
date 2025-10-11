@@ -12,7 +12,7 @@
 
   sops.secrets = {
     "git/database" = {
-      sopsFile = ../../secrets/git.yaml;
+      sopsFile = ../../secrets/git/secrets.yaml;
       key = "database";
     };
     "git/mail" = {
