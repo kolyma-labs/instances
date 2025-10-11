@@ -46,7 +46,7 @@
     };
 
     git = {
-      enable = false;
+      enable = true;
       domain = "git.floss.uz";
       mail = config.sops.secrets."git/mail".path;
       database = config.sops.secrets."git/database".path;
