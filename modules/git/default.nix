@@ -79,6 +79,13 @@ in {
         error_log /var/log/nginx/${cfg.domain}-error.log;
       '';
 
+      locations."= /" = {
+        priority = 100;
+        extraConfig = ''
+          return 302 /explore/repos;
+        '';
+      };
+
       locations."/user/login" = {
         priority = 100;
         extraConfig = ''
