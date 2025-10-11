@@ -173,7 +173,7 @@ in {
 
         # https://forgejo.org/docs/latest/admin/config-cheat-sheet/#webhook-webhook
         webhook = {
-          ALLOWED_HOST_LIST = "loopback,external,*.${config.pub-solar-os.networking.domain}";
+          ALLOWED_HOST_LIST = "loopback,external,*.${cfg.domain}";
         };
 
         # See https://forgejo.org/docs/latest/admin/actions/
