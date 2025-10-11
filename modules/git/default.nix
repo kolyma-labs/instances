@@ -82,7 +82,7 @@ in {
       locations."/user/login" = {
         priority = 100;
         extraConfig = ''
-          return 302 /user/oauth2/Keycloak;
+          return 302 /user/oauth2/keycloak;
         '';
       };
 
