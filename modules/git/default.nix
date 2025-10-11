@@ -79,12 +79,12 @@ in {
         error_log /var/log/nginx/${cfg.domain}-error.log;
       '';
 
-      # locations."/user/login" = {
-      #   priority = 100;
-      #   extraConfig = ''
-      #     return 302 /user/oauth2/keycloak;
-      #   '';
-      # };
+      locations."/user/login" = {
+        priority = 100;
+        extraConfig = ''
+          return 302 /user/oauth2/Keycloak;
+        '';
+      };
 
       locations."/" = {
         priority = 200;
