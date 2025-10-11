@@ -5,11 +5,12 @@
   ...
 }: {
   imports = [
-    outputs.nixosModules.web
     outputs.nixosModules.auth
     outputs.nixosModules.bind
     outputs.nixosModules.mail
     outputs.nixosModules.matrix
+    outputs.nixosModules.web
+
     inputs.floss-website.nixosModules.kolyma
   ];
 

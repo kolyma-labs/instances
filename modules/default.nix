@@ -8,6 +8,7 @@
   container = import ./container;
   extra = import ./extra;
   gate = import ./gate;
+  git = import ./git;
   mail = import ./mail;
   matrix = import ./matrix;
   runner = import ./runner;

@@ -9,9 +9,9 @@
   };
 in {
   imports = [
-    outputs.nixosModules.web
     outputs.nixosModules.bind
     outputs.nixosModules.runner
+    outputs.nixosModules.web
   ];
 
   sops.secrets = {
