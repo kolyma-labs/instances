@@ -36,8 +36,11 @@ livekit     IN    CNAME ns1.kolyma.uz.
 livekit-jwt IN    CNAME ns1.kolyma.uz.
 stickers    IN    CNAME ns1.kolyma.uz.
 
+; Git server
+git         IN    CNAME ns2.kolyma.uz.
+
 ; Mastodon server
-social IN    CNAME ns1.kolyma.uz.
+social      IN    CNAME ns2.kolyma.uz.
 
 ; Mail server
 mail              IN  A     37.27.67.190
