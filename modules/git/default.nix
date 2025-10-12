@@ -132,7 +132,7 @@ in {
       lfs.enable = true;
       secrets.mailer.PASSWD = cfg.mail;
       settings = {
-        DEFAULT.APP_NAME = "floss.uz git server";
+        DEFAULT.APP_NAME = "${cfg.domain} git server";
 
         server = {
           ROOT_URL = "https://${cfg.domain}";
@@ -149,10 +149,10 @@ in {
         mailer = {
           ENABLED = true;
           PROTOCOL = "smtps";
-          SMTP_ADDR = "mail.floss.uz";
+          SMTP_ADDR = "mail.${cfg.domain}";
           SMTP_PORT = 465;
-          FROM = ''"floss.uz git server" <admin@floss.uz>'';
-          USER = "admin@floss.uz";
+          FROM = ''"${cfg.domain} git server" <admin@${cfg.domain}>'';
+          USER = "admin@${cfg.domain}";
         };
 
         "repository.signing" = {
@@ -219,7 +219,7 @@ in {
     # /var/lib/gitea/data/home/.gnupg/
     # sudo su gitea
     # export GNUPGHOME=/var/lib/gitea/data/home/.gnupg
-    # gpg --quick-gen-key 'floss.uz gitea <admin@floss.uz>' ed25519
+    # gpg --quick-gen-key '<domain> gitea <admin@domain>' ed25519
     # TODO: implement declarative GPG key generation and
     # gitea gitconfig
     programs.gnupg.agent = {
