@@ -74,46 +74,6 @@
         "type": "github"
       }
     },
-    "element-stickers": {
-      "inputs": {
-        "maunium-stickerpicker": [
-          "maunium-stickerpicker"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1747481732,
-        "narHash": "sha256-rpiClWWUN0XU9GsuClTJJ6Rpzji1uxoKSIsfHBwLPTw=",
-        "ref": "refs/heads/main",
-        "rev": "15a02d29fe2f1d17e7ca3fd975313f01d1d80d1c",
-        "revCount": 10,
-        "type": "git",
-        "url": "https://git.pub.solar/pub-solar/maunium-stickerpicker-nix"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://git.pub.solar/pub-solar/maunium-stickerpicker-nix"
-      }
-    },
-    "element-themes": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1759871300,
-        "narHash": "sha256-2WNWiq5yqb/ApwI7cQxvsr9gAckWgR1bl+oQIbKbHS0=",
-        "owner": "aaronraimist",
-        "repo": "element-themes",
-        "rev": "7ee106115de0b46699f0e57fc6071bb728471cc5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "aaronraimist",
-        "ref": "master",
-        "repo": "element-themes",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -504,23 +464,6 @@
         "type": "github"
       }
     },
-    "maunium-stickerpicker": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1751213916,
-        "narHash": "sha256-P6MI+3SfQKpXyqGzZgsLBoZ2aOUbFxHbDhHbr6xJpXc=",
-        "owner": "maunium",
-        "repo": "stickerpicker",
-        "rev": "3366dbc5002046be058a71e7ed310811a122c081",
-        "type": "github"
-      },
-      "original": {
-        "owner": "maunium",
-        "ref": "master",
-        "repo": "stickerpicker",
-        "type": "github"
-      }
-    },
     "minecraft": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -528,11 +471,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1760147325,
-        "narHash": "sha256-mBHP1GhvuRE/n8ZXh1lfh+Tn+5oOwB2zCuoPs2mM7IQ=",
+        "lastModified": 1760234253,
+        "narHash": "sha256-ElkSuw4RxtyOY3mThezUpOM8c0fTNWlL0we/deGiTZU=",
         "owner": "Infinidoge",
         "repo": "nix-minecraft",
-        "rev": "701fd12530b71a059e7a130fb58b28cb15c38bfb",
+        "rev": "a82ae8f5079a134d33337cf211d7617f1268b301",
         "type": "github"
       },
       "original": {
@@ -823,13 +766,10 @@
         "devops-journey": "devops-journey",
         "disko": "disko",
         "efael-website": "efael-website",
-        "element-stickers": "element-stickers",
-        "element-themes": "element-themes",
         "flake-utils": "flake-utils_3",
         "floss-website": "floss-website",
         "gate": "gate",
         "khakimovs": "khakimovs",
-        "maunium-stickerpicker": "maunium-stickerpicker",
         "minecraft": "minecraft",
         "nixpkgs": "nixpkgs_7",
         "nixpkgs-unstable": "nixpkgs-unstable",
@@ -892,11 +832,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759635238,
-        "narHash": "sha256-UvzKi02LMFP74csFfwLPAZ0mrE7k6EiYaKecplyX9Qk=",
+        "lastModified": 1760240450,
+        "narHash": "sha256-sa9bS9jSyc4vH0jSWrUsPGdqtMvDwmkLg971ntWOo2U=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "6e5a38e08a2c31ae687504196a230ae00ea95133",
+        "rev": "41fd1f7570c89f645ee0ada0be4e2d3c4b169549",
         "type": "github"
       },
       "original": {

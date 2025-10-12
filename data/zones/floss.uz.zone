@@ -34,7 +34,6 @@ chat        IN    CNAME ns1.kolyma.uz.
 call        IN    CNAME ns1.kolyma.uz.
 livekit     IN    CNAME ns1.kolyma.uz.
 livekit-jwt IN    CNAME ns1.kolyma.uz.
-stickers    IN    CNAME ns1.kolyma.uz.
 
 ; Git server
 git         IN    CNAME ns2.kolyma.uz.

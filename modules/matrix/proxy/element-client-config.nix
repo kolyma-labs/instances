@@ -15,9 +15,6 @@ in {
       base_url = "";
     };
   };
-  setting_defaults = {
-    custom_themes = (lib.modules.importJSON "${pkgs.element-themes}").config;
-  };
   default_theme = "dark";
   default_country_code = "UZ";
   permalink_prefix = "https://matrix.to";

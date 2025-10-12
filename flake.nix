@@ -49,27 +49,6 @@
     # Main homepage website
     gate.url = "github:kolyma-labs/gate";
 
-    # Element themes for customization
-    element-themes = {
-      url = "github:aaronraimist/element-themes/master";
-      flake = false;
-    };
-
-    # Element stickers using Maunium
-    element-stickers = {
-      url = "git+https://git.pub.solar/pub-solar/maunium-stickerpicker-nix";
-      inputs = {
-        maunium-stickerpicker.follows = "maunium-stickerpicker";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    # Maunium Stickers for Element
-    maunium-stickerpicker = {
-      url = "github:maunium/stickerpicker?ref=master";
-      flake = false;
-    };
-
     # Khakimov's website
     khakimovs.url = "github:khakimovs/website";
 

@@ -7,12 +7,6 @@
       gate = inputs.gate.packages."${final.system}".default;
       khakimovs = inputs.khakimovs.packages."${final.system}".default;
     };
-
-    # By directory
-    element-themes = prev.callPackage ./pkgs/element-themes {inherit (inputs) element-themes;};
-    element-stickerpicker = prev.callPackage ./pkgs/element-stickerpicker {
-      inherit (inputs) element-stickers maunium-stickerpicker;
-    };
   };
 
   # This one contains whatever you want to overlay
@@ -24,7 +18,7 @@
     # });
 
     # Use latest unstable version of matrix
-    inherit (final.unstable) matrix-synapse;
+    inherit (final.unstable) matrix-synapse mastodon;
 
     # Use latest version of mas
     matrix-authentication-server = final.unstable.matrix-authentication-service.override;

@@ -113,18 +113,6 @@ in {
         '';
       };
 
-      "stickers.${cfg.domain}" = {
-        forceSSL = true;
-        enableACME = true;
-        root = pkgs.element-stickerpicker;
-        extraConfig = ''
-          ${commonHeaders}
-
-          access_log /var/log/nginx/stickers.chat.${cfg.domain}-access.log;
-          error_log /var/log/nginx/stickers.chat.${cfg.domain}-error.log;
-        '';
-      };
-
       "mas.${cfg.domain}" = {
         root = "/dev/null";
 
