@@ -166,10 +166,6 @@
           # Alias: Kolyma-4
           # https://en.wikipedia.org/wiki/Naftaly_Frenkel
           "Naftaly"
-
-          # Those need to go ASAP!!!
-          # "Kolyma-5"
-          # "Kolyma-6"
         ];
         inherit inputs outputs;
       };
