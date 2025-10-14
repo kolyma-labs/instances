@@ -88,34 +88,42 @@ in {
     sops.secrets = {
       "mastodon/mail" = {
         key = "mail/raw";
+        owner = config.services.mastodon.user;
         sopsFile = ../../secrets/mail.yaml;
       };
       "mastodon/record-deterministic-key" = {
         key = "record/deterministic-key";
+        owner = config.services.mastodon.user;
         sopsFile = ../../secrets/mastodon/secrets.yaml;
       };
       "mastodon/record-derivation-salt" = {
         key = "record/derivation-salt";
+        owner = config.services.mastodon.user;
         sopsFile = ../../secrets/mastodon/secrets.yaml;
       };
       "mastodon/record-primary-key" = {
         key = "record/primary-key";
+        owner = config.services.mastodon.user;
         sopsFile = ../../secrets/mastodon/secrets.yaml;
       };
       "mastodon/secret-key" = {
         format = "binary";
+        owner = config.services.mastodon.user;
         sopsFile = ../../secrets/mastodon/secret-key.hell;
       };
       "mastodon/vapid-public" = {
         key = "public";
+        owner = config.services.mastodon.user;
         sopsFile = ../../secrets/mastodon/vapid.yaml;
       };
       "mastodon/vapid-private" = {
         key = "private";
+        owner = config.services.mastodon.user;
         sopsFile = ../../secrets/mastodon/vapid.yaml;
       };
       "mastodon/extra" = {
         format = "binary";
+        owner = config.services.mastodon.user;
         sopsFile = ../../secrets/mastodon/env.hell;
       };
     };
