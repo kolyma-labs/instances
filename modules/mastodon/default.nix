@@ -33,26 +33,87 @@ in {
         description = "The domain to which mastodon is going to be associated with.";
       };
 
-      record = {
-        deterministic-key = lib.mkOption {};
-        derivation-salt = lib.mkOption {};
-        primary-key = lib.mkOption {};
+      mail = lib.mkOption {
+        type = lib.types.path;
+        default = config.sops.secrets."mastodon/mail".path;
+        description = "Path to file containing password of mail server.";
       };
 
-      secret-key =
-        lib.mkOption {
+      record = {
+        deterministic-key = lib.mkOption {
+          type = lib.types.path;
+          default = config.sops.secrets."mastodon/record-deterministic-key".path;
+          description = "This key must be set to enable the Active Record Encryption feature.";
         };
+        derivation-salt = lib.mkOption {
+          type = lib.types.path;
+          default = config.sops.secrets."mastodon/record-derivation-salt".path;
+          description = "This key must be set to enable the Active Record Encryption feature.";
+        };
+        primary-key = lib.mkOption {
+          type = lib.types.path;
+          default = config.sops.secrets."mastodon/record-primary-key".path;
+          description = "This key must be set to enable the Active Record Encryption feature.";
+        };
+      };
+
+      secret-key = lib.mkOption {
+        type = lib.types.path;
+        default = config.sops.secrets."mastodon/secret-key".path;
+        description = "Path to file containing the secret key base.";
+      };
 
       vapid = {
-        public = lib.mkOption {};
-        private = lib.mkOption {};
+        public = lib.mkOption {
+          type = lib.types.path;
+          default = config.sops.secrets."mastodon/vapid-public".path;
+          description = "Path to file containing the public key used for Web Push Voluntary Application Server Identification.";
+        };
+        private = lib.mkOption {
+          type = lib.types.path;
+          default = config.sops.secrets."mastodon/vapid-private".path;
+          description = "Path to file containing the public key used for Web Push Voluntary Application Server Identification.";
+        };
       };
     };
   };
 
   config = lib.mkIf cfg.enable {
+    sops.secrets = {
+      "mastodon/mail" = {
+        key = "mail/raw";
+        sopsFile = ../../secrets/mail.yaml;
+      };
+      "mastodon/record-deterministic-key" = {
+        key = "record/deterministic-key";
+        sopsFile = ../../secrets/mastodon/secrets.yaml;
+      };
+      "mastodon/record-derivation-salt" = {
+        key = "record/derivation-salt";
+        sopsFile = ../../secrets/mastodon/secrets.yaml;
+      };
+      "mastodon/record-primary-key" = {
+        key = "record/primary-key";
+        sopsFile = ../../secrets/mastodon/secrets.yaml;
+      };
+      "mastodon/secret-key" = {
+        format = "binary";
+        sopsFile = ../../secrets/mastodon/secret-key.hell;
+      };
+      "mastodon/vapid-public" = {
+        key = "public";
+        sopsFile = ../../secrets/mastodon/vapid.yaml;
+      };
+      "mastodon/vapid-private" = {
+        key = "private";
+        sopsFile = ../../secrets/mastodon/vapid.yaml;
+      };
+    };
+
     # Nginx user needs access to mastodon unix sockets
     users.users.nginx.extraGroups = ["mastodon"];
+
+    services.opensearch.enable = true;
 
     services.mastodon = {
       enable = true;
@@ -67,27 +128,27 @@ in {
       webProcesses = 2;
       # Threads per process used by the mastodon-web service
       webThreads = 5;
-      activeRecordEncryptionDeterministicKeyFile = "/run/agenix/mastodon-active-record-encryption-deterministic-key";
-      activeRecordEncryptionKeyDerivationSaltFile = "/run/agenix/mastodon-active-record-encryption-key-derivation-salt";
-      activeRecordEncryptionPrimaryKeyFile = "/run/agenix/mastodon-active-record-encryption-primary-key";
-      secretKeyBaseFile = "/run/agenix/mastodon-secret-key-base";
-      vapidPrivateKeyFile = "/run/agenix/mastodon-vapid-private-key";
-      vapidPublicKeyFile = "/run/agenix/mastodon-vapid-public-key";
+      activeRecordEncryptionDeterministicKeyFile = cfg.record.deterministic-key;
+      activeRecordEncryptionKeyDerivationSaltFile = cfg.record.derivation-salt;
+      activeRecordEncryptionPrimaryKeyFile = cfg.record.primary-key;
+      secretKeyBaseFile = cfg.secret-key;
+      vapidPrivateKeyFile = cfg.vapid.private;
+      vapidPublicKeyFile = cfg.vapid.public;
       smtp = {
         createLocally = false;
         host = "mail.${cfg.domain}";
         port = 587;
         authenticate = true;
         user = "support@${cfg.domain}";
-        passwordFile = "/run/agenix/mastodon-smtp-password";
+        passwordFile = cfg.mail;
         fromAddress = "support@${cfg.domain}";
       };
-      # Defined in ./opensearch.nix
+
       elasticsearch.host = "127.0.0.1";
       mediaAutoRemove = {
         olderThanDays = 7;
       };
-      extraEnvFiles = ["/run/agenix/mastodon-extra-env-secrets"];
+      extraEnvFiles = [];
       extraConfig = {
         WEB_DOMAIN = "social.${cfg.domain}";
 

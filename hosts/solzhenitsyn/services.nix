@@ -8,6 +8,7 @@
     outputs.nixosModules.bind
     outputs.nixosModules.gate
     outputs.nixosModules.git
+    outputs.nixosModules.mastodon
     outputs.nixosModules.web
   ];
 
@@ -56,6 +57,11 @@
         private = config.sops.secrets."git/key".path;
         public = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFa0lnjY2C0/n9Ka0ColrrQi7bIAF5+FpNW7aWJle2+5 admin@floss.uz";
       };
+    };
+
+    mastodon = {
+      enable = false;
+      domain = "floss.uz";
     };
   };
 }

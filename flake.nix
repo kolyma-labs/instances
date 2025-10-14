@@ -135,7 +135,12 @@
 
       # Reusable nixos modules you might want to export
       # These are usually stuff you would upstream into nixpkgs
-      nixosModules = import ./modules;
+      nixosModules = builtins.listToAttrs (
+        map (x: {
+          name = x;
+          value = import (./modules + "/${x}");
+        }) (builtins.attrNames (builtins.readDir ./modules))
+      );
 
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
