@@ -136,7 +136,7 @@ in {
           HTTP_ADDR = "127.0.0.1";
           HTTP_PORT = 3000;
           START_SSH_SERVER = true;
-          SSH_LISTEN_PORT = 22;
+          SSH_LISTEN_PORT = 2223;
           SSH_SERVER_HOST_KEYS = "${cfg.keys.private}";
         };
 
