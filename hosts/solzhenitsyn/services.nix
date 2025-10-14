@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    # Top level abstractions
     outputs.nixosModules.bind
     outputs.nixosModules.gate
     outputs.nixosModules.git

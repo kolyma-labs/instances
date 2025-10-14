@@ -5,13 +5,15 @@
   ...
 }: {
   imports = [
+    # Top level abstractions
     outputs.nixosModules.auth
     outputs.nixosModules.bind
     outputs.nixosModules.mail
     outputs.nixosModules.matrix
     outputs.nixosModules.web
 
-    inputs.floss-website.nixosModules.kolyma
+    # Per app preconfigured abstractions
+    outputs.nixosModules.apps.floss-website
   ];
 
   sops.secrets = {
@@ -70,9 +72,9 @@
         config.sops.secrets."matrix/authentication".path
       ];
     };
-  };
 
-  floss = {
-    website.enable = true;
+    apps = {
+      floss.website.enable = true;
+    };
   };
 }

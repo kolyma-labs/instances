@@ -24,7 +24,7 @@ www    IN    CNAME orzklv.github.io.
 @      IN    MX    10 mx02.mail.icloud.com.
 @      IN    TXT   "apple-domain=ZbyTKRrbJj5XpfPW"
 @      IN    TXT   "v=spf1 include:icloud.com ~all"
-sig1._domainkey    IN CNAME sig1.dkim.orzklv.uz.at.icloudmailadmin.com
+sig1._domainkey    IN CNAME sig1.dkim.orzklv.uz.at.icloudmailadmin.com.
 
 ; GitHub Verifications
 _github-pages-challenge-orzklv          IN    TXT    "3d5ce2b8dae82ac62af937b9a90bb2"

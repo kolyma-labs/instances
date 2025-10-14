@@ -15,3 +15,10 @@ $TTL 86400
 ; Entry points
 @      IN    A     37.27.60.37
 @      IN    AAAA  2a01:4f9:3081:2e04::2
+
+; Mail server (iCloud)
+@      IN    MX    10 mx01.mail.icloud.com.
+@      IN    MX    10 mx02.mail.icloud.com.
+@      IN    TXT   "apple-domain=nmuwPH3DaaCBLK66"
+@      IN    TXT   "v=spf1 include:icloud.com ~all"
+sig1._domainkey    IN CNAME sig1.dkim.katsuki.moe.at.icloudmailadmin.com.
