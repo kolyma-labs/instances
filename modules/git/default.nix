@@ -113,10 +113,6 @@ in {
 
     # Expose SSH port only for forgejo SSH
     networking.firewall.interfaces.eth0.allowedTCPPorts = [2223];
-    networking.firewall.extraCommands = ''
-      iptables -t nat -i eth0 -I PREROUTING -p tcp --dport 22 -j REDIRECT --to-ports 2223
-      ip6tables -t nat -i eth0 -I PREROUTING -p tcp --dport 22 -j REDIRECT --to-ports 2223
-    '';
 
     services.forgejo = {
       enable = true;
@@ -140,7 +136,7 @@ in {
           HTTP_ADDR = "127.0.0.1";
           HTTP_PORT = 3000;
           START_SSH_SERVER = true;
-          SSH_LISTEN_PORT = 2223;
+          SSH_LISTEN_PORT = 22;
           SSH_SERVER_HOST_KEYS = "${cfg.keys.private}";
         };
 
