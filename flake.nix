@@ -44,7 +44,16 @@
     };
 
     # Mail Server
-    simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.05";
+    simple-nixos-mailserver = {
+      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.05";
+      inputs = {
+        nixpkgs-25_05.follows = "nixpkgs";
+        nixpkgs.follows = "nixpkgs-unstable";
+      };
+    };
+
+    # Reworked mastodon
+    mastodon-backport.url = "github:teutat3s/nixpkgs/mastodon-4.4";
 
     # Main homepage website
     gate.url = "github:kolyma-labs/gate";

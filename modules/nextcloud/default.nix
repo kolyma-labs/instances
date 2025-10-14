@@ -17,6 +17,8 @@ in {
         example = true;
         description = "";
       };
+
+      domain = lib.mkOption {};
     };
   };
 

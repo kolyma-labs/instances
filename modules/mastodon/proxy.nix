@@ -46,14 +46,14 @@ in {
           locations."/auth/confirmation/new" = {
             priority = 910;
             extraConfig = ''
-              return 302 https://auth.${config.pub-solar-os.networking.domain}/realms/${config.pub-solar-os.auth.realm}/login-actions/reset-credentials?client_id=mastodon;
+              return 302 https://auth.${cfg.domain}/realms/${cfg.domain}/login-actions/reset-credentials?client_id=mastodon;
             '';
           };
 
           locations."/auth/password/new" = {
             priority = 920;
             extraConfig = ''
-              return 302 https://auth.${config.pub-solar-os.networking.domain}/realms/${config.pub-solar-os.auth.realm}/login-actions/reset-credentials?client_id=mastodon;
+              return 302 https://auth.${cfg.domain}/realms/${cfg.domain}/login-actions/reset-credentials?client_id=mastodon;
             '';
           };
 

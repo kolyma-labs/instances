@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  flake,
+  inputs,
   ...
 }: let
   cfg = config.kolyma.mastodon;
@@ -11,7 +11,7 @@ in {
     ./proxy.nix
 
     # Unstable module
-    "${flake.self.inputs.nixpkgs-unstable}/nixos/modules/services/web-apps/mastodon.nix"
+    "${inputs.mastodon-backport}/nixos/modules/services/web-apps/mastodon.nix"
   ];
 
   disabledModules = [
@@ -20,7 +20,7 @@ in {
 
   options = {
     kolyma.mastodon = {
-      enable = {
+      enable = lib.mkOption {
         type = lib.types.bool;
         default = false;
         example = true;
@@ -177,7 +177,7 @@ in {
         OIDC_DISCOVERY = "true";
         OIDC_SCOPE = "openid,profile,email";
         OIDC_UID_FIELD = "preferred_username";
-        OIDC_REDIRECT_URI = "https://mastodon.${config.pub-solar-os.networking.domain}/auth/auth/openid_connect/callback";
+        OIDC_REDIRECT_URI = "https://social.${cfg.domain}/auth/auth/openid_connect/callback";
         OIDC_SECURITY_ASSUME_EMAIL_IS_VERIFIED = "true";
         # only use OIDC for login / registration
         OMNIAUTH_ONLY = "true";
