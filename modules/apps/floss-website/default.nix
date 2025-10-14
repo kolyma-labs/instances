@@ -67,7 +67,7 @@ in {
         securityTXT = lib.lists.foldr (a: b: a + "\n" + b) "" [
           "Contact: mailto:admin@floss.uz"
           "Expires: 2027-01-31T23:00:00.000Z"
-          "Encryption: https://keys.openpgp.org/vks/v1/by-fingerprint/8A8987ADE3736C8CA2EB315A9B809EBBDD62BAE3"
+          "Encryption: https://keys.openpgp.org/vks/v1/by-fingerprint/00D27BC687070683FBB9137C3C35D3AF0DA1D6A8"
           "Preferred-Languages: en,uz"
           "Canonical: https://${cfg.domain}/.well-known/security.txt"
         ];
