@@ -32,7 +32,7 @@ in {
             client_max_body_size 99m;
             error_page 404 500 501 502 503 504 /500.html;
 
-            access_log /var/log/nginx/${vHostDomain}-access.log combined_host;
+            access_log /var/log/nginx/${vHostDomain}-access.log;
             error_log /var/log/nginx/${vHostDomain}-error.log;
           '';
 
