@@ -75,6 +75,12 @@ in {
           description = "Path to file containing the public key used for Web Push Voluntary Application Server Identification.";
         };
       };
+
+      env = lib.mkOption {
+        type = lib.types.path;
+        default = config.sops.secrets."mastodon/extra".path;
+        description = "Some extra environmental variables to append to service.";
+      };
     };
   };
 
@@ -107,6 +113,10 @@ in {
       "mastodon/vapid-private" = {
         key = "private";
         sopsFile = ../../secrets/mastodon/vapid.yaml;
+      };
+      "mastodon/extra" = {
+        format = "binary";
+        sopsFile = ../../secrets/mastodon/env.hell;
       };
     };
 
@@ -148,7 +158,7 @@ in {
       mediaAutoRemove = {
         olderThanDays = 7;
       };
-      extraEnvFiles = [];
+      extraEnvFiles = [cfg.env];
       extraConfig = {
         WEB_DOMAIN = "social.${cfg.domain}";
 
