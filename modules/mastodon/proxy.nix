@@ -63,69 +63,6 @@ in {
             tryFiles = "$uri @mastodon";
           };
 
-          # locations."/sw.js" = {
-          #   priority = 3100;
-          #   extraConfig = ''
-          #     add_header Cache-Control 'public, max-age=604800, must-revalidate';
-          #     add_header Strict-Transport-Security 'max-age=63072000';
-          #   '';
-          #   tryFiles = "$uri =404";
-          # };
-
-          # locations."~ ^/assets/" = {
-          #   priority = 3110;
-          #   extraConfig = nginxCommonHeaders;
-          #   tryFiles = "$uri =404";
-          # };
-
-          # locations."~ ^/avatars/" = {
-          #   priority = 3120;
-          #   extraConfig = nginxCommonHeaders;
-          #   tryFiles = "$uri =404";
-          # };
-
-          # locations."~ ^/emoji/" = {
-          #   priority = 3130;
-          #   extraConfig = nginxCommonHeaders;
-          #   tryFiles = "$uri =404";
-          # };
-
-          # locations."~ ^/headers/" = {
-          #   priority = 3140;
-          #   extraConfig = nginxCommonHeaders;
-          #   tryFiles = "$uri =404";
-          # };
-
-          # locations."~ ^/packs/" = {
-          #   priority = 3150;
-          #   extraConfig = nginxCommonHeaders;
-          #   tryFiles = "$uri =404";
-          # };
-
-          # locations."~ ^/shortcuts/" = {
-          #   priority = 3160;
-          #   extraConfig = nginxCommonHeaders;
-          #   tryFiles = "$uri =404";
-          # };
-
-          # locations."~ ^/sounds/" = {
-          #   priority = 3170;
-          #   extraConfig = nginxCommonHeaders;
-          #   tryFiles = "$uri $uri/ =404";
-          # };
-
-          # locations."~ ^/system/" = {
-          #   priority = 3180;
-          #   alias = "/var/lib/mastodon/public-system/";
-          #   extraConfig = ''
-          #     add_header Cache-Control 'public, max-age=2419200, immutable';
-          #     add_header Strict-Transport-Security 'max-age=63072000';
-          #     add_header X-Content-Type-Options 'nosniff';
-          #     add_header Content-Security-Policy "default-src 'none'; form-action 'none'";
-          #   '';
-          #   tryFiles = "$uri =404";
-          # };
-
           locations."/system/" = {
             extraConfig = ''
               add_header Cache-Control 'public, max-age=2419200, immutable';
