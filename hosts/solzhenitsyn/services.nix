@@ -60,7 +60,7 @@
     };
 
     mastodon = {
-      enable = false;
+      enable = true;
       domain = "floss.uz";
     };
   };

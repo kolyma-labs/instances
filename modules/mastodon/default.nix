@@ -163,6 +163,7 @@ in {
       };
 
       elasticsearch.host = "127.0.0.1";
+
       mediaAutoRemove = {
         olderThanDays = 7;
       };
