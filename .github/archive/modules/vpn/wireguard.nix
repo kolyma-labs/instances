@@ -4,11 +4,11 @@
   config,
   ...
 }: let
-  cfg = config.kolyma.vpn;
+  cfg = config.kolyma.vpn-option.wireguard;
   internal-interface = "wg0";
 in {
   options = {
-    kolyma.vpn = {
+    kolyma.vpn-option.wireguard = {
       enable = lib.mkOption {
         type = lib.types.bool;
         default = false;
@@ -89,7 +89,7 @@ in {
   };
 
   meta = {
-    doc = ./readme.md;
+    doc = ./wireguard.md;
     buildDocsInSandbox = true;
     maintainers = with lib.maintainers; [orzklv];
   };

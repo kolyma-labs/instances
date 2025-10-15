@@ -3,6 +3,7 @@
     # Top level abstractions
     outputs.nixosModules.web
     outputs.nixosModules.bind
+    outputs.nixosModules.vpn
   ];
 
   # Kolyma services
@@ -18,5 +19,7 @@
       enable = true;
       type = "slave";
     };
+
+    vpn.enable = true;
   };
 }

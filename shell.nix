@@ -28,6 +28,9 @@ pkgs.stdenv.mkDerivation {
     # Certificate Generation
     easyrsa
     openssl
+
+    # VPN Management
+    wireguard-tools
   ];
 
   # Runtime dependencies
