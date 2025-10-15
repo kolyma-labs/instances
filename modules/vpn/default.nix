@@ -41,6 +41,10 @@ in {
 
       firewall = {
         allowedUDPPorts = [cfg.port];
+        extraCommands = ''
+          iptables -t mangle -A FORWARD -p tcp --tcp-flags SYN,RST SYN \
+            -j TCPMSS --clamp-mss-to-pmtu
+        '';
       };
     };
 
@@ -70,8 +74,6 @@ in {
         # but this makes the private key world-readable; thus, using privateKeyFile is
         # recommended.
         privateKeyFile = config.sops.secrets."vpn/private".path;
-
-        mtu = 1380;
 
         peers = [
           # List of allowed peers.
