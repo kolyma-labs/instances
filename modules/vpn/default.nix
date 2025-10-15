@@ -58,13 +58,13 @@ in {
         # For this to work you have to set the dnsserver IP of your router (or dnsserver of choice) in your clients
         postSetup = ''
           ${pkgs.iptables}/bin/iptables -A FORWARD -i wg0 -j ACCEPT;
-          ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.100.0.0/24 -o eth0 -j MASQUERADE
+          ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
         '';
 
         # This undoes the above command
         postShutdown = ''
-          ${pkgs.iptables}/bin/iptables -D FORWARD -i wg0 -j ACCEPT;
-          ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.100.0.0/24 -o eth0 -j MASQUERADE
+          ${pkgs.iptables}/bin/iptables  -D FORWARD -i wg0 -j ACCEPT;
+          ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
         '';
 
         # Path to the private key file.
@@ -79,12 +79,12 @@ in {
           {
             # MacBook Pro
             publicKey = "slu/vv1RJe3RKxSn2P94i0A6IuIwBfbHFuFi5VpjnTk=";
-            allowedIPs = ["10.100.0.2/24"];
+            allowedIPs = ["10.100.0.2/32"];
           }
           {
             # iPhone 17 Pro
             publicKey = "anOorzlJBGRY9pXO3Svj1lih+1jmhodmAtpExyzjOCs=";
-            allowedIPs = ["10.100.0.3/24"];
+            allowedIPs = ["10.100.0.3/32"];
           }
         ];
       };
