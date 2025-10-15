@@ -49,7 +49,10 @@ in {
       # "wg0" is the network interface name. You can name the interface arbitrarily.
       wg0 = {
         # Determines the IP address and subnet of the server's end of the tunnel interface.
-        ips = ["10.100.0.1/24"];
+        ips = [
+          "10.100.0.1/24"
+          "fd00:fae:fae:fae:fae:1::/96"
+        ];
 
         # The port that WireGuard listens to. Must be accessible by the client.
         listenPort = cfg.port;
@@ -79,12 +82,18 @@ in {
           {
             # MacBook Pro
             publicKey = "slu/vv1RJe3RKxSn2P94i0A6IuIwBfbHFuFi5VpjnTk=";
-            allowedIPs = ["10.100.0.2/32"];
+            allowedIPs = [
+              "10.100.0.2/32"
+              "fd00:fae:fae:fae:fae:2::/96"
+            ];
           }
           {
             # iPhone 17 Pro
             publicKey = "anOorzlJBGRY9pXO3Svj1lih+1jmhodmAtpExyzjOCs=";
-            allowedIPs = ["10.100.0.3/32"];
+            allowedIPs = [
+              "10.100.0.3/32"
+              "fd00:fae:fae:fae:fae:3::/96"
+            ];
           }
         ];
       };
