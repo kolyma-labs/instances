@@ -79,12 +79,12 @@ in {
           {
             # MacBook Pro
             publicKey = "slu/vv1RJe3RKxSn2P94i0A6IuIwBfbHFuFi5VpjnTk=";
-            allowedIPs = ["10.100.0.2/32"];
+            allowedIPs = ["10.100.0.2/24"];
           }
           {
             # iPhone 17 Pro
             publicKey = "anOorzlJBGRY9pXO3Svj1lih+1jmhodmAtpExyzjOCs=";
-            allowedIPs = ["10.100.0.3/32"];
+            allowedIPs = ["10.100.0.3/24"];
           }
         ];
       };
