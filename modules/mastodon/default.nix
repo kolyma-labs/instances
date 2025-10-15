@@ -167,6 +167,7 @@ in {
       mediaAutoRemove = {
         olderThanDays = 7;
       };
+
       extraEnvFiles = [cfg.env];
       extraConfig = {
         WEB_DOMAIN = "social.${cfg.domain}";
