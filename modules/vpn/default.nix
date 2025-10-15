@@ -39,7 +39,6 @@ in {
         internalInterfaces = [internal-interface];
       };
       firewall = {
-        trustedInterfaces = [internal-interface];
         allowedUDPPorts = [cfg.port];
       };
     };
