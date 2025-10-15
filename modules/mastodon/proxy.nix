@@ -110,7 +110,7 @@ in {
           locations."~ ^/sounds/" = {
             priority = 3170;
             extraConfig = nginxCommonHeaders;
-            tryFiles = "$uri =404";
+            tryFiles = "$uri $uri/ =404";
           };
 
           locations."~ ^/system/" = {
@@ -122,7 +122,7 @@ in {
               add_header X-Content-Type-Options 'nosniff';
               add_header Content-Security-Policy "default-src 'none'; form-action 'none'";
             '';
-            # tryFiles = "$uri =404";
+            tryFiles = "$uri =404";
           };
 
           locations."^~ /api/v1/streaming" = {
