@@ -38,8 +38,13 @@ in {
         externalInterface = "eth0";
         internalInterfaces = [internal-interface];
       };
+
       firewall = {
         allowedUDPPorts = [cfg.port];
+        extraCommands = ''
+          iptables -A FORWARD -i ${internal-interface} -j ACCEPT
+          iptables -A FORWARD -o ${internal-interface} -j ACCEPT
+        '';
       };
     };
 
