@@ -126,7 +126,15 @@ in {
           #   tryFiles = "$uri =404";
           # };
 
-          locations."/system/".alias = "/var/lib/mastodon/public-system/";
+          locations."/system/" = {
+            extraConfig = ''
+              add_header Cache-Control 'public, max-age=2419200, immutable';
+              add_header Strict-Transport-Security 'max-age=63072000';
+              add_header X-Content-Type-Options 'nosniff';
+              add_header Content-Security-Policy "default-src 'none'; form-action 'none'";
+            '';
+            alias = "/var/lib/mastodon/public-system/";
+          };
 
           locations."^~ /api/v1/streaming" = {
             priority = 3190;
