@@ -122,7 +122,8 @@ in {
               add_header X-Content-Type-Options 'nosniff';
               add_header Content-Security-Policy "default-src 'none'; form-action 'none'";
             '';
-            tryFiles = "$uri =404";
+            # tryFiles = "$uri =404";
+            return = "200 'goofy ahh nigger'";
           };
 
           locations."^~ /api/v1/streaming" = {
