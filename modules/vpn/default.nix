@@ -41,6 +41,7 @@ in {
 
       firewall = {
         allowedUDPPorts = [cfg.port];
+        trustedInterfaces = [internal-interface];
         extraCommands = ''
           iptables -t mangle -A FORWARD -p tcp --tcp-flags SYN,RST SYN \
             -j TCPMSS --clamp-mss-to-pmtu
@@ -56,6 +57,8 @@ in {
 
         # The port that WireGuard listens to. Must be accessible by the client.
         listenPort = cfg.port;
+
+        mtu = 1380;
 
         # This allows the wireguard server to route your traffic to the internet and hence be like a VPN
         # For this to work you have to set the dnsserver IP of your router (or dnsserver of choice) in your clients
