@@ -144,49 +144,22 @@
 
       # Reusable nixos modules you might want to export
       # These are usually stuff you would upstream into nixpkgs
-      nixosModules = builtins.listToAttrs (
-        map (x: {
+      nixosModules =
+        builtins.readDir ./modules
+        |> builtins.attrNames
+        |> map (x: {
           name = x;
           value = import (./modules + "/${x}");
-        }) (builtins.attrNames (builtins.readDir ./modules))
-      );
+        })
+        |> builtins.listToAttrs;
 
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = self.lib.instances.mapSystem {
-        # Interesting fact: It was actually Sharlamov's "Kolyma Tales"
-        # that motivated the whole naming and storytelling of this repo.
-        list = [
-          # The main authority
-          # Location: Finland
-          # Alias: Kolyma-1
-          # https://en.wikipedia.org/wiki/Varlam_Shalamov
-          "Varlam"
-
-          # Public figure authority
-          # Location: Finland
-          # Alias: Kolyma-2
-          # https://en.wikipedia.org/wiki/Aleksandr_Solzhenitsyn
-          "Solzhenitsyn"
-
-          # Workload Manager
-          # Location: Finland
-          # Alias: Kolyma-3
-          # https://en.wikipedia.org/wiki/Hava_Volovich
-          "Volovich"
-
-          # Data Jail
-          # Location: Finland
-          # Alias: Kolyma-4
-          # https://en.wikipedia.org/wiki/Naftaly_Frenkel
-          "Naftaly"
-
-          # Last Jail
-          # Location: Finland
-          # Alias: Kolyma-5
-          # https://www.opendemocracy.net/en/odr/last-prisoner/
-          "Galitsky"
-        ];
+        list =
+          builtins.readDir ./hosts
+          |> builtins.attrNames
+          |> map (h: self.lib.kstrings.capitalize h);
         inherit inputs outputs;
       };
     };

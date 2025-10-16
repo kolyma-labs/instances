@@ -3,7 +3,8 @@
 {lib}: let
   mkUser = i: {
     name =
-      i.username or (builtins.throw "oh-ow, somebody didn't define their username");
+      i.username
+      or (builtins.throw "oh-ow, somebody didn't define their username");
 
     value = {
       isNormalUser = true;
@@ -23,21 +24,28 @@
 
         byUrl =
           lib.optionals
-          (i ? keysUrl
+          (
+            i ? keysUrl
             && i ? sha256
             && i.keysUrl != null
-            && i.sha256 != null)
-          (lib.strings.splitString "\n"
-            (builtins.readFile (builtins.fetchurl {
+            && i.sha256 != null
+          )
+          (
+            builtins.fetchurl {
               url = "${i.keysUrl}";
               sha256 = "${i.sha256}";
-            })));
+            }
+            |> builtins.readFile
+            |> lib.strings.splitString "\n"
+          );
       in
         byKeys ++ byUrl;
     };
   };
   mkUsers = users: {
     # mapped users
-    users.users = builtins.listToAttrs (builtins.map mkUser users);
+    users.users =
+      builtins.map mkUser users
+      |> builtins.listToAttrs;
   };
 in {inherit mkUsers;}

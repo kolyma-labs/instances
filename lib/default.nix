@@ -10,4 +10,5 @@
   users = import ./users.nix {inherit lib;};
   instances = import ./instances.nix {inherit lib;};
   rmatch = import ./rmatch.nix {inherit lib;};
+  kstrings = import ./strings.nix {inherit lib;};
 }
