@@ -185,7 +185,7 @@
           # Location: Finland
           # Alias: Kolyma-5
           # https://www.opendemocracy.net/en/odr/last-prisoner/
-          # "Galitsky"
+          "Galitsky"
         ];
         inherit inputs outputs;
       };
