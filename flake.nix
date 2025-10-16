@@ -36,9 +36,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Flake utils for eachSystem
-    flake-utils.url = "github:numtide/flake-utils";
-
     # Secrets management
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -102,73 +99,72 @@
   outputs = {
     self,
     nixpkgs,
-    flake-utils,
     pre-commit-hooks,
     ...
   } @ inputs: let
     # Self instance pointer
-    outputs = self;
-  in
-    # Attributes for each system
-    flake-utils.lib.eachDefaultSystem (
-      system: let
-        # Packages for the current <arch>
-        pkgs = nixpkgs.legacyPackages.${system};
+    inherit (self) outputs;
 
-        # Checks hook for passing to devShell
-        inherit (self.checks.${system}) pre-commit-check;
-      in
-        # Nixpkgs packages for the current system
-        {
-          # Checks for hooks
-          checks = {
-            pre-commit-check = pre-commit-hooks.lib.${system}.run {
-              src = ./.;
-              hooks = {
-                flake-checker.enable = true;
-                # statix.enable = true;
-                alejandra.enable = true;
-              };
-            };
-          };
+    # Supported systems for your flake packages, shell, etc.
+    systems = [
+      "aarch64-linux"
+      "x86_64-linux"
+      "aarch64-darwin"
+    ];
 
-          # Formatter for your nix files, available through 'nix fmt'
-          # Other options beside 'alejandra' include 'nixpkgs-fmt'
-          formatter = pkgs.alejandra;
+    # This is a function that generates an attribute by calling a function you
+    # pass to it, with each system as an argument
+    forAllSystems = nixpkgs.lib.genAttrs systems;
+  in {
+    # Nixpkgs and internal helpful functions
+    lib = nixpkgs.lib // import ./lib {inherit (nixpkgs) lib;};
 
-          # Development shells
-          devShells.default = import ./shell.nix {inherit pkgs pre-commit-check;};
-        }
-    )
-    # and ...
-    //
-    # Attribute from static evaluation
-    {
-      # Nixpkgs and internal helpful functions
-      lib = nixpkgs.lib // import ./lib {inherit (nixpkgs) lib;};
+    # Your custom packages and modifications, exported as overlays
+    overlays = import ./overlays {inherit inputs;};
 
-      # Your custom packages and modifications, exported as overlays
-      overlays = import ./overlays {inherit inputs;};
-
-      # Reusable nixos modules you might want to export
-      # These are usually stuff you would upstream into nixpkgs
-      nixosModules =
-        builtins.readDir ./modules
-        |> builtins.attrNames
-        |> map (x: {
-          name = x;
-          value = import (./modules + "/${x}");
-        })
-        |> builtins.listToAttrs;
-
-      # NixOS configuration entrypoint
-      # Available through 'nixos-rebuild --flake .#your-hostname'
-      nixosConfigurations = self.lib.instances.mapSystem {
-        list =
-          builtins.readDir ./hosts
-          |> builtins.attrNames
-          |> map (h: self.lib.kstrings.capitalize h);
-        inherit inputs outputs;
+    # Checks for hooks
+    checks = forAllSystems (system: {
+      pre-commit-check = pre-commit-hooks.lib.${system}.run {
+        src = ./.;
+        hooks = {
+          # statix.enable = true;
+          alejandra.enable = true;
+          flake-checker.enable = true;
+        };
       };
+    });
+
+    # Formatter for your nix files, available through 'nix fmt'
+    # Other options beside 'alejandra' include 'nixpkgs-fmt'
+    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+
+    # Development shells
+    devShells = forAllSystems (system: {
+      default = import ./shell.nix {
+        pkgs = nixpkgs.legacyPackages.${system};
+        inherit (self.checks.${system}) pre-commit-check;
+      };
+    });
+
+    # Reusable nixos modules you might want to export
+    # These are usually stuff you would upstream into nixpkgs
+    nixosModules =
+      builtins.readDir ./modules
+      |> builtins.attrNames
+      |> map (x: {
+        name = x;
+        value = import (./modules + "/${x}");
+      })
+      |> builtins.listToAttrs;
+
+    # NixOS configuration entrypoint
+    # Available through 'nixos-rebuild --flake .#your-hostname'
+    nixosConfigurations = self.lib.instances.mapSystem {
+      list =
+        builtins.readDir ./hosts
+        |> builtins.attrNames
+        |> map (h: self.lib.kstrings.capitalize h);
+      inherit inputs outputs;
     };
+  };
 }
