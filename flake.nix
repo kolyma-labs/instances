@@ -170,16 +170,22 @@
           "Solzhenitsyn"
 
           # Workload Manager
-          # Location: Germany
+          # Location: Finland
           # Alias: Kolyma-3
           # https://en.wikipedia.org/wiki/Hava_Volovich
           "Volovich"
 
-          # Personal Jail
-          # Location: Germany
+          # Data Jail
+          # Location: Finland
           # Alias: Kolyma-4
           # https://en.wikipedia.org/wiki/Naftaly_Frenkel
           "Naftaly"
+
+          # Last Jail
+          # Location: Finland
+          # Alias: Kolyma-5
+          # https://www.opendemocracy.net/en/odr/last-prisoner/
+          # "Galitsky"
         ];
         inherit inputs outputs;
       };

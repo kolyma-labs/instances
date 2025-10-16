@@ -25,7 +25,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        instance: ["Varlam", "Solzhenitsyn", "Volovich", "Naftaly"]
+        instance: ["Varlam", "Solzhenitsyn", "Volovich", "Naftaly", "Galitsky"]
     runs-on: ubuntu-latest
 
     steps:
