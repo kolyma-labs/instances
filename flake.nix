@@ -1,12 +1,20 @@
 {
-  #     _   ___         ______            ____
-  #    / | / (_)  __   / ____/___  ____  / __/____
-  #   /  |/ / / |/_/  / /   / __ \/ __ \/ /_/ ___/
-  #  / /|  / />  <   / /___/ /_/ / / / / __(__  )
-  # /_/ |_/_/_/|_|   \____/\____/_/ /_/_/ /____/
-  description = "Kolyma's server configs";
+  # ====================================================================
+  # oooo    oooo           oooo
+  # `888   .8P'            `888
+  #  888  d8'     .ooooo.   888  oooo    ooo ooo. .oo.  .oo.    .oooo.
+  #  88888[      d88' `88b  888   `88.  .8'  `888P"Y88bP"Y88b  `P  )88b
+  #  888`88b.    888   888  888    `88..8'    888   888   888   .oP"888
+  #  888  `88b.  888   888  888     `888'     888   888   888  d8(  888
+  # o888o  o888o `Y8bod8P' o888o     .8'     o888o o888o o888o `Y888""8o
+  #                              .o..P'
+  #                              `Y8P'
+  # ====================================================================
+  description = "Global Kolyma's Server Configurations owned by Orzklv";
+  # ====================================================================
 
   # Extra nix configurations to inject to flake scheme
+  # => use if something doesn't work out of box or when despaired...
   # nixConfig = {
   #   experimental-features = ["nix-command" "flakes" "pipe-operators"];
   # };
