@@ -469,11 +469,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1760666084,
-        "narHash": "sha256-mlb1PC69kb6JLL0mj678+wvIeO9sCRn4oCDS+YCGNG0=",
+        "lastModified": 1760752169,
+        "narHash": "sha256-mo3GnUXTNjJHp+Y0UeKd4QXjrPAjozG7rhbPWiI9JP8=",
         "owner": "Infinidoge",
         "repo": "nix-minecraft",
-        "rev": "800e6a0120315367a5c66189fd53f67fd0257e39",
+        "rev": "f7989e13b68fbbc840e6cea73b073acb00e02bb0",
         "type": "github"
       },
       "original": {
@@ -755,11 +755,11 @@
         "nixpkgs": "nixpkgs_8"
       },
       "locked": {
-        "lastModified": 1758978659,
-        "narHash": "sha256-6YDWBub0MGzsSUViSvtm94JWq12+Vv10Khb3fYiRo9U=",
+        "lastModified": 1760775860,
+        "narHash": "sha256-Ta3u2SlSsKdRrYFocb1QmXUBYlXFHAuq2cUtm8M5gWQ=",
         "owner": "rust-lang-uz",
         "repo": "telegram",
-        "rev": "72bd3bbd4c9a3d2d25e4802d6460a074a9ecfdc5",
+        "rev": "30279a2290ce87498414ee63ea149e7a6778cdca",
         "type": "github"
       },
       "original": {
