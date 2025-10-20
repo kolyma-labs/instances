@@ -487,11 +487,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1760839663,
-        "narHash": "sha256-S/33f5aNfnTPsW0uD4ufa7m0GyHRWPB3oCLa8RD3TBg=",
+        "lastModified": 1760925861,
+        "narHash": "sha256-jApZZBUvkvZMOZVGmKKjrzH+wGosJnClDkJhWu0D0Ek=",
         "owner": "Infinidoge",
         "repo": "nix-minecraft",
-        "rev": "57a5fafb117ba998e0aaa4209118466ccbc647ff",
+        "rev": "efc6a6ef3345caaeec3aebc7de45dfcabc4b7359",
         "type": "github"
       },
       "original": {
@@ -708,11 +708,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1760725957,
-        "narHash": "sha256-tdoIhL/NlER290HfSjOkgi4jfmjeqmqrzgnmiMtGepE=",
+        "lastModified": 1760862643,
+        "narHash": "sha256-PXwG0TM7Ek87DNx4LbGWuD93PbFeKAJs4FfALtp7Wo0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "81b927b14b7b3988334d5282ef9cba802e193fe1",
+        "rev": "33c6dca0c0cb31d6addcd34e90a63ad61826b28c",
         "type": "github"
       },
       "original": {
@@ -1040,11 +1040,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1760331742,
-        "narHash": "sha256-RfBWTCThA1jg3rhQv+agveMRBNAT4fm4gAdt8qPUS4E=",
+        "lastModified": 1760967157,
+        "narHash": "sha256-C6wWitOBXPB2AAgParz/DHn5cPI9AP/jovRjULeYbLc=",
         "owner": "uzbek-net",
         "repo": "website",
-        "rev": "26c00861863e54b5f4ca25fdbfb95eeac0ee9731",
+        "rev": "93a0a487c15b1da28008694556858f9b77b75f41",
         "type": "github"
       },
       "original": {
