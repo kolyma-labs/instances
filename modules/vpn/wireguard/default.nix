@@ -73,18 +73,25 @@ in {
 
           # This allows the wireguard server to route your traffic to the internet and hence be like a VPN
           postSetup = ''
+            # Allow traffic both ways on wg0
             ${pkgs.iptables}/bin/iptables -A FORWARD -i wg0 -j ACCEPT
-            ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s ${(ipv4-address 1)} -o eth0 -j MASQUERADE
+            ${pkgs.iptables}/bin/iptables -A FORWARD -o wg0 -j ACCEPT
+
+            # NAT for outgoing internet
+            ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.7.6.0/24 -o eth0 -j MASQUERADE
             ${pkgs.iptables}/bin/ip6tables -A FORWARD -i wg0 -j ACCEPT
-            ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -s ${(ipv6-address 1)} -o eth0 -j MASQUERADE
+            ${pkgs.iptables}/bin/ip6tables -A FORWARD -o wg0 -j ACCEPT
+            ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -s fd00:fae:fae:fae:fae::/64 -o eth0 -j MASQUERADE
           '';
 
           # Undo the above
           postShutdown = ''
             ${pkgs.iptables}/bin/iptables -D FORWARD -i wg0 -j ACCEPT
-            ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s ${(ipv4-address 1)} -o eth0 -j MASQUERADE
+            ${pkgs.iptables}/bin/iptables -D FORWARD -o wg0 -j ACCEPT
+            ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.7.6.0/24 -o eth0 -j MASQUERADE
             ${pkgs.iptables}/bin/ip6tables -D FORWARD -i wg0 -j ACCEPT
-            ${pkgs.iptables}/bin/ip6tables -t nat -D POSTROUTING -s ${(ipv6-address 1)} -o eth0 -j MASQUERADE
+            ${pkgs.iptables}/bin/ip6tables -D FORWARD -o wg0 -j ACCEPT
+            ${pkgs.iptables}/bin/ip6tables -t nat -D POSTROUTING -s fd00:fae:fae:fae:fae::/64 -o eth0 -j MASQUERADE
           '';
 
           peers = [
