@@ -54,7 +54,7 @@ in {
         # Redirect requests that match /.well-known/webfinger?resource=* to Mastodon
         extraConfig = ''
           if ($arg_resource) {
-            return 301 https://mastodon.${cfg.domain}$request_uri;
+            return 301 https://social.${cfg.domain}$request_uri;
           }
 
           add_header Content-Type text/plain;
