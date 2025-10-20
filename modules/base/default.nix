@@ -5,28 +5,12 @@
 }: let
   cfg = config.kolyma.base;
 in {
-  imports = [
-    # Bootloader
-    ./boot
-
-    # Network interface
-    ./network
-
-    # System Nixpkgs
-    ./nixpkgs
-
-    # Sops Nix
-    ./secret
-
-    # No Sleep
-    ./power
-
-    # Secure Shell
-    ./ssh
-
-    # System shell
-    ./zsh
-  ];
+  imports =
+    builtins.readDir ./.
+    |> builtins.attrNames
+    |> builtins.filter (m: m != "default.nix")
+    |> builtins.filter (m: m != "readme.md")
+    |> builtins.map (m: ./. + "/${m}");
 
   options = {
     kolyma.base = {

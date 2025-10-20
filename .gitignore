@@ -33,7 +33,7 @@ nohup.out
 # keys
 *.key
 *.retard
-secrets/network/initial
+secrets/vpn/openvpn/pki
 
 # git hooks
 .pre-commit-config.yaml

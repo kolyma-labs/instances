@@ -2,6 +2,7 @@
   imports = [
     # Top level abstractions
     outputs.nixosModules.web
+    outputs.nixosModules.vpn
   ];
 
   # Kolyma services
@@ -11,5 +12,7 @@
       enable = true;
       instance = 5;
     };
+
+    vpn.enable = true;
   };
 }

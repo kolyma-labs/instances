@@ -19,7 +19,5 @@
       enable = true;
       type = "slave";
     };
-
-    vpn.enable = true;
   };
 }

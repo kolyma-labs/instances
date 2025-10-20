@@ -5,16 +5,12 @@
 }: let
   cfg = config.kolyma.extra;
 in {
-  imports = [
-    # Update Manager
-    ./update
-
-    # Data Maintainance
-    ./data
-
-    # Documentation settings
-    ./docs
-  ];
+  imports =
+    builtins.readDir ./.
+    |> builtins.attrNames
+    |> builtins.filter (m: m != "default.nix")
+    |> builtins.filter (m: m != "readme.md")
+    |> builtins.map (m: ./. + "/${m}");
 
   options = {
     kolyma.extra = {

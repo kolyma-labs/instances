@@ -48,5 +48,8 @@ cdn4    IN    CNAME ns4.kolyma.uz.
 cdn5    IN    CNAME ns5.kolyma.uz.
 udn1    IN    CNAME uz1.kolyma.uz.
 
+; External services
+vpn     IN    CNAME ns5.kolyma.uz.
+
 ; GitHub verification
 _gh-kolyma-labs-o    IN    TXT     cc851471b9
