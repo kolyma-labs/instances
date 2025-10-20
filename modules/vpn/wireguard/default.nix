@@ -36,12 +36,12 @@ in {
 
     # sudo systemctl start nat
     networking = {
-      # nat = {
-      #   enable = true;
-      #   enableIPv6 = true;
-      #   externalInterface = "eth0";
-      #   internalInterfaces = [internal-interface];
-      # };
+      nat = {
+        enable = true;
+        enableIPv6 = true;
+        externalInterface = "eth0";
+        internalInterfaces = [internal-interface];
+      };
 
       firewall = {
         checkReversePath = "loose";
