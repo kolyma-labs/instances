@@ -7,7 +7,7 @@
   cfg = config.kolyma.wireguard;
   internal-interface = "wg0";
 
-  ipv4-address = id: "10.7.6.${toString id}/24";
+  ipv4-address = id: prefix: "10.7.6.${toString id}/${prefix}";
   ipv6-address = id: "fd00:fae:fae:fae:fae:${toString id}::/96";
 in {
   options = {
@@ -57,7 +57,7 @@ in {
         wg0 = {
           # Determines the IP address and subnet of the server's end of the tunnel interface.
           ips = [
-            (ipv4-address 1)
+            (ipv4-address 1 24)
             (ipv6-address 1)
           ];
 
@@ -78,20 +78,20 @@ in {
             ${pkgs.iptables}/bin/iptables -A FORWARD -o wg0 -j ACCEPT
 
             # NAT for outgoing internet
-            ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s 10.7.6.0/24 -o eth0 -j MASQUERADE
             ${pkgs.iptables}/bin/ip6tables -A FORWARD -i wg0 -j ACCEPT
             ${pkgs.iptables}/bin/ip6tables -A FORWARD -o wg0 -j ACCEPT
-            ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -s fd00:fae:fae:fae:fae::/64 -o eth0 -j MASQUERADE
+            ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s ${ipv4-address 1 24} -o eth0 -j MASQUERADE
+            ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -s ${ipv6-address 1} -o eth0 -j MASQUERADE
           '';
 
           # Undo the above
           postShutdown = ''
             ${pkgs.iptables}/bin/iptables -D FORWARD -i wg0 -j ACCEPT
             ${pkgs.iptables}/bin/iptables -D FORWARD -o wg0 -j ACCEPT
-            ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s 10.7.6.0/24 -o eth0 -j MASQUERADE
+            ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s ${ipv4-address 1 24} -o eth0 -j MASQUERADE
             ${pkgs.iptables}/bin/ip6tables -D FORWARD -i wg0 -j ACCEPT
             ${pkgs.iptables}/bin/ip6tables -D FORWARD -o wg0 -j ACCEPT
-            ${pkgs.iptables}/bin/ip6tables -t nat -D POSTROUTING -s fd00:fae:fae:fae:fae::/64 -o eth0 -j MASQUERADE
+            ${pkgs.iptables}/bin/ip6tables -t nat -D POSTROUTING -s ${ipv6-address 1} -o eth0 -j MASQUERADE
           '';
 
           peers = [
@@ -100,7 +100,7 @@ in {
               # MacBook Pro
               publicKey = "GkpZmq6M1PFn5rLdv4bzO0cfzs+nCKTePL0m+iACqmU=";
               allowedIPs = [
-                (ipv4-address 2)
+                (ipv4-address 2 32)
                 (ipv6-address 2)
               ];
             }
@@ -108,7 +108,7 @@ in {
               # iPhone 17 Pro
               publicKey = "anOorzlJBGRY9pXO3Svj1lih+1jmhodmAtpExyzjOCs=";
               allowedIPs = [
-                (ipv4-address 3)
+                (ipv4-address 3 32)
                 (ipv6-address 3)
               ];
             }
