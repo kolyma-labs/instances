@@ -45,6 +45,7 @@ cdn1    IN    CNAME ns1.kolyma.uz.
 cdn2    IN    CNAME ns2.kolyma.uz.
 cdn3    IN    CNAME ns3.kolyma.uz.
 cdn4    IN    CNAME ns4.kolyma.uz.
+cdn5    IN    CNAME ns5.kolyma.uz.
 udn1    IN    CNAME uz1.kolyma.uz.
 
 ; GitHub verification
