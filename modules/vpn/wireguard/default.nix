@@ -7,7 +7,7 @@
   cfg = config.kolyma.wireguard;
   internal-interface = "wg0";
 
-  ipv4-address = id: prefix: "10.7.6.${toString id}/${prefix}";
+  ipv4-address = id: prefix: "10.7.6.${toString id}/${toString prefix}";
   ipv6-address = id: "fd00:fae:fae:fae:fae:${toString id}::/96";
 in {
   options = {
