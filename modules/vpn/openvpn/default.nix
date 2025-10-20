@@ -21,12 +21,6 @@ in {
         default = 6666;
         description = "Port to be served for.";
       };
-
-      domain = lib.mkOption {
-        type = lib.types.str;
-        default = "kolyma.uz";
-        description = "The default domain of instance.";
-      };
     };
   };
 
@@ -74,6 +68,7 @@ in {
       firewall = {
         trustedInterfaces = [internal-interface];
         allowedUDPPorts = [cfg.port];
+        checkReversePath = "loose";
       };
     };
 
@@ -81,18 +76,19 @@ in {
       dev ${internal-interface}
       proto udp
       port ${toString cfg.port}
-      server ${private-address} 255.255.254.0
+
+      server ${private-address} 255.255.255.0
       topology subnet
 
       push "redirect-gateway def1"
       push "dhcp-option DNS 1.1.1.1"
       push "dhcp-option DNS 1.0.0.1"
-      push "topology subnet"
+
       tls-server
 
       cipher AES-256-CBC
-      auth-nocache
 
+      auth-nocache
       keepalive 60 180
       ping-timer-rem
       persist-tun
@@ -107,58 +103,7 @@ in {
       tls-auth ${config.sops.secrets."vpn/openvpn/tls".path} 0
     '';
 
-    environment.etc = {
-      "openvpn/output.ovpn" = {
-        text = ''
-          client
-          dev tun
-          remote "${cfg.domain}"
-          port ${toString cfg.port}
-          nobind
-          cipher AES-256-CBC
-          comp-lzo adaptive
-          resolv-retry infinite
-          persist-key
-          persist-tun
-          tls-client
-          key-direction 1
-
-        '';
-        mode = "600";
-      };
-    };
-
-    system.activationScripts.openvpn-addkey = ''
-      f="/etc/openvpn/output.ovpn"
-
-      if ! grep -q '<ca>' $f; then
-        echo "appending secret key"
-        echo "<ca>" >> $f
-        cat ${config.sops.secrets."vpn/openvpn/ca".path} >> $f
-        echo "</ca>" >> $f
-      fi
-
-      if ! grep -q '<key>' $f; then
-        echo "appending secret key"
-        echo "<key>" >> $f
-        cat ${config.sops.secrets."vpn/openvpn/ckey".path} >> $f
-        echo "</key>" >> $f
-      fi
-
-      if ! grep -q '<cert>' $f; then
-        echo "appending secret key"
-        echo "<cert>" >> $flib.mdDoc
-        cat ${config.sops.secrets."vpn/openvpn/ccrt".path} >> $f
-        echo "</cert>" >> $f
-      fi
-
-      if ! grep -q '<tls-auth>' $f; then
-        echo "appending secret key"
-        echo "<tls-auth>" >> $f
-        cat ${config.sops.secrets."vpn/openvpn/tls".path} >> $f
-        echo "</tls-auth>" >> $f
-      fi
-    '';
+    boot.kernel.sysctl."net.ipv4.conf.all.src_valid_mark" = 1;
   };
 
   meta = {

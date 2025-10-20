@@ -24,9 +24,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    kolyma = let
-      domain = "vpn.kolyma.uz";
-    in {
+    kolyma = {
       wireguard = {
         enable = false;
         port = 6666;
@@ -35,7 +33,6 @@ in {
       openvpn = {
         enable = true;
         port = 6969;
-        inherit domain;
       };
     };
   };
