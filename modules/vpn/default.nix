@@ -28,7 +28,7 @@ in {
       domain = "vpn.kolyma.uz";
     in {
       wireguard = {
-        enable = true;
+        enable = false;
         port = 6666;
       };
 
