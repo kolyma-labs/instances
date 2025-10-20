@@ -43,7 +43,7 @@ in {
       };
 
       firewall = {
-        checkReversePath = false;
+        checkReversePath = "loose";
         allowedUDPPorts = [cfg.port];
       };
     };
@@ -93,6 +93,7 @@ in {
               publicKey = "GkpZmq6M1PFn5rLdv4bzO0cfzs+nCKTePL0m+iACqmU=";
               allowedIPs = [
                 "10.100.0.2/32"
+                "fd00:fae:fae:fae:fae:2::/96"
               ];
             }
             {
@@ -100,6 +101,7 @@ in {
               publicKey = "anOorzlJBGRY9pXO3Svj1lih+1jmhodmAtpExyzjOCs=";
               allowedIPs = [
                 "10.100.0.3/32"
+                "fd00:fae:fae:fae:fae:3::/96"
               ];
             }
           ];
