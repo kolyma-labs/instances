@@ -44,7 +44,7 @@ in {
       };
 
       firewall = {
-        checkReversePath = "loose";
+        checkReversePath = false;
         allowedUDPPorts = [cfg.port];
       };
     };
