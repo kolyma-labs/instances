@@ -6,8 +6,9 @@
 }: let
   cfg = config.kolyma.wireguard;
   internal-interface = "wg0";
-  ipv4-address = "10.100.0.1/24";
-  ipv6-address = "fd00:fae:fae:fae:fae:1::/96";
+
+  ipv4-address = id: "172.16.0.${id}/24";
+  ipv6-address = id: "fd00:fae:fae:fae:fae:${id}::/96";
 in {
   options = {
     kolyma.wireguard = {
@@ -56,8 +57,8 @@ in {
         wg0 = {
           # Determines the IP address and subnet of the server's end of the tunnel interface.
           ips = [
-            ipv4-address
-            ipv6-address
+            (ipv4-address 1)
+            (ipv6-address 1)
           ];
 
           # The port that WireGuard listens to. Must be accessible by the client.
@@ -92,16 +93,16 @@ in {
               # MacBook Pro
               publicKey = "GkpZmq6M1PFn5rLdv4bzO0cfzs+nCKTePL0m+iACqmU=";
               allowedIPs = [
-                "10.100.0.2/32"
-                "fd00:fae:fae:fae:fae:2::/96"
+                (ipv4-address 2)
+                (ipv6-address 2)
               ];
             }
             {
               # iPhone 17 Pro
               publicKey = "anOorzlJBGRY9pXO3Svj1lih+1jmhodmAtpExyzjOCs=";
               allowedIPs = [
-                "10.100.0.3/32"
-                "fd00:fae:fae:fae:fae:3::/96"
+                (ipv4-address 3)
+                (ipv6-address 3)
               ];
             }
           ];
