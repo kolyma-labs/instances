@@ -42,7 +42,10 @@ in {
         internalInterfaces = [internal-interface];
       };
 
-      firewall.allowedUDPPorts = [cfg.port];
+      firewall = {
+        checkReversePath = false;
+        allowedUDPPorts = [cfg.port];
+      };
     };
 
     networking.wireguard = {
