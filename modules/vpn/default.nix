@@ -27,7 +27,7 @@ in {
     kolyma = {
       wireguard = {
         enable = true;
-        port = 6666;
+        port = 2222;
       };
     };
   };

@@ -20,7 +20,7 @@ in {
 
       port = lib.mkOption {
         type = lib.types.port;
-        default = 23;
+        default = 6666;
         description = "Port to be served for.";
       };
     };
