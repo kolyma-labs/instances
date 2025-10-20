@@ -2,7 +2,6 @@
   imports = [
     # Top level abstractions
     outputs.nixosModules.web
-    outputs.nixosModules.bind
   ];
 
   # Kolyma services
