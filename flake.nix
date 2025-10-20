@@ -78,6 +78,9 @@
     # Floss Uzbekistan website
     floss-website.url = "github:floss-uz/website";
 
+    # Uzbek Localization project website
+    uzbek-net-website.url = "github:uzbek-net/website";
+
     # DevOps Journey website
     devops-journey.url = "github:devops-journey-uz/devops-journey";
 
@@ -127,7 +130,26 @@
       pre-commit-check = pre-commit-hooks.lib.${system}.run {
         src = ./.;
         hooks = {
-          # statix.enable = true;
+          statix = let
+            pkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
+          in {
+            enable = true;
+            package =
+              pkgs.statix.overrideAttrs
+              (_o: rec {
+                src = pkgs.fetchFromGitHub {
+                  owner = "oppiliappan";
+                  repo = "statix";
+                  rev = "43681f0da4bf1cc6ecd487ef0a5c6ad72e3397c7";
+                  hash = "sha256-LXvbkO/H+xscQsyHIo/QbNPw2EKqheuNjphdLfIZUv4=";
+                };
+
+                cargoDeps = pkgs.rustPlatform.importCargoLock {
+                  lockFile = src + "/Cargo.lock";
+                  allowBuiltinFetchGit = true;
+                };
+              });
+          };
           alejandra.enable = true;
           flake-checker.enable = true;
         };
@@ -141,8 +163,8 @@
     # Development shells
     devShells = forAllSystems (system: {
       default = import ./shell.nix {
-        pkgs = nixpkgs.legacyPackages.${system};
         inherit (self.checks.${system}) pre-commit-check;
+        pkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
       };
     });
 

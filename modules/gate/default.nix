@@ -50,7 +50,7 @@ in {
 
     services.tarmoqchi = {
       enable = true;
-      port = cfg.port;
+      inherit (cfg) port;
       proxy-reverse.domain = cfg.domain;
       github = {
         id = config.sops.secrets."tarmoqchi/github/id".path;

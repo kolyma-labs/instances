@@ -35,8 +35,8 @@ in {
 
       proxy = {
         enable = true;
-        domain = cfg.domain;
         proxy = "nginx";
+        inherit (cfg) domain;
       };
     };
 

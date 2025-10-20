@@ -10,6 +10,9 @@
     outputs.nixosModules.git
     outputs.nixosModules.mastodon
     outputs.nixosModules.web
+
+    # Per app preconfigured abstractions
+    outputs.nixosModules.apps.uzbek-net-website
   ];
 
   sops.secrets = {
@@ -62,6 +65,10 @@
     mastodon = {
       enable = true;
       domain = "floss.uz";
+    };
+
+    apps = {
+      uzbek-net.website.enable = true;
     };
   };
 }

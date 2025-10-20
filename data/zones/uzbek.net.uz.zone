@@ -13,8 +13,8 @@ $TTL 86400
 @      IN    NS    ns4.kolyma.uz.
 
 ; Entry points
-@      IN    A     65.109.74.214
-@      IN    AAAA  2a01:4f9:3071:31ce::
+@      IN    A     37.27.60.37
+@      IN    AAAA  2a01:4f9:3081:2e04::2
 www    IN    CNAME uzbek.net.uz.
 
 ; Standards deployment

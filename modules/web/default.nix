@@ -104,7 +104,7 @@ in {
       }
     ];
 
-    users.users.nginx.extraGroups = lib.optionals (config.kolyma.www.anubis) [config.users.groups.anubis.name];
+    users.users.nginx.extraGroups = lib.optionals config.kolyma.www.anubis [config.users.groups.anubis.name];
 
     # Configure Nginx
     services.nginx = {

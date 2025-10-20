@@ -95,11 +95,11 @@ in {
   in
     lib.mkIf cfg.enable {
       users.users.${cfg.user} = {
+        inherit (cfg) group;
         description = "Git Runner user";
         isNormalUser = true;
         createHome = false;
         extraGroups = ["admins"];
-        group = cfg.group;
       };
 
       users.groups.${cfg.group} = {};

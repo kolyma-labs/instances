@@ -68,44 +68,142 @@ in {
     };
 
     # anubis to defend against LLM scrapers
-    services.anubis.instances.git.settings.TARGET = with config.services.forgejo.settings.server; "http://${HTTP_ADDR}:${toString HTTP_PORT}";
+    services = {
+      anubis.instances.git.settings.TARGET = with config.services.forgejo.settings.server; "http://${HTTP_ADDR}:${toString HTTP_PORT}";
 
-    services.nginx.virtualHosts.${cfg.domain} = {
-      enableACME = true;
-      forceSSL = true;
+      nginx.virtualHosts.${cfg.domain} = {
+        enableACME = true;
+        forceSSL = true;
 
-      extraConfig = ''
-        access_log /var/log/nginx/${cfg.domain}-access.log;
-        error_log /var/log/nginx/${cfg.domain}-error.log;
-      '';
-
-      locations."= /" = {
-        priority = 100;
         extraConfig = ''
-          return 302 /explore/repos;
+          access_log /var/log/nginx/${cfg.domain}-access.log;
+          error_log /var/log/nginx/${cfg.domain}-error.log;
         '';
+
+        locations = {
+          "= /" = {
+            priority = 100;
+            extraConfig = ''
+              return 302 /explore/repos;
+            '';
+          };
+
+          "/user/login" = {
+            priority = 100;
+            extraConfig = ''
+              return 302 /user/oauth2/keycloak;
+            '';
+          };
+
+          "/" = {
+            priority = 200;
+            proxyPass = "http://unix:${config.services.anubis.instances.git.settings.BIND}";
+            extraConfig = ''
+              client_max_body_size 1G;
+            '';
+          };
+        };
       };
 
-      locations."/user/login" = {
-        priority = 100;
-        extraConfig = ''
-          return 302 /user/oauth2/keycloak;
-        '';
-      };
+      forgejo = {
+        enable = true;
+        package = pkgs.forgejo-lts;
+        inherit (cfg) user group;
+        database = {
+          inherit (cfg) user;
+          type = "postgres";
+          passwordFile = cfg.database;
+          name = "gitea";
+        };
+        stateDir = "/var/lib/forgejo";
+        lfs.enable = true;
+        secrets.mailer.PASSWD = cfg.mail;
+        settings = {
+          DEFAULT.APP_NAME = "${cfg.domain} git server";
 
-      locations."/" = {
-        priority = 200;
-        proxyPass = "http://unix:${config.services.anubis.instances.git.settings.BIND}";
-        extraConfig = ''
-          client_max_body_size 1G;
-        '';
+          server = {
+            ROOT_URL = "https://${cfg.domain}";
+            DOMAIN = cfg.domain;
+            HTTP_ADDR = "127.0.0.1";
+            HTTP_PORT = 3000;
+            START_SSH_SERVER = true;
+            SSH_LISTEN_PORT = 2223;
+            SSH_SERVER_HOST_KEYS = "${cfg.keys.private}";
+          };
+
+          log.LEVEL = "Warn";
+
+          mailer = {
+            ENABLED = true;
+            PROTOCOL = "smtps";
+            SMTP_ADDR = "mail.${cfg.domain}";
+            SMTP_PORT = 465;
+            FROM = ''"${cfg.domain} git server" <admin@${cfg.domain}>'';
+            USER = "admin@${cfg.domain}";
+          };
+
+          "repository.signing" = {
+            SIGNING_KEY = "default";
+            MERGES = "always";
+          };
+
+          openid = {
+            ENABLE_OPENID_SIGNIN = true;
+            ENABLE_OPENID_SIGNUP = true;
+          };
+
+          service = {
+            # uncomment after initial deployment, first user is admin user
+            # required to setup SSO (oauth openid-connect, keycloak auth provider)
+            ALLOW_ONLY_EXTERNAL_REGISTRATION = true;
+            ENABLE_NOTIFY_MAIL = true;
+            DEFAULT_KEEP_EMAIL_PRIVATE = true;
+          };
+
+          session = {
+            PROVIDER = "db";
+            COOKIE_SECURE = lib.mkForce true;
+          };
+
+          # https://forgejo.org/docs/latest/admin/config-cheat-sheet/#webhook-webhook
+          webhook = {
+            ALLOWED_HOST_LIST = "loopback,external,*.${cfg.domain}";
+          };
+
+          # See https://forgejo.org/docs/latest/admin/actions/
+          actions = {
+            ENABLED = true;
+            # In an actions workflow, when uses: does not specify an absolute URL,
+            # the value of DEFAULT_ACTIONS_URL is prepended to it.
+            DEFAULT_ACTIONS_URL = "https://code.forgejo.org";
+          };
+
+          # https://forgejo.org/docs/next/admin/recommendations/#securitylogin_remember_days
+          security = {
+            LOGIN_REMEMBER_DAYS = 365;
+          };
+
+          # See https://docs.gitea.com/administration/config-cheat-sheet#migrations-migrations
+          migrations = {
+            # This allows migrations from the same forgejo instance
+            ALLOW_LOCALNETWORKS = true;
+          };
+
+          # https://forgejo.org/docs/next/admin/config-cheat-sheet/#indexer-indexer
+          indexer = {
+            REPO_INDEXER_ENABLED = true;
+            REPO_INDEXER_PATH = "indexers/repos.bleve";
+            MAX_FILE_SIZE = 1048576;
+            REPO_INDEXER_EXCLUDE = "resources/bin/**";
+          };
+        };
       };
     };
 
     users.users.${cfg.user} = {
+      inherit (cfg) group;
       home = "/var/lib/forgejo";
       useDefaultShell = true;
-      group = cfg.group;
       isSystemUser = true;
     };
 
@@ -113,100 +211,6 @@ in {
 
     # Expose SSH port only for forgejo SSH
     networking.firewall.interfaces.eth0.allowedTCPPorts = [2223];
-
-    services.forgejo = {
-      enable = true;
-      package = pkgs.forgejo-lts;
-      inherit (cfg) user group;
-      database = {
-        type = "postgres";
-        passwordFile = cfg.database;
-        name = "gitea";
-        user = cfg.user;
-      };
-      stateDir = "/var/lib/forgejo";
-      lfs.enable = true;
-      secrets.mailer.PASSWD = cfg.mail;
-      settings = {
-        DEFAULT.APP_NAME = "${cfg.domain} git server";
-
-        server = {
-          ROOT_URL = "https://${cfg.domain}";
-          DOMAIN = cfg.domain;
-          HTTP_ADDR = "127.0.0.1";
-          HTTP_PORT = 3000;
-          START_SSH_SERVER = true;
-          SSH_LISTEN_PORT = 2223;
-          SSH_SERVER_HOST_KEYS = "${cfg.keys.private}";
-        };
-
-        log.LEVEL = "Warn";
-
-        mailer = {
-          ENABLED = true;
-          PROTOCOL = "smtps";
-          SMTP_ADDR = "mail.${cfg.domain}";
-          SMTP_PORT = 465;
-          FROM = ''"${cfg.domain} git server" <admin@${cfg.domain}>'';
-          USER = "admin@${cfg.domain}";
-        };
-
-        "repository.signing" = {
-          SIGNING_KEY = "default";
-          MERGES = "always";
-        };
-
-        openid = {
-          ENABLE_OPENID_SIGNIN = true;
-          ENABLE_OPENID_SIGNUP = true;
-        };
-
-        service = {
-          # uncomment after initial deployment, first user is admin user
-          # required to setup SSO (oauth openid-connect, keycloak auth provider)
-          ALLOW_ONLY_EXTERNAL_REGISTRATION = true;
-          ENABLE_NOTIFY_MAIL = true;
-          DEFAULT_KEEP_EMAIL_PRIVATE = true;
-        };
-
-        session = {
-          PROVIDER = "db";
-          COOKIE_SECURE = lib.mkForce true;
-        };
-
-        # https://forgejo.org/docs/latest/admin/config-cheat-sheet/#webhook-webhook
-        webhook = {
-          ALLOWED_HOST_LIST = "loopback,external,*.${cfg.domain}";
-        };
-
-        # See https://forgejo.org/docs/latest/admin/actions/
-        actions = {
-          ENABLED = true;
-          # In an actions workflow, when uses: does not specify an absolute URL,
-          # the value of DEFAULT_ACTIONS_URL is prepended to it.
-          DEFAULT_ACTIONS_URL = "https://code.forgejo.org";
-        };
-
-        # https://forgejo.org/docs/next/admin/recommendations/#securitylogin_remember_days
-        security = {
-          LOGIN_REMEMBER_DAYS = 365;
-        };
-
-        # See https://docs.gitea.com/administration/config-cheat-sheet#migrations-migrations
-        migrations = {
-          # This allows migrations from the same forgejo instance
-          ALLOW_LOCALNETWORKS = true;
-        };
-
-        # https://forgejo.org/docs/next/admin/config-cheat-sheet/#indexer-indexer
-        indexer = {
-          REPO_INDEXER_ENABLED = true;
-          REPO_INDEXER_PATH = "indexers/repos.bleve";
-          MAX_FILE_SIZE = 1048576;
-          REPO_INDEXER_EXCLUDE = "resources/bin/**";
-        };
-      };
-    };
 
     # See: https://docs.gitea.io/en-us/signing/#installing-and-generating-a-gpg-key-for-gitea
     # Required for gitea server side gpg signatures

@@ -1,13 +1,13 @@
 {
   pkgs ? let
-    lock = (builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.nixpkgs.locked;
+    lock = (builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.nixpkgs-unstable.locked;
     nixpkgs = fetchTarball {
       url = "https://github.com/nixos/nixpkgs/archive/${lock.rev}.tar.gz";
       sha256 = lock.narHash;
     };
   in
     import nixpkgs {overlays = [];},
-  pre-commit-check,
+  pre-commit-check ? import (builtins.fetchTarball "https://github.com/cachix/git-hooks.nix/tarball/master"),
   ...
 }:
 pkgs.stdenv.mkDerivation {
@@ -16,9 +16,27 @@ pkgs.stdenv.mkDerivation {
   # Initial dependencies
   nativeBuildInputs = with pkgs; [
     git
-    nixd
     sops
-    statix
+
+    # Latest statix
+    (
+      statix.overrideAttrs
+      (_o: rec {
+        src = fetchFromGitHub {
+          owner = "oppiliappan";
+          repo = "statix";
+          rev = "43681f0da4bf1cc6ecd487ef0a5c6ad72e3397c7";
+          hash = "sha256-LXvbkO/H+xscQsyHIo/QbNPw2EKqheuNjphdLfIZUv4=";
+        };
+
+        cargoDeps = pkgs.rustPlatform.importCargoLock {
+          lockFile = src + "/Cargo.lock";
+          allowBuiltinFetchGit = true;
+        };
+      })
+    )
+
+    nixd
     deadnix
     alejandra
 
