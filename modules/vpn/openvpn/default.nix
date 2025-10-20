@@ -77,49 +77,35 @@ in {
       };
     };
 
-    services.openvpn.servers.kolyma = {
-      up = ''
-        ${pkgs.iptables}/bin/iptables -A FORWARD -o eth0 -i ${internal-interface} -s ${private-address}/24 -m conntrack --ctstate NEW -j ACCEPT
-        ${pkgs.iptables}/bin/iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
-        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-      '';
+    services.openvpn.servers.kolyma.config = ''
+      dev ${internal-interface}
+      proto udp
+      port ${toString cfg.port}
+      server ${private-address} 255.255.254.0
+      topology subnet
 
-      down = ''
-        ${pkgs.iptables}/bin/iptables -D FORWARD -i ${internal-interface} -o eth0 -s ${private-address}/24 -m conntrack --ctstate NEW -j ACCEPT
-        ${pkgs.iptables}/bin/iptables -D FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
-        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s ${private-address}/24 -o eth0 -j MASQUERADE
-      '';
+      push "redirect-gateway def1"
+      push "dhcp-option DNS 1.1.1.1"
+      push "dhcp-option DNS 1.0.0.1"
+      push "topology subnet"
+      tls-server
 
-      config = ''
-        dev ${internal-interface}
-        proto udp
-        port ${toString cfg.port}
-        server ${private-address} 255.255.254.0
-        topology subnet
+      cipher AES-256-CBC
+      auth-nocache
 
-        push "redirect-gateway def1"
-        push "dhcp-option DNS 1.1.1.1"
-        push "dhcp-option DNS 1.0.0.1"
-        push "topology subnet"
-        tls-server
+      keepalive 60 180
+      ping-timer-rem
+      persist-tun
+      persist-key
 
-        cipher AES-256-CBC
-        auth-nocache
+      management localhost 5001
 
-        keepalive 60 180
-        ping-timer-rem
-        persist-tun
-        persist-key
-
-        management localhost 5001
-
-        key ${config.sops.secrets."vpn/openvpn/key".path}
-        cert ${config.sops.secrets."vpn/openvpn/crt".path}
-        ca ${config.sops.secrets."vpn/openvpn/ca".path}
-        dh ${config.sops.secrets."vpn/openvpn/dh".path}
-        tls-auth ${config.sops.secrets."vpn/openvpn/tls".path} 0
-      '';
-    };
+      key ${config.sops.secrets."vpn/openvpn/key".path}
+      cert ${config.sops.secrets."vpn/openvpn/crt".path}
+      ca ${config.sops.secrets."vpn/openvpn/ca".path}
+      dh ${config.sops.secrets."vpn/openvpn/dh".path}
+      tls-auth ${config.sops.secrets."vpn/openvpn/tls".path} 0
+    '';
 
     environment.etc = {
       "openvpn/output.ovpn" = {
