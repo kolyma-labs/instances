@@ -26,13 +26,8 @@ in {
   config = lib.mkIf cfg.enable {
     kolyma = {
       wireguard = {
-        enable = false;
-        port = 6666;
-      };
-
-      openvpn = {
         enable = true;
-        port = 6969;
+        port = 6666;
       };
     };
   };
