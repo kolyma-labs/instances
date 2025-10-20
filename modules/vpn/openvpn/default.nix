@@ -79,7 +79,7 @@ in {
       dev ${internal-interface}
       proto udp
       port ${toString cfg.port}
-      server 10.100.0.0 255.255.255.0
+      server 172.16.0.0 255.255.255.0
       topology subnet
 
       push "redirect-gateway def1"
