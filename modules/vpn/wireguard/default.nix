@@ -36,12 +36,12 @@ in {
 
     # sudo systemctl start nat
     networking = {
-      nat = {
-        enable = true;
-        enableIPv6 = true;
-        externalInterface = "eth0";
-        internalInterfaces = [internal-interface];
-      };
+      # nat = {
+      #   enable = true;
+      #   enableIPv6 = true;
+      #   externalInterface = "eth0";
+      #   internalInterfaces = [internal-interface];
+      # };
 
       firewall = {
         checkReversePath = "loose";
@@ -74,17 +74,17 @@ in {
           # This allows the wireguard server to route your traffic to the internet and hence be like a VPN
           postSetup = ''
             ${pkgs.iptables}/bin/iptables -A FORWARD -i wg0 -j ACCEPT
-            ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s ${ipv4-address} -o eth0 -j MASQUERADE
+            ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -s ${(ipv4-address 1)} -o eth0 -j MASQUERADE
             ${pkgs.iptables}/bin/ip6tables -A FORWARD -i wg0 -j ACCEPT
-            ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -s ${ipv6-address} -o eth0 -j MASQUERADE
+            ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -s ${(ipv6-address 1)} -o eth0 -j MASQUERADE
           '';
 
           # Undo the above
           postShutdown = ''
             ${pkgs.iptables}/bin/iptables -D FORWARD -i wg0 -j ACCEPT
-            ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s ${ipv4-address} -o eth0 -j MASQUERADE
+            ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -s ${(ipv4-address 1)} -o eth0 -j MASQUERADE
             ${pkgs.iptables}/bin/ip6tables -D FORWARD -i wg0 -j ACCEPT
-            ${pkgs.iptables}/bin/ip6tables -t nat -D POSTROUTING -s ${ipv6-address} -o eth0 -j MASQUERADE
+            ${pkgs.iptables}/bin/ip6tables -t nat -D POSTROUTING -s ${(ipv6-address 1)} -o eth0 -j MASQUERADE
           '';
 
           peers = [
