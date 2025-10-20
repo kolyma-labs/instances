@@ -4,7 +4,7 @@
   ...
 }: let
   cfg = config.kolyma.openvpn;
-  internal-interface = "tun0";
+  internal-interface = "ov0";
 in {
   options = {
     kolyma.openvpn = {
@@ -78,12 +78,14 @@ in {
     services.openvpn.servers.kolyma.config = ''
       dev ${internal-interface}
       proto udp
-      server 10.100.0.0 255.255.0.0
-      push "route 10.0.0.0 255.255.0.0"
+      port ${toString cfg.port}
+      server 10.100.0.0 255.255.255.0
+      topology subnet
+
       push "redirect-gateway def1"
       push "dhcp-option DNS 1.1.1.1"
+      push "dhcp-option DNS 1.0.0.1"
       push "route ${config.kolyma.network.ipv4} 255.255.255.255 net_gateway"
-      port ${toString cfg.port}
       tls-server
 
       cipher AES-256-CBC
