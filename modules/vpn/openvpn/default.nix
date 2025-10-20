@@ -78,7 +78,7 @@ in {
     services.openvpn.servers.kolyma.config = ''
       dev ${internal-interface}
       proto udp
-      server 10.8.0.0 255.255.0.0
+      server 10.50.0.0 255.255.0.0
       push "route 10.0.0.0 255.255.0.0"
       push "redirect-gateway def1"
       push "dhcp-option DNS 1.1.1.1"
