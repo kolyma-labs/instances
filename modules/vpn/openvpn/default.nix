@@ -4,7 +4,7 @@
   ...
 }: let
   cfg = config.kolyma.openvpn;
-  internal-interface = "ov0";
+  internal-interface = "tun0";
 in {
   options = {
     kolyma.openvpn = {
