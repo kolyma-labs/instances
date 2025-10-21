@@ -18,15 +18,17 @@ $TTL 86400
 @      IN    A     185.199.110.153
 @      IN    A     185.199.111.153
 
+; Hydra Build Farm
+hydra       IN    CNAME ns3.kolyma.uz.
+
 ; Telegram Bots
-xinuxmgr    IN    A    65.109.74.214
-xinuxmgr    IN    AAAA 2a01:4f9:3071:31ce::
+xinuxmgr    IN    CNAME ns2.kolyma.uz.
+
+; GitHub Deployments
+graph       IN    CNAME xinux-org.github.io.
+
+; CDN after runners server
+cdn         IN    CNAME ns3.kolyma.uz.
 
 ; GitHub Verifications
 _github-challenge-xinux-org-org      IN      TXT      1a06c6d74b
-
-; GitHub Deployments
-graph  IN    CNAME xinux-org.github.io.
-
-; CDN after runners server
-cdn    IN    CNAME ns3.kolyma.uz.

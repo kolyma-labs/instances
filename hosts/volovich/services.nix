@@ -11,6 +11,7 @@ in {
   imports = [
     # Top level abstractions
     outputs.nixosModules.bind
+    outputs.nixosModules.hydra
     outputs.nixosModules.runner
     outputs.nixosModules.web
   ];
@@ -49,6 +50,8 @@ in {
       enable = true;
       type = "slave";
     };
+
+    hydra.enable = true;
 
     runners = {
       enable = true;
