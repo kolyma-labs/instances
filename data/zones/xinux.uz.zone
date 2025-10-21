@@ -20,6 +20,7 @@ $TTL 86400
 
 ; Hydra Build Farm
 hydra       IN    CNAME ns3.kolyma.uz.
+cache       IN    CNAME ns3.kolyma.uz.
 
 ; Telegram Bots
 xinuxmgr    IN    CNAME ns2.kolyma.uz.
