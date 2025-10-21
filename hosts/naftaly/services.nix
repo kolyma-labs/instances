@@ -20,6 +20,6 @@
       type = "slave";
     };
 
-    nextcloud.enable = false;
+    nextcloud.enable = true;
   };
 }
