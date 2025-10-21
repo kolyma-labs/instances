@@ -32,7 +32,6 @@ in {
     sops.secrets = {
       "hydra/sign" = {
         format = "binary";
-        owner = "nix-serve";
         sopsFile = ../../secrets/hydra/cache-private.hell;
       };
     };
