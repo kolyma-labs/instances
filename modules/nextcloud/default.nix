@@ -140,12 +140,12 @@ in {
 
         configureRedis = true;
 
-        notify_push = {
-          enable = true;
-          # Setting this to true breaks Matrix -> NextPush integration because
-          # matrix-synapse doesn't like it if cloud.floss.uz resolves to localhost.
-          bendDomainToLocalhost = false;
-        };
+        # notify_push = {
+        #   enable = true;
+        #   # Setting this to true breaks Matrix -> NextPush integration because
+        #   # matrix-synapse doesn't like it if cloud.floss.uz resolves to localhost.
+        #   bendDomainToLocalhost = false;
+        # };
 
         config = {
           adminuser = "admin";
