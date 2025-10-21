@@ -20,8 +20,6 @@
       type = "slave";
     };
 
-    nextcloud = {
-      enable = true;
-    };
+    nextcloud.enable = false;
   };
 }
