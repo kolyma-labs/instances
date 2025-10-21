@@ -22,7 +22,7 @@ in {
 
       cache = lib.mkOption {
         type = lib.types.port;
-        default = 3123;
+        default = 3124;
         description = "Port to expose cache binaries.";
       };
     };
