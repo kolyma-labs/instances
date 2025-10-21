@@ -46,9 +46,7 @@
       type = "slave";
     };
 
-    gate = {
-      enable = true;
-    };
+    gate.enable = true;
 
     git = {
       enable = true;

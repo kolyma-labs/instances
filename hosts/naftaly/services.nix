@@ -3,6 +3,7 @@
     # Top level abstractions
     outputs.nixosModules.web
     outputs.nixosModules.bind
+    outputs.nixosModules.nextcloud
   ];
 
   # Kolyma services
@@ -17,6 +18,10 @@
     nameserver = {
       enable = true;
       type = "slave";
+    };
+
+    nextcloud = {
+      enable = true;
     };
   };
 }

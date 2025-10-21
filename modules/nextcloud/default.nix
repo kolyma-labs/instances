@@ -1,13 +1,12 @@
 {
   config,
   pkgs,
-  flake,
   lib,
   ...
 }: let
   cfg = config.kolyma.nextcloud;
 
-  vHostDomain = "cloud.${config.pub-solar-os.networking.domain}";
+  vHostDomain = "cloud.${cfg.domain}";
 in {
   options = {
     kolyma.nextcloud = {
@@ -15,24 +14,35 @@ in {
         type = lib.types.bool;
         default = false;
         example = true;
-        description = "";
+        description = "Deploy Nextcloud services";
       };
 
-      domain = lib.mkOption {};
+      domain = lib.mkOption {
+        type = lib.types.str;
+        example = "example.com";
+        default = "floss.uz";
+        description = "Main domain to associate cloud service with.";
+      };
     };
   };
 
   config = lib.mkIf cfg.enable {
-    age.secrets."nextcloud-secrets" = {
-      file = "${flake.self}/secrets/nextcloud-secrets.age";
-      mode = "400";
-      owner = "nextcloud";
+    sops.secrets = {
+      "cloud/secrets" = {
+        mode = "0600";
+        owner = "nextcloud";
+        format = "binary";
+        sopsFile = ../../secrets/cloud/secrets.hell;
+      };
     };
 
-    age.secrets."nextcloud-admin-pass" = {
-      file = "${flake.self}/secrets/nextcloud-admin-pass.age";
-      mode = "400";
-      owner = "nextcloud";
+    sops.secrets = {
+      "cloud/admin" = {
+        mode = "0600";
+        owner = "nextcloud";
+        format = "binary";
+        sopsFile = ../../secrets/cloud/admin.hell;
+      };
     };
 
     services = {
@@ -117,7 +127,7 @@ in {
           '';
         };
       in {
-        hostName = "cloud.${config.pub-solar-os.networking.domain}";
+        hostName = "cloud.${cfg.domain}";
         home = "/var/lib/nextcloud";
 
         enable = true;
@@ -125,7 +135,7 @@ in {
         # services.nextcloud.extraApps
         package = pkgs.nextcloud31;
         https = true;
-        secretFile = config.age.secrets."nextcloud-secrets".path; # secret
+        secretFile = config.sops.secrets."cloud/secrets".path; # secret
         maxUploadSize = "1G";
 
         configureRedis = true;
@@ -133,13 +143,13 @@ in {
         notify_push = {
           enable = true;
           # Setting this to true breaks Matrix -> NextPush integration because
-          # matrix-synapse doesn't like it if cloud.pub.solar resolves to localhost.
+          # matrix-synapse doesn't like it if cloud.floss.uz resolves to localhost.
           bendDomainToLocalhost = false;
         };
 
         config = {
           adminuser = "admin";
-          adminpassFile = config.age.secrets."nextcloud-admin-pass".path;
+          adminpassFile = config.sops.secrets."cloud/admin".path;
           dbuser = "nextcloud";
           dbtype = "pgsql";
           dbname = "nextcloud";
@@ -150,19 +160,19 @@ in {
             "138.201.80.102"
             "2a01:4f8:172:1c25::1"
           ];
-          "overwrite.cli.url" = "https://cloud.${config.pub-solar-os.networking.domain}";
+          "overwrite.cli.url" = "https://cloud.${cfg.domain}";
           overwriteprotocol = "https";
 
-          default_phone_region = "+49";
+          default_phone_region = "+998";
           mail_sendmailmode = "smtp";
-          mail_from_address = "nextcloud";
+          mail_from_address = "support";
           mail_smtpmode = "smtp";
           mail_smtpauthtype = "PLAIN";
-          mail_domain = "pub.solar";
-          mail_smtpname = "admins@pub.solar";
+          mail_domain = "floss.uz";
+          mail_smtpname = "support@floss.uz";
           mail_smtpsecure = "ssl";
           mail_smtpauth = true;
-          mail_smtphost = "mail.pub.solar";
+          mail_smtphost = "mail.floss.uz";
           mail_smtpport = "465";
 
           enable_previews = true;
@@ -206,7 +216,7 @@ in {
           # delete all files in the trash bin that are older than 7 days
           # automatically, delete other files anytime if space needed
           trashbin_retention_obligation = "auto,7";
-          skeletondirectory = "${pkgs.nextcloud-skeleton}/{lang}";
+          # skeletondirectory = "${pkgs.nextcloud-skeleton}/{lang}";
           defaultapp = "file";
           activity_expire_days = "14";
           updatechecker = false;

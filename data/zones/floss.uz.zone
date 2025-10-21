@@ -41,6 +41,9 @@ git         IN    CNAME ns2.kolyma.uz.
 ; Mastodon server
 social      IN    CNAME ns2.kolyma.uz.
 
+; Cloud service
+cloud       IN    CNAME ns4.kolyma.uz.
+
 ; Mail server
 mail              IN  A     37.27.67.190
 mail              IN  AAAA  2a01:4f9:3081:3518::2
