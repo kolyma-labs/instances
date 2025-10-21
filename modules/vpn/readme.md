@@ -1,1 +1,0 @@
-# Wireguard Configurations {#kolyma-wireguard}

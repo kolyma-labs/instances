@@ -27,8 +27,6 @@ ns3    IN    A     65.21.83.85
 ns3    IN    AAAA  2a01:4f9:3080:2c81::2
 ns4    IN    A     65.109.103.11
 ns4    IN    AAAA  2a01:4f9:3080:2829::2
-ns5    IN    A     65.21.12.49
-ns5    IN    AAAA  2a01:4f9:3080:418b::2
 
 ; A & AAAA records for local exposed servers
 uz1    IN    A     213.230.122.228
@@ -45,11 +43,7 @@ cdn1    IN    CNAME ns1.kolyma.uz.
 cdn2    IN    CNAME ns2.kolyma.uz.
 cdn3    IN    CNAME ns3.kolyma.uz.
 cdn4    IN    CNAME ns4.kolyma.uz.
-cdn5    IN    CNAME ns5.kolyma.uz.
 udn1    IN    CNAME uz1.kolyma.uz.
-
-; External services
-vpn     IN    CNAME ns5.kolyma.uz.
 
 ; GitHub verification
 _gh-kolyma-labs-o    IN    TXT     cc851471b9
