@@ -14,15 +14,29 @@ in {
         description = "Deploy NixOS native CI/CD.";
       };
 
-      port = lib.mkOption {
+      hydra = lib.mkOption {
         type = lib.types.port;
         default = 3123;
         description = "Port to expose web interface.";
+      };
+
+      cache = lib.mkOption {
+        type = lib.types.port;
+        default = 3123;
+        description = "Port to expose cache binaries.";
       };
     };
   };
 
   config = lib.mkIf cfg.enable {
+    sops.secrets = {
+      "hydra/sign" = {
+        format = "binary";
+        owner = "nix-serve";
+        sopsFile = ../../secrets/hydra/cache-private.hell;
+      };
+    };
+
     nix.buildMachines = [
       {
         hostName = "localhost";
@@ -38,7 +52,7 @@ in {
 
       hydra = {
         enable = true;
-        port = cfg.port;
+        port = cfg.hydra;
         listenHost = "localhost";
         hydraURL = "https://hydra.xinux.uz";
 
@@ -56,12 +70,27 @@ in {
         '';
       };
 
+      nix-serve = {
+        enable = true;
+        port = cfg.cache;
+        bindAddress = "localhost";
+        secretKeyFile = config.sops.secrets."hydra/sign".path;
+      };
+
       nginx.virtualHosts = {
         "hydra.xinux.uz" = {
           forceSSL = true;
           enableACME = true;
           locations."/" = {
-            proxyPass = "http://localhost:${toString cfg.port}";
+            proxyPass = with config.services.hydra; "http://${listenHost}:${toString port}";
+          };
+        };
+
+        "cache.xinux.uz" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            proxyPass = with config.services.nix-serve; "http://${bindAddress}:${toString port}";
           };
         };
       };
