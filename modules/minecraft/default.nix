@@ -48,7 +48,7 @@ in {
           difficulty = 3;
           gamemode = 0;
           max-players = 100;
-          motd = "\\u00A7f\\u00A7lWelcome to Floss Uzbekistan's Server\\u00A7r\\n\\u00A7lFor more at\:\\u00A7r \\u00A7nhttps\://niggerlicious.uz";
+          motd = "\\u00A7f\\u00A7lWelcome to Floss Uzbekistan's Server\\u00A7r\\n\\u00A7lFor more, visit\:\\u00A7r \\u00A7nhttps\://niggerlicious.uz";
           white-list = true;
           enable-rcon = true;
           "rcon.port" = 25575;
