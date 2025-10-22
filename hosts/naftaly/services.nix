@@ -3,6 +3,7 @@
     # Top level abstractions
     outputs.nixosModules.web
     outputs.nixosModules.bind
+    outputs.nixosModules.minecraft
     outputs.nixosModules.nextcloud
   ];
 
@@ -20,6 +21,10 @@
       type = "slave";
     };
 
+    # Nextcloud server
     nextcloud.enable = true;
+
+    # Minecraft server
+    minecraft.enable = true;
   };
 }

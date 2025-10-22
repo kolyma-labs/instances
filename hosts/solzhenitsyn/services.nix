@@ -46,8 +46,10 @@
       type = "slave";
     };
 
+    # Tarmoqchi central
     gate.enable = true;
 
+    # Forgejo server
     git = {
       enable = true;
       domain = "git.floss.uz";
@@ -60,11 +62,13 @@
       };
     };
 
+    # Social mastodon
     mastodon = {
       enable = true;
       domain = "floss.uz";
     };
 
+    # Deployed apps
     apps = {
       uzbek-net.website.enable = true;
     };
