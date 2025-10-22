@@ -153,13 +153,13 @@ in {
           dbuser = "nextcloud";
           dbtype = "pgsql";
           dbname = "nextcloud";
-
-          # disable if it's first time
-          hide_login_form = "false";
-          lost_password_link = "https://auth.floss.uz/realms/floss.uz/login-actions/reset-credentials";
         };
 
         settings = {
+          # disable if it's first time
+          hide_login_form = "false";
+          lost_password_link = "https://auth.floss.uz/realms/floss.uz/login-actions/reset-credentials";
+
           trusted_proxies = [
             "138.201.80.102"
             "2a01:4f8:172:1c25::1"
