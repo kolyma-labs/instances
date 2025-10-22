@@ -6,6 +6,8 @@
     outputs.nixosModules.nextcloud
   ];
 
+  services.postgresql.enable = true;
+
   # Kolyma services
   kolyma = {
     # Web Server & Proxy
