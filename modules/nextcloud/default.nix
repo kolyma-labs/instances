@@ -153,6 +153,10 @@ in {
           dbuser = "nextcloud";
           dbtype = "pgsql";
           dbname = "nextcloud";
+
+          # disable if it's first time
+          hide_login_form = "false";
+          lost_password_link = "https://auth.floss.uz/realms/floss.uz/login-actions/reset-credentials";
         };
 
         settings = {
