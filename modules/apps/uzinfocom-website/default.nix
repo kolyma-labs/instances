@@ -34,7 +34,7 @@
 
       nginx.virtualHosts = {
         "oss.${base}" = {
-          addSSL = true;
+          forceSSL = true;
           enableACME = true;
           locations = {
             "/".proxyPass = "http://unix:${config.services.anubis.instances.uzinfocom-website.settings.BIND}";
@@ -70,7 +70,7 @@
 
       nginx.virtualHosts = {
         "link.${base}" = {
-          addSSL = true;
+          forceSSL = true;
           enableACME = true;
           locations = {
             "/".proxyPass = "http://unix:${config.services.anubis.instances.uzinfocom-taggis.settings.BIND}";
