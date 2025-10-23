@@ -176,7 +176,7 @@ in {
           mail_smtpname = "support@floss.uz";
           mail_smtpsecure = "ssl";
           mail_smtpauth = true;
-          mail_smtphost = "mail.floss.uz";
+          mail_smtphost = "mail.kolyma.uz";
           mail_smtpport = "465";
 
           enable_previews = true;

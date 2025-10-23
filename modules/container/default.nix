@@ -25,12 +25,12 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    # assertions = [
-    #   {
-    #     assertion = !config.kolyma.containers.enable;
-    #     message = "docker is prohibited in this network at all";
-    #   }
-    # ];
+    assertions = [
+      {
+        assertion = !config.kolyma.containers.enable;
+        message = "docker is prohibited in this network at all";
+      }
+    ];
 
     warnings = [
       (lib.strings.concatLines

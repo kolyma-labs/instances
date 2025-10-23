@@ -5,6 +5,39 @@
   ...
 }: let
   cfg = config.kolyma.mail;
+
+  all-domain = [cfg.domain] ++ cfg.alias;
+
+  forEachDomain = domain: {
+    "admin@${domain}" = {
+      quota = "2G";
+      hashedPasswordFile = cfg.service;
+      aliases = [
+        "abuse@${domain}"
+        "security@${domain}"
+        "alerts@${domain}"
+        "postmaster@${domain}"
+      ];
+    };
+
+    "support@${domain}" = {
+      quota = "2G";
+      hashedPasswordFile = cfg.service;
+      aliases = ["developers@${domain}" "maintainers@${domain}"];
+    };
+
+    "noreply@${domain}" = {
+      quota = "2G";
+      sendOnly = true;
+      hashedPasswordFile = cfg.service;
+    };
+
+    "orzklv@${domain}" = {
+      quota = "2G";
+      hashedPasswordFile = cfg.service;
+      aliases = ["sakhib@${domain}"];
+    };
+  };
 in {
   imports = [
     inputs.simple-nixos-mailserver.nixosModule
@@ -22,6 +55,13 @@ in {
         type = lib.types.str;
         default = "kolyma.uz";
         description = "Use the appointed domain for mail service.";
+      };
+
+      alias = lib.mkOption {
+        type = with lib.types; listOf str;
+        default = [];
+        example = ["example.com"];
+        description = "";
       };
 
       service = lib.mkOption {
@@ -43,7 +83,7 @@ in {
     mailserver = {
       enable = true;
       fqdn = "mail.${cfg.domain}";
-      domains = [cfg.domain];
+      domains = all-domain;
 
       localDnsResolver = false;
       indexDir = "/var/lib/dovecot/indices";
@@ -57,36 +97,10 @@ in {
 
       # Generating hashed passwords:
       # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
-      loginAccounts = {
-        "admin@${cfg.domain}" = {
-          quota = "2G";
-          hashedPasswordFile = cfg.service;
-          aliases = [
-            "abuse@${cfg.domain}"
-            "security@${cfg.domain}"
-            "alerts@${cfg.domain}"
-            "postmaster@${cfg.domain}"
-          ];
-        };
-
-        "support@${cfg.domain}" = {
-          quota = "2G";
-          hashedPasswordFile = cfg.service;
-          aliases = ["developers@${cfg.domain}" "maintainers@${cfg.domain}"];
-        };
-
-        "noreply@${cfg.domain}" = {
-          quota = "2G";
-          sendOnly = true;
-          hashedPasswordFile = cfg.service;
-        };
-
-        "orzklv@${cfg.domain}" = {
-          quota = "2G";
-          hashedPasswordFile = cfg.service;
-          aliases = ["sakhib@${cfg.domain}"];
-        };
-      };
+      loginAccounts =
+        all-domain
+        |> map forEachDomain
+        |> lib.mkMerge;
 
       # Use Let's Encrypt certificates. Note that this needs to set up a stripped
       # down nginx and opens port 80.

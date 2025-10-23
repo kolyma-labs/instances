@@ -57,7 +57,8 @@
 
     mail = {
       enable = true;
-      domain = "floss.uz";
+      domain = "kolyma.uz";
+      alias = ["floss.uz" "oss.uzinfocom.uz"];
     };
 
     matrix = {

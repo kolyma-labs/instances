@@ -136,7 +136,7 @@ in {
           mailer = {
             ENABLED = true;
             PROTOCOL = "smtps";
-            SMTP_ADDR = "mail.${cfg.domain}";
+            SMTP_ADDR = "mail.kolyma.uz";
             SMTP_PORT = 465;
             FROM = ''"${cfg.domain} git server" <admin@${cfg.domain}>'';
             USER = "admin@${cfg.domain}";

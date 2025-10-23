@@ -55,7 +55,7 @@ in {
         listenHost = "localhost";
         hydraURL = "https://hydra.xinux.uz";
 
-        smtpHost = "mail.floss.uz";
+        smtpHost = "mail.kolyma.uz";
         notificationSender = "support@floss.uz";
 
         useSubstitutes = true;

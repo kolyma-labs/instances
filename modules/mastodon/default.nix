@@ -154,7 +154,7 @@ in {
       vapidPublicKeyFile = cfg.vapid.public;
       smtp = {
         createLocally = false;
-        host = "mail.${cfg.domain}";
+        host = "mail.kolyma.uz";
         port = 587;
         authenticate = true;
         user = "support@${cfg.domain}";
