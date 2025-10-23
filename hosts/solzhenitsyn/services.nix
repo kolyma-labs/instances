@@ -13,6 +13,7 @@
 
     # Per app preconfigured abstractions
     outputs.nixosModules.apps.uzbek-net-website
+    outputs.nixosModules.apps.uzinfocom-website
   ];
 
   sops.secrets = {
@@ -71,6 +72,10 @@
     # Deployed apps
     apps = {
       uzbek-net.website.enable = true;
+      uzinfocom = {
+        social.enable = true;
+        website.enable = true;
+      };
     };
   };
 }
