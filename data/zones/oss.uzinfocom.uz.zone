@@ -17,8 +17,6 @@ $TTL 86400
 @      IN    AAAA  2a01:4f9:3081:2e04::2
 
 ; Mail configurations
-mail              IN  A     37.27.67.190
-mail              IN  AAAA  2a01:4f9:3081:3518::2
 @                 IN  MX    10 mail.kolyma.uz.
 @                 IN  TXT   "v=spf1 a:mail.kolyma.uz -all"
 _submission._tcp  IN  SRV   5 0 587 mail.kolyma.uz.
