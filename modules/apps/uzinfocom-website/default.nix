@@ -48,7 +48,7 @@
     services = {
       uzinfocom.taggis = {
         enable = true;
-        port = 51003;
+        port = 51004;
         host = "127.0.0.1";
 
         proxy = {
