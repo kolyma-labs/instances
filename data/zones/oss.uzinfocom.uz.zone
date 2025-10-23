@@ -13,12 +13,12 @@ $TTL 86400
 @      IN    NS    ns4.kolyma.uz.
 
 ; Entry points
-@      IN    A     167.235.96.40
-@      IN    AAAA  2a01:4f8:2190:2914::
+@      IN    A     37.27.60.37
+@      IN    AAAA  2a01:4f9:3081:2e04::2
 
 ; Mail configurations
-mail              IN  A     167.235.96.40
-mail              IN  AAAA  2a01:4f8:2190:2914::
+mail              IN  A     37.27.60.37
+mail              IN  AAAA  2a01:4f9:3081:2e04::2
 @                 IN  MX    10 mail.oss.uzinfocom.uz.
 @                 IN  TXT   "v=spf1 a:mail.oss.uzinfocom.uz -all"
 _submission._tcp  IN  SRV   5 0 587 mail.oss.uzinfocom.uz.
