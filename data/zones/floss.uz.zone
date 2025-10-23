@@ -45,14 +45,13 @@ social      IN    CNAME ns2.kolyma.uz.
 cloud       IN    CNAME ns4.kolyma.uz.
 
 ; Mail server
-mail              IN  A     37.27.67.190
-mail              IN  AAAA  2a01:4f9:3081:3518::2
-@                 IN  MX    10 mail.floss.uz.
-@                 IN  TXT   "v=spf1 a:mail.floss.uz -all"
-_submission._tcp  IN  SRV   5 0 587 mail.floss.uz.
-_submissions._tcp IN  SRV   5 0 465 mail.floss.uz.
-_imap._tcp        IN  SRV   5 0 143 mail.floss.uz.
-_imaps._tcp       IN  SRV   5 0 993 mail.floss.uz.
+mail              IN  CNAME ns1.kolyma.uz.
+@                 IN  MX    10 mail.kolyma.uz.
+@                 IN  TXT   "v=spf1 a:mail.kolyma.uz -all"
+_submission._tcp  IN  SRV   5 0 587 mail.kolyma.uz.
+_submissions._tcp IN  SRV   5 0 465 mail.kolyma.uz.
+_imap._tcp        IN  SRV   5 0 143 mail.kolyma.uz.
+_imaps._tcp       IN  SRV   5 0 993 mail.kolyma.uz.
 _dmarc            IN  TXT   "v=DMARC1; p=none"
 mail._domainkey   IN  TXT   ( "v=DKIM1; k=rsa; "
       "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCqUZfhFXEDmTd8hC8pwLNYASUPbFIfIvr01mpztaZGg/++PoDxMus2esO7uk1reACNkyNgT7gFo4RHYCXJvTUIqDIR8a8PpLyp1yW/d3YRuHpbomoLYRTVbDeks4h0xfy7abib3lOEuddUonfwfFM85rjjYshShRHG9ZUNcdU+VwIDAQAB" )
