@@ -22,22 +22,12 @@
         };
       };
 
-      anubis.instances = {
-        uzinfocom-website = {
-          settings = {
-            TARGET = "http://${config.services.uzinfocom.website.host}:${toString config.services.uzinfocom.website.port}";
-            DIFFICULTY = 100;
-            WEBMASTER_EMAIL = "admin@kolyma.uz";
-          };
-        };
-      };
-
       nginx.virtualHosts = {
         "oss.${base}" = {
           forceSSL = true;
           enableACME = true;
           locations = {
-            "/".proxyPass = "http://unix:${config.services.anubis.instances.uzinfocom-website.settings.BIND}";
+            "/".proxyPass = "http://${config.services.uzinfocom.website.host}:${toString config.services.uzinfocom.website.port}";
           };
         };
       };
@@ -58,22 +48,12 @@
         };
       };
 
-      anubis.instances = {
-        uzinfocom-taggis = {
-          settings = {
-            TARGET = "http://${config.services.uzinfocom.taggis.host}:${toString config.services.uzinfocom.taggis.port}";
-            DIFFICULTY = 100;
-            WEBMASTER_EMAIL = "admin@kolyma.uz";
-          };
-        };
-      };
-
       nginx.virtualHosts = {
         "link.${base}" = {
           forceSSL = true;
           enableACME = true;
           locations = {
-            "/".proxyPass = "http://unix:${config.services.anubis.instances.uzinfocom-taggis.settings.BIND}";
+            "/".proxyPass = "http://${config.services.uzinfocom.taggis.host}:${toString config.services.uzinfocom.taggis.port}";
           };
         };
       };
