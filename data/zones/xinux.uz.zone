@@ -23,7 +23,7 @@ hydra       IN    CNAME ns3.kolyma.uz.
 cache       IN    CNAME ns3.kolyma.uz.
 
 ; Telegram Bots
-xinuxmgr    IN    CNAME ns2.kolyma.uz.
+bot         IN    CNAME ns2.kolyma.uz.
 
 ; GitHub Deployments
 graph       IN    CNAME xinux-org.github.io.
