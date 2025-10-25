@@ -9,6 +9,7 @@
     outputs.nixosModules.gate
     outputs.nixosModules.git
     outputs.nixosModules.mastodon
+    outputs.nixosModules.searx
     outputs.nixosModules.web
 
     # Per app preconfigured abstractions
@@ -68,6 +69,8 @@
       enable = true;
       domain = "floss.uz";
     };
+
+    search.enable = true;
 
     # Deployed apps
     apps = {

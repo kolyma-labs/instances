@@ -16,7 +16,7 @@ in {
         description = "Whether to deploy the self hosted search engine.";
       };
 
-      domain = {
+      domain = lib.mkOption {
         type = lib.types.str;
         default = "floss.uz";
         example = "exmaple.com";
@@ -58,7 +58,7 @@ in {
         chmod-socket = "660";
       };
 
-      environmentFile = config.age.secrets.searx-environment.path;
+      # environmentFile = config.age.secrets.searx-environment.path;
 
       settings = {
         use_default_settings = true;
@@ -70,7 +70,7 @@ in {
 
         general = {
           debug = false;
-          instance_name = "search.${config.pub-solar-os.networking.domain}";
+          instance_name = "search.${cfg.domain}";
           # privacypolicy_url = config.pub-solar-os.privacyPolicyUrl;
           # use true to use your own donation page written in searx/info/en/donate.md
           # use false to disable the donation link
