@@ -13,6 +13,7 @@
     outputs.nixosModules.web
 
     # Per app preconfigured abstractions
+    outputs.nixosModules.apps.xinuxmgr-bot
     outputs.nixosModules.apps.uzbek-net-website
     outputs.nixosModules.apps.uzinfocom-website
   ];
@@ -75,10 +76,13 @@
     # Deployed apps
     apps = {
       uzbek-net.website.enable = true;
+
       uzinfocom = {
         social.enable = true;
         website.enable = true;
       };
+
+      xinux.bot.enable = true;
     };
   };
 }

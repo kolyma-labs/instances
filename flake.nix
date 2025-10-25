@@ -67,10 +67,10 @@
     khakimovs.url = "github:khakimovs/website";
 
     # Xinux Bot from Xinux Community
-    xinux.url = "github:xinux-org/telegram";
+    xinuxmgr-bot.url = "github:xinux-org/telegram";
 
     # Rustina from Rust Uzbekistan
-    rustina.url = "github:rust-lang-uz/telegram";
+    rustina-bot.url = "github:rust-lang-uz/telegram";
 
     # Minecraft server
     minecraft.url = "github:Infinidoge/nix-minecraft";

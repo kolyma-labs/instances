@@ -789,17 +789,17 @@
         "nixpkgs": "nixpkgs_7",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "pre-commit-hooks": "pre-commit-hooks",
-        "rustina": "rustina",
+        "rustina-bot": "rustina-bot",
         "simple-nixos-mailserver": "simple-nixos-mailserver",
         "sops-nix": "sops-nix",
         "tarmoqchi": "tarmoqchi",
         "uzbek-net-website": "uzbek-net-website",
         "uzinfocom-taggis": "uzinfocom-taggis",
         "uzinfocom-website": "uzinfocom-website",
-        "xinux": "xinux"
+        "xinuxmgr-bot": "xinuxmgr-bot"
       }
     },
-    "rustina": {
+    "rustina-bot": {
       "inputs": {
         "flake-utils": "flake-utils_6",
         "nixpkgs": "nixpkgs_8"
@@ -1091,7 +1091,7 @@
         "type": "github"
       }
     },
-    "xinux": {
+    "xinuxmgr-bot": {
       "inputs": {
         "flake-utils": "flake-utils_10",
         "nixpkgs": "nixpkgs_13"
