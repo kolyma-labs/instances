@@ -19,7 +19,7 @@
           persistentKeepalive = 25;
           endpoint = "213.230.122.228:666";
           publicKey = "oDSqZC1ki2LtCF3pU7Zp2QhrXiHC4pV6o2ljaufyyxA=";
-          allowedIPs = ["10.10.1.0/24" "10.100.0.0/24"];
+          allowedIPs = ["10.100.0.0/24" "10.10.1.0/24"];
         }
       ];
     };
