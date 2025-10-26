@@ -5,6 +5,9 @@
     outputs.nixosModules.bind
     outputs.nixosModules.minecraft
     outputs.nixosModules.nextcloud
+
+    # Per app preconfigured abstractions
+    outputs.nixosModules.apps.khakimovs-website
   ];
 
   # Kolyma services
@@ -26,5 +29,14 @@
 
     # mc://niggerlicious.uz
     minecraft.enable = true;
+
+    # *://*
+    apps = {
+      # https://*.khakimovs.uz
+      khakimovs = {
+        # https://khakimovs.uz
+        website.enable = true;
+      };
+    };
   };
 }

@@ -64,7 +64,7 @@
     gate.url = "github:kolyma-labs/gate";
 
     # Khakimov's website
-    khakimovs.url = "github:khakimovs/website";
+    khakimovs-website.url = "github:khakimovs/website";
 
     # Xinux Bot from Xinux Community
     xinuxmgr-bot.url = "github:xinux-org/telegram";
