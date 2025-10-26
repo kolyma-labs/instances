@@ -21,7 +21,7 @@ in {
       "xinux/bot" = {
         format = "binary";
         owner = config.services.xinux.bot.user;
-        sopsFile = ../../../secrets/xinux/token.hell;
+        sopsFile = ../../../secrets/xinux/bot.hell;
       };
     };
 
@@ -31,8 +31,8 @@ in {
       token = config.sops.secrets."xinux/bot".path;
 
       webhook = {
-        proxy = "nginx";
         enable = true;
+        proxy = "nginx";
         port = 51005;
         domain = "bot.xinux.uz";
       };

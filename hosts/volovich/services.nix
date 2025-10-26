@@ -30,7 +30,7 @@ in {
 
   # Kolyma services
   kolyma = {
-    # Web Server & Proxy
+    # https://ns3.kolyma.uz [cdn.xinux.uz,...]
     www = {
       enable = true;
       instance = 3;
@@ -45,14 +45,16 @@ in {
       };
     };
 
-    # Nameserver
+    # bind://ns3.kolyma.uz
     nameserver = {
       enable = true;
       type = "slave";
     };
 
+    # https://(hydra|cache).xinux.uz
     hydra.enable = true;
 
+    # * -> github.com
     runners = {
       enable = true;
       instances = [

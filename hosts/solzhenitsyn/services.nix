@@ -13,6 +13,7 @@
     outputs.nixosModules.web
 
     # Per app preconfigured abstractions
+    outputs.nixosModules.apps.rustina-bot
     outputs.nixosModules.apps.xinuxmgr-bot
     outputs.nixosModules.apps.uzbek-net-website
     outputs.nixosModules.apps.uzinfocom-website
@@ -36,23 +37,23 @@
 
   # Kolyma services
   kolyma = {
-    # Enable web server & proxy
+    # https://ns2.kolyma.uz
     www = {
       enable = true;
       instance = 2;
       anubis = true;
     };
 
-    # Nameserver
+    # bind://ns2.kolyma.uz
     nameserver = {
       enable = true;
       type = "slave";
     };
 
-    # Tarmoqchi central
+    # https://tarmoqchi.uz
     gate.enable = true;
 
-    # Forgejo server
+    # https://git.floss.uz
     git = {
       enable = true;
       domain = "git.floss.uz";
@@ -65,24 +66,33 @@
       };
     };
 
-    # Social mastodon
+    # https://social.floss.uz
     mastodon = {
       enable = true;
       domain = "floss.uz";
     };
 
+    # search.floss.uz
     search.enable = true;
 
-    # Deployed apps
+    # *://*
     apps = {
+      # https://uzbek.net.uz
       uzbek-net.website.enable = true;
 
+      # https://*.uzinfocom.uz
       uzinfocom = {
+        # https://link.uzinfocom.uz
         social.enable = true;
+        # https://oss.uzinfocom.uz
         website.enable = true;
       };
 
+      # https://t.me/xinuxmgrbot
       xinux.bot.enable = true;
+
+      # https://t.me/rustaceanbot
+      rust-uz.bot.enable = true;
     };
   };
 }

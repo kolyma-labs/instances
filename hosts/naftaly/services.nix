@@ -9,22 +9,22 @@
 
   # Kolyma services
   kolyma = {
-    # Web Server & Proxy
+    # https://ns4.kolyma.uz
     www = {
       enable = true;
       instance = 4;
     };
 
-    # Nameserver
+    # bind://ns4.kolyma.uz
     nameserver = {
       enable = true;
       type = "slave";
     };
 
-    # Nextcloud server
+    # https://cloud.floss.uz
     nextcloud.enable = true;
 
-    # Minecraft server
+    # mc://niggerlicious.uz
     minecraft.enable = true;
   };
 }

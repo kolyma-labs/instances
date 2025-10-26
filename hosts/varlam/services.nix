@@ -36,31 +36,33 @@
 
   # Kolyma services
   kolyma = {
-    # Web Server & Proxy
+    # https://ns1.kolyma.uz
     www = {
       enable = true;
       instance = 1;
       alias = ["kolyma.uz"];
     };
 
-    # Nameserver
+    # bind://ns1.kolyma.uz
     nameserver = {
       enable = true;
       type = "master";
     };
 
-    # Keycloak Management
+    # https://auth.floss.uz
     auth = {
       enable = true;
       password = config.sops.secrets."auth/database".path;
     };
 
+    # (smtp|imap)://mail.kolyma.uz
     mail = {
       enable = true;
       domain = "kolyma.uz";
       alias = ["floss.uz" "oss.uzinfocom.uz"];
     };
 
+    # https://(chat|matrix).floss.uz
     matrix = {
       enable = true;
       domain = "floss.uz";
@@ -74,7 +76,9 @@
       ];
     };
 
+    # *://*
     apps = {
+      # https://floss.uz
       floss.website.enable = true;
     };
   };
