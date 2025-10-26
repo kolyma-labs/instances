@@ -14,9 +14,6 @@
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
-
-    # Tunneling for remote access
-    ./tunnel.nix
   ];
 
   # Hostname of the system
