@@ -1097,11 +1097,11 @@
         "nixpkgs": "nixpkgs_13"
       },
       "locked": {
-        "lastModified": 1758979164,
-        "narHash": "sha256-cjhlBxJBQtCopT9/RTvIMNx8Q6rludw4ffKK4omCMoo=",
+        "lastModified": 1761437092,
+        "narHash": "sha256-J6JaNPXyx+N7vpXzn7g0zl9CxjMQAedwxJrm5BTb4O8=",
         "owner": "xinux-org",
         "repo": "telegram",
-        "rev": "3bcea79b61a86e9254162baac38d8194e7d79869",
+        "rev": "f977f6428687c497e7e597fe4241bbe5c62bc232",
         "type": "github"
       },
       "original": {
