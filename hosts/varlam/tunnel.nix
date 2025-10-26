@@ -1,9 +1,4 @@
-{
-  lib,
-  config,
-  flake,
-  ...
-}: {
+{config, ...}: {
   networking.firewall.allowedUDPPorts = [51820];
 
   sops.secrets = {
@@ -26,6 +21,7 @@
             "10.10.1.0/24"
             "10.100.0.0/24"
           ];
+          persistentKeepalive = 25;
         }
       ];
     };
