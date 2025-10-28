@@ -1,6 +1,7 @@
 {
-  lib,
+  inputs,
   outputs,
+  lib,
   ...
 }: {
   imports = [
@@ -9,20 +10,16 @@
     outputs.nixosModules.extra
     outputs.nixosModules.users
 
-    # Service oriented configs
-    ./services.nix
-
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
   ];
 
   # Hostname of the system
-  networking.hostName = "Solzhenitsyn";
+  networking.hostName = "Garanin";
 
-  kolyma.accounts = {
+  kolyma = {
     # Users of system
-    users = with lib.labors; [jamshid];
-    teams = with lib.camps; [uzinfocom];
+    accounts.teams = with lib.camps; [owners];
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

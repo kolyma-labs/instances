@@ -81,23 +81,10 @@
 
   warnings =
     lib.mkIf
-    (cfg.ipv4 == null && cfg.ipv6 == null)
+    (!config.networking.useDHCP && (cfg.ipv4 == null && cfg.ipv6 == null))
     (mkWarning "are you SURE that you want to go without any public ip address?");
 
-  asserts = {
-    assertions = [
-      {
-        assertion = cfg.ipv4 != null;
-        message = "you see to forgot to appoint an address for ipv4";
-      }
-      {
-        assertion = cfg.ipv6 != null;
-        message = "you see to forgot to appoint an address for ipv6";
-      }
-    ];
-  };
-
-  merge = lib.mkMerge [main ipv4 ipv6 packs asserts warnings];
+  merge = lib.mkMerge [main ipv4 ipv6 packs warnings];
 in {
   options = {
     kolyma.network = {

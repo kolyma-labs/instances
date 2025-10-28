@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   lib,
   modulesPath,
@@ -19,29 +20,24 @@
       ];
 
       availableKernelModules = [
-        "xhci_pci"
-        "ahci"
-        "nvme"
-        "usbhid"
+        "uhci_hcd"
+        "ehci_pci"
+        "ata_piix"
+        "hpsa"
+        "hpilo"
+        "usb_storage"
+        "sd_mod"
+        "sr_mod"
       ];
     };
   };
 
-  kolyma = {
-    boot = {
-      uefi = true;
-      raided = true;
-      mirrors = [
-        "/dev/nvme0n1"
-        "/dev/nvme1n1"
-      ];
-    };
-
-    network = {
-      ipv4 = "37.27.60.37";
-      ipv6 = "2a01:4f9:3081:2e04::2";
-    };
+  kolyma.boot = {
+    enable = true;
   };
+
+  networking.useDHCP = lib.mkForce true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

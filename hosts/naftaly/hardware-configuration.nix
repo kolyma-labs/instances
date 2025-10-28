@@ -5,11 +5,9 @@
   ...
 }: {
   imports = [
-    # Disko partitioning
     inputs.disko.nixosModules.disko
     ./disk-configuration.nix
 
-    # Not available hardware modules
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
