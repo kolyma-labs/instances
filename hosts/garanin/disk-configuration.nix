@@ -22,7 +22,6 @@
                 mountOptions = ["umask=0077"];
               };
             };
-
             SWAP = {
               size = "34G";
               content = {

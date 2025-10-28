@@ -45,10 +45,6 @@
   # Use DHCP (router will handle static behaviour)
   networking.useDHCP = lib.mkForce true;
 
-  kolyma.boot = {
-    devices = ["/dev/nvme0n1"];
-  };
-
   # List packages system hardware configuration
   hardware = {
     # CPU (Intel)
