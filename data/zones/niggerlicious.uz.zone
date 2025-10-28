@@ -13,6 +13,5 @@ $TTL 86400
 @      IN    NS    ns4.kolyma.uz.
 
 ; Entry points
-@      IN    A     65.109.103.11
-@      IN    AAAA  2a01:4f9:3080:2829::2
+@      IN    A     213.230.122.228
 www    IN    CNAME niggerlicious.uz.
