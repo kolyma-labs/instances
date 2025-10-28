@@ -2,8 +2,6 @@
   imports = [
     # Top level abstractions
     outputs.nixosModules.web
-    outputs.nixosModules.bind
-    outputs.nixosModules.nextcloud
 
     # Per app preconfigured abstractions
     outputs.nixosModules.apps.khakimovs-website
@@ -25,6 +23,9 @@
 
     # https://cloud.floss.uz
     nextcloud.enable = true;
+
+    # mc://niggerlicious.uz
+    minecraft.enable = true;
 
     # *://*
     apps = {
