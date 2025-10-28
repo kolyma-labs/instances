@@ -18,7 +18,7 @@
   ];
 
   # Hostname of the system
-  networking.hostName = "Station";
+  networking.hostName = "Galitsky";
 
   kolyma = {
     # Users of system
