@@ -62,7 +62,13 @@ in {
       # Making legacy nix commands consistent as well, awesome!
       nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
-      settings =
+      settings = lib.mkMerge [
+        (lib.mkIf (!cfg.master) {
+          substituters = ["https://cache.xinux.uz/"];
+          trusted-public-keys = [
+            "cache.xinux.uz:BXCrtqejFjWzWEB9YuGB7X2MV4ttBur1N8BkwQRdH+0="
+          ];
+        })
         {
           # Enable flakes and new 'nix' command
           experimental-features = "nix-command flakes pipe-operators";
@@ -71,12 +77,7 @@ in {
           # Trusted users for secret-key
           trusted-users = builtins.map (o: o.username) lib.camps.owners.members;
         }
-        // (lib.mkIf (!cfg.master) {
-          substituters = ["https://cache.xinux.uz/"];
-          trusted-public-keys = [
-            "cache.xinux.uz:BXCrtqejFjWzWEB9YuGB7X2MV4ttBur1N8BkwQRdH+0="
-          ];
-        });
+      ];
     };
   };
 
