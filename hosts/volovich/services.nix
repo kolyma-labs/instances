@@ -53,6 +53,7 @@ in {
 
     # https://(hydra|cache).xinux.uz
     hydra.enable = true;
+    nixpkgs.master = true;
 
     # * -> github.com
     runners = {

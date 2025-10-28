@@ -10,10 +10,13 @@
 in {
   options = {
     kolyma.nixpkgs = {
-      enable = lib.mkOption {
+      enable = lib.mkEnableOption "kolyma nixpkgs configurations";
+
+      master = lib.mkOption {
         type = lib.types.bool;
         default = false;
-        description = "Enable kolyma nixpkgs configurations.";
+        example = true;
+        description = "Is this the server that hosts cache?";
       };
 
       inherit (options.nixpkgs) overlays;
@@ -59,14 +62,21 @@ in {
       # Making legacy nix commands consistent as well, awesome!
       nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
-      settings = {
-        # Enable flakes and new 'nix' command
-        experimental-features = "nix-command flakes pipe-operators";
-        # Deduplicate and optimize nix store
-        auto-optimise-store = true;
-        # Trusted users for secret-key
-        trusted-users = builtins.map (o: o.username) lib.camps.owners.members;
-      };
+      settings =
+        {
+          # Enable flakes and new 'nix' command
+          experimental-features = "nix-command flakes pipe-operators";
+          # Deduplicate and optimize nix store
+          auto-optimise-store = true;
+          # Trusted users for secret-key
+          trusted-users = builtins.map (o: o.username) lib.camps.owners.members;
+        }
+        // (lib.mkIf (!cfg.master) {
+          substituters = ["https://cache.xinux.uz/"];
+          trusted-public-keys = [
+            "cache.xinux.uz:BXCrtqejFjWzWEB9YuGB7X2MV4ttBur1N8BkwQRdH+0="
+          ];
+        });
     };
   };
 
