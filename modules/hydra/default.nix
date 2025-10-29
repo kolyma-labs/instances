@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   config,
   ...
 }: let
@@ -34,6 +35,16 @@ in {
         format = "binary";
         sopsFile = ../../secrets/hydra/cache-private.hell;
       };
+
+      "hydra/config" = {
+        format = "binary";
+        sopsFile = ../../secrets/hydra/config.hell;
+      };
+
+      "hydra/env" = {
+        format = "binary";
+        sopsFile = ../../secrets/hydra/env.hell;
+      };
     };
 
     nix.buildMachines = [
@@ -46,12 +57,23 @@ in {
       }
     ];
 
+    systemd.services = {
+      hydra-notify = {
+        serviceConfig.EnvironmentFile = config.sops.secrets."hydra/env".path;
+      };
+      hydra-queue-runner.path = [pkgs.ssmtp];
+      hydra-server.path = [pkgs.ssmtp];
+    };
+
     services = {
       postgresql.enable = lib.mkDefault true;
+
+      hydra-dev.extraEnv.HYDRA_FORCE_SEND_MAIL = "1";
 
       hydra = {
         enable = true;
         port = cfg.hydra;
+        logo = ./logo.png;
         listenHost = "localhost";
         hydraURL = "https://hydra.xinux.uz";
 
@@ -66,6 +88,8 @@ in {
           <git-input>
             timeout = 3600
           </git-input>
+
+          Include ${config.sops.secrets."hydra/config".path}
         '';
       };
 
