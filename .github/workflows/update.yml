@@ -7,17 +7,11 @@ on:
 
 jobs:
   update-request:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
-
-      - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@main
-        with:
-          extra-conf: |
-            extra-experimental-features = nix-command flakes pipe-operators
 
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@main
