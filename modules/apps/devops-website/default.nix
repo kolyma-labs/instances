@@ -4,7 +4,7 @@
   inputs,
   ...
 }: let
-  cfg = config.kolyma.apps.devops;
+  cfg = config.kolyma.apps.devops.website;
 in {
   imports = [
     inputs.devops-book.nixosModules.server
@@ -29,8 +29,13 @@ in {
       proxy = {
         inherit (cfg) enable domain;
         proxy = "nginx";
-        aliases = ["devops-journey.uz"];
       };
+    };
+
+    services.nginx.virtualHosts."devops-journey.uz" = {
+      forceSSL = true;
+      enableACME = true;
+      globalRedirect = "devopsuzb.uz";
     };
   };
 }
