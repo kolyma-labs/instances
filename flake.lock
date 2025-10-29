@@ -16,7 +16,7 @@
         "type": "gitlab"
       }
     },
-    "devops-journey": {
+    "devops-book": {
       "inputs": {
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs"
@@ -24,14 +24,14 @@
       "locked": {
         "lastModified": 1760005450,
         "narHash": "sha256-wpUyxBXO8Tc0OQcf0KNHUjbWhTbn44H0NoLPLUz7nn4=",
-        "owner": "devops-journey-uz",
-        "repo": "devops-journey",
+        "owner": "devopsuzb",
+        "repo": "book",
         "rev": "20308289aceac68dfb70bd47fe37a4bed28ba3bb",
         "type": "github"
       },
       "original": {
-        "owner": "devops-journey-uz",
-        "repo": "devops-journey",
+        "owner": "devopsuzb",
+        "repo": "book",
         "type": "github"
       }
     },
@@ -793,7 +793,7 @@
     },
     "root": {
       "inputs": {
-        "devops-journey": "devops-journey",
+        "devops-book": "devops-book",
         "disko": "disko",
         "efael-website": "efael-website",
         "floss-website": "floss-website",

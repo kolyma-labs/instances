@@ -81,8 +81,8 @@
     # Uzbek Localization project website
     uzbek-net-website.url = "github:uzbek-net/website";
 
-    # DevOps Journey website
-    devops-journey.url = "github:devops-journey-uz/devops-journey";
+    # DevOps Uzbekistan guide book
+    devops-book.url = "github:devopsuzb/book";
 
     # Tarmoqchi HTTP tunneling
     tarmoqchi.url = "github:floss-uz-community/tarmoqchi";
