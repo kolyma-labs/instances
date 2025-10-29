@@ -61,8 +61,6 @@ in {
       hydra-notify = {
         serviceConfig.EnvironmentFile = config.sops.secrets."hydra/env".path;
       };
-      hydra-queue-runner.path = [pkgs.ssmtp];
-      hydra-server.path = [pkgs.ssmtp];
     };
 
     services = {
