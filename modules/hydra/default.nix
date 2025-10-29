@@ -44,7 +44,7 @@ in {
 
       "hydra/env" = {
         format = "binary";
-        owner = "hydra";
+        owner = "hydra-queue-runner";
         sopsFile = ../../secrets/hydra/env.hell;
       };
     };
