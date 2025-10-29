@@ -23,7 +23,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.devops-journey = {
+    services.devops.book = {
       inherit (cfg) enable;
       port = 51008;
       proxy = {
