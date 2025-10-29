@@ -68,21 +68,20 @@ in {
     services = {
       postgresql.enable = lib.mkDefault true;
 
-      hydra-dev.extraEnv.HYDRA_FORCE_SEND_MAIL = "1";
-
       hydra = {
         enable = true;
         port = cfg.hydra;
         logo = ./logo.png;
         listenHost = "localhost";
         hydraURL = "https://hydra.xinux.uz";
-
         smtpHost = "mail.kolyma.uz";
         notificationSender = "support@floss.uz";
 
         useSubstitutes = true;
         # Use host machine as build farm
         # buildMachinesFiles = [];
+
+        extraEnv.HYDRA_FORCE_SEND_MAIL = "1";
 
         extraConfig = ''
           <git-input>
