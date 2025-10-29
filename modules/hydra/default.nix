@@ -38,7 +38,7 @@ in {
 
       "hydra/config" = {
         format = "binary";
-        owner = "hydra";
+        owner = "hydra-www";
         sopsFile = ../../secrets/hydra/config.hell;
       };
 
