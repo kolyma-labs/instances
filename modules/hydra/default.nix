@@ -58,8 +58,9 @@ in {
 
     users.groups.hydramyot = {
       members = [
-        "hydra-queue-runner"
+        "hydra"
         "hydra-www"
+        "hydra-queue-runner"
       ];
     };
 
