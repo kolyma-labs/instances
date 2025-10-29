@@ -38,11 +38,13 @@ in {
 
       "hydra/config" = {
         format = "binary";
+        owner = "hydra";
         sopsFile = ../../secrets/hydra/config.hell;
       };
 
       "hydra/env" = {
         format = "binary";
+        owner = "hydra";
         sopsFile = ../../secrets/hydra/env.hell;
       };
     };
