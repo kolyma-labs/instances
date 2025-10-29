@@ -30,21 +30,29 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    users.groups.hydramyot = {
+      members = [
+        "hydra-queue-runner"
+        "hydra-www"
+      ];
+    };
+
     sops.secrets = {
       "hydra/sign" = {
         format = "binary";
+        group = "hydramyot";
         sopsFile = ../../secrets/hydra/cache-private.hell;
       };
 
       "hydra/config" = {
         format = "binary";
-        owner = "hydra-www";
+        group = "hydramyot";
         sopsFile = ../../secrets/hydra/config.hell;
       };
 
       "hydra/env" = {
         format = "binary";
-        owner = "hydra-queue-runner";
+        group = "hydramyot";
         sopsFile = ../../secrets/hydra/env.hell;
       };
     };
