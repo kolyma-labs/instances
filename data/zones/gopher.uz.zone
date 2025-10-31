@@ -1,6 +1,6 @@
 $TTL 86400
 @      IN    SOA    ns1.kolyma.uz. admin.kolyma.uz. (
-             2025103101 ; Serial YYYYMMDDNN (NN is the revision number)
+             2025103102 ; Serial YYYYMMDDNN (NN is the revision number)
              3600       ; Refresh
              1800       ; Retry
              604800     ; Expire
@@ -20,10 +20,7 @@ $TTL 86400
 www    IN    CNAME gopher.uz.
 
 ; Blog website
-blog   IN    A     185.199.108.153
-blog   IN    A     185.199.109.153
-blog   IN    A     185.199.110.153
-blog   IN    A     185.199.111.153
+blog   IN    CNAME gofer-uz.github.io.
 
 ; GitHub verifications
 _gh-goferuz-o       IN      TXT      5ff33c7031
