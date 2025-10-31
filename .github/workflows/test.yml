@@ -46,7 +46,7 @@ jobs:
 
     steps:
       - name: Enable auto-merge for Update PRs
-        run: gh pr merge --auto --merge "$PR_URL"
+        run: nix-shell -p gh -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz --command "gh pr merge --auto --merge \"$PR_URL\""
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{ secrets.PAT }}
