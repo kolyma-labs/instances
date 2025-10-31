@@ -19,5 +19,11 @@ $TTL 86400
 @      IN    A     185.199.111.153
 www    IN    CNAME gopher.uz.
 
+; Blog website
+blog   IN    A     185.199.108.153
+blog   IN    A     185.199.109.153
+blog   IN    A     185.199.110.153
+blog   IN    A     185.199.111.153
+
 ; GitHub verifications
 _gh-goferuz-o       IN      TXT      5ff33c7031
