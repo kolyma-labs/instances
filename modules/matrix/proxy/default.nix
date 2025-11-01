@@ -83,6 +83,30 @@
   endpoints =
     (mkEndpoints "client" ./endpoints/client.txt)
     ++ (mkEndpoints "federation" ./endpoints/federation.txt);
+
+  wellKnownAppleLocations = domain: {
+    "= /.well-known/apple-app-site-association". extraConfig = let
+      data = {
+        applinks = {
+          apps = [
+            "86VMSY4FK5.uz.uzinfocom.efael.app"
+            "7J4U792NQT.io.element.elementx"
+          ];
+          details = [];
+        };
+        webcredentials = {
+          apps = [
+            "86VMSY4FK5.uz.uzinfocom.efael.app"
+            "7J4U792NQT.io.element.elementx"
+          ];
+        };
+      };
+    in ''
+      default_type application/json;
+      types { application/json apple-app-site-association; }
+      return 200 '${builtins.toJSON data}';
+    '';
+  };
 in {
   services.nginx.upstreams = {
     "matrix-federation-receiver-hash" = {
@@ -98,7 +122,8 @@ in {
     (config.kolyma.matrix.enable && config.services.nginx.enable)
     {
       "${cfg.domain}" = {
-        locations = wellKnownLocations "${cfg.domain}";
+        locations =
+          wellKnownLocations "${cfg.domain}" // wellKnownAppleLocations "${cfg.domain}";
       };
 
       "chat.${cfg.domain}" = {
@@ -126,11 +151,13 @@ in {
           error_log /var/log/nginx/mas.${cfg.domain}-error.log;
         '';
 
-        locations = {
-          "/" = {
-            proxyPass = "http://127.0.0.1:8090";
-          };
-        };
+        locations =
+          {
+            "/" = {
+              proxyPass = "http://127.0.0.1:8090";
+            };
+          }
+          // wellKnownAppleLocations "${cfg.domain}";
       };
 
       "matrix.${cfg.domain}" = {
@@ -249,6 +276,7 @@ in {
                 '';
               };
             }
+            (wellKnownAppleLocations "${cfg.domain}")
           ]
           ++ endpoints
         );
