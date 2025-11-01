@@ -31,11 +31,8 @@ in {
   config = lib.mkIf cfg.enable {
     services.khakimovs-website = {
       enable = true;
-      port = 51007;
-
       proxy = {
         enable = true;
-        proxy = "nginx";
         inherit (cfg) domain;
       };
     };
