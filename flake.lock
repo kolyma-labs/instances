@@ -451,11 +451,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1761990525,
-        "narHash": "sha256-pjzy6nONnzpa7HWDl2bPIBt2p9rnGt8r4WfOcJxz8C8=",
+        "lastModified": 1761990640,
+        "narHash": "sha256-Wt4l0g8pj9gdr0s7OOe4opHgrvmk4C5yrtlO8kT33AI=",
         "owner": "khakimovs",
         "repo": "website",
-        "rev": "3ad1f6b9eb2596d0853a01d9f4284fbb5b7decf3",
+        "rev": "ad5ba596deb7f20e950fb82a4cfc57e0d477334a",
         "type": "github"
       },
       "original": {
