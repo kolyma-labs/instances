@@ -18,20 +18,21 @@ ns2         IN    A     195.158.10.37
 ns3         IN    A     45.150.26.120
 
 ; Entry points
-@           IN    A     93.188.85.94
+@           IN    A     37.27.60.37
+@           IN    AAAA  2a01:4f9:3081:2e04::2
 www         IN    CNAME efael.uz.
 
 ; Matrix endpoints
 chat        IN    CNAME efael.uz.
-matrix      IN    CNAME efael.uz.
-auth        IN    CNAME efael.uz.
-turn        IN    CNAME efael.uz.
-call        IN    CNAME efael.net.
-livekit     IN    CNAME efael.net.
-livekit-jwt IN    CNAME efael.net.
+matrix      IN    CNAME ns1.efael.uz.
+auth        IN    CNAME ns1.efael.uz.
+turn        IN    CNAME ns1.efael.uz.
+call        IN    CNAME ns1.efael.net.
+livekit     IN    CNAME ns1.efael.net.
+livekit-jwt IN    CNAME ns1.efael.net.
 
 ; Mail configurations
-mail              IN  CNAME efael.uz.
+mail              IN  CNAME ns1.efael.uz.
 @                 IN  MX    10 mail.efael.uz.
 @                 IN  TXT   "v=spf1 a:mail.efael.uz -all"
 _submission._tcp  IN  SRV   5 0 587 mail.efael.uz.

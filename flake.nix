@@ -97,6 +97,9 @@
 
     # Efael website
     efael-website.url = "github:efael/website";
+
+    # Efael messenger
+    efael-messenger.url = "github:efael/fluffy/efael/app/v2.2.0";
   };
 
   # In this context, outputs are mostly about getting nixpkgs what it

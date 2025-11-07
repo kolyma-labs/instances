@@ -5,7 +5,7 @@
     # By flake
     personal = {
       gate = inputs.gate.packages."${final.system}".default;
-      khakimovs = inputs.khakimovs.packages."${final.system}".default;
+      fluffy-efael = inputs.efael-messenger.packages.${final.system}.web;
     };
   };
 
@@ -17,7 +17,7 @@
     # ...
     # });
 
-    # Use latest unstable version of matrix
+    # Use latest unstable version of matrix & mastodon
     inherit (final.unstable) matrix-synapse mastodon;
 
     # Use latest version of mas

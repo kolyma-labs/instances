@@ -18,6 +18,7 @@
     outputs.nixosModules.apps.uzbek-net-website
     outputs.nixosModules.apps.uzinfocom-website
     outputs.nixosModules.apps.devops-website
+    outputs.nixosModules.apps.efael-messenger
   ];
 
   sops.secrets = {
@@ -97,6 +98,9 @@
 
       # https://devopsuzb.uz
       devops.website.enable = true;
+
+      # https://*.efael.(uz|net)
+      efael.messenger.enable = true;
     };
   };
 }
