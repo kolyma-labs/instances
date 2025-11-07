@@ -126,11 +126,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1762525830,
-        "narHash": "sha256-1AWDRxUi6xjtoOwy/EN/BJJNkQlm1CMcsAXuX68i3kg=",
+        "lastModified": 1762526003,
+        "narHash": "sha256-Vl+3j9GpxNxlC+Xe5oJFijzDzWofM6eHtwYi4xncfVE=",
         "owner": "efael",
         "repo": "website",
-        "rev": "9e2fe8dea1297fe39ecb2e976b87fb4bba6ada21",
+        "rev": "a234c626fa98cee51ae1de01b9fbe0564a37d211",
         "type": "github"
       },
       "original": {
