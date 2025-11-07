@@ -106,11 +106,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1762515271,
-        "narHash": "sha256-G3teM+qnOWSXbeYbCvJKM8R6YJQ0DpTozw0NrnbBLbw=",
+        "lastModified": 1762523401,
+        "narHash": "sha256-egg75kdk1ligIO+sbQ8EyQ9XGTmbW5IajsHfxbrnFw4=",
         "owner": "efael",
         "repo": "fluffy",
-        "rev": "17fb7329e9f9f814748bd763ad1e6c7c8677dba7",
+        "rev": "74dd0b7cb855e17dc84f53f8f60b0518932bb342",
         "type": "github"
       },
       "original": {
@@ -126,11 +126,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1762515295,
-        "narHash": "sha256-4n0d26qRT9UUvlYqeF3oMPOKa5dU+znfOGYVAaAXK0M=",
+        "lastModified": 1762524517,
+        "narHash": "sha256-pLd2EJ3hUrZuMirl25f7ozKb/JMPp9AzstF+KxZta4E=",
         "owner": "efael",
         "repo": "website",
-        "rev": "50a50cf0d5cacb6e6d1e2529c3bc7f654a4b002b",
+        "rev": "2f341e22be58e7816f4d45b7402c2c3495de0a15",
         "type": "github"
       },
       "original": {
@@ -570,11 +570,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1762308139,
-        "narHash": "sha256-h+2rffSCJePpff0kJbT1OYWaiYz0gffUUrPrbs0z4Ec=",
+        "lastModified": 1762480864,
+        "narHash": "sha256-OD3/2nATIXFEyTq3cxGUjZyBf8YlCSpIX/iJzSJbWag=",
         "owner": "Infinidoge",
         "repo": "nix-minecraft",
-        "rev": "b0b7832d17eca6d2146f15d544b5729b637828cd",
+        "rev": "4f3414fdfce0ddf85c35e95d07809aeb93d2f0ad",
         "type": "github"
       },
       "original": {
