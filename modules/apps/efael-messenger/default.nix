@@ -103,7 +103,6 @@ in {
     services.efael.website = {
       inherit (cfg) enable;
       proxy = {
-        proxy = "nginx";
         inherit (cfg) enable domain alias;
       };
     };
