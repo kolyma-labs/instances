@@ -26,6 +26,7 @@ in {
     "github/efael" = secret-management;
     "github/bleur" = secret-management;
     "github/uzbek" = secret-management;
+    "github/orzklv" = secret-management;
   };
 
   # Kolyma services
@@ -110,6 +111,12 @@ in {
         {
           name = "Uzbek-Net";
           url = "https://github.com/uzbek-net";
+          token = config.sops.secrets."github/uzbek".path;
+          type = "github";
+        }
+        {
+          name = "Orzklv-Nix";
+          url = "https://github.com/orzklv/nix";
           token = config.sops.secrets."github/uzbek".path;
           type = "github";
         }
