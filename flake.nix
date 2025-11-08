@@ -161,16 +161,6 @@
       };
     });
 
-    # Let the hydra build everything beforehand and then let other systems
-    # enjoy ready and compiled assets.
-    hydraJobs = {
-      packages = nixpkgs.lib.genAttrs (
-        builtins.readDir ./hosts
-        |> builtins.attrNames
-        |> map (h: self.lib.kstrings.capitalize h)
-      ) (instance: self.nixosConfigurations.${instance}.config.system.build.toplevel);
-    };
-
     # Formatter for your nix files, available through 'nix fmt'
     # Other options beside 'alejandra' include 'nixpkgs-fmt'
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
