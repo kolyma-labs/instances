@@ -76,6 +76,8 @@ in {
           auto-optimise-store = true;
           # Trusted users for secret-key
           trusted-users = builtins.map (o: o.username) lib.camps.owners.members;
+          # Enable IDF for the love of god
+          allow-import-from-derivation = true;
         }
       ];
     };
