@@ -1,6 +1,6 @@
 $TTL 86400
 @      IN    SOA    ns1.kolyma.uz. admin.kolyma.uz. (
-             2025030901 ; Serial YYYYMMDDNN (NN is the revision number)
+             2025111301 ; Serial YYYYMMDDNN (NN is the revision number)
              3600       ; Refresh
              1800       ; Retry
              604800     ; Expire
@@ -14,8 +14,7 @@ $TTL 86400
 
 ; Server Points
 ns1    IN    A     45.150.26.27
-ns2    IN    A     45.150.26.120
-ns3    IN    A     45.150.26.30
+ns2    IN    A     45.150.26.30
 
 ; Entry points
 @      IN    A     45.150.26.27
@@ -28,12 +27,9 @@ auth          IN    CNAME ns1.uzberk.uz.
 turn          IN    CNAME ns1.uzberk.uz.
 
 ; Livemedia Endpoints
-call          IN    CNAME ns2.uzberk.uz.
-livekit       IN    CNAME ns2.uzberk.uz.
-livekit-jwt   IN    CNAME ns2.uzberk.uz.
-call-2        IN    CNAME ns3.uzberk.uz.
-livekit-2     IN    CNAME ns3.uzberk.uz.
-livekit-jwt-2 IN    CNAME ns3.uzberk.uz.
+call        IN    CNAME ns2.uzberk.uz.
+livekit     IN    CNAME ns2.uzberk.uz.
+livekit-jwt IN    CNAME ns2.uzberk.uz.
 
 ; Mail configurations
 mail              IN  CNAME ns1.uzberk.uz.
