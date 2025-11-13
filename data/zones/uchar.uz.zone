@@ -1,6 +1,6 @@
 $TTL 86400
 @      IN    SOA    ns1.kolyma.uz. admin.kolyma.uz. (
-             2025082201 ; Serial YYYYMMDDNN (NN is the revision number)
+             2025111301 ; Serial YYYYMMDDNN (NN is the revision number)
              3600       ; Refresh
              1800       ; Retry
              604800     ; Expire
@@ -14,6 +14,7 @@ $TTL 86400
 
 ; Server Points
 ns1    IN    A     195.158.10.37
+;ns2    IN    A     195.158.10.38
 
 ; Entry points
 @      IN    A     195.158.10.37
@@ -25,9 +26,9 @@ matrix        IN    CNAME ns1.uchar.uz.
 auth          IN    CNAME ns1.uchar.uz.
 
 ; Livemedia Endpoints
-;call          IN    CNAME ns1.uchar.uz.
-;livekit       IN    CNAME ns1.uchar.uz.
-;livekit-jwt   IN    CNAME ns1.uchar.uz.
+;call          IN    CNAME ns2.uchar.uz.
+;livekit       IN    CNAME ns2.uchar.uz.
+;livekit-jwt   IN    CNAME ns2.uchar.uz.
 
 ; Mail configurations
 mail              IN  CNAME ns1.uchar.uz.
@@ -39,4 +40,4 @@ _imap._tcp        IN  SRV   5 0 143 mail.uchar.uz.
 _imaps._tcp       IN  SRV   5 0 993 mail.uchar.uz.
 _dmarc            IN  TXT   "v=DMARC1; p=none"
 mail._domainkey IN TXT ( "v=DKIM1; k=rsa;"
-	"p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCj6WZi6FalCbJbbO/brb+7FuhGrPnZnQBHPE4UcjmK2z2uHr2q0XozyF9gJNV7j8wO35Cf86e7MC8OC0KVJCE+RaJ6pfNg5MGjh+QXBlHSvc2wc9dJs1fBxQfI+yCMNeKwroxug5haOTG4PdqcuUy7vDhstfkGJC/AA+ziM5rApwIDAQAB" )
+	"p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC2zHzXWYi7PmeUrShDpsdEJ34DAsg9Uidp0JQJ+BY6/4Zy//FgvbjZaQPFT+wxXTPT91pSb7W7U6xSpX7YwR1F+6If4t09YA8AZigOpFbUZ0EikdtHDvD5MCML+ROudRqh5Tea1hn4V+lZNcP8RlPVWb2qcK2IMzVnlnZvLzaytwIDAQAB" )
