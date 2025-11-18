@@ -66,7 +66,7 @@ in {
         retard = {
           enable = true;
           jvmOpts = "-Xms8196M -Xmx8196M -XX:+UseG1GC";
-          package = pkgs.vanillaServers.${server};
+          package = pkgs.vanillaServers."vanilla-1_16_5";
 
           serverProperties = {
             server-port = 25566;
