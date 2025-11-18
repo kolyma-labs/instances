@@ -76,7 +76,7 @@ in {
             online-mode = false;
             motd = "\\u00A7f\\u00A7lWelcome to Ismoil Chyorniy's Server\\u00A7r\\n\\u00A7lFor more, visit\:\\u00A7r \\u00A7nhttps\://niggerlicious.uz";
             enable-rcon = true;
-            "rcon.port" = 25575;
+            "rcon.port" = 25576;
             "rcon.password" = "F1st1ng15300Buck!?";
           };
 
