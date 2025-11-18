@@ -38,34 +38,57 @@ in {
       eula = true;
       enable = true;
 
-      servers.floss = {
-        enable = true;
-        jvmOpts = "-Xms8196M -Xmx8196M -XX:+UseG1GC";
-        package = pkgs.vanillaServers.${server};
+      servers = {
+        floss = {
+          enable = true;
+          jvmOpts = "-Xms8196M -Xmx8196M -XX:+UseG1GC";
+          package = pkgs.vanillaServers.${server};
 
-        serverProperties = {
-          server-port = cfg.port;
-          difficulty = 3;
-          gamemode = 0;
-          max-players = 100;
-          motd = "\\u00A7f\\u00A7lWelcome to Floss Uzbekistan's Server\\u00A7r\\n\\u00A7lFor more, visit\:\\u00A7r \\u00A7nhttps\://niggerlicious.uz";
-          white-list = true;
-          enable-rcon = true;
-          "rcon.port" = 25575;
-          "rcon.password" = "F1st1ng15300Buck!?";
+          serverProperties = {
+            server-port = cfg.port;
+            difficulty = 3;
+            gamemode = 0;
+            max-players = 100;
+            motd = "\\u00A7f\\u00A7lWelcome to Floss Uzbekistan's Server\\u00A7r\\n\\u00A7lFor more, visit\:\\u00A7r \\u00A7nhttps\://niggerlicious.uz";
+            white-list = true;
+            enable-rcon = true;
+            "rcon.port" = 25575;
+            "rcon.password" = "F1st1ng15300Buck!?";
+          };
+
+          whitelist = import ./players.nix;
+
+          symlinks = {
+            "server-icon.png" = ./server-icon.png;
+          };
         };
 
-        whitelist = import ./players.nix;
+        retard = {
+          enable = true;
+          jvmOpts = "-Xms8196M -Xmx8196M -XX:+UseG1GC";
+          package = pkgs.vanillaServers.${server};
 
-        symlinks = {
-          "server-icon.png" = ./server-icon.png;
+          serverProperties = {
+            server-port = 25566;
+            difficulty = 1;
+            gamemode = 0;
+            max-players = 30;
+            motd = "\\u00A7f\\u00A7lWelcome to Ismoil Chyorniy's Server\\u00A7r\\n\\u00A7lFor more, visit\:\\u00A7r \\u00A7nhttps\://niggerlicious.uz";
+            enable-rcon = true;
+            "rcon.port" = 25575;
+            "rcon.password" = "F1st1ng15300Buck!?";
+          };
+
+          symlinks = {
+            "server-icon.png" = ./server-icon-2.png;
+          };
         };
       };
     };
 
     networking.firewall = {
-      allowedTCPPorts = [cfg.port];
-      allowedUDPPorts = [cfg.port];
+      allowedTCPPorts = [cfg.port 25566];
+      allowedUDPPorts = [cfg.port 25566];
     };
   };
 }
