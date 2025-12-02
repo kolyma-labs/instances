@@ -133,7 +133,7 @@ in {
         enable = true;
         # When updating package, remember to update nextcloud31Packages in
         # services.nextcloud.extraApps
-        package = pkgs.nextcloud31;
+        package = pkgs.nextcloud32;
         https = true;
         secretFile = config.sops.secrets."cloud/secrets".path; # secret
         maxUploadSize = "1G";
@@ -177,7 +177,7 @@ in {
           mail_smtpsecure = "ssl";
           mail_smtpauth = true;
           mail_smtphost = "mail.kolyma.uz";
-          mail_smtpport = "465";
+          mail_smtpport = 465;
 
           enable_previews = true;
           jpeg_quality = 60;
@@ -261,7 +261,7 @@ in {
         autoUpdateApps.enable = false;
         extraApps = {
           inherit
-            (pkgs.nextcloud31Packages.apps)
+            (pkgs.nextcloud32Packages.apps)
             calendar
             contacts
             cospend

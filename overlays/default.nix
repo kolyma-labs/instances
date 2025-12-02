@@ -4,8 +4,8 @@
   additional-packages = final: prev: rec {
     # By flake
     personal = {
-      gate = inputs.gate.packages."${final.system}".default;
-      fluffy-efael = inputs.efael-messenger.packages.${final.system}.web;
+      gate = inputs.gate.packages."${final.stdenv.hostPlatform.system}".default;
+      fluffy-efael = inputs.efael-messenger.packages.${final.stdenv.hostPlatform.system}.web;
     };
   };
 
@@ -28,7 +28,7 @@
   # be accessible through 'pkgs.unstable'
   unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs-unstable {
-      inherit (final) system;
+      inherit (final.stdenv.hostPlatform) system;
       config.allowUnfree = true;
     };
   };

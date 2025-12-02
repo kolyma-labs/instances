@@ -50,7 +50,7 @@ in {
     services.searx = {
       enable = true;
       package = pkgs.searxng;
-      runInUwsgi = true;
+      configureUwsgi = true;
 
       uwsgiConfig = {
         disable-logging = true;
