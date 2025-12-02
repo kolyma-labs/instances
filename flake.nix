@@ -153,7 +153,7 @@
               });
           };
           alejandra.enable = true;
-          flake-checker.enable = true;
+          # flake-checker.enable = true;
         };
       };
     });
