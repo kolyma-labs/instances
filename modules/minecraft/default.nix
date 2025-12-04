@@ -39,7 +39,7 @@ in {
       enable = true;
 
       servers = {
-        floss = {
+        nigger = {
           enable = true;
           jvmOpts = "-Xms8196M -Xmx8196M -XX:+UseG1GC";
           package = pkgs.vanillaServers.${server};
@@ -49,14 +49,15 @@ in {
             difficulty = 3;
             gamemode = 0;
             max-players = 100;
-            motd = "\\u00A7f\\u00A7lWelcome to Floss Uzbekistan's Server\\u00A7r\\n\\u00A7lFor more, visit\:\\u00A7r \\u00A7nhttps\://niggerlicious.uz";
-            white-list = true;
+            motd = "\\u00A7f\\u00A7lWelcome to Nigger's Server\\u00A7r\\n\\u00A7lFor more, visit\:\\u00A7r \\u00A7nhttps\://niggerlicious.uz";
+            white-list = false;
+            online-mode = false;
             enable-rcon = true;
             "rcon.port" = 25575;
-            "rcon.password" = "F1st1ng15300Buck!?";
+            "rcon.password" = "F1st1ng15300Buck";
           };
 
-          whitelist = import ./players.nix;
+          # whitelist = import ./players.nix;
 
           symlinks = {
             "server-icon.png" = ./server-icon.png;
