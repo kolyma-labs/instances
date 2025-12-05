@@ -28,9 +28,6 @@
     accounts.teams = with lib.camps; [owners];
   };
 
-  # NVIDIA driver support
-  services.xserver.videoDrivers = ["nvidia"];
-
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "25.05"; # Did you read the comment?
 }

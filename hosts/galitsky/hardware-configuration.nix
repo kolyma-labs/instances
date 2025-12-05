@@ -18,16 +18,7 @@
   ];
 
   boot = {
-    kernelParams = [
-      "nvidia-drm.modeset=1"
-    ];
-    kernelModules = [
-      "kvm-intel"
-      "nvidia"
-      "nvidia_modeset"
-      "nvidia_uvm"
-      "nvidia_drm"
-    ];
+    kernelModules = ["kvm-intel"];
     extraModulePackages = [];
     initrd = {
       kernelModules = ["nvme"];
@@ -49,16 +40,6 @@
   hardware = {
     # CPU (Intel)
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-    # GPU (Nvidia)
-    nvidia = {
-      modesetting.enable = true;
-      powerManagement.enable = false;
-      powerManagement.finegrained = false;
-      open = false;
-      nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
