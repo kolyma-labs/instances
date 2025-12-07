@@ -41,7 +41,7 @@ in {
       servers = {
         nigger = {
           enable = true;
-          jvmOpts = "-Xms8196M -Xmx8196M -XX:+UseG1GC";
+          jvmOpts = "-Xms12288M -Xmx12288M -XX:+UseG1GC";
           package = pkgs.vanillaServers.${server};
 
           serverProperties = {
@@ -53,6 +53,8 @@ in {
             white-list = false;
             online-mode = false;
             enable-rcon = true;
+            level-name = "FrozenCherry";
+            level-seed = -6384763642895912697;
             "rcon.port" = 25575;
             "rcon.password" = "F1st1ng15300Buck";
           };
