@@ -28,6 +28,13 @@ in {
         example = 6969;
         description = "Port to expose server from.";
       };
+
+      rcon = lib.mkOption {
+        type = lib.types.port;
+        default = 25575;
+        example = 6969;
+        description = "Port to expose server from.";
+      };
     };
   };
 
@@ -55,7 +62,7 @@ in {
             enable-rcon = true;
             level-name = "FrozenCherry";
             level-seed = -6384763642895912697;
-            "rcon.port" = 25575;
+            "rcon.port" = cfg.rcon;
             "rcon.password" = "F1st1ng15300Buck";
           };
 
@@ -72,14 +79,14 @@ in {
           package = pkgs.vanillaServers."vanilla-1_16_5";
 
           serverProperties = {
-            server-port = 25566;
+            server-port = cfg.port + 1;
             difficulty = 1;
             gamemode = 0;
             max-players = 30;
             online-mode = false;
             motd = "\\u00A7f\\u00A7lWelcome to Ismoil Chyorniy's Server\\u00A7r\\n\\u00A7lFor more, visit\:\\u00A7r \\u00A7nhttps\://niggerlicious.uz";
             enable-rcon = true;
-            "rcon.port" = 25576;
+            "rcon.port" = cfg.rcon + 1;
             "rcon.password" = "F1st1ng15300Buck";
           };
 
