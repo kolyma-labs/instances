@@ -41,6 +41,7 @@ in {
           mode = "browse";
           extra = ''
             autoindex_format json;
+            add_header Access-Control-Allow-Origin *;
           '';
         };
       };
