@@ -34,8 +34,10 @@
   lambdajon = {
     username = "lambdajon";
     description = "Kei Thelissimus";
-    keysUrl = "https://github.com/lambdajon.keys";
-    sha256 = "440dac32fb3ecd060c17f78ad7c34422fefaaccf525c75c3c8dfd5ce86ef516e";
+    keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFzGMrw0jTHL5aoFd0j4Dqgound/cGX/955qPhsDXtKd"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG2yE01FuuWi9B5A5pnv5rEYynNH8V5kutw7zRf2p/pr"
+    ];
   };
 
   shakhzod = {
