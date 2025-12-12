@@ -25,6 +25,7 @@ chat         IN    CNAME ns1.uzberk.uz.
 matrix       IN    CNAME ns1.uzberk.uz.
 auth         IN    CNAME ns1.uzberk.uz.
 turn         IN    CNAME ns1.uzberk.uz.
+push         IN    CNAME ns1.uzberk.uz.
 
 ; Livemedia Endpoints
 call         IN    CNAME ns2.uzberk.uz.
