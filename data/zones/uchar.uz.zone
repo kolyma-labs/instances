@@ -42,4 +42,4 @@ _imap._tcp        IN  SRV   5 0 143 mail.uchar.uz.
 _imaps._tcp       IN  SRV   5 0 993 mail.uchar.uz.
 _dmarc            IN  TXT   "v=DMARC1; p=none"
 mail._domainkey IN TXT ( "v=DKIM1; k=rsa;"
-	"p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC2zHzXWYi7PmeUrShDpsdEJ34DAsg9Uidp0JQJ+BY6/4Zy//FgvbjZaQPFT+wxXTPT91pSb7W7U6xSpX7YwR1F+6If4t09YA8AZigOpFbUZ0EikdtHDvD5MCML+ROudRqh5Tea1hn4V+lZNcP8RlPVWb2qcK2IMzVnlnZvLzaytwIDAQAB" )
+	"p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC0q2epvpXhiAz7/JoDejqRvx5/1Z+ek6Ojw8KtoawTdhs+FpKWC1z21EMzmjuG0+wVFoCCqG7xJQVKVk2zoFaOw6DeAftTwro4C1m0dB4Wrks6XcY/bPBjQJfjFoNm2m77pBPKNNjUaQIUrTnHDQrr21qZ97hZr+ZG1rBKkAItmQIDAQAB" )
