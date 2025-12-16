@@ -38,7 +38,7 @@
     );
 
   # If type is master, activate system.activationScripts.copyZones
-  zoneFiles =
+  mastetFiles =
     lib.mkIf (config.kolyma.nameserver.type == "master")
     {
       system.activationScripts.copyZones = lib.mkForce {
@@ -50,6 +50,27 @@
           for zoneFile in ${../../data/zones}/*.zone; do
             cp -f "$zoneFile" /var/dns/
           done
+
+          # Give perms over everything for named
+          chown -R named:named /var/dns
+          chmod 750 /var/dns
+          find /var/dns -type f -exec chown named:named {} \;
+        '';
+        deps = [];
+      };
+    };
+
+  # If type is master, activate system.activationScripts.copyZones
+  slaveFiles =
+    lib.mkIf (config.kolyma.nameserver.type != "master")
+    {
+      system.activationScripts.copyZones = lib.mkForce {
+        text = ''
+          # Create /var/dns
+          mkdir -p /var/dns
+
+          # Time for clean-up
+          rm -rf /var/dns/*
 
           # Give perms over everything for named
           chown -R named:named /var/dns
@@ -143,7 +164,7 @@ in {
   };
 
   config =
-    lib.mkMerge [cfg zoneFiles]
+    lib.mkMerge [cfg mastetFiles slaveFiles]
     |> lib.mkIf config.kolyma.nameserver.enable;
 
   meta = {
