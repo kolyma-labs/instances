@@ -21,9 +21,10 @@ ns2    IN    A     45.150.26.30
 www    IN    CNAME uzberk.uz.
 
 ; Main Endpoints
+auth         IN    CNAME ns1.uzberk.uz.
+mas          IN    CNAME ns1.uzberk.uz.
 chat         IN    CNAME ns1.uzberk.uz.
 matrix       IN    CNAME ns1.uzberk.uz.
-auth         IN    CNAME ns1.uzberk.uz.
 turn         IN    CNAME ns1.uzberk.uz.
 push         IN    CNAME ns1.uzberk.uz.
 
