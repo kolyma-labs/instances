@@ -100,7 +100,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.efael.website = {
+    services.uchar.website = {
       inherit (cfg) enable;
       proxy = {
         inherit (cfg) enable domain alias;
