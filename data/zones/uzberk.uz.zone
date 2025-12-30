@@ -15,7 +15,7 @@ $TTL 86400
 ; Server Points
 ns1    IN    A     45.150.26.27
 ns2    IN    A     45.150.26.30
-ns3    IN    A     45.150.26.20
+ns3    IN    A     45.150.26.26
 
 ; Entry points
 @      IN    A     45.150.26.27
