@@ -39,8 +39,9 @@ matrix       IN    CNAME ns1.uzberk.uz.
 
 ; MG Server
 mg           IN    CNAME ns3.uzberk.uz.
-chat.mg      IN    CNAME ns3.uzberk.uz.
 mas.mg       IN    CNAME ns3.uzberk.uz.
+chat.mg      IN    CNAME ns3.uzberk.uz.
+push.mg      IN    CNAME ns3.uzberk.uz.
 matrix.mg    IN    CNAME ns3.uzberk.uz.
 
 ; Mail configurations
