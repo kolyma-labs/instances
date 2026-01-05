@@ -13,9 +13,15 @@ $TTL 86400
 @      IN    NS    ns4.kolyma.uz.
 
 ; Entry points
-@      IN    A     167.235.96.40
-@      IN    AAAA  2a01:4f8:2190:2914::
-www    IN    CNAME bleur.net.
+@      IN    A     185.199.108.153
+@      IN    A     185.199.109.153
+@      IN    A     185.199.110.153
+@      IN    A     185.199.111.153
+@      IN    AAAA  2606:50c0:8000::153
+@      IN    AAAA  2606:50c0:8001::153
+@      IN    AAAA  2606:50c0:8002::153
+@      IN    AAAA  2606:50c0:8003::153
+www    IN    CNAME bleur.uz.
 
 ; GitHub Verifications
-_gh-bleur-org-o          IN TXT      d906757c96
+_gh-bleur-org-o          IN TXT      19e78bc507
