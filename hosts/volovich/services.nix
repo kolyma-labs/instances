@@ -23,7 +23,7 @@ in {
     "github/floss-community" = secret-management;
     "github/xinux" = secret-management;
     "github/rust-lang" = secret-management;
-    "github/efael" = secret-management;
+    "github/uchar" = secret-management;
     "github/bleur" = secret-management;
     "github/uzbek" = secret-management;
     "github/orzklv" = secret-management;
@@ -98,9 +98,9 @@ in {
           type = "github";
         }
         {
-          name = "Efael";
-          url = "https://github.com/efael";
-          token = config.sops.secrets."github/efael".path;
+          name = "Uchar";
+          url = "https://github.com/uchar-org";
+          token = config.sops.secrets."github/uchar".path;
           type = "github";
         }
         {
