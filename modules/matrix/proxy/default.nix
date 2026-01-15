@@ -3,7 +3,8 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.matrix;
 
   commonHeaders = ''
@@ -21,7 +22,7 @@
     client_body_buffer_size 50M;
     proxy_max_temp_file_size 0;
   '';
-  clientConfig = import ./element-client-config.nix {inherit config lib pkgs;};
+  clientConfig = import ./element-client-config.nix { inherit config lib pkgs; };
   wellKnownClient = domain: {
     "m.homeserver".base_url = "https://matrix.${domain}";
     "m.identity_server".base_url = "https://matrix.${domain}";
@@ -33,7 +34,7 @@
     "io.element.e2ee" = {
       default = true;
       secure_backup_required = false;
-      secure_backup_setup_methods = [];
+      secure_backup_setup_methods = [ ];
     };
     "org.matrix.msc4143.rtc_foci" = [
       {
@@ -42,7 +43,7 @@
       }
     ];
   };
-  wellKnownServer = domain: {"m.server" = "matrix.${domain}:8448";};
+  wellKnownServer = domain: { "m.server" = "matrix.${domain}:8448"; };
   wellKnownSupport = {
     contacts = [
       {
@@ -74,40 +75,45 @@
     };
   };
 
-  mkEndpoints = type: file: let
-    rawEndpoints = lib.splitString "\n" (builtins.readFile file);
-    filteredEndpoints = builtins.filter (e: e != "" && (!lib.hasPrefix "#" e)) rawEndpoints;
-    mkLocation' = mkLocation type;
-  in
+  mkEndpoints =
+    type: file:
+    let
+      rawEndpoints = lib.splitString "\n" (builtins.readFile file);
+      filteredEndpoints = builtins.filter (e: e != "" && (!lib.hasPrefix "#" e)) rawEndpoints;
+      mkLocation' = mkLocation type;
+    in
     builtins.map mkLocation' filteredEndpoints;
   endpoints =
     (mkEndpoints "client" ./endpoints/client.txt)
     ++ (mkEndpoints "federation" ./endpoints/federation.txt);
 
   wellKnownAppleLocations = domain: {
-    "= /.well-known/apple-app-site-association". extraConfig = let
-      data = {
-        applinks = {
-          apps = [
-            "86VMSY4FK5.uz.uzinfocom.efael.app"
-            "7J4U792NQT.io.element.elementx"
-          ];
-          details = [];
+    "= /.well-known/apple-app-site-association".extraConfig =
+      let
+        data = {
+          applinks = {
+            apps = [
+              "86VMSY4FK5.uz.uzinfocom.efael.app"
+              "7J4U792NQT.io.element.elementx"
+            ];
+            details = [ ];
+          };
+          webcredentials = {
+            apps = [
+              "86VMSY4FK5.uz.uzinfocom.efael.app"
+              "7J4U792NQT.io.element.elementx"
+            ];
+          };
         };
-        webcredentials = {
-          apps = [
-            "86VMSY4FK5.uz.uzinfocom.efael.app"
-            "7J4U792NQT.io.element.elementx"
-          ];
-        };
-      };
-    in ''
-      default_type application/json;
-      types { application/json apple-app-site-association; }
-      return 200 '${builtins.toJSON data}';
-    '';
+      in
+      ''
+        default_type application/json;
+        types { application/json apple-app-site-association; }
+        return 200 '${builtins.toJSON data}';
+      '';
   };
-in {
+in
+{
   services.nginx.upstreams = {
     "matrix-federation-receiver-hash" = {
       servers = config.services.nginx.upstreams."matrix-federation-receiver".servers;
@@ -118,169 +124,166 @@ in {
   };
 
   services.nginx.virtualHosts =
-    lib.mkIf
-    (config.kolyma.matrix.enable && config.services.nginx.enable)
-    {
-      "${cfg.domain}" = {
-        locations =
-          wellKnownLocations "${cfg.domain}" // wellKnownAppleLocations "${cfg.domain}";
-      };
+    lib.mkIf (config.kolyma.matrix.enable && config.services.nginx.enable)
+      {
+        "${cfg.domain}" = {
+          locations = wellKnownLocations "${cfg.domain}" // wellKnownAppleLocations "${cfg.domain}";
+        };
 
-      "chat.${cfg.domain}" = {
-        forceSSL = true;
-        enableACME = true;
-        root = pkgs.element-web.override {conf = clientConfig;};
-        extraConfig = ''
-          ${commonHeaders}
+        "chat.${cfg.domain}" = {
+          forceSSL = true;
+          enableACME = true;
+          root = pkgs.element-web.override { conf = clientConfig; };
+          extraConfig = ''
+            ${commonHeaders}
 
-          access_log /var/log/nginx/chat.${cfg.domain}-access.log;
-          error_log /var/log/nginx/chat.${cfg.domain}-error.log;
-        '';
-      };
+            access_log /var/log/nginx/chat.${cfg.domain}-access.log;
+            error_log /var/log/nginx/chat.${cfg.domain}-error.log;
+          '';
+        };
 
-      "mas.${cfg.domain}" = {
-        root = "/dev/null";
+        "mas.${cfg.domain}" = {
+          root = "/dev/null";
 
-        forceSSL = lib.mkDefault true;
-        enableACME = lib.mkDefault true;
+          forceSSL = lib.mkDefault true;
+          enableACME = lib.mkDefault true;
 
-        extraConfig = ''
-          ${commonHeaders}
+          extraConfig = ''
+            ${commonHeaders}
 
-          access_log /var/log/nginx/mas.${cfg.domain}-access.log;
-          error_log /var/log/nginx/mas.${cfg.domain}-error.log;
-        '';
+            access_log /var/log/nginx/mas.${cfg.domain}-access.log;
+            error_log /var/log/nginx/mas.${cfg.domain}-error.log;
+          '';
 
-        locations =
-          {
+          locations = {
             "/" = {
               proxyPass = "http://127.0.0.1:8090";
             };
           }
           // wellKnownAppleLocations "${cfg.domain}";
-      };
+        };
 
-      "matrix.${cfg.domain}" = {
-        listen = [
-          {
-            port = 80;
-            addr = "0.0.0.0";
-            ssl = false;
-          }
-          {
-            port = 80;
-            addr = "[::]";
-            ssl = false;
-          }
-          {
-            port = 443;
-            addr = "0.0.0.0";
-            ssl = true;
-          }
-          {
-            port = 443;
-            addr = "[::]";
-            ssl = true;
-          }
-          # For the federation port
-          {
-            port = 8448;
-            addr = "0.0.0.0";
-            ssl = true;
-          }
-          {
-            port = 8448;
-            addr = "[::]";
-            ssl = true;
-          }
-        ];
-
-        root = "/dev/null";
-
-        forceSSL = lib.mkDefault true;
-        enableACME = lib.mkDefault true;
-
-        extraConfig = ''
-          access_log /var/log/nginx/matrix.${cfg.domain}-access.log;
-          error_log /var/log/nginx/matrix.${cfg.domain}-error.log;
-        '';
-
-        locations = lib.foldl' lib.recursiveUpdate {} (
-          [
+        "matrix.${cfg.domain}" = {
+          listen = [
             {
-              # For telegram
-              "/c3c3f34b-29fb-5feb-86e5-98c75ec8214b" = {
-                priority = 100;
-                proxyPass = "http://127.0.0.1:8009";
-                extraConfig = commonHeaders;
-              };
-
-              # For IRC appservice media proxy
-              "/media" = {
-                priority = 100;
-                proxyPass = "http://127.0.0.1:${toString config.services.matrix-appservice-irc.settings.ircService.mediaProxy.bindPort}";
-                extraConfig = commonHeaders;
-              };
-
-              # Forward to the auth service
-              "~ ^/_matrix/client/(.*)/(login|logout|refresh)" = {
-                priority = 100;
-                proxyPass = "http://127.0.0.1:8090";
-                extraConfig = commonHeaders;
-              };
-
-              # draupnir reports
-              "~* ^/_matrix/client/(r0|v3)/rooms/([^/]*)/report/(.*)$" = {
-                extraConfig = ''
-                  set $room_id $2;
-                  set $event_id $3;
-                  add_header x-backend "draupnir" always;
-                  ${matrixHeaders}
-                '';
-                proxyPass = "http://127.0.200.101:8080/api/1/report/$room_id/$event_id";
-                priority = 150;
-              };
-
-              # load-balancing for inbound federation transaction requests
-              "~* ^/_matrix/federation/v1/send/" = {
-                extraConfig = ''
-                  ${matrixHeaders}
-                  add_header x-backend "worker-federation" always;
-                '';
-                proxyPass = "http://matrix-federation-receiver-hash";
-                priority = 150;
-              };
-
-              # Disable compression for QR code to work
-              # https://github.com/element-hq/synapse/issues/18155#issuecomment-2671793213
-              "~ ^/_synapse/client/rendezvous/" = {
-                priority = 175;
-                proxyPass = "http://matrix-synapse";
-
-                extraConfig = ''
-                  ${matrixHeaders}
-                  add_header x-backend "synapse" always;
-                  gzip off;
-                '';
-              };
-
-              # Forward to Synapse
-              # as per https://element-hq.github.io/synapse/latest/reverse_proxy.html#nginx
-              "~ ^(/_matrix|/_synapse)" = {
-                priority = 200;
-                proxyPass = "http://matrix-synapse";
-
-                extraConfig = ''
-                  ${matrixHeaders}
-                  add_header x-backend "synapse" always;
-                '';
-              };
+              port = 80;
+              addr = "0.0.0.0";
+              ssl = false;
             }
-            (wellKnownAppleLocations "${cfg.domain}")
-          ]
-          ++ endpoints
-        );
+            {
+              port = 80;
+              addr = "[::]";
+              ssl = false;
+            }
+            {
+              port = 443;
+              addr = "0.0.0.0";
+              ssl = true;
+            }
+            {
+              port = 443;
+              addr = "[::]";
+              ssl = true;
+            }
+            # For the federation port
+            {
+              port = 8448;
+              addr = "0.0.0.0";
+              ssl = true;
+            }
+            {
+              port = 8448;
+              addr = "[::]";
+              ssl = true;
+            }
+          ];
+
+          root = "/dev/null";
+
+          forceSSL = lib.mkDefault true;
+          enableACME = lib.mkDefault true;
+
+          extraConfig = ''
+            access_log /var/log/nginx/matrix.${cfg.domain}-access.log;
+            error_log /var/log/nginx/matrix.${cfg.domain}-error.log;
+          '';
+
+          locations = lib.foldl' lib.recursiveUpdate { } (
+            [
+              {
+                # For telegram
+                "/c3c3f34b-29fb-5feb-86e5-98c75ec8214b" = {
+                  priority = 100;
+                  proxyPass = "http://127.0.0.1:8009";
+                  extraConfig = commonHeaders;
+                };
+
+                # For IRC appservice media proxy
+                "/media" = {
+                  priority = 100;
+                  proxyPass = "http://127.0.0.1:${toString config.services.matrix-appservice-irc.settings.ircService.mediaProxy.bindPort}";
+                  extraConfig = commonHeaders;
+                };
+
+                # Forward to the auth service
+                "~ ^/_matrix/client/(.*)/(login|logout|refresh)" = {
+                  priority = 100;
+                  proxyPass = "http://127.0.0.1:8090";
+                  extraConfig = commonHeaders;
+                };
+
+                # draupnir reports
+                "~* ^/_matrix/client/(r0|v3)/rooms/([^/]*)/report/(.*)$" = {
+                  extraConfig = ''
+                    set $room_id $2;
+                    set $event_id $3;
+                    add_header x-backend "draupnir" always;
+                    ${matrixHeaders}
+                  '';
+                  proxyPass = "http://127.0.200.101:8080/api/1/report/$room_id/$event_id";
+                  priority = 150;
+                };
+
+                # load-balancing for inbound federation transaction requests
+                "~* ^/_matrix/federation/v1/send/" = {
+                  extraConfig = ''
+                    ${matrixHeaders}
+                    add_header x-backend "worker-federation" always;
+                  '';
+                  proxyPass = "http://matrix-federation-receiver-hash";
+                  priority = 150;
+                };
+
+                # Disable compression for QR code to work
+                # https://github.com/element-hq/synapse/issues/18155#issuecomment-2671793213
+                "~ ^/_synapse/client/rendezvous/" = {
+                  priority = 175;
+                  proxyPass = "http://matrix-synapse";
+
+                  extraConfig = ''
+                    ${matrixHeaders}
+                    add_header x-backend "synapse" always;
+                    gzip off;
+                  '';
+                };
+
+                # Forward to Synapse
+                # as per https://element-hq.github.io/synapse/latest/reverse_proxy.html#nginx
+                "~ ^(/_matrix|/_synapse)" = {
+                  priority = 200;
+                  proxyPass = "http://matrix-synapse";
+
+                  extraConfig = ''
+                    ${matrixHeaders}
+                    add_header x-backend "synapse" always;
+                  '';
+                };
+              }
+              (wellKnownAppleLocations "${cfg.domain}")
+            ]
+            ++ endpoints
+          );
+        };
       };
-    };
-  networking.firewall.allowedTCPPorts = [8448];
+  networking.firewall.allowedTCPPorts = [ 8448 ];
 }

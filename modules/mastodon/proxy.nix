@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.mastodon;
   mstdn = config.services.mastodon;
 
@@ -12,7 +13,8 @@
   '';
 
   vHostDomain = "social.${cfg.domain}";
-in {
+in
+{
   config = lib.mkIf (cfg.enable && config.services.nginx.enable) {
     services.nginx = {
       proxyCachePath = {
@@ -127,10 +129,12 @@ in {
       };
       upstreams.mastodon-web = {
         servers."${
-          if mstdn.enableUnixSocket
-          then "unix:/run/mastodon-web/web.socket"
-          else "127.0.0.1:${toString mstdn.webPort}"
-        }".fail_timeout = "0";
+          if mstdn.enableUnixSocket then
+            "unix:/run/mastodon-web/web.socket"
+          else
+            "127.0.0.1:${toString mstdn.webPort}"
+        }".fail_timeout =
+          "0";
       };
     };
   };

@@ -3,53 +3,58 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.www;
 
   default =
-    if (cfg.domain == "")
-    then {
-      "default_server" = {
-        default = true;
-        root = "${pkgs.personal.gate}/www";
+    if (cfg.domain == "") then
+      {
+        "default_server" = {
+          default = true;
+          root = "${pkgs.personal.gate}/www";
+        };
+      }
+    else
+      {
+        ${cfg.domain} = {
+          default = true;
+          forceSSL = true;
+          enableACME = true;
+          serverAliases = cfg.alias;
+          root = "${pkgs.personal.gate}/www";
+        };
       };
-    }
-    else {
-      ${cfg.domain} = {
-        default = true;
-        forceSSL = true;
-        enableACME = true;
-        serverAliases = cfg.alias;
-        root = "${pkgs.personal.gate}/www";
-      };
-    };
 
-  mkCDN = builtins.mapAttrs (name: value: {
-    addSSL = true;
-    enableACME = true;
-    root = value.path;
-    serverAliases = value.alias;
-    locations = lib.mkIf (value.mode == "static") {
-      "/".extraConfig = ''
-        try_files $uri $uri/ $uri.html =404;
+  mkCDN = builtins.mapAttrs (
+    name: value: {
+      addSSL = true;
+      enableACME = true;
+      root = value.path;
+      serverAliases = value.alias;
+      locations = lib.mkIf (value.mode == "static") {
+        "/".extraConfig = ''
+          try_files $uri $uri/ $uri.html =404;
+
+          ${lib.optionalString (value.extra != null) ''
+            ${value.extra}
+          ''}
+        '';
+      };
+
+      extraConfig = ''
+        ${lib.optionalString (value.mode == "browse") ''
+          autoindex on;
+        ''}
 
         ${lib.optionalString (value.extra != null) ''
           ${value.extra}
         ''}
       '';
-    };
-
-    extraConfig = ''
-      ${lib.optionalString (value.mode == "browse") ''
-        autoindex on;
-      ''}
-
-      ${lib.optionalString (value.extra != null) ''
-        ${value.extra}
-      ''}
-    '';
-  });
-in {
+    }
+  );
+in
+{
   options = {
     kolyma.www = {
       enable = lib.mkOption {
@@ -72,7 +77,7 @@ in {
 
       alias = lib.mkOption {
         type = lib.types.listOf lib.types.str;
-        default = [];
+        default = [ ];
         description = "List of extra aliases to host.";
       };
 
@@ -84,13 +89,13 @@ in {
 
       hosts = lib.mkOption {
         type = with lib.types; attrsOf (submodule anything);
-        default = {};
+        default = { };
         description = "List of hosted service instances.";
       };
 
       cdn = lib.mkOption {
         type = with lib.types; attrsOf (submodule lib.kotypes.cdn);
-        default = {};
+        default = { };
         description = "List of cdn services hosted in this instance.";
       };
     };
@@ -104,7 +109,9 @@ in {
       }
     ];
 
-    users.users.nginx.extraGroups = lib.optionals config.kolyma.www.anubis [config.users.groups.anubis.name];
+    users.users.nginx.extraGroups = lib.optionals config.kolyma.www.anubis [
+      config.users.groups.anubis.name
+    ];
 
     # Configure Nginx
     services.nginx = {
@@ -124,7 +131,7 @@ in {
           "cdn${toString cfg.instance}.kolyma.uz" = {
             path = "/srv";
             mode = "browse";
-            alias = [];
+            alias = [ ];
             extra = "
               add_before_body /.html/top.html;
               add_after_body /.html/bot.html;
@@ -160,22 +167,24 @@ in {
       443
     ];
 
-    system.activationScripts.nginxTheme = let
-      theme = pkgs.fetchzip {
-        url = "https://github.com/uzinfocom-org/autoindex/archive/refs/heads/main.zip";
-        hash = "sha256-bBsL22+mlMuFNzaEVxPq0Bg/f9IXELJEVzgWMBqGfF8=";
+    system.activationScripts.nginxTheme =
+      let
+        theme = pkgs.fetchzip {
+          url = "https://github.com/uzinfocom-org/autoindex/archive/refs/heads/main.zip";
+          hash = "sha256-bBsL22+mlMuFNzaEVxPq0Bg/f9IXELJEVzgWMBqGfF8=";
+        };
+      in
+      {
+        text = ''
+          #!/bin/sh
+          cp -R ${theme}/.html /srv
+        '';
       };
-    in {
-      text = ''
-        #!/bin/sh
-        cp -R ${theme}/.html /srv
-      '';
-    };
   };
 
   meta = {
     doc = ./readme.md;
     buildDocsInSandbox = true;
-    maintainers = with lib.maintainers; [orzklv];
+    maintainers = with lib.maintainers; [ orzklv ];
   };
 }

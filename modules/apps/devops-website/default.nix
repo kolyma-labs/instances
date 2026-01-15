@@ -3,9 +3,11 @@
   config,
   inputs,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.apps.devops.website;
-in {
+in
+{
   imports = [
     inputs.devops-book.nixosModules.server
   ];

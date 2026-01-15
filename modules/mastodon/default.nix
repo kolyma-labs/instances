@@ -3,9 +3,11 @@
   config,
   inputs,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.mastodon;
-in {
+in
+{
   imports = [
     # Proxy configurations
     ./proxy.nix
@@ -129,7 +131,7 @@ in {
     };
 
     # Nginx user needs access to mastodon unix sockets
-    users.users.nginx.extraGroups = ["mastodon"];
+    users.users.nginx.extraGroups = [ "mastodon" ];
 
     services.opensearch.enable = true;
 
@@ -168,7 +170,7 @@ in {
         olderThanDays = 7;
       };
 
-      extraEnvFiles = [cfg.env];
+      extraEnvFiles = [ cfg.env ];
       extraConfig = {
         WEB_DOMAIN = "social.${cfg.domain}";
 

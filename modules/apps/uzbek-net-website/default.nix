@@ -3,9 +3,11 @@
   inputs,
   config,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.apps.uzbek-net.website;
-in {
+in
+{
   imports = [
     inputs.uzbek-net-website.nixosModules.server
   ];

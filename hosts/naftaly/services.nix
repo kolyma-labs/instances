@@ -1,4 +1,5 @@
-{outputs, ...}: {
+{ outputs, ... }:
+{
   imports = [
     # Top level abstractions
     outputs.nixosModules.web

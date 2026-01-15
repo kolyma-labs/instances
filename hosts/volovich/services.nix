@@ -2,12 +2,14 @@
   outputs,
   config,
   ...
-}: let
+}:
+let
   secret-management = {
     owner = config.kolyma.runners.user;
     sopsFile = ../../secrets/runners.yaml;
   };
-in {
+in
+{
   imports = [
     # Top level abstractions
     outputs.nixosModules.bind

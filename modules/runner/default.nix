@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.runners;
 
   mkGitHub = param: {
@@ -13,15 +14,13 @@
         inherit (cfg) user group;
         tokenFile = param.token;
         replace = true;
-        extraLabels = [param.name];
-        extraPackages = [pkgs.nodejs_24];
+        extraLabels = [ param.name ];
+        extraPackages = [ pkgs.nodejs_24 ];
         package = pkgs.unstable.github-runner;
         workDir = "/srv/runner/github/${lib.toLower param.name}";
         serviceOverrides = {
           ProtectSystem = "full";
-          ReadWritePaths = "${
-            config.kolyma.data.path or "/srv"
-          }";
+          ReadWritePaths = "${config.kolyma.data.path or "/srv"}";
           PrivateMounts = false;
           UMask = 22;
         };
@@ -35,7 +34,7 @@
       instances."Kolyma-${param.name}" = {
         inherit (param) enable name url;
         tokenFile = param.token;
-        labels = ["native:host"];
+        labels = [ "native:host" ];
       };
     };
   };
@@ -47,7 +46,8 @@
       Group = lib.mkForce cfg.group;
     };
   };
-in {
+in
+{
   options = {
     kolyma.runners = {
       enable = lib.mkOption {
@@ -59,7 +59,7 @@ in {
       instances = lib.mkOption {
         type = with lib.types; listOf (submodule lib.kotypes.runner);
         description = "List of runner instances to be hosted.";
-        default = [];
+        default = [ ];
       };
 
       user = lib.mkOption {
@@ -78,46 +78,50 @@ in {
     };
   };
 
-  config = let
-    extra = [
-      {
-        gitea-actions-runner = {
-          package = pkgs.unstable.forgejo-runner;
-        };
-      }
-    ];
+  config =
+    let
+      extra = [
+        {
+          gitea-actions-runner = {
+            package = pkgs.unstable.forgejo-runner;
+          };
+        }
+      ];
 
-    result = lib.lists.forEach cfg.instances (
-      param: (lib.rmatch.match param [
-        [{type = "github";} (mkGitHub param)]
-        [{type = "forgejo";} (mkForgejo param)]
-      ])
-    );
-  in
+      result = lib.lists.forEach cfg.instances (
+        param:
+        (lib.rmatch.match param [
+          [
+            { type = "github"; }
+            (mkGitHub param)
+          ]
+          [
+            { type = "forgejo"; }
+            (mkForgejo param)
+          ]
+        ])
+      );
+    in
     lib.mkIf cfg.enable {
       users.users.${cfg.user} = {
         inherit (cfg) group;
         description = "Git Runner user";
         isNormalUser = true;
         createHome = false;
-        extraGroups = ["admins"];
+        extraGroups = [ "admins" ];
       };
 
-      users.groups.${cfg.group} = {};
+      users.groups.${cfg.group} = { };
 
-      services =
-        lib.mkMerge (result ++ extra);
+      services = lib.mkMerge (result ++ extra);
 
       systemd.services =
-        cfg.instances
-        |> builtins.filter (i: i.type == "forgejo")
-        |> map patchForgejo
-        |> lib.mkMerge;
+        cfg.instances |> builtins.filter (i: i.type == "forgejo") |> map patchForgejo |> lib.mkMerge;
     };
 
   meta = {
     doc = ./readme.md;
     buildDocsInSandbox = true;
-    maintainers = with lib.maintainers; [orzklv];
+    maintainers = with lib.maintainers; [ orzklv ];
   };
 }

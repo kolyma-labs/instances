@@ -3,9 +3,11 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.data;
-in {
+in
+{
   options = {
     kolyma.data = {
       enable = lib.mkOption {
@@ -43,7 +45,7 @@ in {
 
     systemd.services.chownData = {
       description = "Change ownership of ${cfg.path}";
-      wantedBy = ["multi-user.target"];
+      wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         Type = "oneshot";
         ExecStart = "${pkgs.bash}/bin/bash -c ${config.system.activationScripts.chownData.text}";
@@ -55,6 +57,6 @@ in {
   meta = {
     doc = ./readme.md;
     buildDocsInSandbox = true;
-    maintainers = with lib.maintainers; [orzklv];
+    maintainers = with lib.maintainers; [ orzklv ];
   };
 }

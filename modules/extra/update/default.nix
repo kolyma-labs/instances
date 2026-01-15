@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.update;
-in {
+in
+{
   options = {
     kolyma.update = {
       enable = lib.mkOption {
@@ -20,37 +22,41 @@ in {
       };
 
       mode = lib.mkOption {
-        type = lib.types.enum ["switch" "reboot"];
+        type = lib.types.enum [
+          "switch"
+          "reboot"
+        ];
         default = "switch";
         description = "What type of new context switching should be used.";
       };
     };
   };
 
-  config = let
-    mode = lib.rmatch.match cfg [
-      [
-        {mode = "switch";}
-        {
-          allowReboot = false;
-          operation = "switch";
-          randomizedDelaySec = "30min";
-        }
-      ]
+  config =
+    let
+      mode = lib.rmatch.match cfg [
+        [
+          { mode = "switch"; }
+          {
+            allowReboot = false;
+            operation = "switch";
+            randomizedDelaySec = "30min";
+          }
+        ]
 
-      [
-        {mode = "reboot";}
-        {
-          allowReboot = true;
-          operation = "boot";
-          rebootWindow = {
-            lower = "01:00";
-            upper = "05:00";
-          };
-        }
-      ]
-    ];
-  in
+        [
+          { mode = "reboot"; }
+          {
+            allowReboot = true;
+            operation = "boot";
+            rebootWindow = {
+              lower = "01:00";
+              upper = "05:00";
+            };
+          }
+        ]
+      ];
+    in
     lib.mkIf cfg.enable {
       nix.gc = {
         automatic = true;
@@ -61,7 +67,7 @@ in {
       system.autoUpgrade = lib.mkMerge [
         {
           enable = true;
-          flags = ["-L"];
+          flags = [ "-L" ];
           dates = cfg.interval;
           flake = "github:kolyma-labs/instances";
         }

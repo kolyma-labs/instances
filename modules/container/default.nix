@@ -3,9 +3,11 @@
   options,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.containers;
-in {
+in
+{
   options = {
     kolyma.containers = {
       enable = lib.mkOption {
@@ -18,7 +20,7 @@ in {
 
       ports = lib.mkOption {
         type = lib.types.listOf lib.types.port;
-        default = [];
+        default = [ ];
         description = "List of ports to be exposed.";
       };
     };
@@ -33,11 +35,10 @@ in {
     ];
 
     warnings = [
-      (lib.strings.concatLines
-        [
-          "Please, think about it one more time, maybe we shouldn't do this at all?!"
-          "This actions has very serious consequences from which you may regret too much."
-        ])
+      (lib.strings.concatLines [
+        "Please, think about it one more time, maybe we shouldn't do this at all?!"
+        "This actions has very serious consequences from which you may regret too much."
+      ])
     ];
 
     virtualisation = {
@@ -63,6 +64,6 @@ in {
   meta = {
     doc = ./readme.md;
     buildDocsInSandbox = true;
-    maintainers = with lib.maintainers; [orzklv];
+    maintainers = with lib.maintainers; [ orzklv ];
   };
 }

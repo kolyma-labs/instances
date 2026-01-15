@@ -1,78 +1,86 @@
-{lib}: let
+{ lib }:
+let
   # WARNING!
   # Becomes impure when opath provided
-  attrSystem = {
-    list,
-    inputs,
-    outputs,
-    opath ? ../.,
-  }: let
-    # Generate absolute path to the configuration
-    path = alias: opath + "/hosts/${alias}/configuration.nix";
+  attrSystem =
+    {
+      list,
+      inputs,
+      outputs,
+      opath ? ../.,
+    }:
+    let
+      # Generate absolute path to the configuration
+      path = alias: opath + "/hosts/${alias}/configuration.nix";
 
-    #   Name  =                Value
-    # "Lorem" = orzklv.lib.config.makeSystem "station";
-    system = attr: {
-      inherit (attr) name;
-      value = makeSystem {
-        inherit inputs outputs;
-        path = path attr.alias;
+      #   Name  =                Value
+      # "Lorem" = orzklv.lib.config.makeSystem "station";
+      system = attr: {
+        inherit (attr) name;
+        value = makeSystem {
+          inherit inputs outputs;
+          path = path attr.alias;
+        };
       };
-    };
-    # [
-    #   { name = "Lorem", value = config }
-    #   { name = "Ipsum", value = config }
-    # ]
-    map = lib.map system list;
-  in
+      # [
+      #   { name = "Lorem", value = config }
+      #   { name = "Ipsum", value = config }
+      # ]
+      map = lib.map system list;
+    in
     lib.listToAttrs map;
 
   # WARNING!
   # Becomes impure when opath provided
-  mapSystem = {
-    list,
-    inputs,
-    outputs,
-    opath ? ../.,
-  }: let
-    # Generate absolute path to the configuration
-    path = name: opath + "/hosts/${lib.toLower name}/configuration.nix";
+  mapSystem =
+    {
+      list,
+      inputs,
+      outputs,
+      opath ? ../.,
+    }:
+    let
+      # Generate absolute path to the configuration
+      path = name: opath + "/hosts/${lib.toLower name}/configuration.nix";
 
-    #   Name  =                Value
-    # "Lorem" = orzklv.lib.config.makeSystem "station";
-    system = name: {
-      inherit name;
-      value = makeSystem {
-        inherit inputs outputs;
-        path = path name;
+      #   Name  =                Value
+      # "Lorem" = orzklv.lib.config.makeSystem "station";
+      system = name: {
+        inherit name;
+        value = makeSystem {
+          inherit inputs outputs;
+          path = path name;
+        };
       };
-    };
 
-    # [
-    #   { name = "Lorem", value = config }
-    #   { name = "Ipsum", value = config }
-    # ]
-    map = lib.map system list;
-  in
+      # [
+      #   { name = "Lorem", value = config }
+      #   { name = "Ipsum", value = config }
+      # ]
+      map = lib.map system list;
+    in
     lib.listToAttrs map;
 
-  makeSystem = {
-    path,
-    inputs,
-    outputs,
-  }: let
-    attr = {
-      specialArgs = {
-        inherit (outputs) lib;
-        inherit inputs outputs;
+  makeSystem =
+    {
+      path,
+      inputs,
+      outputs,
+    }:
+    let
+      attr = {
+        specialArgs = {
+          inherit (outputs) lib;
+          inherit inputs outputs;
+        };
+        modules = [
+          # > Our main nixos configuration file <
+          path
+        ];
       };
-      modules = [
-        # > Our main nixos configuration file <
-        path
-      ];
-    };
-  in
+    in
     lib.nixosSystem attr;
-in {
+in
+{
   inherit attrSystem mapSystem makeSystem;
 }

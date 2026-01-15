@@ -3,9 +3,11 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.hydra;
-in {
+in
+{
   options = {
     kolyma.hydra = {
       enable = lib.mkOption {
@@ -69,7 +71,12 @@ in {
         hostName = "localhost";
         protocol = null;
         system = "x86_64-linux";
-        supportedFeatures = ["kvm" "nixos-test" "big-parallel" "benchmark"];
+        supportedFeatures = [
+          "kvm"
+          "nixos-test"
+          "big-parallel"
+          "benchmark"
+        ];
         maxJobs = 8;
       }
     ];
@@ -137,6 +144,6 @@ in {
   meta = {
     doc = ./readme.md;
     buildDocsInSandbox = true;
-    maintainers = with lib.maintainers; [orzklv];
+    maintainers = with lib.maintainers; [ orzklv ];
   };
 }

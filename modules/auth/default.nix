@@ -2,13 +2,15 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.auth;
 
   # Shortcut domains
   base = "floss.uz";
   domain = "auth.${base}";
-in {
+in
+{
   options = {
     kolyma.auth = {
       enable = lib.mkOption {
@@ -49,11 +51,7 @@ in {
 
         "/" = {
           extraConfig = ''
-            proxy_pass http://${
-              config.services.keycloak.settings.http-host
-            }:${
-              toString config.services.keycloak.settings.http-port
-            };
+            proxy_pass http://${config.services.keycloak.settings.http-host}:${toString config.services.keycloak.settings.http-port};
             proxy_buffer_size 8k;
           '';
         };

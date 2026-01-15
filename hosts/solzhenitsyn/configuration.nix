@@ -2,7 +2,8 @@
   lib,
   outputs,
   ...
-}: {
+}:
+{
   imports = [
     # System related configs
     outputs.nixosModules.base
@@ -21,8 +22,8 @@
 
   kolyma.accounts = {
     # Users of system
-    users = with lib.labors; [jamshid];
-    teams = with lib.camps; [uzinfocom];
+    users = with lib.labors; [ jamshid ];
+    teams = with lib.camps; [ uzinfocom ];
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

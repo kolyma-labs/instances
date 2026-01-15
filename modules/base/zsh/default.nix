@@ -3,7 +3,8 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.shell;
 
   # Manually types some extra spicy zsh config
@@ -11,7 +12,8 @@
 
   # Find and set path to executables
   exec = pkg: lib.getExe pkg;
-in {
+in
+{
   options = {
     kolyma.shell = {
       enable = lib.mkOption {
@@ -103,14 +105,14 @@ in {
 
     # System configurations
     environment = {
-      shells = with pkgs; [zsh];
-      pathsToLink = ["/share/zsh"];
+      shells = with pkgs; [ zsh ];
+      pathsToLink = [ "/share/zsh" ];
     };
   };
 
   meta = {
     doc = ./readme.md;
     buildDocsInSandbox = true;
-    maintainers = with lib.maintainers; [orzklv];
+    maintainers = with lib.maintainers; [ orzklv ];
   };
 }

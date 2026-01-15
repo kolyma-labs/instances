@@ -4,7 +4,8 @@
   config,
   inputs,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.apps.efael.messenger;
 
   wellKnownClient = domain: {
@@ -18,7 +19,7 @@
     "io.element.e2ee" = {
       default = true;
       secure_backup_required = false;
-      secure_backup_setup_methods = [];
+      secure_backup_setup_methods = [ ];
     };
     "org.matrix.msc4143.rtc_foci" = [
       {
@@ -28,7 +29,7 @@
     ];
   };
 
-  wellKnownServer = domain: {"m.server" = "matrix.${domain}:443";};
+  wellKnownServer = domain: { "m.server" = "matrix.${domain}:443"; };
 
   wellKnownSupport = {
     contacts = [
@@ -48,27 +49,29 @@
   '';
 
   wellKnownAppleLocations = domain: {
-    "= /.well-known/apple-app-site-association". extraConfig = let
-      data = {
-        applinks = {
-          apps = [
-            "86VMSY4FK5.uz.uzinfocom.efael.app"
-            "7J4U792NQT.io.element.elementx"
-          ];
-          details = [];
+    "= /.well-known/apple-app-site-association".extraConfig =
+      let
+        data = {
+          applinks = {
+            apps = [
+              "86VMSY4FK5.uz.uzinfocom.efael.app"
+              "7J4U792NQT.io.element.elementx"
+            ];
+            details = [ ];
+          };
+          webcredentials = {
+            apps = [
+              "86VMSY4FK5.uz.uzinfocom.efael.app"
+              "7J4U792NQT.io.element.elementx"
+            ];
+          };
         };
-        webcredentials = {
-          apps = [
-            "86VMSY4FK5.uz.uzinfocom.efael.app"
-            "7J4U792NQT.io.element.elementx"
-          ];
-        };
-      };
-    in ''
-      default_type application/json;
-      types { application/json apple-app-site-association; }
-      return 200 '${builtins.toJSON data}';
-    '';
+      in
+      ''
+        default_type application/json;
+        types { application/json apple-app-site-association; }
+        return 200 '${builtins.toJSON data}';
+      '';
   };
 
   wellKnownLocations = domain: {
@@ -76,7 +79,8 @@
     "= /.well-known/matrix/client".extraConfig = mkWellKnown (wellKnownClient domain);
     "= /.well-known/matrix/support".extraConfig = mkWellKnown wellKnownSupport;
   };
-in {
+in
+{
   imports = [
     inputs.efael-website.nixosModules.server
   ];
@@ -93,7 +97,11 @@ in {
 
       alias = lib.mkOption {
         type = with lib.types; listOf str;
-        default = ["www.efael.uz" "efael.net" "www.efael.net"];
+        default = [
+          "www.efael.uz"
+          "efael.net"
+          "www.efael.net"
+        ];
         description = "Additional domains to associate with efael's website";
       };
     };
@@ -109,8 +117,7 @@ in {
 
     services.nginx.virtualHosts = {
       "${cfg.domain}" = {
-        locations =
-          wellKnownLocations "${cfg.domain}" // wellKnownAppleLocations "${cfg.domain}";
+        locations = wellKnownLocations "${cfg.domain}" // wellKnownAppleLocations "${cfg.domain}";
       };
 
       "chat.${cfg.domain}" = {

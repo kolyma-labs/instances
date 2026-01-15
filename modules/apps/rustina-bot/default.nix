@@ -3,7 +3,8 @@
   config,
   inputs,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.apps.rust-uz.bot;
 
   ownership = key: {
@@ -11,7 +12,8 @@
     owner = config.services.rustina.user;
     sopsFile = ../../../secrets/rust-lang/bot.yaml;
   };
-in {
+in
+{
   imports = [
     inputs.rustina-bot.nixosModules.bot
   ];

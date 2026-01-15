@@ -2,84 +2,84 @@
   config,
   lib,
   ...
-}: let
-  generateZone = zone: type: let
-    master = type == "master";
-    file = "/var/dns/${zone}.zone";
-  in
-    if master
-    then {
-      inherit master file;
-      inherit (config.kolyma.nameserver) slaves;
-      extraConfig = ''
-        ${lib.optionalString (config.kolyma.nameserver.slaves != []) ''
-          notify yes;
-          also-notify { ${lib.concatStringsSep "; " config.kolyma.nameserver.slaves}; };
-          allow-update { ${lib.concatStringsSep "; " config.kolyma.nameserver.slaves}; localhost; };
-        ''}
-      '';
-    }
-    else {
-      inherit master file;
-      inherit (config.kolyma.nameserver) masters;
-      extraConfig = ''
-        masterfile-format text;
-      '';
-    };
+}:
+let
+  generateZone =
+    zone: type:
+    let
+      master = type == "master";
+      file = "/var/dns/${zone}.zone";
+    in
+    if master then
+      {
+        inherit master file;
+        inherit (config.kolyma.nameserver) slaves;
+        extraConfig = ''
+          ${lib.optionalString (config.kolyma.nameserver.slaves != [ ]) ''
+            notify yes;
+            also-notify { ${lib.concatStringsSep "; " config.kolyma.nameserver.slaves}; };
+            allow-update { ${lib.concatStringsSep "; " config.kolyma.nameserver.slaves}; localhost; };
+          ''}
+        '';
+      }
+    else
+      {
+        inherit master file;
+        inherit (config.kolyma.nameserver) masters;
+        extraConfig = ''
+          masterfile-format text;
+        '';
+      };
 
   # Map through given array of zones and generate zone object list
-  zonesMap = zones: type:
+  zonesMap =
+    zones: type:
     lib.listToAttrs (
       map (zone: {
         name = zone;
         value = generateZone zone type;
-      })
-      zones
+      }) zones
     );
 
   # If type is master, activate system.activationScripts.copyZones
-  mastetFiles =
-    lib.mkIf (config.kolyma.nameserver.type == "master")
-    {
-      system.activationScripts.copyZones = lib.mkForce {
-        text = ''
-          # Create /var/dns
-          mkdir -p /var/dns
+  mastetFiles = lib.mkIf (config.kolyma.nameserver.type == "master") {
+    system.activationScripts.copyZones = lib.mkForce {
+      text = ''
+        # Create /var/dns
+        mkdir -p /var/dns
 
-          # Copy all zone files to /var/dns
-          for zoneFile in ${../../data/zones}/*.zone; do
-            cp -f "$zoneFile" /var/dns/
-          done
+        # Copy all zone files to /var/dns
+        for zoneFile in ${../../data/zones}/*.zone; do
+          cp -f "$zoneFile" /var/dns/
+        done
 
-          # Give perms over everything for named
-          chown -R named:named /var/dns
-          chmod 750 /var/dns
-          find /var/dns -type f -exec chown named:named {} \;
-        '';
-        deps = [];
-      };
+        # Give perms over everything for named
+        chown -R named:named /var/dns
+        chmod 750 /var/dns
+        find /var/dns -type f -exec chown named:named {} \;
+      '';
+      deps = [ ];
     };
+  };
 
   # If type is master, activate system.activationScripts.copyZones
-  slaveFiles =
-    lib.mkIf (config.kolyma.nameserver.type != "master")
-    {
-      system.activationScripts.copyZones = lib.mkForce {
-        text = ''
-          # Create /var/dns
-          mkdir -p /var/dns
+  slaveFiles = lib.mkIf (config.kolyma.nameserver.type != "master") {
+    system.activationScripts.copyZones = lib.mkForce {
+      text = ''
+        # Create /var/dns
+        mkdir -p /var/dns
 
-          # Time for clean-up
-          rm -rf /var/dns/*
+        # Time for clean-up
+        rm -rf /var/dns/*
 
-          # Give perms over everything for named
-          chown -R named:named /var/dns
-          chmod 750 /var/dns
-          find /var/dns -type f -exec chown named:named {} \;
-        '';
-        deps = [];
-      };
+        # Give perms over everything for named
+        chown -R named:named /var/dns
+        chmod 750 /var/dns
+        find /var/dns -type f -exec chown named:named {} \;
+      '';
+      deps = [ ];
     };
+  };
 
   cfg = {
     services.bind = {
@@ -94,12 +94,13 @@
 
       # DNS standard port for connections + that require more than 512 bytes
       firewall = {
-        allowedUDPPorts = [53];
-        allowedTCPPorts = [53];
+        allowedUDPPorts = [ 53 ];
+        allowedTCPPorts = [ 53 ];
       };
     };
   };
-in {
+in
+{
   options = {
     kolyma.nameserver = {
       enable = lib.mkOption {
@@ -164,12 +165,16 @@ in {
   };
 
   config =
-    lib.mkMerge [cfg mastetFiles slaveFiles]
+    lib.mkMerge [
+      cfg
+      mastetFiles
+      slaveFiles
+    ]
     |> lib.mkIf config.kolyma.nameserver.enable;
 
   meta = {
     doc = ./readme.md;
     buildDocsInSandbox = true;
-    maintainers = with lib.maintainers; [orzklv];
+    maintainers = with lib.maintainers; [ orzklv ];
   };
 }

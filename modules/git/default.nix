@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.git;
-in {
+in
+{
   options = {
     kolyma.git = {
       enable = lib.mkOption {
@@ -69,7 +71,9 @@ in {
 
     # anubis to defend against LLM scrapers
     services = {
-      anubis.instances.git.settings.TARGET = with config.services.forgejo.settings.server; "http://${HTTP_ADDR}:${toString HTTP_PORT}";
+      anubis.instances.git.settings.TARGET =
+        with config.services.forgejo.settings.server;
+        "http://${HTTP_ADDR}:${toString HTTP_PORT}";
 
       nginx.virtualHosts.${cfg.domain} = {
         enableACME = true;
@@ -207,10 +211,10 @@ in {
       isSystemUser = true;
     };
 
-    users.groups.${cfg.group} = {};
+    users.groups.${cfg.group} = { };
 
     # Expose SSH port only for forgejo SSH
-    networking.firewall.interfaces.eth0.allowedTCPPorts = [2223];
+    networking.firewall.interfaces.eth0.allowedTCPPorts = [ 2223 ];
 
     # See: https://docs.gitea.io/en-us/signing/#installing-and-generating-a-gpg-key-for-gitea
     # Required for gitea server side gpg signatures

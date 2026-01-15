@@ -5,7 +5,8 @@
   lib,
   outputs,
   ...
-}: {
+}:
+{
   # You can import other NixOS modules here
   imports = [
     # System related configs
@@ -25,7 +26,7 @@
 
   kolyma = {
     # Users of system
-    accounts.teams = with lib.camps; [owners];
+    accounts.teams = with lib.camps; [ owners ];
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

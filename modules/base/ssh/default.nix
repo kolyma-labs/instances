@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.remote;
-in {
+in
+{
   options = {
     kolyma.remote = {
       enable = lib.mkOption {
@@ -21,7 +23,7 @@ in {
 
       ports = lib.mkOption {
         type = lib.types.listOf lib.types.port;
-        default = [22];
+        default = [ 22 ];
         description = ''
           Specifies on which ports the SSH daemon listens.
         '';
@@ -68,6 +70,6 @@ in {
   meta = {
     doc = ./readme.md;
     buildDocsInSandbox = true;
-    maintainers = with lib.maintainers; [orzklv];
+    maintainers = with lib.maintainers; [ orzklv ];
   };
 }

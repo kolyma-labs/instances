@@ -2,7 +2,8 @@
   config,
   outputs,
   ...
-}: {
+}:
+{
   imports = [
     # Top level abstractions
     outputs.nixosModules.bind

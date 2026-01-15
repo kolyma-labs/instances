@@ -3,13 +3,16 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.network;
 
-  gateway = ip: let
-    parts = lib.splitString "." ip;
-  in
-    lib.concatStringsSep "." (lib.take 3 parts ++ ["1"]);
+  gateway =
+    ip:
+    let
+      parts = lib.splitString "." ip;
+    in
+    lib.concatStringsSep "." (lib.take 3 parts ++ [ "1" ]);
 
   ipv4 = lib.mkIf (cfg.ipv4 != null) {
     networking = {
@@ -76,16 +79,22 @@
   };
 
   mkWarning = msg: {
-    warnings = [msg];
+    warnings = [ msg ];
   };
 
-  warnings =
-    lib.mkIf
-    (!config.networking.useDHCP && (cfg.ipv4 == null && cfg.ipv6 == null))
-    (mkWarning "are you SURE that you want to go without any public ip address?");
+  warnings = lib.mkIf (!config.networking.useDHCP && (cfg.ipv4 == null && cfg.ipv6 == null)) (
+    mkWarning "are you SURE that you want to go without any public ip address?"
+  );
 
-  merge = lib.mkMerge [main ipv4 ipv6 packs warnings];
-in {
+  merge = lib.mkMerge [
+    main
+    ipv4
+    ipv6
+    packs
+    warnings
+  ];
+in
+{
   options = {
     kolyma.network = {
       enable = lib.mkOption {
@@ -128,6 +137,6 @@ in {
   meta = {
     doc = ./readme.md;
     buildDocsInSandbox = true;
-    maintainers = with lib.maintainers; [orzklv];
+    maintainers = with lib.maintainers; [ orzklv ];
   };
 }

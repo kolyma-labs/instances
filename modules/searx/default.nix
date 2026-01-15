@@ -3,10 +3,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.search;
   vHostDomain = "search.${cfg.domain}";
-in {
+in
+{
   options = {
     kolyma.search = {
       enable = lib.mkOption {
@@ -45,7 +47,7 @@ in {
       '';
     };
 
-    users.users.nginx.extraGroups = ["searx"];
+    users.users.nginx.extraGroups = [ "searx" ];
 
     services.searx = {
       enable = true;

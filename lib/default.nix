@@ -1,14 +1,15 @@
-{lib}: {
+{ lib }:
+{
   # User Lists
-  camps = import ../gulag/camps.nix {inherit lib;};
-  labors = import ../gulag/labors.nix {inherit lib;};
+  camps = import ../gulag/camps.nix { inherit lib; };
+  labors = import ../gulag/labors.nix { inherit lib; };
 
   # Abstraction types
-  kotypes = import ./types.nix {inherit lib;};
+  kotypes = import ./types.nix { inherit lib; };
 
   # Helpful functions & generators
-  users = import ./users.nix {inherit lib;};
-  instances = import ./instances.nix {inherit lib;};
-  rmatch = import ./rmatch.nix {inherit lib;};
-  kstrings = import ./strings.nix {inherit lib;};
+  users = import ./users.nix { inherit lib; };
+  instances = import ./instances.nix { inherit lib; };
+  rmatch = import ./rmatch.nix { inherit lib; };
+  kstrings = import ./strings.nix { inherit lib; };
 }

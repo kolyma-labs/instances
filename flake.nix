@@ -16,9 +16,13 @@
   # Extra nix configurations to inject to flake scheme
   # => use if something doesn't work out of box or when despaired...
   nixConfig = {
-    experimental-features = ["nix-command" "flakes" "pipe-operators"];
-    extra-substituters = ["https://cache.xinux.uz/"];
-    extra-trusted-public-keys = ["cache.xinux.uz:BXCrtqejFjWzWEB9YuGB7X2MV4ttBur1N8BkwQRdH+0="];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+      "pipe-operators"
+    ];
+    extra-substituters = [ "https://cache.xinux.uz/" ];
+    extra-trusted-public-keys = [ "cache.xinux.uz:BXCrtqejFjWzWEB9YuGB7X2MV4ttBur1N8BkwQRdH+0=" ];
   };
 
   # inputs are other flakes you use within your own flake, dependencies
@@ -101,94 +105,94 @@
 
   # In this context, outputs are mostly about getting nixpkgs what it
   # needs since it will be the one using the flake
-  outputs = {
-    self,
-    nixpkgs,
-    pre-commit-hooks,
-    ...
-  } @ inputs: let
-    # Self instance pointer
-    inherit (self) outputs;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      pre-commit-hooks,
+      ...
+    }@inputs:
+    let
+      # Self instance pointer
+      inherit (self) outputs;
 
-    # Supported systems for your flake packages, shell, etc.
-    systems = [
-      "aarch64-linux"
-      "x86_64-linux"
-      "aarch64-darwin"
-    ];
+      # Supported systems for your flake packages, shell, etc.
+      systems = [
+        "aarch64-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+      ];
 
-    # This is a function that generates an attribute by calling a function you
-    # pass to it, with each system as an argument
-    forAllSystems = nixpkgs.lib.genAttrs systems;
-  in {
-    # Nixpkgs and internal helpful functions
-    lib = nixpkgs.lib // import ./lib {inherit (nixpkgs) lib;};
+      # This is a function that generates an attribute by calling a function you
+      # pass to it, with each system as an argument
+      forAllSystems = nixpkgs.lib.genAttrs systems;
+    in
+    {
+      # Nixpkgs and internal helpful functions
+      lib = nixpkgs.lib // import ./lib { inherit (nixpkgs) lib; };
 
-    # Your custom packages and modifications, exported as overlays
-    overlays = import ./overlays {inherit inputs;};
+      # Your custom packages and modifications, exported as overlays
+      overlays = import ./overlays { inherit inputs; };
 
-    # Checks for hooks
-    checks = forAllSystems (system: {
-      pre-commit-check = pre-commit-hooks.lib.${system}.run {
-        src = ./.;
-        hooks = {
-          statix = let
-            pkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
-          in {
-            enable = true;
-            package =
-              pkgs.statix.overrideAttrs
-              (_o: rec {
-                src = pkgs.fetchFromGitHub {
-                  owner = "oppiliappan";
-                  repo = "statix";
-                  rev = "43681f0da4bf1cc6ecd487ef0a5c6ad72e3397c7";
-                  hash = "sha256-LXvbkO/H+xscQsyHIo/QbNPw2EKqheuNjphdLfIZUv4=";
-                };
+      # Checks for hooks
+      checks = forAllSystems (system: {
+        pre-commit-check = pre-commit-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = {
+            statix =
+              let
+                pkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
+              in
+              {
+                enable = true;
+                package = pkgs.statix.overrideAttrs (_o: rec {
+                  src = pkgs.fetchFromGitHub {
+                    owner = "oppiliappan";
+                    repo = "statix";
+                    rev = "43681f0da4bf1cc6ecd487ef0a5c6ad72e3397c7";
+                    hash = "sha256-LXvbkO/H+xscQsyHIo/QbNPw2EKqheuNjphdLfIZUv4=";
+                  };
 
-                cargoDeps = pkgs.rustPlatform.importCargoLock {
-                  lockFile = src + "/Cargo.lock";
-                  allowBuiltinFetchGit = true;
-                };
-              });
+                  cargoDeps = pkgs.rustPlatform.importCargoLock {
+                    lockFile = src + "/Cargo.lock";
+                    allowBuiltinFetchGit = true;
+                  };
+                });
+              };
+            nixfmt.enable = true;
+            flake-checker.enable = true;
           };
-          alejandra.enable = true;
-          # flake-checker.enable = true;
         };
-      };
-    });
+      });
 
-    # Formatter for your nix files, available through 'nix fmt'
-    # Other options beside 'alejandra' include 'nixpkgs-fmt'
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+      # Formatter for your nix files, available through 'nix fmt'
+      # Other options beside 'alejandra' include 'nixpkgs-fmt'
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
 
-    # Development shells
-    devShells = forAllSystems (system: {
-      default = import ./shell.nix {
-        inherit (self.checks.${system}) pre-commit-check;
-        pkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
-      };
-    });
+      # Development shells
+      devShells = forAllSystems (system: {
+        default = import ./shell.nix {
+          inherit (self.checks.${system}) pre-commit-check;
+          pkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
+        };
+      });
 
-    # Reusable nixos modules you might want to export
-    # These are usually stuff you would upstream into nixpkgs
-    nixosModules =
-      builtins.readDir ./modules
-      |> builtins.attrNames
-      |> map (x: {
-        name = x;
-        value = import (./modules + "/${x}");
-      })
-      |> builtins.listToAttrs;
-
-    # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#your-hostname'
-    nixosConfigurations = self.lib.instances.mapSystem {
-      list =
-        builtins.readDir ./hosts
+      # Reusable nixos modules you might want to export
+      # These are usually stuff you would upstream into nixpkgs
+      nixosModules =
+        builtins.readDir ./modules
         |> builtins.attrNames
-        |> map (h: self.lib.kstrings.capitalize h);
-      inherit inputs outputs;
+        |> map (x: {
+          name = x;
+          value = import (./modules + "/${x}");
+        })
+        |> builtins.listToAttrs;
+
+      # NixOS configuration entrypoint
+      # Available through 'nixos-rebuild --flake .#your-hostname'
+      nixosConfigurations = self.lib.instances.mapSystem {
+        list = builtins.readDir ./hosts |> builtins.attrNames |> map (h: self.lib.kstrings.capitalize h);
+        inherit inputs outputs;
+      };
     };
-  };
 }

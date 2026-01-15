@@ -3,9 +3,11 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.matrix;
-in {
+in
+{
   default_server_config = {
     "m.homeserver" = {
       base_url = "https://matrix.${config.kolyma.matrix.domain}";
@@ -31,7 +33,7 @@ in {
   bug_report_endpoint_url = "https://element.io/bugreports/submit";
   show_labs_settings = true;
   room_directory = {
-    servers = ["matrix.org"];
+    servers = [ "matrix.org" ];
   };
   # TODO: This looks wrong
   enable_presence_by_hs_url = "\n";

@@ -3,7 +3,8 @@
   outputs,
   config,
   ...
-}: {
+}:
+{
   imports = [
     # Top level abstractions
     outputs.nixosModules.auth
@@ -40,7 +41,7 @@
     www = {
       enable = true;
       instance = 1;
-      alias = ["kolyma.uz"];
+      alias = [ "kolyma.uz" ];
     };
 
     # bind://ns1.kolyma.uz
@@ -59,7 +60,10 @@
     mail = {
       enable = true;
       domain = "kolyma.uz";
-      alias = ["floss.uz" "oss.uzinfocom.uz"];
+      alias = [
+        "floss.uz"
+        "oss.uzinfocom.uz"
+      ];
     };
 
     # https://(chat|matrix).floss.uz

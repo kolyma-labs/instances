@@ -4,14 +4,16 @@
   config,
   inputs,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.gate;
 
   management = {
     sopsFile = ../../secrets/gateway.yaml;
     owner = config.services.tarmoqchi.user;
   };
-in {
+in
+{
   imports = [
     inputs.tarmoqchi.nixosModules.tarmoqchi
   ];
@@ -40,12 +42,18 @@ in {
 
   config = {
     sops.secrets = {
-      "tarmoqchi/database" =
-        {key = "database";} // management;
-      "tarmoqchi/github/id" =
-        {key = "github/id";} // management;
-      "tarmoqchi/github/secret" =
-        {key = "github/secret";} // management;
+      "tarmoqchi/database" = {
+        key = "database";
+      }
+      // management;
+      "tarmoqchi/github/id" = {
+        key = "github/id";
+      }
+      // management;
+      "tarmoqchi/github/secret" = {
+        key = "github/secret";
+      }
+      // management;
     };
 
     services.tarmoqchi = {
@@ -65,7 +73,7 @@ in {
       certs."${cfg.domain}" = {
         dnsProvider = "rfc2136";
         dnsPropagationCheck = false;
-        extraDomainNames = ["*.${cfg.domain}"];
+        extraDomainNames = [ "*.${cfg.domain}" ];
 
         environmentFile = pkgs.writeTextFile {
           name = "rfc2136.env";

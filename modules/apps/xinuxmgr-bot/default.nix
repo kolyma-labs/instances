@@ -3,9 +3,11 @@
   config,
   inputs,
   ...
-}: let
+}:
+let
   cfg = config.kolyma.apps.xinux.bot;
-in {
+in
+{
   imports = [
     inputs.xinuxmgr-bot.nixosModules.xinux.bot
   ];

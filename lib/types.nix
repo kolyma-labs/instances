@@ -1,4 +1,5 @@
-{lib}: let
+{ lib }:
+let
   users = {
     options = {
       username = lib.options.mkOption {
@@ -23,8 +24,8 @@
       };
 
       keys = lib.options.mkOption {
-        default = [];
-        example = [];
+        default = [ ];
+        example = [ ];
         description = "More detailed name or username for finding.";
         type = with lib.types; listOf singleLineStr;
       };
@@ -48,7 +49,7 @@
   groups = {
     options = {
       members = lib.options.mkOption {
-        default = [];
+        default = [ ];
         description = "Members of the team";
         type = with lib.types; listOf (submodule users);
       };
@@ -86,7 +87,10 @@
         description = "Path to a secret file containing registration token.";
       };
       type = lib.mkOption {
-        type = lib.types.enum ["forgejo" "github"];
+        type = lib.types.enum [
+          "forgejo"
+          "github"
+        ];
         example = "forgejo";
         description = "Type of git provider runner is going to serve for.";
       };
@@ -101,14 +105,17 @@
       };
 
       mode = lib.mkOption {
-        type = lib.types.enum ["static" "browse"];
+        type = lib.types.enum [
+          "static"
+          "browse"
+        ];
         default = "static";
         description = "Should nginx show file listing.";
       };
 
       alias = lib.mkOption {
         type = lib.types.listOf lib.types.str;
-        default = [];
+        default = [ ];
         description = "List of extra aliases to associate.";
       };
 
@@ -119,4 +126,12 @@
       };
     };
   };
-in {inherit users groups runner cdn;}
+in
+{
+  inherit
+    users
+    groups
+    runner
+    cdn
+    ;
+}

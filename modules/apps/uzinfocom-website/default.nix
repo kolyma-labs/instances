@@ -3,7 +3,8 @@
   inputs,
   config,
   ...
-}: let
+}:
+let
   base = "uzinfocom.uz";
 
   cfg = config.kolyma.apps.uzinfocom;
@@ -27,7 +28,8 @@
           forceSSL = true;
           enableACME = true;
           locations = {
-            "/".proxyPass = "http://${config.services.uzinfocom.website.host}:${toString config.services.uzinfocom.website.port}";
+            "/".proxyPass =
+              "http://${config.services.uzinfocom.website.host}:${toString config.services.uzinfocom.website.port}";
           };
         };
       };
@@ -53,13 +55,15 @@
           forceSSL = true;
           enableACME = true;
           locations = {
-            "/".proxyPass = "http://${config.services.uzinfocom.taggis.host}:${toString config.services.uzinfocom.taggis.port}";
+            "/".proxyPass =
+              "http://${config.services.uzinfocom.taggis.host}:${toString config.services.uzinfocom.taggis.port}";
           };
         };
       };
     };
   };
-in {
+in
+{
   imports = [
     inputs.uzinfocom-website.nixosModules.server
     inputs.uzinfocom-taggis.nixosModules.server
@@ -77,5 +81,8 @@ in {
     };
   };
 
-  config = lib.mkMerge [website social];
+  config = lib.mkMerge [
+    website
+    social
+  ];
 }

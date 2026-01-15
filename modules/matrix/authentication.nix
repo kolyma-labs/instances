@@ -3,9 +3,9 @@
   lib,
   pkgs,
   ...
-}: let
-  inherit
-    (lib)
+}:
+let
+  inherit (lib)
     concatMapStringsSep
     filterAttrsRecursive
     getExe
@@ -20,19 +20,20 @@
     ;
 
   cfg = config.services.matrix-authentication-service;
-  format = pkgs.formats.yaml {};
+  format = pkgs.formats.yaml { };
 
   # remove null values from the final configuration
   finalSettings = filterAttrsRecursive (_: v: v != null) cfg.settings;
   configFile = format.generate "config.yaml" finalSettings;
-in {
+in
+{
   options.services.matrix-authentication-service = {
     enable = mkEnableOption "matrix authentication service";
 
-    package = mkPackageOption pkgs "matrix-authentication-service" {};
+    package = mkPackageOption pkgs "matrix-authentication-service" { };
 
     settings = mkOption {
-      default = {};
+      default = { };
       description = ''
         The primary mas configuration. See the
         [configuration reference](https://element-hq.github.io/matrix-authentication-service/usage/configuration.html)
@@ -318,7 +319,7 @@ in {
 
     extraConfigFiles = mkOption {
       type = types.listOf types.path;
-      default = [];
+      default = [ ];
       description = ''
         Extra config files to include.
 
@@ -345,7 +346,7 @@ in {
   config = mkIf cfg.enable {
     services.postgresql = optionalAttrs cfg.createDatabase {
       enable = true;
-      ensureDatabases = ["matrix-authentication-service"];
+      ensureDatabases = [ "matrix-authentication-service" ];
       ensureUsers = [
         {
           name = "matrix-authentication-service";
@@ -358,17 +359,17 @@ in {
       group = "matrix-authentication-service";
       isSystemUser = true;
     };
-    users.groups.matrix-authentication-service = {};
+    users.groups.matrix-authentication-service = { };
 
     services.matrix-authentication-service.settings.http.listeners = mkDefault [
       {
         name = "web";
         resources = [
-          {name = "discovery";}
-          {name = "human";}
-          {name = "oauth";}
-          {name = "compat";}
-          {name = "graphql";}
+          { name = "discovery"; }
+          { name = "human"; }
+          { name = "oauth"; }
+          { name = "compat"; }
+          { name = "graphql"; }
           {
             name = "assets";
             path = "${cfg.package}/share/matrix-authentication-service/assets";
@@ -385,7 +386,7 @@ in {
       {
         name = "internal";
         resources = [
-          {name = "health";}
+          { name = "health"; }
         ];
         binds = [
           {
@@ -400,7 +401,7 @@ in {
     systemd.services.matrix-authentication-service = rec {
       after = optional cfg.createDatabase "postgresql.service" ++ cfg.serviceDependencies;
       wants = after;
-      wantedBy = ["multi-user.target"];
+      wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         User = "matrix-authentication-service";
         Group = "matrix-authentication-service";
@@ -409,13 +410,13 @@ in {
             "+"
             + (pkgs.writeShellScript "matrix-authentication-service-check-config" ''
               ${getExe cfg.package} config check \
-                ${concatMapStringsSep " " (x: "--config ${x}") ([configFile] ++ cfg.extraConfigFiles)}
+                ${concatMapStringsSep " " (x: "--config ${x}") ([ configFile ] ++ cfg.extraConfigFiles)}
             '')
           )
         ];
         ExecStart = ''
           ${getExe cfg.package} server \
-            ${concatMapStringsSep " " (x: "--config ${x}") ([configFile] ++ cfg.extraConfigFiles)}
+            ${concatMapStringsSep " " (x: "--config ${x}") ([ configFile ] ++ cfg.extraConfigFiles)}
         '';
         Restart = "on-failure";
         RestartSec = "1s";

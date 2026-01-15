@@ -1,5 +1,6 @@
 # This file defines overlays
-{inputs, ...}: {
+{ inputs, ... }:
+{
   # Make input added packages accesible via pkgs
   additional-packages = final: prev: rec {
     # By flake

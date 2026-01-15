@@ -1,7 +1,8 @@
-{lib}: let
-  labors =
-    lib.labors or import ./labors.nix {inherit lib;};
-in {
+{ lib }:
+let
+  labors = lib.labors or import ./labors.nix { inherit lib; };
+in
+{
   owners = {
     members = with labors; [
       orzklv
