@@ -15,9 +15,12 @@ let
         tokenFile = param.token;
         replace = true;
         extraLabels = [ param.name ];
-        extraPackages = [ pkgs.nodejs_24 ];
         package = pkgs.unstable.github-runner;
         workDir = "/srv/runner/github/${lib.toLower param.name}";
+        extraPackages = with pkgs; [
+          gh
+          nodejs_24
+        ];
         serviceOverrides = {
           ProtectSystem = "full";
           ReadWritePaths = "${config.kolyma.data.path or "/srv"}";
