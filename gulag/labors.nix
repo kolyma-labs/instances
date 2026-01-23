@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   orzklv = {
     username = "sakhib";
     description = "Sokhibjon Orzikulov";
@@ -13,14 +12,16 @@
     username = "aekinskjaldi";
     description = "aekinskjaldi";
     password = "$y$j9T$VIu7tUhSD.zJlTG9D49rK/$biwcrfsI/RAZBKxpa4qOTI/777TNv0IwPYWOeJN.J8B";
-    keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL6spmrUncC7zasDdxXghuviK6LXNZ8hrTztFDA6TnRN" ];
+    keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL6spmrUncC7zasDdxXghuviK6LXNZ8hrTztFDA6TnRN"];
   };
 
   bahrom04 = {
     username = "bahrom04";
-    description = "Bakhrom Magdiyev";
+    description = "Bakhrom Raxmatov";
+    password = "$2b$05$QgiAihjGOtxfGZ06pfm2u.dMR6522sT2Pmy4mt//Rf2x5YonDcD.2";
     keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGq3w7lLgdOzCVXp2Y/bec3ZPcdKvq4f7AE6qVyiH9Cm magdiyevbahrom@gmail.com"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF+Iwxr6xnmkaKh+SCZer2OM4ARcCBGXkKLhxFe158aU magdiyevbahrom@gmail.com"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDH+EVAeaZpe98gggH8fPQ4bKEgw2FbTqYzngTRSpSbp magdiyevbahrom04@gmail.com"
     ];
   };
 
