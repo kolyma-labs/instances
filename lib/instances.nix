@@ -26,9 +26,9 @@ let
       #   { name = "Lorem", value = config }
       #   { name = "Ipsum", value = config }
       # ]
-      map = lib.map system list;
+      ref = map system list;
     in
-    lib.listToAttrs map;
+    lib.listToAttrs ref;
 
   # WARNING!
   # Becomes impure when opath provided
@@ -57,9 +57,9 @@ let
       #   { name = "Lorem", value = config }
       #   { name = "Ipsum", value = config }
       # ]
-      map = lib.map system list;
+      ref = lib.map system list;
     in
-    lib.listToAttrs map;
+    lib.listToAttrs ref;
 
   makeSystem =
     {

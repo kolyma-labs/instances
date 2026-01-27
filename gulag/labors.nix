@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   orzklv = {
     username = "sakhib";
     description = "Sokhibjon Orzikulov";
@@ -12,7 +13,7 @@
     username = "aekinskjaldi";
     description = "aekinskjaldi";
     password = "$y$j9T$VIu7tUhSD.zJlTG9D49rK/$biwcrfsI/RAZBKxpa4qOTI/777TNv0IwPYWOeJN.J8B";
-    keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL6spmrUncC7zasDdxXghuviK6LXNZ8hrTztFDA6TnRN"];
+    keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL6spmrUncC7zasDdxXghuviK6LXNZ8hrTztFDA6TnRN" ];
   };
 
   bahrom04 = {
