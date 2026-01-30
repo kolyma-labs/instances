@@ -16,6 +16,7 @@ $TTL 86400
 ns1    IN    A     45.150.26.27
 ns2    IN    A     45.150.26.30
 ns3    IN    A     45.150.26.26
+nsx    IN    A     45.150.26.120
 
 ; Entry points
 @      IN    A     45.150.26.27
@@ -43,6 +44,13 @@ mas.mg       IN    CNAME ns3.uzberk.uz.
 chat.mg      IN    CNAME ns3.uzberk.uz.
 push.mg      IN    CNAME ns3.uzberk.uz.
 matrix.mg    IN    CNAME ns3.uzberk.uz.
+
+; Plazma Server
+plazma        IN    CNAME nsx.uzberk.uz.
+mas.plazma    IN    CNAME nsx.uzberk.uz.
+chat.plazma   IN    CNAME nsx.uzberk.uz.
+push.plazma   IN    CNAME nsx.uzberk.uz.
+matrix.plazma IN    CNAME nsx.uzberk.uz.
 
 ; Mail configurations
 mail              IN  CNAME ns1.uzberk.uz.
