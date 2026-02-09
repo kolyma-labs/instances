@@ -21,28 +21,11 @@ in
         description = "Is this the server that hosts cache?";
       };
 
-      builder = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        example = true;
-        description = "Can this server host as a remote builder?";
-      };
-
       inherit (options.nixpkgs) overlays;
     };
   };
 
   config = lib.mkIf cfg.enable {
-    users.users = lib.mkIf cfg.builder {
-      builder = {
-        isNormalUser = true;
-        hashedPassword = "$y$j9T$dsXOFHWCyplfRPiwsKu0l0$7YXPRLohyW8QXfyITPP6Sag/l7XH3i7TO4uGByPKBb2";
-        openssh.authorizedKeys.keys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII7cbsIgVqOYd59cCiDfC2rSE1mY3eNAJyP1lF1K6G4s I'ma rebuild those derivations fast as fuck boi"
-        ];
-      };
-    };
-
     nixpkgs = {
       # You can add overlays here
       overlays = [
