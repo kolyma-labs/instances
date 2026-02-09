@@ -16,16 +16,13 @@ in
       bahrom04
       lambdajon
       orzklv
-      shakhzod
     ];
     scope = "Employees of Uzinfocom maintaining Open Source.";
   };
 
   prisioners = {
     members = with labors; [
-      kei
       crypton
-      shakhzod
     ];
     scope = "Dearly inmates from gulag camps.";
   };
