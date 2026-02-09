@@ -57,7 +57,10 @@ in
 
     # https://(hydra|cache).xinux.uz
     hydra.enable = true;
-    nixpkgs.master = true;
+    nixpkgs = {
+      master = true;
+      builder = true;
+    };
 
     # * -> github.com
     runners = {
