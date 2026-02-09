@@ -51,4 +51,13 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIxpDM5Ucr5xS+nfld9c/+sJTuX3pLevNXUNSWMx0itw elmurodovjamshid38@gmail.com"
     ];
   };
+
+  rafanochi = {
+    username = "rafanochi";
+    description = "Rafa";
+    password = "$6$password$h3qTLKJxan.7eUgGKy3qxtPaJK49rscfM2B/HwQLDb4BYkYsLcv6jfi1Iw5baWDGXXdsR3RzBwFbef7ruSAWM.";
+    keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHoC10VZyB7O9mhh2/pwDkXtUSnrgt92/wAtRem4q/po zawkindev@gmail.com"
+    ];
+  };
 }
