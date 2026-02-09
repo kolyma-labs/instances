@@ -34,14 +34,6 @@
     ];
   };
 
-  kei = {
-    username = "kei";
-    description = "Kei Thelissimus";
-    keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGfrN6xvFmo+S59KksbxSpFxOVDBzGrkPfuFK4qDPmk2 thelissimus@tuta.io"
-    ];
-  };
-
   lambdajon = {
     username = "lambdajon";
     description = "Kei Thelissimus";
@@ -51,16 +43,9 @@
     ];
   };
 
-  shakhzod = {
-    username = "shakhzod";
-    description = "Shakhzod Kudratov";
-    keysUrl = "https://github.com/shakhzodkudratov.keys";
-    sha256 = "0gnabwywc19947a3m4702m7ibhxmc5s4zqbhsydb2wq92k6qgh6g";
-  };
-
   jamshid = {
     username = "jamshid";
-    description = "";
+    description = "Jamshid Elmurodov";
     password = "$y$j9T$Wng90z/22kTvdFXWJKSOn.$NuTyzmpaRVoYeSMDqMx9MQ0Suk6SindySzwMandr9f.";
     keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIxpDM5Ucr5xS+nfld9c/+sJTuX3pLevNXUNSWMx0itw elmurodovjamshid38@gmail.com"
