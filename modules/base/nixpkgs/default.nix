@@ -76,7 +76,7 @@ in
           # Deduplicate and optimize nix store
           auto-optimise-store = true;
           # Trusted users for secret-key
-          trusted-users = builtins.map (o: o.username) lib.camps.owners.members;
+          trusted-users = (map (o: o.username) lib.camps.owners.members) ++ [ "builder" ];
           # Enable IDF for the love of god
           allow-import-from-derivation = true;
         }
