@@ -44,7 +44,6 @@
     www = {
       enable = true;
       instance = 2;
-      anubis = true;
     };
 
     # bind://ns2.kolyma.uz

@@ -81,12 +81,6 @@ in
         description = "List of extra aliases to host.";
       };
 
-      anubis = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Add nginx user to anubis group for unix socket access.";
-      };
-
       hosts = lib.mkOption {
         type = with lib.types; attrsOf (submodule anything);
         default = { };
@@ -107,10 +101,6 @@ in
         assertion = !((builtins.length cfg.alias) != 0 && cfg.domain == "");
         message = "don't set aliases if there's no primary domain yet";
       }
-    ];
-
-    users.users.nginx.extraGroups = lib.optionals config.kolyma.www.anubis [
-      config.users.groups.anubis.name
     ];
 
     # Configure Nginx
