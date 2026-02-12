@@ -8,10 +8,6 @@ _Options:_ [search.nixos.org](https://search.nixos.org/options?channel=25.05&que
 
 Whatever to be exposed via HTTP/HTTPS protocol must be done via web module which this abstraction actually does. Some part of module is actually binding to `services.nginx.<you name it>` and directly plugs some of configurations to nginx whereas some of it configuring very essential basic configs. By default, service serves [dancing miku] for unknown or unresolved requests, if appointed, it will redirect to corresponding internal services.
 
-### Anubis {#kolyma-www-anubis}
-
-Also, upon enabling anubis, it will just add nginx user to anubis group, so nginx can access unix sockets exposed for nginx. Further anubis related configurations must be done from developers' side.
-
 ## Notes {#kolyma-www-notes}
 
 _By Orzklv | 28th Sep 2025_

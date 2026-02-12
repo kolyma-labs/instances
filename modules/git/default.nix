@@ -69,7 +69,6 @@ in
       text = cfg.keys.public;
     };
 
-    # anubis to defend against LLM scrapers
     services = {
       nginx.virtualHosts.${cfg.domain} = {
         enableACME = true;
