@@ -28,9 +28,8 @@ chat          IN    CNAME ns1.uchar.uz.
 push          IN    CNAME ns1.uchar.uz.
 
 ; Livemedia Endpoints
-; call          IN    CNAME ns2.uchar.uz.
-; livekit       IN    CNAME ns2.uchar.uz.
-; livekit-jwt   IN    CNAME ns2.uchar.uz.
+call          IN    CNAME ns1.uchar.uz.
+livekit       IN    CNAME ns1.uchar.uz.
 
 ; Mail configurations
 mail              IN  CNAME ns1.uchar.uz.
