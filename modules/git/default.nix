@@ -71,10 +71,6 @@ in
 
     # anubis to defend against LLM scrapers
     services = {
-      anubis.instances.git.settings.TARGET =
-        with config.services.forgejo.settings.server;
-        "http://${HTTP_ADDR}:${toString HTTP_PORT}";
-
       nginx.virtualHosts.${cfg.domain} = {
         enableACME = true;
         forceSSL = true;
@@ -101,7 +97,9 @@ in
 
           "/" = {
             priority = 200;
-            proxyPass = "http://unix:${config.services.anubis.instances.git.settings.BIND}";
+            proxyPass =
+              with config.services.forgejo.settings.server;
+              "http://${HTTP_ADDR}:${toString HTTP_PORT}";
             extraConfig = ''
               client_max_body_size 1G;
             '';
