@@ -19,7 +19,6 @@
     outputs.nixosModules.apps.uzbek-net-website
     outputs.nixosModules.apps.uzinfocom-website
     outputs.nixosModules.apps.devops-website
-    outputs.nixosModules.apps.efael-messenger
   ];
 
   sops.secrets = {
