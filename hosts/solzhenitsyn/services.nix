@@ -98,9 +98,6 @@
 
       # https://devopsuzb.uz
       devops.website.enable = true;
-
-      # https://*.efael.(uz|net)
-      efael.messenger.enable = true;
     };
   };
 }
