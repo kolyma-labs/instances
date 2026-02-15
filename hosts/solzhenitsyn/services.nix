@@ -18,7 +18,6 @@
     outputs.nixosModules.apps.xinuxmgr-bot
     outputs.nixosModules.apps.uzbek-net-website
     outputs.nixosModules.apps.uzinfocom-website
-    outputs.nixosModules.apps.devops-website
   ];
 
   sops.secrets = {
@@ -94,9 +93,6 @@
 
       # https://t.me/rustaceanbot
       rust-uz.bot.enable = true;
-
-      # https://devopsuzb.uz
-      devops.website.enable = true;
     };
   };
 }
