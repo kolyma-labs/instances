@@ -108,7 +108,7 @@ in
 
       forgejo = {
         enable = true;
-        package = pkgs.forgejo-lts;
+        package = pkgs.forgejo;
         inherit (cfg) user group;
         database = {
           inherit (cfg) user;
