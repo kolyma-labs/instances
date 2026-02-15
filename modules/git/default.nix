@@ -122,6 +122,8 @@ in
         settings = {
           DEFAULT.APP_NAME = "${cfg.domain} git server";
 
+          SSH_PORT = 2223;
+
           server = {
             ROOT_URL = "https://${cfg.domain}";
             DOMAIN = cfg.domain;
