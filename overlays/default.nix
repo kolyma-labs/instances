@@ -6,7 +6,6 @@
     # By flake
     personal = {
       gate = inputs.gate.packages."${final.stdenv.hostPlatform.system}".default;
-      fluffy-efael = inputs.efael-messenger.packages.${final.stdenv.hostPlatform.system}.web;
     };
   };
 

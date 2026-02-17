@@ -29,11 +29,11 @@
   # for your flake, etc.
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:xinux-org/nixpkgs/nixos-25.11";
 
     # You can access packages and modules from different nixpkgs revs
     # at the same time. Here's an working example:
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:xinux-org/nixpkgs/nixos-unstable";
     # Also see the 'unstable-packages' overlay at 'overlays/home.nix'.
 
     # Disko
@@ -59,9 +59,6 @@
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Reworked mastodon
-    mastodon-backport.url = "github:teutat3s/nixpkgs/mastodon-4.4";
 
     # Main homepage website
     gate.url = "github:kolyma-labs/gate";
@@ -154,7 +151,6 @@
                 });
               };
             nixfmt.enable = true;
-            flake-checker.enable = true;
           };
         };
       });
