@@ -15,12 +15,16 @@ jobs:
 
       - name: Update flake.lock
         run: |
-          git config --global user.name 'forgejo-actions[bot]'
-          git config --global user.email 'support@kolyma.uz'
-          nix flake update --commit-lock-file
+          git config --global user.name "Kolyma's Labor"
+          git config --global user.email "support@kolyma.uz"
+          nix flake update --commit-lock-file --accept-flake-config
 
       - name: Push changes
         run: |
-          git config --global user.name 'forgejo-actions[bot]'
-          git config --global user.email 'support@kolyma.uz'
+          git config --global user.name "Kolyma's Labor"
+          git config --global user.email "support@kolyma.uz"
+          git remote rm origin
+          git remote add origin "https://kolyma-labor:$TOKEN@git.floss.uz/kolyma/infra.git"
           git push
+        env:
+          TOKEN: ${{ secrets.PAT }}
