@@ -25,6 +25,6 @@ jobs:
           git config --global user.email "support@kolyma.uz"
           git remote rm origin
           git remote add origin "https://kolyma-labor:$TOKEN@git.floss.uz/kolyma/infra.git"
-          git push
+          git push --set-upstream origin main
         env:
           TOKEN: ${{ secrets.PAT }}
