@@ -38,6 +38,18 @@ let
         inherit (param) enable name url;
         tokenFile = param.token;
         labels = [ "native:host" ];
+        hostPackages = with pkgs; [
+          bash
+          coreutils
+          curl
+          gawk
+          gitMinimal
+          gnused
+          nodejs
+          wget
+          nix
+          nodejs_24
+        ];
       };
     };
   };
