@@ -7,13 +7,20 @@ on:
 
 jobs:
   update-request:
-    runs-on: self-hosted
+    runs-on: native
 
     steps:
       - name: Check out the repository
         uses: actions/checkout@v6
 
       - name: Update flake.lock
-        uses: DeterminateSystems/update-flake-lock@main
-        with:
-          token: ${{ secrets.PAT }}
+        run: |
+          git config --global user.name 'forgejo-actions[bot]'
+          git config --global user.email 'support@kolyma.uz'
+          nix flake update --commit-lock-file
+
+      - name: Push changes
+        run: |
+          git config --global user.name 'forgejo-actions[bot]'
+          git config --global user.email 'support@kolyma.uz'
+          git push
