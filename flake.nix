@@ -60,6 +60,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Reworked mastodon
+    mastodon-backport.url = "github:teutat3s/nixpkgs/mastodon-4.4";
+
     # Main homepage website
     gate.url = "github:kolyma-labs/gate";
 
@@ -80,9 +83,6 @@
 
     # Uzbek Localization project website
     uzbek-net-website.url = "github:uzbek-net/website";
-
-    # DevOps Uzbekistan guide book
-    devops-book.url = "github:devopsuzb/book";
 
     # Tarmoqchi HTTP tunneling
     tarmoqchi.url = "github:floss-uz-community/tarmoqchi";
