@@ -177,7 +177,7 @@ in
             ENABLED = true;
             # In an actions workflow, when uses: does not specify an absolute URL,
             # the value of DEFAULT_ACTIONS_URL is prepended to it.
-            DEFAULT_ACTIONS_URL = "https://code.forgejo.org";
+            DEFAULT_ACTIONS_URL = "https://data.forgejo.org";
           };
 
           # https://forgejo.org/docs/next/admin/recommendations/#securitylogin_remember_days

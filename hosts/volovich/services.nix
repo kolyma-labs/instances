@@ -65,9 +65,9 @@ in
       instances = [
         {
           name = "Default";
-          url = "https://github.com/kolyma-labs";
+          url = "https://git.floss.uz";
           token = config.sops.secrets."github/kolyma".path;
-          type = "github";
+          type = "forgejo";
         }
         {
           name = "Uzinfocom";

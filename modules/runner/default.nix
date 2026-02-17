@@ -43,10 +43,13 @@ let
   };
 
   patchForgejo = param: {
-    "gitea-runner-Kolyma-${param.name}".serviceConfig = {
-      DynamicUser = lib.mkForce false;
-      User = lib.mkForce cfg.user;
-      Group = lib.mkForce cfg.group;
+    "gitea-runner-Kolyma-${param.name}" = {
+      restartIfChanged = false;
+      serviceConfig = {
+        DynamicUser = lib.mkForce false;
+        User = lib.mkForce cfg.user;
+        Group = lib.mkForce cfg.group;
+      };
     };
   };
 in
