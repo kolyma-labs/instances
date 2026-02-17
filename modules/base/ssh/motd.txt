@@ -9,4 +9,4 @@ Welcome to Kolyma's Global Infrastructure!
 
 All Kolyma servers are managed via NixOS'es declarative configuration system.
 Any global changes has to be applied to the public configuration repository at:
-https://github.com/kolyma-labs/instances
+https://git.floss.uz/kolyma/infra

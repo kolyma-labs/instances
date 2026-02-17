@@ -71,7 +71,7 @@ in
           enable = true;
           flags = [ "-L" ];
           dates = cfg.interval;
-          flake = "github:kolyma-labs/instances";
+          flake = "https://git.floss.uz/kolyma/infra/archive/main.tar.gz";
         }
         mode
       ];

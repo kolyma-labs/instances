@@ -76,7 +76,7 @@ in
           speedtest = "${exec curl} -o /dev/null cachefly.cachefly.net/100mb.test";
 
           # Updating system
-          update = "sudo nixos-rebuild switch --flake github:kolyma-labs/instances --option tarball-ttl 0 --show-trace";
+          update = "sudo nixos-rebuild switch --flake https://git.floss.uz/kolyma/infra/archive/main.tar.gz --option tarball-ttl 0 --show-trace";
         };
       };
 

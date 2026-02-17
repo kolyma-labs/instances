@@ -273,15 +273,13 @@
       "locked": {
         "lastModified": 1768439970,
         "narHash": "sha256-HCnMc1jJd8e9xugXr4liEHe8tX1ZDSR2LdAcOcDfD24=",
-        "owner": "kolyma-labs",
-        "repo": "gate",
         "rev": "0dae29eabc2f2a64f23f180e0cb0116fec9efa54",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://git.floss.uz/api/v1/repos/kolyma/gate/archive/0dae29eabc2f2a64f23f180e0cb0116fec9efa54.tar.gz"
       },
       "original": {
-        "owner": "kolyma-labs",
-        "repo": "gate",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://git.floss.uz/kolyma/gate/archive/master.tar.gz"
       }
     },
     "git-hooks": {

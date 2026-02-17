@@ -13,4 +13,4 @@ Whatever to be exposed via HTTP/HTTPS protocol must be done via web module which
 _By Orzklv | 28th Sep 2025_
 This note was supposed to be written long time ago, but those times this kind of docs were absent. Actually web module used to be 2 components containing both nginx and caddy at the same time. However, caddy had lots of, lots of issues with other services like mail server (postfix) or mastodon which couldn't utilize caddy properly and led to proxy failures. To resolve this issue, it was decided to ditch caddy support and maintain only nginx.
 
-[dancing miku]: https://github.com/kolyma-labs/gate
+[dancing miku]: https://git.floss.uz/kolyma/gate

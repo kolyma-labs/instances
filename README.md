@@ -36,7 +36,7 @@ After you get NixOS running on your machine, the next step is to apply declarati
 
 ```shell
 # Kolyma Station {1,2,3}
-sudo nixos-rebuild switch --flake github:kolyma-labs/instances#Kolyma-X --upgrade
+sudo nixos-rebuild switch --flake https://git.floss.uz/kolyma/infra/archive/main.tar.gz --upgrade
 ```
 
 ## Thanks

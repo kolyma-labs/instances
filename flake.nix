@@ -64,7 +64,7 @@
     mastodon-backport.url = "github:teutat3s/nixpkgs/mastodon-4.4";
 
     # Main homepage website
-    gate.url = "github:kolyma-labs/gate";
+    gate.url = "https://git.floss.uz/kolyma/gate/archive/master.tar.gz";
 
     # Khakimov's website
     khakimovs-website.url = "github:khakimovs/website";
