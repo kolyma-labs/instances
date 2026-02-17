@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Check up flake configuration
-        run: nix flake check --show-trace
+        run: nix flake check --show-trace --accept-flake-config
 
   build-instances:
     name: "Build Configurations for AMD64"
@@ -33,7 +33,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Build NixOS configuration
-        run: nix build .#nixosConfigurations.${{ matrix.instance }}.config.system.build.toplevel --show-trace
+        run: nix build .#nixosConfigurations.${{ matrix.instance }}.config.system.build.toplevel --show-trace --accept-flake-config
 
   # update-merge:
   #   name: "Merge Update PRs"
