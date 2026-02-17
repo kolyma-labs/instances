@@ -117,12 +117,6 @@ in
           token = config.sops.secrets."github/uzbek".path;
           type = "github";
         }
-        {
-          name = "Orzklv-Nix";
-          url = "https://github.com/orzklv/nix";
-          token = config.sops.secrets."github/orzklv".path;
-          type = "github";
-        }
       ];
     };
   };
