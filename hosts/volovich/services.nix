@@ -19,7 +19,7 @@ in
   ];
 
   sops.secrets = {
-    "github/kolyma" = secret-management;
+    "forgejo/kolyma" = secret-management;
     "github/uzinfocom" = secret-management;
     "github/floss" = secret-management;
     "github/floss-community" = secret-management;
@@ -28,7 +28,6 @@ in
     "github/uchar" = secret-management;
     "github/bleur" = secret-management;
     "github/uzbek" = secret-management;
-    "github/orzklv" = secret-management;
   };
 
   # Kolyma services
@@ -66,7 +65,7 @@ in
         {
           name = "Default";
           url = "https://git.floss.uz";
-          token = config.sops.secrets."github/kolyma".path;
+          token = config.sops.secrets."forgejo/kolyma".path;
           type = "forgejo";
         }
         {
