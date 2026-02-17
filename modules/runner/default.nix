@@ -33,7 +33,7 @@ let
 
   mkForgejo = param: {
     gitea-actions-runner = {
-      package = lib.mkDefault pkgs.unstable.forgejo-actions-runner;
+      package = lib.mkDefault pkgs.unstable.forgejo-runner;
       instances."Kolyma-${param.name}" = {
         inherit (param) enable name url;
         tokenFile = param.token;
