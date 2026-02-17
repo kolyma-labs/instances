@@ -18,16 +18,27 @@ in
     outputs.nixosModules.web
   ];
 
-  sops.secrets = {
-    "forgejo/kolyma" = secret-management;
-    "github/uzinfocom" = secret-management;
-    "github/floss" = secret-management;
-    "github/floss-community" = secret-management;
-    "github/xinux" = secret-management;
-    "github/rust-lang" = secret-management;
-    "github/uchar" = secret-management;
-    "github/bleur" = secret-management;
-    "github/uzbek" = secret-management;
+  sops = {
+    secrets = {
+      "forgejo/kolyma" = secret-management;
+      "github/uzinfocom" = secret-management;
+      "github/floss" = secret-management;
+      "github/floss-community" = secret-management;
+      "github/xinux" = secret-management;
+      "github/rust-lang" = secret-management;
+      "github/uchar" = secret-management;
+      "github/bleur" = secret-management;
+      "github/uzbek" = secret-management;
+    };
+
+    templates = {
+      "gitea-forgejo-kolyma" = {
+        owner = config.kolyma.runners.user;
+        content = ''
+          TOKEN=${config.sops.placeholder."forgejo/kolyma"}
+        '';
+      };
+    };
   };
 
   # Kolyma services
@@ -65,7 +76,7 @@ in
         {
           name = "Default";
           url = "https://git.floss.uz";
-          token = config.sops.secrets."forgejo/kolyma".path;
+          token = config.sops.templates."gitea-forgejo-kolyma".path;
           type = "forgejo";
         }
         {
