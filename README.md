@@ -1,5 +1,5 @@
 <p align="center">
-    <img src=".github/assets/header.png" alt="Kolyma's {Instances}">
+    <img src=".forgejo/assets/header.png" alt="Kolyma's {Instances}">
 </p>
 
 <p align="center">
@@ -50,5 +50,5 @@ sudo nixos-rebuild switch --flake https://git.floss.uz/kolyma/infra/archive/main
 This project is licensed under the MIT License - see the [LICENSE](license) file for details.
 
 <p align="center">
-    <img src=".github/assets/footer.png" alt="Kolyma's {Instances}">
+    <img src=".forgejo/assets/footer.png" alt="Kolyma's {Instances}">
 </p>
