@@ -15,3 +15,26 @@ $TTL 86400
 ; Entry points
 @      IN    A     91.212.89.25
 www    IN    CNAME trashiston.uz.
+
+; Main Endpoints
+matrix        IN    CNAME trashiston.uz.
+mas           IN    CNAME trashiston.uz.
+chat          IN    CNAME trashiston.uz.
+push          IN    CNAME trashiston.uz.
+
+; Livemedia Endpoints
+call          IN    CNAME trashiston.uz.
+livekit       IN    CNAME trashiston.uz.
+livekit-jwt   IN    CNAME trashiston.uz.
+
+; Mail configurations
+mail              IN  CNAME trashiston.uz.
+@                 IN  MX    10 mail.trashiston.uz.
+@                 IN  TXT   "v=spf1 a:mail.trashiston.uz -all"
+_submission._tcp  IN  SRV   5 0 587 mail.trashiston.uz.
+_submissions._tcp IN  SRV   5 0 465 mail.trashiston.uz.
+_imap._tcp        IN  SRV   5 0 143 mail.trashiston.uz.
+_imaps._tcp       IN  SRV   5 0 993 mail.trashiston.uz.
+_dmarc            IN  TXT   "v=DMARC1; p=none"
+mail._domainkey IN TXT ( "v=DKIM1; k=rsa;"
+	"p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC0q2epvpXhiAz7/JoDejqRvx5/1Z+ek6Ojw8KtoawTdhs+FpKWC1z21EMzmjuG0+wVFoCCqG7xJQVKVk2zoFaOw6DeAftTwro4C1m0dB4Wrks6XcY/bPBjQJfjFoNm2m77pBPKNNjUaQIUrTnHDQrr21qZ97hZr+ZG1rBKkAItmQIDAQAB" )
