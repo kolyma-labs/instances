@@ -18,6 +18,9 @@ $TTL 86400
 @      IN    A     185.199.110.153
 @      IN    A     185.199.111.153
 
+; A & AAAA records for global servers
+ns1    IN    A     91.212.89.28
+
 ; Hydra Build Farm
 hydra       IN    CNAME ns3.kolyma.uz.
 cache       IN    CNAME ns3.kolyma.uz.
