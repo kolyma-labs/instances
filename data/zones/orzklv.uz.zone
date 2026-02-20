@@ -13,11 +13,9 @@ $TTL 86400
 @      IN    NS    ns4.kolyma.uz.
 
 ; Entry points
-@      IN    A     185.199.108.153
-@      IN    A     185.199.109.153
-@      IN    A     185.199.110.153
-@      IN    A     185.199.111.153
-www    IN    CNAME orzklv.github.io.
+ns1    IN    A     37.27.67.190
+ns1    IN    AAAA  2a01:4f9:3081:3518::2
+www    IN    CNAME orzklv.uz.
 
 ; Mail server (iCloud)
 @      IN    MX    10 mx01.mail.icloud.com.
