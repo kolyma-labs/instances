@@ -15,6 +15,7 @@
 
     # Per app preconfigured abstractions
     outputs.nixosModules.apps.floss-website
+    outputs.nixosModules.apps.orzklv-website
   ];
 
   sops.secrets = {
@@ -84,6 +85,9 @@
     apps = {
       # https://floss.uz
       floss.website.enable = true;
+
+      # https://orzklv.uz
+      # orzklv.website.enable = true;
     };
   };
 }

@@ -64,7 +64,7 @@
     mastodon-backport.url = "github:teutat3s/nixpkgs/mastodon-4.4";
 
     # Main homepage website
-    gate.url = "https://git.floss.uz/kolyma/gate/archive/master.tar.gz";
+    gate.url = "git+https://git.floss.uz/kolyma/gate";
 
     # Khakimov's website
     khakimovs-website.url = "github:khakimovs/website";
@@ -92,6 +92,9 @@
 
     # Social website of uzinfocom
     uzinfocom-taggis.url = "github:uzinfocom-org/taggis";
+
+    # Orzklv's website
+    orzklv-web.url = "git+https://git.floss.uz/orzklv/web";
   };
 
   # In this context, outputs are mostly about getting nixpkgs what it
