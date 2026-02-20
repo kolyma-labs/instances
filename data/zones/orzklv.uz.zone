@@ -13,8 +13,8 @@ $TTL 86400
 @      IN    NS    ns4.kolyma.uz.
 
 ; Entry points
-ns1    IN    A     37.27.67.190
-ns1    IN    AAAA  2a01:4f9:3081:3518::2
+@      IN    A     37.27.67.190
+@      IN    AAAA  2a01:4f9:3081:3518::2
 www    IN    CNAME orzklv.uz.
 
 ; Mail server (iCloud)
