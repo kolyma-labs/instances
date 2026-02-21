@@ -65,7 +65,9 @@ in
 
       settings = lib.mkMerge [
         (lib.mkIf (!cfg.master) {
+          # Public cache server
           substituters = [ "https://cache.xinux.uz/" ];
+          # Public keys for the cache server
           trusted-public-keys = [
             "cache.xinux.uz:BXCrtqejFjWzWEB9YuGB7X2MV4ttBur1N8BkwQRdH+0="
           ];
