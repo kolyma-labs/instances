@@ -29,6 +29,7 @@ auth         IN    CNAME ns1.uzberk.uz.
 push         IN    CNAME ns1.uzberk.uz.
 ; Web Client Endpoints
 chat         IN    CNAME ns1.uzberk.uz.
+
 ; Livemedia Endpoints
 call         IN    CNAME ns2.uzberk.uz.
 livekit      IN    CNAME ns2.uzberk.uz.

@@ -14,27 +14,27 @@ $TTL 86400
 
 ; Entry points
 @      IN    A     91.212.89.25
-www    IN    CNAME trashiston.uz.
+www    IN    CNAME sabine.uz.
 
 ; Main Endpoints
-matrix        IN    CNAME trashiston.uz.
-mas           IN    CNAME trashiston.uz.
-chat          IN    CNAME trashiston.uz.
-push          IN    CNAME trashiston.uz.
+matrix        IN    CNAME sabine.uz.
+mas           IN    CNAME sabine.uz.
+chat          IN    CNAME sabine.uz.
+push          IN    CNAME sabine.uz.
 
 ; Livemedia Endpoints
-call          IN    CNAME trashiston.uz.
-livekit       IN    CNAME trashiston.uz.
-livekit-jwt   IN    CNAME trashiston.uz.
+call          IN    CNAME sabine.uz.
+livekit       IN    CNAME sabine.uz.
+livekit-jwt   IN    CNAME sabine.uz.
 
 ; Mail configurations
-mail              IN  CNAME trashiston.uz.
-@                 IN  MX    10 mail.trashiston.uz.
-@                 IN  TXT   "v=spf1 a:mail.trashiston.uz -all"
-_submission._tcp  IN  SRV   5 0 587 mail.trashiston.uz.
-_submissions._tcp IN  SRV   5 0 465 mail.trashiston.uz.
-_imap._tcp        IN  SRV   5 0 143 mail.trashiston.uz.
-_imaps._tcp       IN  SRV   5 0 993 mail.trashiston.uz.
+mail              IN  CNAME sabine.uz.
+@                 IN  MX    10 mail.sabine.uz.
+@                 IN  TXT   "v=spf1 a:mail.sabine.uz -all"
+_submission._tcp  IN  SRV   5 0 587 mail.sabine.uz.
+_submissions._tcp IN  SRV   5 0 465 mail.sabine.uz.
+_imap._tcp        IN  SRV   5 0 143 mail.sabine.uz.
+_imaps._tcp       IN  SRV   5 0 993 mail.sabine.uz.
 _dmarc            IN  TXT   "v=DMARC1; p=none"
 mail._domainkey IN TXT ( "v=DKIM1; k=rsa; "
     "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvinGP1YB2MkGsmxOlg6uYi8Q7lc8SQeQEY/+8WbjxIct2CKf9v2LsUMnNl24+4aiM3x7JJQOGKGC2GO8OOMlElFuFZ/4Vsj6YBuEyuUCOXeEVeQJ5CcfsMZfB8qsHjy2GA+qx4Y+e6QicamHF5eKAsv8c4rSqwcxlJYVkH5/o+GdL6uaIPMMqPhwjyrGFk3tJz21e+1jT+PhJXsPV"
