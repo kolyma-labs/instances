@@ -24,8 +24,6 @@ jobs:
             "Solzhenitsyn",
             "Volovich",
             "Naftaly",
-            "Garanin",
-            "Galitsky",
           ]
     runs-on: native
     steps:
