@@ -30,12 +30,13 @@ ns3    IN    A     135.181.165.24
 ns3    IN    AAAA  2a01:4f9:3a:1ca2::2
 
 ; ==> Mail configurations
-@                 IN  MX    10 mail.kolyma.uz.
-@                 IN  TXT   "v=spf1 a:mail.kolyma.uz -all"
-_submission._tcp  IN  SRV   5 0 587 mail.kolyma.uz.
-_submissions._tcp IN  SRV   5 0 465 mail.kolyma.uz.
-_imap._tcp        IN  SRV   5 0 143 mail.kolyma.uz.
-_imaps._tcp       IN  SRV   5 0 993 mail.kolyma.uz.
+mail              IN  A     91.212.89.25
+@                 IN  MX    10 mail.oss.uzinfocom.uz.
+@                 IN  TXT   "v=spf1 a:mail.oss.uzinfocom.uz -all"
+_submission._tcp  IN  SRV   5 0 587 mail.oss.uzinfocom.uz.
+_submissions._tcp IN  SRV   5 0 465 mail.oss.uzinfocom.uz.
+_imap._tcp        IN  SRV   5 0 143 mail.oss.uzinfocom.uz.
+_imaps._tcp       IN  SRV   5 0 993 mail.oss.uzinfocom.uz.
 _dmarc            IN  TXT   "v=DMARC1; p=none"
 mail._domainkey   IN  TXT   ( "v=DKIM1; k=rsa; "
       "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCqUZfhFXEDmTd8hC8pwLNYASUPbFIfIvr01mpztaZGg/++PoDxMus2esO7uk1reACNkyNgT7gFo4RHYCXJvTUIqDIR8a8PpLyp1yW/d3YRuHpbomoLYRTVbDeks4h0xfy7abib3lOEuddUonfwfFM85rjjYshShRHG9ZUNcdU+VwIDAQAB" )
