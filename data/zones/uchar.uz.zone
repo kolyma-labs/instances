@@ -28,19 +28,19 @@ ns2    IN    AAAA  2a01:4f9:3a:1ca2::2
 www    IN    CNAME uchar.uz.
 
 ; ==> Central Endpoints
+; Web client
+chat          IN    CNAME ns1.uchar.uz.
 ; Push notifications
 push          IN    CNAME ns1.uchar.uz.
 
 ; ==> Main Endpoints
 matrix        IN    CNAME ns1.uchar.uz.
 mas           IN    CNAME ns1.uchar.uz.
-chat          IN    CNAME ns1.uchar.uz.
 
 ; ==> Latet Endpoints
 next          IN    CNAME ns2.uchar.uz.
 matrix.next   IN    CNAME ns2.uchar.uz.
 mas.next      IN    CNAME ns2.uchar.uz.
-chat.next     IN    CNAME ns2.uchar.uz.
 
 ; ==> Livemedia Endpoints
 call          IN    CNAME ns1.uchar.uz.
