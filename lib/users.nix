@@ -12,7 +12,6 @@ let
       extraGroups = [
         "wheel"
         "admins"
-        "docker"
       ];
 
       hashedPassword = i.password or "";

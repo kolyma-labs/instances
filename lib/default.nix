@@ -9,7 +9,8 @@
 
   # Helpful functions & generators
   users = import ./users.nix { inherit lib; };
-  instances = import ./instances.nix { inherit lib; };
+  hosts = import ./hosts.nix { inherit lib; };
   rmatch = import ./rmatch.nix { inherit lib; };
   kstrings = import ./strings.nix { inherit lib; };
+  modifier = import ./modifier.nix { inherit lib; };
 }

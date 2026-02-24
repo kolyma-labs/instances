@@ -108,7 +108,7 @@
     }@inputs:
     let
       # Self instance pointer
-      inherit (self) outputs;
+      inherit (self) lib outputs;
 
       # Supported systems for your flake packages, shell, etc.
       systems = [
@@ -172,20 +172,10 @@
 
       # Reusable nixos modules you might want to export
       # These are usually stuff you would upstream into nixpkgs
-      nixosModules =
-        builtins.readDir ./modules
-        |> builtins.attrNames
-        |> map (x: {
-          name = x;
-          value = import (./modules + "/${x}");
-        })
-        |> builtins.listToAttrs;
+      nixosModules = lib.modifier.autoModules { };
 
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
-      nixosConfigurations = self.lib.instances.mapSystem {
-        list = builtins.readDir ./hosts |> builtins.attrNames |> map (h: self.lib.kstrings.capitalize h);
-        inherit inputs outputs;
-      };
+      nixosConfigurations = lib.hosts.autoConf { inherit inputs outputs; };
     };
 }

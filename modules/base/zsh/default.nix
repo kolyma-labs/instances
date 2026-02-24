@@ -12,6 +12,9 @@ let
 
   # Find and set path to executables
   exec = pkg: lib.getExe pkg;
+
+  # Helix configuration
+  editor-config = import ./editor.nix { inherit pkgs; };
 in
 {
   options = {
@@ -68,8 +71,8 @@ in
           time = exec hyperfine;
 
           # Development
-          vi = exec helix;
-          vim = exec helix;
+          vi = "${exec helix} --config ${editor-config}";
+          vim = "${exec helix} --config ${editor-config}";
 
           # Others (Developer)
           ports = "ss -lntu";

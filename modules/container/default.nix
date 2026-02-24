@@ -29,7 +29,7 @@ in
   config = lib.mkIf cfg.enable {
     assertions = [
       {
-        assertion = !config.kolyma.containers.enable;
+        assertion = !cfg.enable;
         message = "docker is prohibited in this network at all";
       }
     ];
@@ -53,12 +53,12 @@ in
 
       oci-containers = {
         backend = "docker";
-        containers = config.kolyma.containers.instances;
+        containers = cfg.instances;
       };
     };
 
-    networking.firewall.allowedTCPPorts = config.kolyma.containers.ports;
-    networking.firewall.allowedUDPPorts = config.kolyma.containers.ports;
+    networking.firewall.allowedTCPPorts = cfg.ports;
+    networking.firewall.allowedUDPPorts = cfg.ports;
   };
 
   meta = {

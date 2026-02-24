@@ -43,7 +43,6 @@ in
             randomizedDelaySec = "30min";
           }
         ]
-
         [
           { mode = "reboot"; }
           {
@@ -76,4 +75,10 @@ in
         mode
       ];
     };
+
+  meta = {
+    doc = ./readme.md;
+    buildDocsInSandbox = true;
+    maintainers = with lib.maintainers; [ orzklv ];
+  };
 }

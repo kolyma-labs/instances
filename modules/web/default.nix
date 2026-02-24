@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  options,
   ...
 }:
 let
@@ -81,11 +82,7 @@ in
         description = "List of extra aliases to host.";
       };
 
-      hosts = lib.mkOption {
-        type = with lib.types; attrsOf (submodule anything);
-        default = { };
-        description = "List of hosted service instances.";
-      };
+      hosts = options.services.nginx.virtualHosts;
 
       cdn = lib.mkOption {
         type = with lib.types; attrsOf (submodule lib.kotypes.cdn);

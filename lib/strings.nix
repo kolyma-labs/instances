@@ -10,7 +10,10 @@ let
       first
       rest
     ];
+
+  capitalizeSplit =
+    sep: str: lib.strings.splitString sep str |> map capitalize |> lib.strings.concatStringsSep sep;
 in
 {
-  inherit capitalize;
+  inherit capitalize capitalizeSplit;
 }

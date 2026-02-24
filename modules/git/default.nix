@@ -140,8 +140,8 @@ in
             PROTOCOL = "smtps";
             SMTP_ADDR = "mail.kolyma.uz";
             SMTP_PORT = 465;
-            FROM = ''"${cfg.domain} git server" <admin@${cfg.domain}>'';
-            USER = "admin@${cfg.domain}";
+            FROM = ''"Floss Uzbekistan Git" <admin@floss.uz>'';
+            USER = "admin@floss.uz";
           };
 
           "repository.signing" = {

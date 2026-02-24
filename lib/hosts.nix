@@ -1,5 +1,28 @@
 { lib }:
 let
+  # Appereantly, nix doesn't apply inside functions
+  kstrings = import ./strings.nix { inherit lib; };
+
+  makeSystem =
+    {
+      path,
+      inputs,
+      outputs,
+    }:
+    let
+      attr = {
+        specialArgs = {
+          inherit (outputs) lib;
+          inherit inputs outputs;
+        };
+        modules = [
+          # > Our main nixos configuration file <
+          path
+        ];
+      };
+    in
+    lib.nixosSystem attr;
+
   # WARNING!
   # Becomes impure when opath provided
   attrSystem =
@@ -7,11 +30,11 @@ let
       list,
       inputs,
       outputs,
-      opath ? ../.,
+      path ? ../.,
     }:
     let
       # Generate absolute path to the configuration
-      path = alias: opath + "/hosts/${alias}/configuration.nix";
+      path = alias: path + "/hosts/${alias}/configuration.nix";
 
       #   Name  =                Value
       # "Lorem" = orzklv.lib.config.makeSystem "station";
@@ -61,26 +84,17 @@ let
     in
     lib.listToAttrs ref;
 
-  makeSystem =
+  autoConf =
     {
-      path,
       inputs,
       outputs,
+      path ? ../hosts,
     }:
-    let
-      attr = {
-        specialArgs = {
-          inherit (outputs) lib;
-          inherit inputs outputs;
-        };
-        modules = [
-          # > Our main nixos configuration file <
-          path
-        ];
-      };
-    in
-    lib.nixosSystem attr;
+    mapSystem {
+      inherit inputs outputs;
+      list = builtins.readDir path |> builtins.attrNames |> map (h: kstrings.capitalize h);
+    };
 in
 {
-  inherit attrSystem mapSystem makeSystem;
+  inherit makeSystem attrSystem autoConf;
 }

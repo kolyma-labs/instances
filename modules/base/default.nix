@@ -7,12 +7,7 @@ let
   cfg = config.kolyma.base;
 in
 {
-  imports =
-    builtins.readDir ./.
-    |> builtins.attrNames
-    |> builtins.filter (m: m != "default.nix")
-    |> builtins.filter (m: m != "readme.md")
-    |> builtins.map (m: ./. + "/${m}");
+  imports = lib.modifier.loadModules ./.;
 
   options = {
     kolyma.base = {

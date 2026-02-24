@@ -12,7 +12,7 @@ let
   forEachDomain = domain: {
     "admin@${domain}" = {
       quota = "2G";
-      hashedPasswordFile = cfg.service;
+      hashedPasswordFile = cfg.password;
       aliases = [
         "abuse@${domain}"
         "security@${domain}"
@@ -23,7 +23,7 @@ let
 
     "support@${domain}" = {
       quota = "2G";
-      hashedPasswordFile = cfg.service;
+      hashedPasswordFile = cfg.password;
       aliases = [
         "developers@${domain}"
         "maintainers@${domain}"
@@ -33,12 +33,12 @@ let
     "noreply@${domain}" = {
       quota = "2G";
       sendOnly = true;
-      hashedPasswordFile = cfg.service;
+      hashedPasswordFile = cfg.password;
     };
 
     "orzklv@${domain}" = {
       quota = "2G";
-      hashedPasswordFile = cfg.service;
+      hashedPasswordFile = cfg.password;
       aliases = [ "sakhib@${domain}" ];
     };
   };
@@ -69,7 +69,7 @@ in
         description = "";
       };
 
-      service = lib.mkOption {
+      password = lib.mkOption {
         type = lib.types.path;
         default = config.sops.secrets."mail/hashed".path;
         description = "Path of file containing password for service accounts";
