@@ -29,6 +29,12 @@ ns2    IN    A     91.212.89.28
 ns3    IN    A     135.181.165.24
 ns3    IN    AAAA  2a01:4f9:3a:1ca2::2
 
+; ==> Authentication Endpoints
+auth   IN    CNAME ns1.oss.uzinfocom.uz.
+
+; ==> Git Endpoints
+git    IN    CNAME ns2.oss.uzinfocom.uz.
+
 ; ==> Mail configurations
 mail              IN  A     91.212.89.25
 @                 IN  MX    10 mail.oss.uzinfocom.uz.
