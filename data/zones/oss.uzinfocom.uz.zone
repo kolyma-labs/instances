@@ -38,8 +38,10 @@ _submissions._tcp IN  SRV   5 0 465 mail.oss.uzinfocom.uz.
 _imap._tcp        IN  SRV   5 0 143 mail.oss.uzinfocom.uz.
 _imaps._tcp       IN  SRV   5 0 993 mail.oss.uzinfocom.uz.
 _dmarc            IN  TXT   "v=DMARC1; p=none"
-mail._domainkey   IN  TXT   ( "v=DKIM1; k=rsa; "
-      "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCqUZfhFXEDmTd8hC8pwLNYASUPbFIfIvr01mpztaZGg/++PoDxMus2esO7uk1reACNkyNgT7gFo4RHYCXJvTUIqDIR8a8PpLyp1yW/d3YRuHpbomoLYRTVbDeks4h0xfy7abib3lOEuddUonfwfFM85rjjYshShRHG9ZUNcdU+VwIDAQAB" )
+mail._domainkey IN TXT ( "v=DKIM1; k=rsa; "
+    "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5Yre9DsvPZ8mV0A+gFELsZ9C5flsLaJPLWTwuJDW/mcJ5bRkSRG7wcj0aiV32cOMSDhaPAuN9M/XpscRk1ykaRfnECqOBz0XEm5/++qluOfsLrkETQTM2jp2lAt2gnSy+KYHtp9EPlqGYe9dbXvnqWOrmQ1MbYA3lBuQQfaRjv/GWaWK+f3YtEitxnp6ePHTERwCnEdwtgtMITyV3"
+    "zSmITYvu9N+jTJHhy1DQ/jppTQZUTWic7s7mOTv728Wzf4EBQIVthhTS7+IqLLkrrWhRa8Ztr6A+5VFt6HmbRGJBibST73Atz+3T8E2EthyNpIomuANGAt5tKW/jWL5vwurFQIDAQAB"
+) ;
 
 ; ==> GitHub Verifications
 _gh-bleur-org-o          IN TXT      5f375d3eb0
