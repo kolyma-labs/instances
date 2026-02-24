@@ -9,7 +9,6 @@ $TTL 86400
 ; ==> Nameservers (Uzinfocom Internal)
 @      IN    NS    ns1.oss.uzinfocom.uz.
 @      IN    NS    ns2.oss.uzinfocom.uz.
-@      IN    NS    ns3.oss.uzinfocom.uz.
 
 ; ==> Nameservers (Kolyma Provided)
 @      IN    NS    ns1.kolyma.uz.
