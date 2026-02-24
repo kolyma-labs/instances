@@ -33,6 +33,11 @@ mas           IN    CNAME ns1.uchar.uz.
 chat          IN    CNAME ns1.uchar.uz.
 push          IN    CNAME ns1.uchar.uz.
 
+; ==> Latet Endpoints
+next          IN    CNAME ns2.uchar.uz.
+matrix.next   IN    CNAME ns2.uchar.uz.
+mas.next      IN    CNAME ns2.uchar.uz.
+
 ; ==> Livemedia Endpoints
 call          IN    CNAME ns1.uchar.uz.
 livekit       IN    CNAME ns1.uchar.uz.
