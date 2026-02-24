@@ -6,17 +6,17 @@ $TTL 86400
              604800     ; Expire
              86400 )    ; Minimum TTL
 
-; Nameservers
+; ==> Nameservers
 @      IN    NS    ns1.kolyma.uz.
 @      IN    NS    ns2.kolyma.uz.
 @      IN    NS    ns3.kolyma.uz.
 @      IN    NS    ns4.kolyma.uz.
 
-; Entry points
+; ==> Entry points
 @      IN    A     91.212.89.25
 www    IN    CNAME sabine.uz.
 
-; Main Endpoints
+; ==> Main Endpoints
 matrix        IN    CNAME sabine.uz.
 mas           IN    CNAME sabine.uz.
 chat          IN    CNAME sabine.uz.
@@ -27,7 +27,7 @@ call          IN    CNAME sabine.uz.
 livekit       IN    CNAME sabine.uz.
 livekit-jwt   IN    CNAME sabine.uz.
 
-; Mail configurations
+; ==> Mail configurations
 mail              IN  CNAME sabine.uz.
 @                 IN  MX    10 mail.sabine.uz.
 @                 IN  TXT   "v=spf1 a:mail.sabine.uz -all"

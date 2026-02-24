@@ -1,42 +1,18 @@
 $TTL 86400
 @      IN    SOA    ns1.kolyma.uz. admin.kolyma.uz. (
-             2025030901 ; Serial YYYYMMDDNN (NN is the revision number)
+             2026022401 ; Serial YYYYMMDDNN (NN is the revision number)
              3600       ; Refresh
              1800       ; Retry
              604800     ; Expire
              86400 )    ; Minimum TTL
 
-; Nameservers
+; ==> Nameservers
 @      IN    NS    ns1.kolyma.uz.
 @      IN    NS    ns2.kolyma.uz.
 @      IN    NS    ns3.kolyma.uz.
 @      IN    NS    ns4.kolyma.uz.
 
-; Entry points
-@      IN    A     91.212.89.25
+; ==> Entry points
+@      IN    A     37.27.67.190
+@      IN    AAAA  2a01:4f9:3081:3518::2
 www    IN    CNAME trashiston.uz.
-
-; Main Endpoints
-matrix        IN    CNAME trashiston.uz.
-mas           IN    CNAME trashiston.uz.
-chat          IN    CNAME trashiston.uz.
-push          IN    CNAME trashiston.uz.
-
-; Livemedia Endpoints
-call          IN    CNAME trashiston.uz.
-livekit       IN    CNAME trashiston.uz.
-livekit-jwt   IN    CNAME trashiston.uz.
-
-; Mail configurations
-mail              IN  CNAME trashiston.uz.
-@                 IN  MX    10 mail.trashiston.uz.
-@                 IN  TXT   "v=spf1 a:mail.trashiston.uz -all"
-_submission._tcp  IN  SRV   5 0 587 mail.trashiston.uz.
-_submissions._tcp IN  SRV   5 0 465 mail.trashiston.uz.
-_imap._tcp        IN  SRV   5 0 143 mail.trashiston.uz.
-_imaps._tcp       IN  SRV   5 0 993 mail.trashiston.uz.
-_dmarc            IN  TXT   "v=DMARC1; p=none"
-mail._domainkey IN TXT ( "v=DKIM1; k=rsa; "
-    "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvinGP1YB2MkGsmxOlg6uYi8Q7lc8SQeQEY/+8WbjxIct2CKf9v2LsUMnNl24+4aiM3x7JJQOGKGC2GO8OOMlElFuFZ/4Vsj6YBuEyuUCOXeEVeQJ5CcfsMZfB8qsHjy2GA+qx4Y+e6QicamHF5eKAsv8c4rSqwcxlJYVkH5/o+GdL6uaIPMMqPhwjyrGFk3tJz21e+1jT+PhJXsPV"
-    "Fot0+PP7kV2G0ia4KRlTZULQKDLkxEWdZ5R6s2ieQ9++l8C3C2XFXR29/9eV4Of1a5ve/hFrklGDP8r6kaAXmgl7CPJ7jC+3TfT/lR/bmhGEfVpWTh0HZSxVEc341mqfvoh+wIDAQAB"
-) ;

@@ -1,39 +1,46 @@
 $TTL 86400
 @      IN    SOA    ns1.kolyma.uz. admin.kolyma.uz. (
-             2025111302 ; Serial YYYYMMDDNN (NN is the revision number)
+             2026022401 ; Serial YYYYMMDDNN (NN is the revision number)
              3600       ; Refresh
              1800       ; Retry
              604800     ; Expire
              86400 )    ; Minimum TTL
 
-; Nameservers
+; ==> Nameservers (Uzinfocom Internal)
+@      IN    NS    ns1.oss.uzinfocom.uz.
+@      IN    NS    ns2.oss.uzinfocom.uz.
+@      IN    NS    ns3.oss.uzinfocom.uz.
+
+; ==> Nameservers (Kolyma Provided)
 @      IN    NS    ns1.kolyma.uz.
 @      IN    NS    ns2.kolyma.uz.
 @      IN    NS    ns3.kolyma.uz.
 @      IN    NS    ns4.kolyma.uz.
 
-; Server Points
+; ==> Server Points
+; Internal Endpoint
 ns1    IN    A     91.212.89.25
+; External Endpoint
 ns2    IN    A     135.181.165.24
 ns2    IN    AAAA  2a01:4f9:3a:1ca2::2
 
-; Entry points
+; ==> Entry points
 @      IN    A     135.181.165.24
 @      IN    AAAA  2a01:4f9:3a:1ca2::2
 www    IN    CNAME uchar.uz.
 
-; Main Endpoints
+; ==> Main Endpoints
 matrix        IN    CNAME ns2.uchar.uz.
 mas           IN    CNAME ns2.uchar.uz.
 chat          IN    CNAME ns2.uchar.uz.
 push          IN    CNAME ns2.uchar.uz.
 
-; Livemedia Endpoints
+; ==> Livemedia Endpoints
 call          IN    CNAME ns2.uchar.uz.
 livekit       IN    CNAME ns2.uchar.uz.
 livekit-jwt   IN    CNAME ns2.uchar.uz.
 
-; Mail configurations
+; ==> Mail configurations
 mail              IN  CNAME ns2.uchar.uz.
 @                 IN  MX    10 mail.uchar.uz.
 @                 IN  TXT   "v=spf1 a:mail.uchar.uz -all"

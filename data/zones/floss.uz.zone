@@ -1,33 +1,33 @@
 $TTL 86400
 @      IN    SOA    ns1.kolyma.uz. admin.kolyma.uz. (
-             2025030901 ; Serial YYYYMMDDNN (NN is the revision number)
+             2026022401 ; Serial YYYYMMDDNN (NN is the revision number)
              3600       ; Refresh
              1800       ; Retry
              604800     ; Expire
              86400 )    ; Minimum TTL
 
-; Nameservers
+; ==> Nameservers
 @      IN    NS    ns1.kolyma.uz.
 @      IN    NS    ns2.kolyma.uz.
 @      IN    NS    ns3.kolyma.uz.
 @      IN    NS    ns4.kolyma.uz.
 
-; Entry points
+; ==> Entry points
 @      IN    A     37.27.67.190
 @      IN    AAAA  2a01:4f9:3081:3518::2
 www    IN    CNAME floss.uz.
 
-; Authentication IDM
+; ==> Authentication IDM
 auth        IN    CNAME ns1.kolyma.uz.
 
-; Standartizations
+; ==> Standartizations
 std         IN    CNAME floss-uz.github.io.
 draft       IN    CNAME floss-uz.github.io.
 
-; Awesome contents
+; ==> Awesome contents
 awesome     IN   CNAME floss-uz.github.io.
 
-; Matrix & Coturn server
+; ==> Matrix & Coturn server
 matrix      IN    CNAME ns1.kolyma.uz.
 mas         IN    CNAME ns1.kolyma.uz.
 chat        IN    CNAME ns1.kolyma.uz.
@@ -35,19 +35,19 @@ call        IN    CNAME ns1.kolyma.uz.
 livekit     IN    CNAME ns1.kolyma.uz.
 livekit-jwt IN    CNAME ns1.kolyma.uz.
 
-; Git server
+; ==> Git server
 git         IN    CNAME ns2.kolyma.uz.
 
-; Mastodon server
+; ==> Mastodon server
 social      IN    CNAME ns2.kolyma.uz.
 
-; Cloud service
+; ==> Cloud service
 cloud       IN    CNAME ns4.kolyma.uz.
 
-; Search engine
+; ==> Search engine
 search      IN    CNAME ns2.kolyma.uz.
 
-; Mail server
+; ==> Mail server
 @                 IN  MX    10 mail.kolyma.uz.
 @                 IN  TXT   "v=spf1 a:mail.kolyma.uz -all"
 _submission._tcp  IN  SRV   5 0 587 mail.kolyma.uz.
@@ -58,7 +58,7 @@ _dmarc            IN  TXT   "v=DMARC1; p=none"
 mail._domainkey   IN  TXT   ( "v=DKIM1; k=rsa; "
       "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCqUZfhFXEDmTd8hC8pwLNYASUPbFIfIvr01mpztaZGg/++PoDxMus2esO7uk1reACNkyNgT7gFo4RHYCXJvTUIqDIR8a8PpLyp1yW/d3YRuHpbomoLYRTVbDeks4h0xfy7abib3lOEuddUonfwfFM85rjjYshShRHG9ZUNcdU+VwIDAQAB" )
 
-; GitHub Verifications
+; ==> GitHub Verifications
 _gh-floss-uz-o           IN TXT      33adfc2641
 _gh-floss-uz-community-o IN TXT      661cc1ffca
 _gh-ecma-uz-o            IN TXT      c8a9250f9e

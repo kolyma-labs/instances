@@ -1,28 +1,34 @@
 $TTL 86400
 @      IN    SOA    ns1.kolyma.uz. admin.kolyma.uz. (
-             2025030901 ; Serial YYYYMMDDNN (NN is the revision number)
+             2026022401 ; Serial YYYYMMDDNN (NN is the revision number)
              3600       ; Refresh
              1800       ; Retry
              604800     ; Expire
              86400 )    ; Minimum TTL
 
-; Nameservers
+; ==> Nameservers (Uzinfocom Internal)
+@      IN    NS    ns1.oss.uzinfocom.uz.
+@      IN    NS    ns2.oss.uzinfocom.uz.
+@      IN    NS    ns3.oss.uzinfocom.uz.
+
+; ==> Nameservers (Kolyma Provided)
 @      IN    NS    ns1.kolyma.uz.
 @      IN    NS    ns2.kolyma.uz.
 @      IN    NS    ns3.kolyma.uz.
 @      IN    NS    ns4.kolyma.uz.
 
-; Entry points
+; ==> Entry points
 @      IN    A     185.199.108.153
 @      IN    A     185.199.109.153
 @      IN    A     185.199.110.153
 @      IN    A     185.199.111.153
 
+; ==> Web Endpoints
 www    IN    CNAME rust-lang-uz.github.io.
 doc    IN    CNAME rust-lang-uz.github.io.
 
-; Telegram Bots
+; ==> Telegram Bots
 bot    IN    CNAME ns2.kolyma.uz.
 
-; GitHub Verifications
+; ==> GitHub Verifications
 _github-pages-challenge-rust-lang-uz      IN      TXT      4f8ece26a062d0ec6e1fea50bc99fd

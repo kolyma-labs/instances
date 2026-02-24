@@ -1,38 +1,40 @@
 $TTL 86400
 @      IN    SOA    ns1.kolyma.uz. admin.kolyma.uz. (
-             2025030901 ; Serial YYYYMMDDNN (NN is the revision number)
+             2026022401 ; Serial YYYYMMDDNN (NN is the revision number)
              3600       ; Refresh
              1800       ; Retry
              604800     ; Expire
              86400 )    ; Minimum TTL
 
-; Nameservers
+; ==> Nameservers (Uzinfocom Internal)
+@      IN    NS    ns1.oss.uzinfocom.uz.
+@      IN    NS    ns2.oss.uzinfocom.uz.
+@      IN    NS    ns3.oss.uzinfocom.uz.
+
+; ==> Nameservers (Kolyma Provided)
 @      IN    NS    ns1.kolyma.uz.
 @      IN    NS    ns2.kolyma.uz.
 @      IN    NS    ns3.kolyma.uz.
 @      IN    NS    ns4.kolyma.uz.
 
-; Entry points
+; ==> Entry points
 @      IN    A     185.199.108.153
 @      IN    A     185.199.109.153
 @      IN    A     185.199.110.153
 @      IN    A     185.199.111.153
 
-; A & AAAA records for global servers
-ns1    IN    A     91.212.89.28
-
-; Hydra Build Farm
+; ==> Hydra Build Farm
 hydra       IN    CNAME ns3.kolyma.uz.
 cache       IN    CNAME ns3.kolyma.uz.
 
-; Telegram Bots
+; ==> Telegram Bots
 bot         IN    CNAME ns2.kolyma.uz.
 
-; GitHub Deployments
+; ==> GitHub Deployments
 graph       IN    CNAME xinux-org.github.io.
 
-; CDN after runners server
+; ==> CDN after runners server
 cdn         IN    CNAME ns3.kolyma.uz.
 
-; GitHub Verifications
+; ==> GitHub Verifications
 _github-challenge-xinux-org-org      IN      TXT      1a06c6d74b

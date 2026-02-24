@@ -1,22 +1,36 @@
 $TTL 86400
 @      IN    SOA    ns1.kolyma.uz. admin.kolyma.uz. (
-             2025030901 ; Serial YYYYMMDDNN (NN is the revision number)
+             2026022401 ; Serial YYYYMMDDNN (NN is the revision number)
              3600       ; Refresh
              1800       ; Retry
              604800     ; Expire
              86400 )    ; Minimum TTL
 
-; Nameservers
+; ==> Nameservers (Uzinfocom Internal)
+@      IN    NS    ns1.oss.uzinfocom.uz.
+@      IN    NS    ns2.oss.uzinfocom.uz.
+@      IN    NS    ns3.oss.uzinfocom.uz.
+
+; ==> Nameservers (Kolyma Provided)
 @      IN    NS    ns1.kolyma.uz.
 @      IN    NS    ns2.kolyma.uz.
 @      IN    NS    ns3.kolyma.uz.
 @      IN    NS    ns4.kolyma.uz.
 
-; Entry points
+; ==> Entry points
 @      IN    A     37.27.60.37
 @      IN    AAAA  2a01:4f9:3081:2e04::2
 
-; Mail configurations
+; ==> A & AAAA records for global servers
+; Uchar (Data, Control)
+ns1    IN    A     91.212.89.25
+; Xinux (Runner, Cache)
+ns2    IN    A     91.212.89.28
+; Playground (Bombing Zone)
+ns3    IN    A     135.181.165.24
+ns3    IN    AAAA  2a01:4f9:3a:1ca2::2
+
+; ==> Mail configurations
 @                 IN  MX    10 mail.kolyma.uz.
 @                 IN  TXT   "v=spf1 a:mail.kolyma.uz -all"
 _submission._tcp  IN  SRV   5 0 587 mail.kolyma.uz.
@@ -27,5 +41,5 @@ _dmarc            IN  TXT   "v=DMARC1; p=none"
 mail._domainkey   IN  TXT   ( "v=DKIM1; k=rsa; "
       "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCqUZfhFXEDmTd8hC8pwLNYASUPbFIfIvr01mpztaZGg/++PoDxMus2esO7uk1reACNkyNgT7gFo4RHYCXJvTUIqDIR8a8PpLyp1yW/d3YRuHpbomoLYRTVbDeks4h0xfy7abib3lOEuddUonfwfFM85rjjYshShRHG9ZUNcdU+VwIDAQAB" )
 
-; GitHub Verifications
+; ==> GitHub Verifications
 _gh-bleur-org-o          IN TXT      5f375d3eb0

@@ -9,4 +9,3 @@
 | Xinux Manager Bot        |  [url](https://github.com/xinux-org/telegram/blob/main/module.nix)   | 51005 |
 | Rustina Manager Bot      | [url](https://github.com/rust-lang-uz/telegram/blob/main/module.nix) | 51006 |
 | Khakimovs Website        |   [url](https://github.com/khakimovs/website/blob/main/module.nix)   | 51007 |
-| Devops Journey Website   |    [url](https://github.com/devopsuzb/book/blob/main/module.nix)     | 51008 |

@@ -1,47 +1,18 @@
 $TTL 86400
 @      IN    SOA    ns1.kolyma.uz. admin.kolyma.uz. (
-             2025110701 ; Serial YYYYMMDDNN (NN is the revision number)
+             2026022401 ; Serial YYYYMMDDNN (NN is the revision number)
              3600       ; Refresh
              1800       ; Retry
              604800     ; Expire
              86400 )    ; Minimum TTL
 
-; Nameservers
+; ==> Nameservers
 @      IN    NS    ns1.kolyma.uz.
 @      IN    NS    ns2.kolyma.uz.
 @      IN    NS    ns3.kolyma.uz.
 @      IN    NS    ns4.kolyma.uz.
 
-; Nameserver Pointers
-ns1         IN    A     93.188.85.94
-ns2         IN    A     195.158.10.37
-ns3         IN    A     45.150.26.120
-
-; Entry points
+; ==> Entry points
 @           IN    A     37.27.60.37
 @           IN    AAAA  2a01:4f9:3081:2e04::2
 www         IN    CNAME efael.uz.
-
-; Matrix endpoints
-chat        IN    CNAME efael.uz.
-matrix      IN    CNAME ns1.efael.uz.
-auth        IN    CNAME ns1.efael.uz.
-turn        IN    CNAME ns1.efael.uz.
-call        IN    CNAME ns1.efael.net.
-livekit     IN    CNAME ns1.efael.net.
-livekit-jwt IN    CNAME ns1.efael.net.
-
-; Mail configurations
-mail              IN  CNAME ns1.efael.uz.
-@                 IN  MX    10 mail.efael.uz.
-@                 IN  TXT   "v=spf1 a:mail.efael.uz -all"
-_submission._tcp  IN  SRV   5 0 587 mail.efael.uz.
-_submissions._tcp IN  SRV   5 0 465 mail.efael.uz.
-_imap._tcp        IN  SRV   5 0 143 mail.efael.uz.
-_imaps._tcp       IN  SRV   5 0 993 mail.efael.uz.
-_dmarc            IN  TXT   "v=DMARC1; p=none"
-mail._domainkey   IN  TXT   ( "v=DKIM1; k=rsa; "
-      "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQClt52wtVKFISTvMAgGFEcrW+5SyBiNixUwWrUiu9Uo5tt1qI4Q5+5HcnV02uPLjSugc/a2x2TSPIHjG5EKgafx4EeNtCGjEUCtaZXRVGVoE0ygtJOShlQ7DZRITFBymjgmbILwGCDVrGu01oSWJ81VKHr7XlX35a4A8yiB04sHsQIDAQAB" )
-
-; GitHub verifications
-_gh-efael-o IN      TXT      260d041b09
