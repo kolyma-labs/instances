@@ -47,5 +47,7 @@ _submissions._tcp IN  SRV   5 0 465 mail.uchar.uz.
 _imap._tcp        IN  SRV   5 0 143 mail.uchar.uz.
 _imaps._tcp       IN  SRV   5 0 993 mail.uchar.uz.
 _dmarc            IN  TXT   "v=DMARC1; p=none"
-mail._domainkey IN TXT ( "v=DKIM1; k=rsa;"
-	"p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC0q2epvpXhiAz7/JoDejqRvx5/1Z+ek6Ojw8KtoawTdhs+FpKWC1z21EMzmjuG0+wVFoCCqG7xJQVKVk2zoFaOw6DeAftTwro4C1m0dB4Wrks6XcY/bPBjQJfjFoNm2m77pBPKNNjUaQIUrTnHDQrr21qZ97hZr+ZG1rBKkAItmQIDAQAB" )
+mail._domainkey IN TXT ( "v=DKIM1; k=rsa; "
+    "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs9BS7/n+Q/mMUTflnYaggVlxsjTd0uJe70Gw8XgqrBUMAwAEWQ7dzJt83RIBSZ3K1gZZ7oWRCIBmvdeJsXOZ3VsOYBMlaYkjhLBFLUFe1/L+vo3C/SCstDZjZXmBxjk+Sgz/5WVD48YE1L3na0DGWuM+UvchPNuSA9WBSieeukfyC1K1Pk/sQxkRVmamdKnCifsk0d8JRexcsKats"
+    "BDQ6mXMqLDBthBm8iy/5r4BaOG/YQDx72SKGc8aI0AwIQIgSbeSLX5WbRXoKIKbczy62btg+KuPs+wnXgDa4w8oF0U0RgCTgnJ/JB5WB+3K5Aj34F+dTyadF/ftBzbd6i3rmQIDAQAB"
+) ;
