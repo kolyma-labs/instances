@@ -40,7 +40,7 @@ chat          IN    CNAME ns1.uchar.uz.
 next          IN    CNAME ns2.uchar.uz.
 matrix.next   IN    CNAME ns2.uchar.uz.
 mas.next      IN    CNAME ns2.uchar.uz.
-chat.next     IN    CNAME ns1.uchar.uz.
+chat.next     IN    CNAME ns2.uchar.uz.
 
 ; ==> Livemedia Endpoints
 call          IN    CNAME ns1.uchar.uz.
