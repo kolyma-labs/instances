@@ -118,6 +118,7 @@ in
         enable = true;
         port = cfg.cache;
         bindAddress = "localhost";
+        # cache.kolyma.uz:M38r8+xMpJE531MeDrE8maBe8aaWHkTUVz
         secretKeyFile = config.sops.secrets."hydra/sign".path;
       };
 
