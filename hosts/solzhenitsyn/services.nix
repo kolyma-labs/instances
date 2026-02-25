@@ -77,9 +77,6 @@
       # https://uzbek.net.uz
       uzbek-net.website.enable = true;
 
-      # https://t.me/xinuxmgrbot
-      xinux.bot.enable = true;
-
       # https://t.me/rustaceanbot
       rust-uz.bot.enable = true;
     };
