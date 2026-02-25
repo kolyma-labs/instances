@@ -15,9 +15,7 @@
 
     # Per app preconfigured abstractions
     outputs.nixosModules.apps.rustina-bot
-    outputs.nixosModules.apps.xinuxmgr-bot
     outputs.nixosModules.apps.uzbek-net-website
-    outputs.nixosModules.apps.uzinfocom-website
   ];
 
   sops.secrets = {
@@ -78,14 +76,6 @@
     apps = {
       # https://uzbek.net.uz
       uzbek-net.website.enable = true;
-
-      # https://*.uzinfocom.uz
-      uzinfocom = {
-        # https://link.uzinfocom.uz
-        social.enable = true;
-        # https://oss.uzinfocom.uz
-        website.enable = true;
-      };
 
       # https://t.me/xinuxmgrbot
       xinux.bot.enable = true;

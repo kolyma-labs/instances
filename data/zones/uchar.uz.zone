@@ -10,12 +10,6 @@ $TTL 86400
 @      IN    NS    ns1.oss.uzinfocom.uz.
 @      IN    NS    ns2.oss.uzinfocom.uz.
 
-; ==> Nameservers (Kolyma Provided)
-@      IN    NS    ns1.kolyma.uz.
-@      IN    NS    ns2.kolyma.uz.
-@      IN    NS    ns3.kolyma.uz.
-@      IN    NS    ns4.kolyma.uz.
-
 ; ==> Entry points
 @      IN    A     91.212.89.25
 www    IN    CNAME uchar.uz.

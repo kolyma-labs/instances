@@ -69,9 +69,6 @@
     # Khakimov's website
     khakimovs-website.url = "github:khakimovs/website";
 
-    # Xinux Bot from Xinux Community
-    xinuxmgr-bot.url = "github:xinux-org/telegram";
-
     # Rustina from Rust Uzbekistan
     rustina-bot.url = "github:rust-lang-uz/telegram";
 
@@ -86,12 +83,6 @@
 
     # Tarmoqchi HTTP tunneling
     tarmoqchi.url = "github:floss-uz-community/tarmoqchi";
-
-    # Social website of uzinfocom
-    uzinfocom-website.url = "github:uzinfocom-org/website";
-
-    # Social website of uzinfocom
-    uzinfocom-taggis.url = "github:uzinfocom-org/taggis";
 
     # Orzklv's website
     orzklv-web.url = "git+https://git.floss.uz/orzklv/web";

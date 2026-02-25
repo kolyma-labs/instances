@@ -10,12 +10,6 @@ $TTL 86400
 @      IN    NS    ns1.oss.uzinfocom.uz.
 @      IN    NS    ns2.oss.uzinfocom.uz.
 
-; ==> Nameservers (Kolyma Provided)
-@      IN    NS    ns1.kolyma.uz.
-@      IN    NS    ns2.kolyma.uz.
-@      IN    NS    ns3.kolyma.uz.
-@      IN    NS    ns4.kolyma.uz.
-
 ; ==> Server Points
 ns1    IN    A     45.150.26.27
 ns2    IN    A     45.150.26.30

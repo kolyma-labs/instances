@@ -10,19 +10,6 @@ $TTL 86400
 @      IN    NS    ns1.oss.uzinfocom.uz.
 @      IN    NS    ns2.oss.uzinfocom.uz.
 
-; ==> Nameservers (Kolyma Provided)
-@      IN    NS    ns1.kolyma.uz.
-@      IN    NS    ns2.kolyma.uz.
-@      IN    NS    ns3.kolyma.uz.
-@      IN    NS    ns4.kolyma.uz.
-
-; ==> Entry points
-@      IN    A     185.199.108.153
-@      IN    A     185.199.109.153
-@      IN    A     185.199.110.153
-@      IN    A     185.199.111.153
-www    IN    CNAME nix-darwin.uz.
-
 ; ==> Options website
 options IN   CNAME xinux-org.github.io.
 
