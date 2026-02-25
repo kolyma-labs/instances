@@ -28,6 +28,10 @@ ns3    IN    AAAA  2a01:4f9:3080:2c81::2
 ns4    IN    A     65.109.103.11
 ns4    IN    AAAA  2a01:4f9:3080:2829::2
 
+; ==> Hydra Build Farm
+hydra       IN    CNAME ns3.kolyma.uz.
+cache       IN    CNAME ns3.kolyma.uz.
+
 ; ==> Mail server (iCloud)
 mail              IN  A     37.27.67.190
 mail              IN  AAAA  2a01:4f9:3081:3518::2

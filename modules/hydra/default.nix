@@ -95,9 +95,9 @@ in
         port = cfg.hydra;
         logo = ./logo.png;
         listenHost = "localhost";
-        hydraURL = "https://hydra.xinux.uz";
+        hydraURL = "https://hydra.kolyma.uz";
         smtpHost = "mail.kolyma.uz";
-        notificationSender = "support@floss.uz";
+        notificationSender = "support@kolyma.uz";
 
         useSubstitutes = true;
         # Use host machine as build farm
@@ -122,7 +122,7 @@ in
       };
 
       nginx.virtualHosts = {
-        "hydra.xinux.uz" = {
+        "hydra.kolyma.uz" = {
           forceSSL = true;
           enableACME = true;
           locations."/" = {
@@ -130,7 +130,7 @@ in
           };
         };
 
-        "cache.xinux.uz" = {
+        "cache.kolyma.uz" = {
           forceSSL = true;
           enableACME = true;
           locations."/" = {

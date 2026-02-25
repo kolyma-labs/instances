@@ -57,13 +57,11 @@ in
       ];
     in
     lib.mkIf cfg.enable {
-      nix.gc =
-
-        {
-          dates = cfg.interval;
-          options = "--delete-older-than 30d";
-          automatic = if config.networking.hostName == "Volovich" then false else true;
-        };
+      nix.gc = lib.mkIf (!config.uzinfocom.nixpkgs.master) {
+        automatic = true;
+        dates = cfg.interval;
+        options = "--delete-older-than 30d";
+      };
 
       system.autoUpgrade = lib.mkMerge [
         {

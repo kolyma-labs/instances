@@ -65,7 +65,7 @@ in
       type = "slave";
     };
 
-    # https://(hydra|cache).xinux.uz
+    # https://(hydra|cache).kolyma.uz
     hydra.enable = true;
     nixpkgs.master = true;
 
@@ -79,12 +79,12 @@ in
           token = config.sops.templates."gitea-forgejo-kolyma".path;
           type = "forgejo";
         }
-        {
-          name = "Uzinfocom";
-          url = "https://github.com/uzinfocom-org";
-          token = config.sops.secrets."github/uzinfocom".path;
-          type = "github";
-        }
+        # {
+        #   name = "Uzinfocom";
+        #   url = "https://github.com/uzinfocom-org";
+        #   token = config.sops.secrets."github/uzinfocom".path;
+        #   type = "github";
+        # }
         {
           name = "Floss";
           url = "https://github.com/floss-uz";
@@ -97,30 +97,30 @@ in
           token = config.sops.secrets."github/floss-community".path;
           type = "github";
         }
-        {
-          name = "Xinux";
-          url = "https://github.com/xinux-org";
-          token = config.sops.secrets."github/xinux".path;
-          type = "github";
-        }
+        # {
+        #   name = "Xinux";
+        #   url = "https://github.com/xinux-org";
+        #   token = config.sops.secrets."github/xinux".path;
+        #   type = "github";
+        # }
         {
           name = "Rust";
           url = "https://github.com/rust-lang-uz";
           token = config.sops.secrets."github/rust-lang".path;
           type = "github";
         }
-        {
-          name = "Uchar";
-          url = "https://github.com/uchar-org";
-          token = config.sops.secrets."github/uchar".path;
-          type = "github";
-        }
-        {
-          name = "Bleur";
-          url = "https://github.com/bleur-org";
-          token = config.sops.secrets."github/bleur".path;
-          type = "github";
-        }
+        # {
+        #   name = "Uchar";
+        #   url = "https://github.com/uchar-org";
+        #   token = config.sops.secrets."github/uchar".path;
+        #   type = "github";
+        # }
+        # {
+        #   name = "Bleur";
+        #   url = "https://github.com/bleur-org";
+        #   token = config.sops.secrets."github/bleur".path;
+        #   type = "github";
+        # }
         {
           name = "Uzbek-Net";
           url = "https://github.com/uzbek-net";
