@@ -24,7 +24,8 @@ $TTL 86400
 
 ; ==> Hydra Build Farm
 hydra       IN    CNAME ns2.oss.uzinfocom.uz.
-cache       IN    CNAME ns2.oss.uzinfocom.uz.
+cache       IN    CNAME ns3.kolyma.uz.
+;                       ns2.oss.uzinfocom.uz.
 
 ; ==> Telegram Bots
 bot         IN    CNAME ns2.kolyma.uz.
