@@ -15,7 +15,7 @@ hydra       IN    CNAME ns2.oss.uzinfocom.uz.
 cache       IN    CNAME ns2.oss.uzinfocom.uz.
 
 ; ==> Telegram Bots
-bot         IN    CNAME ns2.oss.uzinfocom.uz.
+bot         IN    CNAME ns1.oss.uzinfocom.uz.
 
 ; ==> GitHub Deployments
 graph       IN    CNAME xinux-org.github.io.
