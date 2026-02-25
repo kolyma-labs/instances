@@ -57,7 +57,7 @@ in
       ];
     in
     lib.mkIf cfg.enable {
-      nix.gc = lib.mkIf (!config.uzinfocom.nixpkgs.master) {
+      nix.gc = lib.mkIf (!config.kolyma.nixpkgs.master) {
         automatic = true;
         dates = cfg.interval;
         options = "--delete-older-than 30d";
