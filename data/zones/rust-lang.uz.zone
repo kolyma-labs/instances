@@ -6,10 +6,6 @@ $TTL 86400
              604800     ; Expire
              86400 )    ; Minimum TTL
 
-; ==> Nameservers (Uzinfocom Internal)
-@      IN    NS    ns1.oss.uzinfocom.uz.
-@      IN    NS    ns2.oss.uzinfocom.uz.
-
 ; ==> Nameservers (Kolyma Provided)
 @      IN    NS    ns1.kolyma.uz.
 @      IN    NS    ns2.kolyma.uz.
