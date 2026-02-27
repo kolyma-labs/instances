@@ -75,8 +75,7 @@
     description = "Remote Builder";
     password = "$y$j9T$CiDzZy8oNZ5x6F92FNgHF.$fnsgz9MiBCeKE0kfbDU/rS2nQ/6NnTzEyBUpQrwUoo9";
     keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHEKG9AtPy1GIU89JEicdzMG6IfjqsApgtGn58Mgl2ln support@oss.uzinfocom.uz
-"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHEKG9AtPy1GIU89JEicdzMG6IfjqsApgtGn58Mgl2ln support@oss.uzinfocom.uz"
     ];
   };
 }
