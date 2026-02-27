@@ -24,7 +24,7 @@
     # Users of system
     accounts = {
       teams = with lib.camps; [ uzinfocom ];
-      accounts = with lib.labors; [ builder ];
+      users = with lib.labors; [ builder ];
     };
   };
 
