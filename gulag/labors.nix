@@ -69,4 +69,13 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINhQlu6jHF2BLrNvfKy+XXjneqnE3Rz9B2ls6fvw+pWw isakulovdev@gmail.com"
     ];
   };
+
+  builder = {
+    username = "builder";
+    description = "Remote Builder";
+    password = "$y$j9T$CiDzZy8oNZ5x6F92FNgHF.$fnsgz9MiBCeKE0kfbDU/rS2nQ/6NnTzEyBUpQrwUoo9";
+    keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBCR0p+DqCXjPxzyH/ZA0P5Zg8w4nmwY+2p1esZYfssL support@oss.uzinfocom.uz"
+    ];
+  };
 }
