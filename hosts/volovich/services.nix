@@ -43,6 +43,17 @@ in
     www = {
       enable = true;
       instance = 3;
+      cdn = {
+        "aefa23wef23.dunyo.online" = {
+          path = "/srv/dunyo";
+          mode = "browse";
+          extra = ''
+            autoindex_format json;
+            add_header Access-Control-Allow-Origin *;
+          '';
+        };
+
+      };
     };
 
     # bind://ns3.kolyma.uz
